@@ -1,0 +1,23 @@
+{
+  "spec": "1.3",
+  "mod_id": "KerbalLifeSupportSystem",
+  "author": "Safarte",
+  "name": "Kerbal Life-Support System",
+  "description": "a",
+  "source": "https://github.com/Safarte/KerbalLifeSupportSystem",
+  "version": "1.0.0",
+  "version_check": "https://raw.githubusercontent.com/Safarte/KerbalLifeSupportSystem/main/KLSS/swinfo.json",
+  "ksp2_version": {
+    "min": "0.1.3",
+    "max": "*"
+  },
+  "dependencies": [
+    {
+      "id": "com.github.x606.spacewarp",
+      "version": {
+        "min": "1.4.0",
+        "max": "*"
+      }
+    }
+  ]
+}

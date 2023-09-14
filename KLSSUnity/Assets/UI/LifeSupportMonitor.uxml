@@ -1,0 +1,203 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="LifeSupportMonitor.uss" />
+    <ui:VisualElement name="root" class="root">
+        <ui:VisualElement name="dark-bg" class="dark-bg">
+            <ui:VisualElement name="border" class="border">
+                <ui:VisualElement name="container" class="container" style="flex-direction: column;">
+                    <ui:VisualElement name="title-bar" class="title-bar">
+                        <ui:VisualElement name="title-icon" class="text-dark title-icon" />
+                        <ui:Label text="LIFE-SUPPORT" display-tooltip-when-elided="true" name="title" class="text-light title" />
+                        <ui:VisualElement name="title-line" class="title-line">
+                            <ui:Label text="––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––" display-tooltip-when-elided="true" name="title-line-dashes" class="text-dark" style="margin-left: 0; margin-right: 0; margin-top: -2px; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; font-size: 14px; -unity-font-definition: url(&apos;/Packages/uitkforksp2.controls/Assets/Theme/Fonts/JetBrainsMono/JetBrainsMono-Regular SDF.asset&apos;); overflow: hidden;" />
+                            <ui:Label text="/" display-tooltip-when-elided="true" name="title-line-slash" class="text-dark" style="font-size: 10px; -unity-font-definition: url(&apos;/Packages/uitkforksp2.controls/Assets/Theme/Fonts/JetBrainsMono/JetBrainsMono-Medium SDF.asset&apos;); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+                        </ui:VisualElement>
+                        <ui:Button display-tooltip-when-elided="true" name="close-button" class="close-button">
+                            <ui:VisualElement name="close-button-icon" class="text-light close-button-icon" style="width: 12px; height: 12px;" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                    <ui:Label text="=======================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================" display-tooltip-when-elided="true" name="divider" class="text-dark divider-dashes" />
+                    <ui:VisualElement style="padding-right: 7px; padding-left: 5px;">
+                        <ui:VisualElement style="margin-bottom: 0; font-size: 12px; padding-right: 5px; padding-left: 0; padding-top: 0; padding-bottom: 0; margin-left: 0; margin-right: 0; margin-top: 0;">
+                            <ui:VisualElement style="flex-direction: row; margin-bottom: 3px;">
+                                <ui:Label display-tooltip-when-elided="true" class="ls-monitor__vessel-name ls-monitor-gray" style="width: 15%;" />
+                                <ui:VisualElement style="flex-direction: row; width: 100%; justify-content: space-between; padding-left: 30px; padding-right: 30px;">
+                                    <ui:Label text="FOOD" display-tooltip-when-elided="true" class="ls-monitor-gray" style="width: 30%; -unity-font-style: bold;" />
+                                    <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                    <ui:Label text="WATER" display-tooltip-when-elided="true" class="ls-monitor-gray" style="width: 30%; -unity-font-style: bold;" />
+                                    <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                    <ui:Label text="OXYGEN" display-tooltip-when-elided="true" class="ls-monitor-gray" style="width: 30%; -unity-font-style: bold;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement style="width: 100%; height: 2px; background-color: rgb(63, 66, 78);" />
+                        </ui:VisualElement>
+                        <ui:ScrollView name="body" horizontal-scroller-visibility="Hidden" class="body" style="font-size: 12px;">
+                            <ui:VisualElement style="margin-bottom: 5px;">
+                                <ui:VisualElement style="flex-direction: row;">
+                                    <ui:Label text="VESSEL-1 ▼" display-tooltip-when-elided="true" class="ls-monitor-gray" style="width: 15%;" />
+                                    <ui:VisualElement style="flex-direction: row; width: 100%; justify-content: space-between; padding-left: 30px; padding-right: 30px;">
+                                        <ui:Label display-tooltip-when-elided="true" class="ls-monitor-white" style="width: 30%;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label display-tooltip-when-elided="true" class="ls-monitor-white" style="width: 30%;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label display-tooltip-when-elided="true" class="ls-monitor-white" style="width: 30%;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-direction: row;">
+                                    <ui:Label text="Current Crew (1):" display-tooltip-when-elided="true" class="ls-monitor-gray" style="width: 15%;" />
+                                    <ui:VisualElement style="flex-direction: row; width: 100%; justify-content: space-between; padding-left: 30px; padding-right: 30px;">
+                                        <ui:Label text="1y 23d 03:29" display-tooltip-when-elided="true" class="ls-monitor-white" style="width: 30%;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="1y 23d 03:29" display-tooltip-when-elided="true" class="ls-monitor-white" style="width: 30%;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="1y 23d 03:29" display-tooltip-when-elided="true" class="ls-monitor-white" style="width: 30%;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-direction: row;">
+                                    <ui:Label text="Maximum Crew (2):" display-tooltip-when-elided="true" class="ls-monitor-gray" style="width: 15%;" />
+                                    <ui:VisualElement style="flex-direction: row; width: 100%; justify-content: space-between; padding-left: 30px; padding-right: 30px;">
+                                        <ui:Label text="194d 01:44" display-tooltip-when-elided="true" class="ls-monitor-white" style="width: 30%;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="194d 01:44" display-tooltip-when-elided="true" class="ls-monitor-white" style="width: 30%;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="194d 01:44" display-tooltip-when-elided="true" class="ls-monitor-white" style="width: 30%;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement style="height: 2px; width: 100%; background-color: rgb(63, 66, 78);" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="margin-bottom: 5px;">
+                                <ui:VisualElement style="flex-direction: row;">
+                                    <ui:Label text="VESSEL-2 ▶" display-tooltip-when-elided="true" class="ls-monitor__vessel-name ls-monitor-gray" style="width: 15%;" />
+                                    <ui:VisualElement style="flex-direction: row; width: 100%; justify-content: space-between; padding-left: 30px; padding-right: 30px;">
+                                        <ui:Label text="00:29 /!\" display-tooltip-when-elided="true" class="ls-monitor-orange" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:29 /!\" display-tooltip-when-elided="true" class="ls-monitor-orange" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:29 /!\" display-tooltip-when-elided="true" class="ls-monitor-orange" style="width: 30%; -unity-font-style: bold;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement style="height: 2px; width: 100%; background-color: rgb(63, 66, 78);" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="margin-bottom: 5px;">
+                                <ui:VisualElement style="flex-direction: row;">
+                                    <ui:Label text="VESSEL-3 ▶" display-tooltip-when-elided="true" class="ls-monitor__vessel-name ls-monitor-gray" style="width: 15%;" />
+                                    <ui:VisualElement style="flex-direction: row; width: 100%; justify-content: space-between; padding-left: 30px; padding-right: 30px; color: rgb(224, 28, 39);">
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement style="height: 2px; width: 100%; background-color: rgb(63, 66, 78);" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="margin-bottom: 5px;">
+                                <ui:VisualElement style="flex-direction: row;">
+                                    <ui:Label text="VESSEL-3 ▶" display-tooltip-when-elided="true" class="ls-monitor__vessel-name ls-monitor-gray" style="width: 15%;" />
+                                    <ui:VisualElement style="flex-direction: row; width: 100%; justify-content: space-between; padding-left: 30px; padding-right: 30px; color: rgb(224, 28, 39);">
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement style="height: 2px; width: 100%; background-color: rgb(63, 66, 78);" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="margin-bottom: 5px;">
+                                <ui:VisualElement style="flex-direction: row;">
+                                    <ui:Label text="VESSEL-3 ▶" display-tooltip-when-elided="true" class="ls-monitor__vessel-name ls-monitor-gray" style="width: 15%;" />
+                                    <ui:VisualElement style="flex-direction: row; width: 100%; justify-content: space-between; padding-left: 30px; padding-right: 30px; color: rgb(224, 28, 39);">
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement style="height: 2px; width: 100%; background-color: rgb(63, 66, 78);" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="margin-bottom: 5px;">
+                                <ui:VisualElement style="flex-direction: row;">
+                                    <ui:Label text="VESSEL-3 ▶" display-tooltip-when-elided="true" class="ls-monitor__vessel-name ls-monitor-gray" style="width: 15%;" />
+                                    <ui:VisualElement style="flex-direction: row; width: 100%; justify-content: space-between; padding-left: 30px; padding-right: 30px; color: rgb(224, 28, 39);">
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement style="height: 2px; width: 100%; background-color: rgb(63, 66, 78);" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="margin-bottom: 5px;">
+                                <ui:VisualElement style="flex-direction: row;">
+                                    <ui:Label text="VESSEL-3 ▶" display-tooltip-when-elided="true" class="ls-monitor__vessel-name ls-monitor-gray" style="width: 15%;" />
+                                    <ui:VisualElement style="flex-direction: row; width: 100%; justify-content: space-between; padding-left: 30px; padding-right: 30px; color: rgb(224, 28, 39);">
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement style="height: 2px; width: 100%; background-color: rgb(63, 66, 78);" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="margin-bottom: 5px;">
+                                <ui:VisualElement style="flex-direction: row;">
+                                    <ui:Label text="VESSEL-3 ▶" display-tooltip-when-elided="true" class="ls-monitor__vessel-name ls-monitor-gray" style="width: 15%;" />
+                                    <ui:VisualElement style="flex-direction: row; width: 100%; justify-content: space-between; padding-left: 30px; padding-right: 30px; color: rgb(224, 28, 39);">
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement style="height: 2px; width: 100%; background-color: rgb(63, 66, 78);" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="margin-bottom: 5px;">
+                                <ui:VisualElement style="flex-direction: row;">
+                                    <ui:Label text="VESSEL-3 ▶" display-tooltip-when-elided="true" class="ls-monitor__vessel-name ls-monitor-gray" style="width: 15%;" />
+                                    <ui:VisualElement style="flex-direction: row; width: 100%; justify-content: space-between; padding-left: 30px; padding-right: 30px; color: rgb(224, 28, 39);">
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement style="height: 2px; width: 100%; background-color: rgb(63, 66, 78);" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="margin-bottom: 5px;">
+                                <ui:VisualElement style="flex-direction: row;">
+                                    <ui:Label text="VESSEL-3 ▶" display-tooltip-when-elided="true" class="ls-monitor__vessel-name ls-monitor-gray" style="width: 15%;" />
+                                    <ui:VisualElement style="flex-direction: row; width: 100%; justify-content: space-between; padding-left: 30px; padding-right: 30px; color: rgb(224, 28, 39);">
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement style="height: 2px; width: 100%; background-color: rgb(63, 66, 78);" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="margin-bottom: 5px;">
+                                <ui:VisualElement style="flex-direction: row;">
+                                    <ui:Label text="VESSEL-3 ▶" display-tooltip-when-elided="true" class="ls-monitor__vessel-name ls-monitor-gray" style="width: 15%;" />
+                                    <ui:VisualElement style="flex-direction: row; width: 100%; justify-content: space-between; padding-left: 30px; padding-right: 30px; color: rgb(224, 28, 39);">
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                        <ui:Label text="|" display-tooltip-when-elided="true" class="ls-monitor-gray" style="margin-left: 20px; margin-right: 20px;" />
+                                        <ui:Label text="00:00 /!\" display-tooltip-when-elided="true" class="ls-monitor-red" style="width: 30%; -unity-font-style: bold;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement style="height: 2px; width: 100%; background-color: rgb(63, 66, 78);" />
+                            </ui:VisualElement>
+                        </ui:ScrollView>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

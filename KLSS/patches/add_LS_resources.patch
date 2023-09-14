@@ -1,0 +1,41 @@
+@use 'constants';
+
+:parts ~#eva_kerbal {
+    * > resourceContainers {
+        $crewCapacity: $parent["crewCapacity"];
+        @if $crewCapacity > 0 {
+            +CarbonDioxide {
+                capacityUnits: 7.0 * $OXYGEN_PER_DAY * $crewCapacity;
+                initialUnits: 0.0;
+            }
+            +WasteWater {
+                capacityUnits: 7.0 * $WATER_PER_DAY * $crewCapacity;
+                initialUnits: 0.0;
+            }
+            +Oxygen {
+                capacityUnits: 7.0 * $OXYGEN_PER_DAY * $crewCapacity;
+                initialUnits: 7.0 * $OXYGEN_PER_DAY * $crewCapacity;
+            }
+            +Water {
+                capacityUnits: 7.0 * $WATER_PER_DAY * $crewCapacity;
+                initialUnits: 7.0 * $WATER_PER_DAY * $crewCapacity;
+            }
+            +Food {
+                capacityUnits: 7.0 * $FOOD_PER_DAY * $crewCapacity;
+                initialUnits: 7.0 * $FOOD_PER_DAY * $crewCapacity;
+            }
+            +Waste {
+                capacityUnits: 7.0 * $FOOD_PER_DAY * $crewCapacity;
+                initialUnits: 0.0;
+            }
+        }
+    }
+}
+
+:parts ~.Module_ResourceCapacities {
+    @if $$crewCapacity > 0 {
+        +Module_ResourceCapacities {
+            +Data_ResourceCapacities {}
+        }
+    }
+}

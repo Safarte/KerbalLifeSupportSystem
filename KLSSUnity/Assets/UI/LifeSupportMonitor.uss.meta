@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 948e20e61fdf82d429c77f4d910ef16a
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: klss_ui.bundle
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b77d446ad57f7f3469486cac9efc9952, type: 3}
+  disableValidation: 0

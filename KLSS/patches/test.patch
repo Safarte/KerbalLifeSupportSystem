@@ -1,0 +1,32 @@
+:parts #eva_kerbal > resourceContainers {
+    +CarbonDioxide {
+        capacityUnits: 0.001 * 7.0 * 5.0 * $crewCapacity;
+        initialUnits: 0.0;
+    }
+    +WasteWater {
+        capacityUnits: 7.0 * 3.0 * $crewCapacity;
+        initialUnits: 0.0;
+    }
+    +Oxygen {
+        capacityUnits: 0.001 * 7.0 * 5.0 * $crewCapacity;
+        initialUnits: 0.001 * 7.0 * 5.0 * $crewCapacity;
+    }
+    +Water {
+        capacityUnits: 7.0 * 3.0 * $crewCapacity;
+        initialUnits: 7.0 * 3.0 * $crewCapacity;
+    }
+    +Food {
+        capacityUnits: 0.001 * 7.0 * $crewCapacity;
+        initialUnits: 0.001 * 7.0 * $crewCapacity;
+    }
+    +Waste {
+        capacityUnits: 0.001 * 7.0 * $crewCapacity;
+        initialUnits: 0.0;
+    }                
+}
+
+:parts #eva_kerbal {
+    +Module_ResourceCapacities {
+        +Data_ResourceCapacities {}
+    }
+}

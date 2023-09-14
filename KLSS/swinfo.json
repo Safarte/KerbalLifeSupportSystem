@@ -18,6 +18,27 @@
         "min": "1.4.0",
         "max": "*"
       }
+    },
+    {
+      "id": "UitkForKsp2",
+      "version": {
+        "min": "1.4.0",
+        "max": "*"
+      }
+    },
+    {
+      "id": "PatchManager",
+      "version": {
+        "min": "0.1.0",
+        "max": "*"
+      }
+    },
+    {
+      "id": "CommunityResources",
+      "version": {
+        "min": "0.1.0",
+        "max": "*"
+      }
     }
   ]
 }

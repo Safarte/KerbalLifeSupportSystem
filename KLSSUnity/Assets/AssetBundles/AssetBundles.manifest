@@ -1,0 +1,11 @@
+ManifestFileVersion: 0
+CRC: 1526154216
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: kerbalui
+      Dependencies: {}
+    Info_1:
+      Name: klss_ui.bundle
+      Dependencies:
+        Dependency_0: kerbalui

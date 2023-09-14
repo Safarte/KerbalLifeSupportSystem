@@ -1,0 +1,11 @@
+Key,Type,Desc,English
+
+PartModules/LifeSupportRecycler/Name,Text,,Life Support
+VAB/PartsPicker/Life Support,Text,,Life Support
+KLSS/LSR/RecyclerEnabled,Text,,Recycler Enabled
+KLSS/LSR/StartRecycler,Text,,Start Recycler
+KLSS/LSR/Tooltip/StopRecycler,Text,,Stop Recycler
+KLSS/LSR/Tooltip/ToggleRecycler,Text,,Toggle Recycler
+KLSS/LSR/Formulas/CO2Scrubber,Text,,CO2 Scrubber
+KLSS/LSR/Formulas/WaterRecycler,Text,,Water Recycler
+KLSS/LSR/Formulas/Combined,Text,,CO2 Scrubber + Water Recycler

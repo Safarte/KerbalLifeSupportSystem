@@ -1,0 +1,114 @@
+@use 'builtin:list';
+
+:parts ~#eva_kerbal {
+    @if $$crewCapacity > 0 {
+        $crewCapacity: $$crewCapacity;
+        +Module_ResourceConverter {
+            +Data_ResourceConverter {
+                SelectedFormula: 0;
+                ToggleName: "KLSS/LSR/RecyclerEnabled";
+                StartActionName: "KLSS/LSR/StartRecycler";
+                StopActionName: "KLSS/LSR/StopRecycler";
+                ToggleActionName: "KLSS/LSR/ToggleRecycler";
+                FormulaDefinitions: [
+                    {
+                        InternalName: "Combined",
+                        FormulaLocalizationKey: "KLSS/LSR/Formulas/Combined",
+                        InputResources: [
+                            {
+                                Rate: 2 * $crewCapacity,
+                                ResourceName: "ElectricCharge",
+                                AcceptanceThreshold: 0.0001
+                            },
+                            {
+                                Rate: 0.001 * $crewCapacity,
+                                ResourceName: "CarbonDioxide",
+                                AcceptanceThreshold: 0.0001
+                            },
+                            {
+                                Rate: $crewCapacity,
+                                ResourceName: "WasteWater",
+                                AcceptanceThreshold: 0.0001
+                            }
+                        ],
+                        OutputResources: [
+                            {
+                                Rate: 0.001 * $crewCapacity,
+                                ResourceName: "Oxygen",
+                                AcceptanceThreshold: 0.0001
+                            },
+                            {
+                                Rate: $crewCapacity,
+                                ResourceName: "Water",
+                                AcceptanceThreshold: 0.0001
+                            }  
+                        ],
+                        AcceptanceThreshold: 0.000001
+                    },
+                    {
+                        InternalName: "CO2Scrubber",
+                        FormulaLocalizationKey: "KLSS/LSR/Formulas/CO2Scrubber",
+                        InputResources: [
+                            {
+                                Rate: $crewCapacity,
+                                ResourceName: "ElectricCharge",
+                                AcceptanceThreshold: 0.0001
+                            },
+                            {
+                                Rate: 0.001 * $crewCapacity,
+                                ResourceName: "CarbonDioxide",
+                                AcceptanceThreshold: 0.0001
+                            }
+                        ],
+                        OutputResources: [
+                            {
+                                Rate: 0.001 * $crewCapacity,
+                                ResourceName: "Oxygen",
+                                AcceptanceThreshold: 0.0001
+                            }                         
+                        ],
+                        AcceptanceThreshold: 0.000001
+                    },
+                    {
+                        InternalName: "WaterRecycler",
+                        FormulaLocalizationKey: "KLSS/LSR/Formulas/WaterRecycler",
+                        InputResources: [
+                            {
+                                Rate: $crewCapacity,
+                                ResourceName: "ElectricCharge",
+                                AcceptanceThreshold: 0.0001
+                            },
+                            {
+                                Rate: $crewCapacity,
+                                ResourceName: "WasteWater",
+                                AcceptanceThreshold: 0.0001
+                            }
+                        ],
+                        OutputResources: [
+                            {
+                                Rate: $crewCapacity,
+                                ResourceName: "Water",
+                                AcceptanceThreshold: 0.0001
+                            }                         
+                        ],
+                        AcceptanceThreshold: 0.000001
+                    }
+                ];
+            }
+        }
+        PAMModuleSortOverride: +[
+            {
+                PartComponentModuleName: "PartComponentModule_ResourceConverter",
+                sortIndex: 40
+            }
+        ];
+        PAMModuleVisualsOverride: +[
+            {
+                PartComponentModuleName: "PartComponentModule_ResourceConverter",
+                ModuleDisplayName: "PartModules/LifeSupportRecycler/Name",
+                ShowHeader: true,
+                ShowFooter: false
+            }
+        ];
+    }
+}

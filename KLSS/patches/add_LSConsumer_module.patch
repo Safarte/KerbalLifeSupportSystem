@@ -1,0 +1,51 @@
+@use 'builtin:list';
+@use 'constants';
+
+:parts {
+    @if $$crewCapacity > 0 {
+        $crewCapacity: $$crewCapacity;
+        +Module_LifeSupportConsumer {
+            +Data_LifeSupportConsumer {
+                +LifeSupportDefinition {
+                    InternalName: "KerbalLifeSupport";
+                    FormulaLocalizationKey: "KLSS/LSR/Formulas/LifeSupport";
+                    InputResources: [
+                        {
+                            Rate: $OXYGEN_PER_DAY / $SECONDS_PER_DAY * $crewCapacity,
+                            ResourceName: "Oxygen",
+                            AcceptanceThreshold: 0.0001
+                        },
+                        {
+                            Rate: $WATER_PER_DAY / $SECONDS_PER_DAY * $crewCapacity,
+                            ResourceName: "Water",
+                            AcceptanceThreshold: 0.0001
+                        },
+                        {
+                            Rate: $FOOD_PER_DAY / $SECONDS_PER_DAY * $crewCapacity,
+                            ResourceName: "Food",
+                            AcceptanceThreshold: 0.0001
+                        }
+                    ];
+                    OutputResources: [
+                        {
+                            Rate: $OXYGEN_PER_DAY / $SECONDS_PER_DAY * $crewCapacity,
+                            ResourceName: "CarbonDioxide",
+                            AcceptanceThreshold: 0.0001
+                        },
+                        {
+                            Rate: $WATER_PER_DAY / $SECONDS_PER_DAY * $crewCapacity,
+                            ResourceName: "WasteWater",
+                            AcceptanceThreshold: 0.0001
+                        },
+                        {
+                            Rate: $FOOD_PER_DAY / $SECONDS_PER_DAY * $crewCapacity,
+                            ResourceName: "Waste",
+                            AcceptanceThreshold: 0.0001
+                        }
+                    ];
+                    AcceptanceThreshold: 0.0001;
+                }
+            }
+        }
+    }
+}

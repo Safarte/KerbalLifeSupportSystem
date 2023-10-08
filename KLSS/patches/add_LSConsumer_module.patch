@@ -3,7 +3,6 @@
 
 :parts {
     @if $$crewCapacity > 0 {
-        $crewCapacity: $$crewCapacity;
         +Module_LifeSupportConsumer {
             +Data_LifeSupportConsumer {
                 +LifeSupportDefinition {
@@ -11,34 +10,34 @@
                     FormulaLocalizationKey: "KLSS/LSR/Formulas/LifeSupport";
                     InputResources: [
                         {
-                            Rate: $OXYGEN_PER_DAY / $SECONDS_PER_DAY * $crewCapacity,
+                            Rate: $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
                             ResourceName: "Oxygen",
                             AcceptanceThreshold: 0.0001
                         },
                         {
-                            Rate: $WATER_PER_DAY / $SECONDS_PER_DAY * $crewCapacity,
+                            Rate: $WATER_PER_DAY / $SECONDS_PER_DAY,
                             ResourceName: "Water",
                             AcceptanceThreshold: 0.0001
                         },
                         {
-                            Rate: $FOOD_PER_DAY / $SECONDS_PER_DAY * $crewCapacity,
+                            Rate: $FOOD_PER_DAY / $SECONDS_PER_DAY,
                             ResourceName: "Food",
                             AcceptanceThreshold: 0.0001
                         }
                     ];
                     OutputResources: [
                         {
-                            Rate: $OXYGEN_PER_DAY / $SECONDS_PER_DAY * $crewCapacity,
+                            Rate: $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
                             ResourceName: "CarbonDioxide",
                             AcceptanceThreshold: 0.0001
                         },
                         {
-                            Rate: $WATER_PER_DAY / $SECONDS_PER_DAY * $crewCapacity,
+                            Rate: $WATER_PER_DAY / $SECONDS_PER_DAY,
                             ResourceName: "WasteWater",
                             AcceptanceThreshold: 0.0001
                         },
                         {
-                            Rate: $FOOD_PER_DAY / $SECONDS_PER_DAY * $crewCapacity,
+                            Rate: $FOOD_PER_DAY / $SECONDS_PER_DAY,
                             ResourceName: "Waste",
                             AcceptanceThreshold: 0.0001
                         }

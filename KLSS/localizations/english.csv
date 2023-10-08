@@ -1,7 +1,7 @@
 Key,Type,Desc,English
 
 PartModules/LifeSupportRecycler/Name,Text,,Life Support
-VAB/PartsPicker/Life Support,Text,,Life Support
+VAB/PartsPicker/0505-LifeSupport,Text,,Life Support
 KLSS/LSR/RecyclerEnabled,Text,,Recycler Enabled
 KLSS/LSR/StartRecycler,Text,,Start Recycler
 KLSS/LSR/Tooltip/StopRecycler,Text,,Stop Recycler

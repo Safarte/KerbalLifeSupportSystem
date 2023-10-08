@@ -74,6 +74,10 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# Packed Asset bundles
+/[Aa]ssets/[Aa]sset[Bb]undles.meta
+/[Aa]ssets/[Aa]sset[Bb]undles
+
 # End of https://www.toptal.com/developers/gitignore/api/unity
 
 # Krita backups

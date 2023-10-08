@@ -101,6 +101,7 @@
     margin-bottom: 0;
     justify-content: flex-start;
     height: 38px;
+    width: 100%;
 }
 
 .title-icon {
@@ -160,6 +161,7 @@
     width: 100%;
     overflow: hidden;
     margin-top: -3px;
+    height: 14px;
 }
 
 .ls-monitor-gray {
@@ -176,4 +178,43 @@
 
 .ls-monitor-red {
     color: rgb(209, 22, 13);
+}
+
+.ls-vessel-entry {
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.ls-vessel-sub-entry {
+    flex-direction: row;
+    width: 100%;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.ls-vessel-sub-entry__title {
+    width: 15%;
+    color: rgb(173, 182, 208);
+}
+
+.ls-vessel-sub-entry__vessel-name:hover {
+    color: rgb(214, 224, 255);
+}
+
+.ls-vessel-sub-entry__content {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.ls-vessel-sub-entry__value {
+    width: 30%;
+}
+
+.ls-vessel-sub-entry__divider {
+    margin-left: 20px;
+    margin-right: 20px;
+    color: rgb(173, 182, 208);
 }

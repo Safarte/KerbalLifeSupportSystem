@@ -69,7 +69,8 @@ namespace KerbalLifeSupportSystem.Modules
                 _kerbalsInSimObject = _rosterManager.GetAllKerbalsInSimObject(Part.SimulationObject.GlobalId);
                 foreach (KerbalInfo kerbal in _kerbalsInSimObject)
                 {
-                    _kerbalsOnStrike.Add(kerbal.Id);
+                    if (!_dataLifeSupportConsumer.lastConsumed.ContainsKey(kerbal.NameKey))
+                        _dataLifeSupportConsumer.lastConsumed[kerbal.NameKey] = new Dictionary<string, double>();
                 }
                 RefreshIngredientDataStructures();
                 SendResourceRequest();
@@ -80,12 +81,11 @@ namespace KerbalLifeSupportSystem.Modules
                     {
                         foreach (ResourceUnitsPair ingredient in _currentIngredientUnits)
                         {
+                            string resourceName = _resourceDB.GetResourceNameFromID(ingredient.resourceID);
                             if (_containerGroup.GetResourceStoredUnits(ingredient.resourceID) > _dataLifeSupportConsumer.LifeSupportDefinition.AcceptanceThreshold)
                                 foreach (KerbalInfo kerbal in _kerbalsInSimObject)
                                 {
-                                    if (!_dataLifeSupportConsumer.lastConsumed.ContainsKey(kerbal.Id))
-                                        _dataLifeSupportConsumer.lastConsumed[kerbal.Id] = new Dictionary<ResourceDefinitionID, double>();
-                                    _dataLifeSupportConsumer.lastConsumed[kerbal.Id][ingredient.resourceID] = universalTime;
+                                    _dataLifeSupportConsumer.lastConsumed[kerbal.NameKey][resourceName] = universalTime;
                                 }
                         }
                     }
@@ -94,12 +94,16 @@ namespace KerbalLifeSupportSystem.Modules
                         for (int i = 0; i < _currentProductUnits.Length; ++i)
                         {
                             if (_containerGroup.GetResourceCapacityUnits(_currentProductUnits[i].resourceID) < _dataLifeSupportConsumer.LifeSupportDefinition.AcceptanceThreshold)
+                            {
                                 _currentProductUnits[i].units = 0.0;
+                            }
                         }
                         for (int i = 0; i < _currentIngredientUnits.Length; ++i)
                         {
                             if (_containerGroup.GetResourceStoredUnits(_currentIngredientUnits[i].resourceID) < _dataLifeSupportConsumer.LifeSupportDefinition.AcceptanceThreshold)
+                            {
                                 _currentIngredientUnits[i].units = 0.0;
+                            }
                         }
                         SendResourceRequest();
                     }
@@ -159,10 +163,12 @@ namespace KerbalLifeSupportSystem.Modules
                 {
                     if (anyResourceExhausted)
                         break;
-                    if (_dataLifeSupportConsumer.lastConsumed.ContainsKey(kerbal.Id))
+                    if (_dataLifeSupportConsumer.lastConsumed.ContainsKey(kerbal.NameKey))
                     {
-                        var timeDelta = universalTime - _dataLifeSupportConsumer.lastConsumed[kerbal.Id][ingredient.resourceID];
                         string resourceName = _resourceDB.GetResourceNameFromID(ingredient.resourceID);
+                        if (!_dataLifeSupportConsumer.lastConsumed[kerbal.NameKey].ContainsKey(resourceName))
+                            break;
+                        var timeDelta = universalTime - _dataLifeSupportConsumer.lastConsumed[kerbal.NameKey][resourceName];
                         var gracePeriod = resourceName switch
                         {
                             "Food" => FOOD_GRACE_PERIOD,
@@ -176,18 +182,20 @@ namespace KerbalLifeSupportSystem.Modules
 
                 if (anyResourceExhausted)
                 {
-                    if (KerbalLifeSupportSystemPlugin.Instance.ConfigKerbalsDie.Value)
-                        _rosterManager.DestroyKerbal(kerbal.Id);
-                    else
-                        _kerbalsOnStrike.Add(kerbal.Id);
+                    KerbalLifeSupportSystemPlugin.Logger.LogInfo("Kerbal " + kerbal.NameKey + " ran out of life-support.");
+                    _rosterManager.DestroyKerbal(kerbal.Id);
+                    //if (KerbalLifeSupportSystemPlugin.Instance.ConfigKerbalsDie.Value)
+                    //    _rosterManager.DestroyKerbal(kerbal.Id);
+                    //else
+                    //    _kerbalsOnStrike.Add(kerbal.Id);
                 }
-                else
-                    _kerbalsOnStrike.Remove(kerbal.Id);
-
-                _moduleCommand.dataCommand.minimumCrew = _commandMinCrew - _kerbalsOnStrike.Count;
-                _moduleCommand.UpdateKerbalControlStatus();
-                _moduleCommand.UpdateControlStatus();
+                //else
+                //    _kerbalsOnStrike.Remove(kerbal.Id);
             }
+
+            //_moduleCommand.dataCommand.minimumCrew = _commandMinCrew + _kerbalsOnStrike.Count;
+            //_moduleCommand.UpdateKerbalControlStatus();
+            //_moduleCommand.UpdateControlStatus();
         }
 
         private void OnKerbalLocationChanged(MessageCenterMessage msg)

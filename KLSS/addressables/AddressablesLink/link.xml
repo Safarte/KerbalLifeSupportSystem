@@ -25,4 +25,27 @@
   <assembly fullname="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.MeshCollider" preserve="all" />
   </assembly>
+  <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="KSP.Modules.Module_Color" preserve="all" />
+    <type fullname="KSP.CorePartData" preserve="all" />
+    <type fullname="KSP.Modules.Module_Drag" preserve="all" />
+    <type fullname="KSP.Modules.Module_ResourceCapacities" preserve="all" />
+    <type fullname="KSP.Modules.Data_Color" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Modules.Data_Drag" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Modules.Data_ResourceCapacities" preserve="nothing" serialized="true" />
+    <type fullname="KSP.OAB.MirrorTechnique" preserve="nothing" serialized="true" />
+    <type fullname="KSP.OAB.OABEditorPartCategory" preserve="nothing" serialized="true" />
+    <type fullname="KSP.OAB.OABOrientation" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.Definitions.AttachNodeDefinition" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.Definitions.AttachRules" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.Definitions.ModuleDataList" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.Definitions.PartCore" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.Definitions.PartData" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.Definitions.SerializedModuleData" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.Definitions.SerializedPartModule" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.Definitions.SerializedResourceInfo" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.ResourceSystem.ContainedResourceDefinition" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.ResourceSystem.ResourceFlowRequestHandle" preserve="nothing" serialized="true" />
+    <type fullname="Vector3d" preserve="nothing" serialized="true" />
+  </assembly>
 </linker>

@@ -158,31 +158,37 @@
     "resourceContainers": [
       {
         "name": "Food",
-        "capacityUnits": 0.735,
-        "initialUnits": 0.735,
-        "NonStageable": false
+        "capacityUnits": 0.03,
+        "initialUnits": 0.03,
+        "NonStageable": true
       },
       {
         "name": "Water",
-        "capacityUnits": 63.0,
-        "initialUnits": 63.0,
-        "NonStageable": false
+        "capacityUnits": 90.0,
+        "initialUnits": 90.0,
+        "NonStageable": true
       },
       {
         "name": "Oxygen",
-        "capacityUnits": 0.735,
-        "initialUnits": 0.735,
-        "NonStageable": false
+        "capacityUnits": 0.03,
+        "initialUnits": 0.03,
+        "NonStageable": true
       },
       {
         "name": "WasteWater",
-        "capacityUnits": 63.0,
+        "capacityUnits": 90.0,
         "initialUnits": 0.0,
         "NonStageable": false
       },
       {
         "name": "CarbonDioxide",
-        "capacityUnits": 0.735,
+        "capacityUnits": 0.03,
+        "initialUnits": 0.0,
+        "NonStageable": false
+      },
+      {
+        "name": "Waste",
+        "capacityUnits": 0.03,
         "initialUnits": 0.0,
         "NonStageable": false
       }

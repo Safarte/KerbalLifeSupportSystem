@@ -24,7 +24,7 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
     [PublicAPI] public const string ModName = MyPluginInfo.PLUGIN_NAME;
     [PublicAPI] public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
 
-    internal ConfigEntry<bool> ConfigKerbalsDie;
+    //internal ConfigEntry<bool> ConfigKerbalsDie;
     internal ConfigEntry<float> ConfigResourceConsumptionRate;
 
     public const string ToolbarOABButtonID = "BTN-KLSSPlanner";
@@ -46,8 +46,8 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
 
     private void SetupConfiguration()
     {
-        ConfigKerbalsDie = Config.Bind("Life Support", "Kerbals Die", false, "Do Kerbals die when out of food/water/oxygen, go on strike otherwise");
-        ConfigResourceConsumptionRate = Config.Bind("Life Support", "Resources Consumption Multiplier", 100f, new ConfigDescription("Life-support resources consumption rate multiplier", new AcceptableValueRange<float>(0f, 100f)));
+        //ConfigKerbalsDie = Config.Bind("Life Support", "Kerbals Die", false, "Do Kerbals die when out of food/water/oxygen, go on strike otherwise");
+        ConfigResourceConsumptionRate = Config.Bind("Life Support", "Resources Consumption Multiplier", 1f, new ConfigDescription("Life-support resources consumption rate multiplier", new AcceptableValueRange<float>(0f, 5f)));
     }
 
     /// <summary>

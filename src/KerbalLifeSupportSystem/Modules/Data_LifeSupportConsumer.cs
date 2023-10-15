@@ -1,7 +1,6 @@
 ﻿using KSP.Modules;
 using KSP.Sim;
 using KSP.Sim.Definitions;
-using KSP.Sim.impl;
 using KSP.Sim.ResourceSystem;
 using UnityEngine;
 
@@ -13,7 +12,7 @@ namespace KerbalLifeSupportSystem.Modules
         [KSPState]
         [HideInInspector]
         [Tooltip("Last time each input resource was consumed for each kerbal currently in the vessel.")]
-        public Dictionary<IGGuid, Dictionary<ResourceDefinitionID, double>> lastConsumed = new();
+        public Dictionary<string, Dictionary<string, double>> lastConsumed = new();
 
         [KSPDefinition]
         [Tooltip("Life support resources definition (for 1 Kerbal)")]

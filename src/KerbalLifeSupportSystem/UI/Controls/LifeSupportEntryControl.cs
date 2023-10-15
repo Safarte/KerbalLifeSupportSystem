@@ -1,4 +1,5 @@
-﻿using UnityEngine.UIElements;
+﻿using KSP.Sim.impl;
+using UnityEngine.UIElements;
 
 namespace KerbalLifeSupportSystem.UI
 {
@@ -13,39 +14,40 @@ namespace KerbalLifeSupportSystem.UI
         LifeSupportSubEntryControl MaximumCrew;
         LifeSupportEntryDividerControl Divider;
 
-        private bool expanded = false;
-        private LSEntryData data;
+        private bool _expanded = false;
+        public LSEntryData Data;
 
-        public void SetValues(LSEntryData data)
+        public void SetValues(LSEntryData data, bool isActiveVessel)
         {
             name = "ls-entry__" + data.VesselName;
 
-            this.data = data;
+            Data = data;
 
-            CurrentCew.style.display = expanded ? DisplayStyle.Flex : DisplayStyle.None;
-            MaximumCrew.style.display = expanded ? DisplayStyle.Flex : DisplayStyle.None;
+            CurrentCew.style.display = _expanded ? DisplayStyle.Flex : DisplayStyle.None;
+            MaximumCrew.style.display = _expanded ? DisplayStyle.Flex : DisplayStyle.None;
 
-            string headerTitle = data.VesselName + " " + (expanded ? "▼" : "▶");
+            string headerTitle = data.VesselName + " " + (_expanded ? "▼" : "▶");
             string curCrewTitle = $"Current Crew ({data.CurrentCrew}):";
             string maxCrewTitle = $"Maximum Crew ({data.MaximumCrew}):";
 
-            Header.SetValues(headerTitle, data.CurFood, data.CurWater, data.CurOxygen, !expanded);
-            CurrentCew.SetValues(curCrewTitle, data.CurFood, data.CurWater, data.CurOxygen, expanded);
-            MaximumCrew.SetValues(maxCrewTitle, data.MaxFood, data.MaxWater, data.MaxOxygen, expanded);
+            Header.SetValues(headerTitle, data.CurFood, data.CurWater, data.CurOxygen, !_expanded);
+            Header.TitleLabel.EnableInClassList("ls-vessel-sub-entry__title_active", isActiveVessel);
+            CurrentCew.SetValues(curCrewTitle, data.CurFood, data.CurWater, data.CurOxygen, _expanded);
+            MaximumCrew.SetValues(maxCrewTitle, data.MaxFood, data.MaxWater, data.MaxOxygen, _expanded);
         }
 
-        public LifeSupportEntryControl(LSEntryData data, bool expanded) : this()
+        public LifeSupportEntryControl(LSEntryData data, bool expanded, bool isActiveVessel) : this()
         {
-            this.data = data;
-            this.expanded = expanded;
-            SetValues(data);
+            Data = data;
+            _expanded = expanded;
+            SetValues(data, isActiveVessel);
         }
 
         public LifeSupportEntryControl()
         {
             AddToClassList(UssClassName);
             Header = new LifeSupportSubEntryControl();
-            Header.TitleLabel.AddManipulator(new Clickable(ToggleExpanded));
+            Header.TitleLabel.AddManipulator(new Clickable(() => SetExpanded(!_expanded)));
             Header.TitleLabel.EnableInClassList(UssVesselNameClassName, true);
             hierarchy.Add(Header);
 
@@ -61,15 +63,11 @@ namespace KerbalLifeSupportSystem.UI
             hierarchy.Add(Divider);
         }
 
-        public void ToggleExpanded()
-        {
-            expanded = !expanded;
-
-            SetValues(data);
-        }
+        public void SetExpanded(bool newValue) { _expanded = newValue; }
 
         public struct LSEntryData
         {
+            public IGGuid Id;
             public string VesselName;
             public int CurrentCrew;
             public int MaximumCrew;

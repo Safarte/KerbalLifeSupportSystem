@@ -110,6 +110,9 @@ namespace KerbalLifeSupportSystem.UI
         {
             private string ToDateTime(double time)
             {
+                if (time > 1e6 || time < 0)
+                    return "∞";
+
                 long num = (long)Math.Truncate(time);
                 int seconds = (int)(num % 60L);
                 num -= seconds;
@@ -125,10 +128,10 @@ namespace KerbalLifeSupportSystem.UI
                 num /= 426L;
                 int years = (int)num;
 
-                string res = $"{minutes:d2}:{seconds:d2}";
+                string res = $"{minutes:d2}m{seconds:d2}s";
 
                 if (hours > 0)
-                    res = hours.ToString() + ":" + res;
+                    res = hours.ToString() + "h" + res;
 
                 if (days > 0)
                     res = $"{days}d " + res;

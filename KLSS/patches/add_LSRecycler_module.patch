@@ -1,4 +1,5 @@
 @use 'builtin:list';
+@use 'constants';
 
 :parts ~#eva_kerbal {
     @if $$crewCapacity > 0 {
@@ -12,86 +13,86 @@
                 ToggleActionName: "KLSS/LSR/ToggleRecycler";
                 FormulaDefinitions: [
                     {
-                        InternalName: "Combined",
+                        InternalName: "KLSS_Combined",
                         FormulaLocalizationKey: "KLSS/LSR/Formulas/Combined",
                         InputResources: [
                             {
-                                Rate: 2 * $crewCapacity,
-                                ResourceName: "ElectricCharge",
-                                AcceptanceThreshold: 0.0001
-                            },
-                            {
-                                Rate: 0.001 * $crewCapacity,
-                                ResourceName: "CarbonDioxide",
-                                AcceptanceThreshold: 0.0001
-                            },
-                            {
                                 Rate: $crewCapacity,
+                                ResourceName: "ElectricCharge",
+                                AcceptanceThreshold: 0.001
+                            },
+                            {
+                                Rate: $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
+                                ResourceName: "CarbonDioxide",
+                                AcceptanceThreshold: 0.00000001
+                            },
+                            {
+                                Rate: $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: "WasteWater",
-                                AcceptanceThreshold: 0.0001
+                                AcceptanceThreshold: 0.00000001
                             }
                         ],
                         OutputResources: [
                             {
-                                Rate: 0.001 * $crewCapacity,
+                                Rate: $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: "Oxygen",
-                                AcceptanceThreshold: 0.0001
+                                AcceptanceThreshold: 0.00000001
                             },
                             {
-                                Rate: $crewCapacity,
+                                Rate: $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: "Water",
-                                AcceptanceThreshold: 0.0001
+                                AcceptanceThreshold: 0.00000001
                             }  
                         ],
-                        AcceptanceThreshold: 0.000001
+                        AcceptanceThreshold: 0.00000001
                     },
                     {
-                        InternalName: "CO2Scrubber",
+                        InternalName: "KLSS_CO2Scrubber",
                         FormulaLocalizationKey: "KLSS/LSR/Formulas/CO2Scrubber",
                         InputResources: [
                             {
                                 Rate: $crewCapacity,
                                 ResourceName: "ElectricCharge",
-                                AcceptanceThreshold: 0.0001
+                                AcceptanceThreshold: 0.001
                             },
                             {
-                                Rate: 0.001 * $crewCapacity,
+                                Rate: $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: "CarbonDioxide",
-                                AcceptanceThreshold: 0.0001
+                                AcceptanceThreshold: 0.00000001
                             }
                         ],
                         OutputResources: [
                             {
-                                Rate: 0.001 * $crewCapacity,
+                                Rate: $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: "Oxygen",
-                                AcceptanceThreshold: 0.0001
+                                AcceptanceThreshold: 0.00000001
                             }                         
                         ],
-                        AcceptanceThreshold: 0.000001
+                        AcceptanceThreshold: 0.00000001
                     },
                     {
-                        InternalName: "WaterRecycler",
+                        InternalName: "KLSS_WaterRecycler",
                         FormulaLocalizationKey: "KLSS/LSR/Formulas/WaterRecycler",
                         InputResources: [
                             {
                                 Rate: $crewCapacity,
                                 ResourceName: "ElectricCharge",
-                                AcceptanceThreshold: 0.0001
+                                AcceptanceThreshold: 0.001
                             },
                             {
-                                Rate: $crewCapacity,
+                                Rate: $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: "WasteWater",
-                                AcceptanceThreshold: 0.0001
+                                AcceptanceThreshold: 0.00000001
                             }
                         ],
                         OutputResources: [
                             {
-                                Rate: $crewCapacity,
+                                Rate: $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: "Water",
-                                AcceptanceThreshold: 0.0001
+                                AcceptanceThreshold: 0.00000001
                             }                         
                         ],
-                        AcceptanceThreshold: 0.000001
+                        AcceptanceThreshold: 0.00000001
                     }
                 ];
             }

@@ -22,7 +22,7 @@
 }
 
 .root {
-    width: 40%;
+    width: 35%;
     max-height: 30%;
     background-color: rgba(0, 0, 0, 0);
     border-left-width: 0;
@@ -195,6 +195,10 @@
 .ls-vessel-sub-entry__title {
     width: 15%;
     color: rgb(173, 182, 208);
+}
+
+.ls-vessel-sub-entry__title_active {
+    -unity-font-style: bold;
 }
 
 .ls-vessel-sub-entry__vessel-name:hover {

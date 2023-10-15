@@ -12,7 +12,7 @@
                         {
                             Rate: $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
                             ResourceName: "Oxygen",
-                            AcceptanceThreshold: 0.0001
+                            AcceptanceThreshold: 0.00000001
                         },
                         {
                             Rate: $WATER_PER_DAY / $SECONDS_PER_DAY,
@@ -22,14 +22,14 @@
                         {
                             Rate: $FOOD_PER_DAY / $SECONDS_PER_DAY,
                             ResourceName: "Food",
-                            AcceptanceThreshold: 0.0001
+                            AcceptanceThreshold: 0.00000001
                         }
                     ];
                     OutputResources: [
                         {
                             Rate: $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
                             ResourceName: "CarbonDioxide",
-                            AcceptanceThreshold: 0.0001
+                            AcceptanceThreshold: 0.00000001
                         },
                         {
                             Rate: $WATER_PER_DAY / $SECONDS_PER_DAY,
@@ -39,10 +39,10 @@
                         {
                             Rate: $FOOD_PER_DAY / $SECONDS_PER_DAY,
                             ResourceName: "Waste",
-                            AcceptanceThreshold: 0.0001
+                            AcceptanceThreshold: 0.00000001
                         }
                     ];
-                    AcceptanceThreshold: 0.0001;
+                    AcceptanceThreshold: 0.000001;
                 }
             }
         }

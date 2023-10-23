@@ -193,7 +193,7 @@
 }
 
 .ls-vessel-sub-entry__title {
-    width: 15%;
+    width: 18%;
     color: rgb(173, 182, 208);
 }
 
@@ -210,11 +210,11 @@
     width: 100%;
     justify-content: space-between;
     padding-left: 30px;
-    padding-right: 30px;
+    padding-right: 0;
 }
 
 .ls-vessel-sub-entry__value {
-    width: 30%;
+    width: 28%;
 }
 
 .ls-vessel-sub-entry__divider {

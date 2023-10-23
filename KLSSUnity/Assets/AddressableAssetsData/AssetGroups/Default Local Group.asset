@@ -30,6 +30,19 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - parts_data
+  - m_GUID: 19a724a448d4a124dad600ff5c1b9575
+    m_Address: KLSS_life_support_tank_2v_1x1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 91105d7e3f4d4744686950925d9dc518
+    m_Address: KLSS_life_support_tank_2v_1x1.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+  - m_GUID: 288a1d9f70b72ea4e8aeff76038852a2
+    m_Address: KLSS_life_support_tank_2v_1x1_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: cd28b809bdb884f4e8adb1d4278f6388, type: 2}
   m_SchemaSet:

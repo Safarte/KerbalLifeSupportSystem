@@ -22,8 +22,6 @@ namespace KerbalLifeSupportSystem.Modules
         private ResourceDefinitionDatabase _resourceDB;
         private KerbalRosterManager _rosterManager;
 
-        protected PartComponentModule_Command _moduleCommand;
-        private int _commandMinCrew;
         private List<KerbalInfo> _kerbalsInSimObject = new();
         private HashSet<IGGuid> _kerbalsOnStrike = new();
         protected Data_LifeSupportConsumer _dataLifeSupportConsumer;
@@ -32,18 +30,15 @@ namespace KerbalLifeSupportSystem.Modules
 
         public override void OnStart(double universalTime)
         {
-            if (!DataModules.TryGetByType<Data_LifeSupportConsumer>(out _dataLifeSupportConsumer))
+            if (!DataModules.TryGetByType(out _dataLifeSupportConsumer))
                 KerbalLifeSupportSystemPlugin.Logger.LogError("Unable to find a Data_LifeSupportConsumer in the PartComponentModule for " + Part.PartName);
             else if (GameManager.Instance.Game == null || GameManager.Instance.Game.ResourceDefinitionDatabase == null)
             {
                 KerbalLifeSupportSystemPlugin.Logger.LogError("Unable to find a valid game with a resource definition database");
             }
-            else if (!Part.TryGetModule<PartComponentModule_Command>(out _moduleCommand))
-                KerbalLifeSupportSystemPlugin.Logger.LogError("Unable to find an attached PartComponentModule_Command for " + Part.PartName);
             else
             {
                 Game.Messages.Subscribe<KerbalLocationChanged>(new Action<MessageCenterMessage>(OnKerbalLocationChanged));
-                _commandMinCrew = _moduleCommand.dataCommand.minimumCrew;
                 _dataLifeSupportConsumer.SetupResourceRequest(resourceFlowRequestBroker);
                 _containerGroup = Part.PartOwner.ContainerGroup;
                 _resourceDB = GameManager.Instance.Game.ResourceDefinitionDatabase;
@@ -62,11 +57,11 @@ namespace KerbalLifeSupportSystem.Modules
 
         public override void OnUpdate(double universalTime, double deltaUniversalTime)
         {
-            _dataLifeSupportConsumer.numKerbals = Part._currentKerbalCountTotal;
+            _kerbalsInSimObject = _rosterManager.GetAllKerbalsInSimObject(Part.SimulationObject.GlobalId);
+            _dataLifeSupportConsumer.numKerbals = _kerbalsInSimObject.Count;
 
             if (_dataLifeSupportConsumer.numKerbals > 0)
             {
-                _kerbalsInSimObject = _rosterManager.GetAllKerbalsInSimObject(Part.SimulationObject.GlobalId);
                 foreach (KerbalInfo kerbal in _kerbalsInSimObject)
                 {
                     if (!_dataLifeSupportConsumer.lastConsumed.ContainsKey(kerbal.NameKey))
@@ -184,23 +179,13 @@ namespace KerbalLifeSupportSystem.Modules
                 {
                     KerbalLifeSupportSystemPlugin.Logger.LogInfo("Kerbal " + kerbal.NameKey + " ran out of life-support.");
                     _rosterManager.DestroyKerbal(kerbal.Id);
-                    //if (KerbalLifeSupportSystemPlugin.Instance.ConfigKerbalsDie.Value)
-                    //    _rosterManager.DestroyKerbal(kerbal.Id);
-                    //else
-                    //    _kerbalsOnStrike.Add(kerbal.Id);
                 }
-                //else
-                //    _kerbalsOnStrike.Remove(kerbal.Id);
             }
-
-            //_moduleCommand.dataCommand.minimumCrew = _commandMinCrew + _kerbalsOnStrike.Count;
-            //_moduleCommand.UpdateKerbalControlStatus();
-            //_moduleCommand.UpdateControlStatus();
         }
 
         private void OnKerbalLocationChanged(MessageCenterMessage msg)
         {
-            if (msg is not KerbalLocationChanged kerbalLocationChanged)
+            if (msg is not KerbalLocationChanged kerbalLocationChanged || kerbalLocationChanged is null)
                 return;
             IGGuid simObjectId = kerbalLocationChanged.OldLocation.SimObjectId;
         }

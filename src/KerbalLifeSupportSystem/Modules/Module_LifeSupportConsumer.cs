@@ -16,7 +16,7 @@ namespace KerbalLifeSupportSystem.Modules
         {
             base.AddDataModules();
             _dataLifeSupportConsumer ??= new Data_LifeSupportConsumer();
-            DataModules.TryAddUnique<Data_LifeSupportConsumer>(_dataLifeSupportConsumer, out _dataLifeSupportConsumer);
+            DataModules.TryAddUnique(_dataLifeSupportConsumer, out _dataLifeSupportConsumer);
         }
 
         public override void OnInitialize()

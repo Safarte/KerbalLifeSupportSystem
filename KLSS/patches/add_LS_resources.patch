@@ -32,7 +32,7 @@
     }
 }
 
-:parts ~.Module_ResourceCapacities {
+:parts ~#eva_kerbal ~.Module_ResourceCapacities {
     @if $$crewCapacity > 0 {
         +Module_ResourceCapacities {
             +Data_ResourceCapacities {}

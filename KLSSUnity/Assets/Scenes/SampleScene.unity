@@ -354,5 +354,74 @@ PrefabInstance:
       propertyPath: m_Name
       value: KLSS_life_support_tank_1v_1x1
       objectReference: {fileID: 0}
+    - target: {fileID: 3827626111523020346, guid: f2c702a5cde43f84a81529b5e34e7bd8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3827626111523020346, guid: f2c702a5cde43f84a81529b5e34e7bd8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3827626111523020346, guid: f2c702a5cde43f84a81529b5e34e7bd8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c702a5cde43f84a81529b5e34e7bd8, type: 3}
+--- !u!1001 &2265991056575261082
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2265991057755231970, guid: 19a724a448d4a124dad600ff5c1b9575, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265991057755231970, guid: 19a724a448d4a124dad600ff5c1b9575, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.035258472
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265991057755231970, guid: 19a724a448d4a124dad600ff5c1b9575, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.1507771
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265991057755231970, guid: 19a724a448d4a124dad600ff5c1b9575, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.057453036
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265991057755231970, guid: 19a724a448d4a124dad600ff5c1b9575, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265991057755231970, guid: 19a724a448d4a124dad600ff5c1b9575, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265991057755231970, guid: 19a724a448d4a124dad600ff5c1b9575, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265991057755231970, guid: 19a724a448d4a124dad600ff5c1b9575, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265991057755231970, guid: 19a724a448d4a124dad600ff5c1b9575, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265991057755231970, guid: 19a724a448d4a124dad600ff5c1b9575, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265991057755231970, guid: 19a724a448d4a124dad600ff5c1b9575, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265991057755231981, guid: 19a724a448d4a124dad600ff5c1b9575, type: 3}
+      propertyPath: m_Name
+      value: KLSS_life_support_tank_2v_1x1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 19a724a448d4a124dad600ff5c1b9575, type: 3}

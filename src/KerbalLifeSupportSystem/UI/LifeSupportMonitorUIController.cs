@@ -22,7 +22,7 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
     private static double WATER_PER_SECOND = 3.0 / SECONDS_PER_DAY;
     private static double OXYGEN_PER_SECOND = 0.001 / SECONDS_PER_DAY;
 
-    private bool uiEnabled = false;
+    private bool _uiEnabled = false;
     private Button closeButton;
     private bool _isLSEntriesDirty = false;
     private Dictionary<IGGuid, LifeSupportEntryControl> lifeSupportEntries = new();
@@ -43,6 +43,7 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         Game.Messages.Subscribe<OABNewAssemblyMessage>(OnLSEntriesDirtyingEvent);
         Game.Messages.Subscribe<SubassemblyLoadedMessage>(OnLSEntriesDirtyingEvent);
         Game.Messages.Subscribe<WorkspaceLoadedMessage>(OnLSEntriesDirtyingEvent);
+        Game.Messages.Subscribe<AddVesselToMapMessage>(OnLSEntriesDirtyingEvent);
     }
 
     private void Start()
@@ -65,6 +66,7 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         Game.Messages.Unsubscribe<OABNewAssemblyMessage>(OnLSEntriesDirtyingEvent);
         Game.Messages.Unsubscribe<SubassemblyLoadedMessage>(OnLSEntriesDirtyingEvent);
         Game.Messages.Unsubscribe<WorkspaceLoadedMessage>(OnLSEntriesDirtyingEvent);
+        Game.Messages.Unsubscribe<AddVesselToMapMessage>(OnLSEntriesDirtyingEvent);
     }
 
     private void Update()
@@ -74,28 +76,39 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
             InitElements();
         }
 
-        if (!uiEnabled || GameManager.Instance?.Game?.ViewController?.Universe is null)
+        if (!_uiEnabled || GameManager.Instance?.Game?.ViewController?.Universe is null)
         {
             return;
         }
+
         if (_isLSEntriesDirty)
         {
             _isLSEntriesDirty = false;
             PopulateLSEntries();
         }
+
         if (GameManager.Instance?.Game?.OAB?.Current?.Stats?.MainAssembly is not null)
         {
             IObjectAssembly assembly = Game.OAB.Current.Stats.MainAssembly;
             lifeSupportEntries[assembly.Anchor.UniqueId].SetValues(GetObjectAssemblyData(assembly), true);
         }
+
         foreach (var entry in lifeSupportEntries)
         {
             if (GameManager.Instance?.Game?.OAB?.Current?.Stats?.MainAssembly is null || entry.Key != Game.OAB.Current.Stats.MainAssembly.Anchor.UniqueId)
             {
                 VesselComponent vessel = Game.ViewController.Universe.FindVesselComponent(entry.Key);
-                bool isActiveVessel = Game.ViewController.IsActiveVessel(vessel);
-                entry.Value.SetValues(GetVesselData(vessel), isActiveVessel);
+                if (vessel != null)
+                {
+                    bool isActiveVessel = Game.ViewController.IsActiveVessel(vessel);
+                    entry.Value.SetValues(GetVesselData(vessel), isActiveVessel);
+                }
             }
+        }
+
+        if (_uiEnabled && Input.GetKey(KeyCode.Escape))
+        {
+            SetEnabled(false);
         }
     }
 
@@ -107,7 +120,7 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         data.Id = vessel.GlobalId;
         data.VesselName = vessel.DisplayName;
         data.CurrentCrew = vessel.Game.SessionManager.KerbalRosterManager.GetAllKerbalsInVessel(vessel.SimulationObject.GlobalId).Count;
-        data.MaximumCrew = vessel.TotalCommandCrewCapacity;
+        data.MaximumCrew = vessel.SimulationObject.IsKerbal ? 1 : vessel.TotalCommandCrewCapacity;
 
         // Consumption rate setting
         double consRate = KerbalLifeSupportSystemPlugin.Instance.ConfigResourceConsumptionRate.Value;
@@ -296,7 +309,7 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
 
     public void SetEnabled(bool newState)
     {
-        uiEnabled = newState;
+        _uiEnabled = newState;
         s_container.style.display = newState ? DisplayStyle.Flex : DisplayStyle.None;
         GameObject.Find(KerbalLifeSupportSystemPlugin.ToolbarOABButtonID)?.GetComponent<UIValue_WriteBool_Toggle>()?.SetValue(newState);
     }
@@ -343,30 +356,36 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
 
     private void PopulateLSEntries()
     {
+        // Reset life-support UI entries
         lifeSupportEntries.Clear();
         lifeSupportEntriesView.Clear();
 
+        // If in a OAB & we have a main assembly, add it to the entries
         if (GameManager.Instance?.Game?.OAB?.Current?.Stats?.MainAssembly != null)
         {
             IObjectAssembly assembly = Game.OAB.Current.Stats.MainAssembly;
             lifeSupportEntries[assembly.Anchor.UniqueId] = new LifeSupportEntryControl(GetObjectAssemblyData(assembly), true, true);
             lifeSupportEntriesView.Add(lifeSupportEntries[assembly.Anchor.UniqueId]);
+
             KerbalLifeSupportSystemPlugin.Logger.LogInfo("Added <" + Game.OAB.Current.Stats.CurrentWorkspaceVehicleDisplayName.GetValue() + "> to the Life-Support UI list.");
         }
 
+        // Add an entry for each vessel owned by the player
         List<VesselComponent> vessels = new();
         Game.ViewController.Universe.GetAllOwnedVessels(Game.LocalPlayer.PlayerId, ref vessels);
         foreach (VesselComponent vessel in vessels)
         {
             SimulationObjectModel simulationObject = vessel.SimulationObject;
-            if (simulationObject != null && simulationObject.IsVessel && vessel.TotalCommandCrewCapacity > 0)
+            if (simulationObject != null && simulationObject.IsKerbal || (simulationObject.IsVessel && vessel.TotalCommandCrewCapacity > 0))
             {
                 bool isActiveVessel = Game.ViewController.IsActiveVessel(simulationObject.Vessel);
                 lifeSupportEntries[simulationObject.GlobalId] = new LifeSupportEntryControl(GetVesselData(simulationObject.Vessel), isActiveVessel, isActiveVessel);
                 lifeSupportEntriesView.Add(lifeSupportEntries[simulationObject.GlobalId]);
+
                 KerbalLifeSupportSystemPlugin.Logger.LogInfo("Added <" + simulationObject.Vessel.DisplayName + "> to the Life-Support UI list.");
             }
         }
+
         lifeSupportEntriesView.Sort(CompareLSEntries);
     }
 

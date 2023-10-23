@@ -1,0 +1,34 @@
+@use 'constants';
+
+:parts #eva_kerbal > resourceContainers {
+    +CarbonDioxide {
+        capacityUnits: 1.0 * $OXYGEN_PER_DAY;
+        initialUnits: 0.0;
+    }
+    +WasteWater {
+        capacityUnits: 1.0 * $WATER_PER_DAY;
+        initialUnits: 0.0;
+    }
+    +Oxygen {
+        capacityUnits: 1.0 * $OXYGEN_PER_DAY;
+        initialUnits: 1.0 * $OXYGEN_PER_DAY;
+    }
+    +Water {
+        capacityUnits: 1.0 * $WATER_PER_DAY;
+        initialUnits: 1.0 * $WATER_PER_DAY;
+    }
+    +Food {
+        capacityUnits: 1.0 * $FOOD_PER_DAY;
+        initialUnits: 1.0 * $FOOD_PER_DAY;
+    }
+    +Waste {
+        capacityUnits: 1.0 * $FOOD_PER_DAY;
+        initialUnits: 0.0;
+    }
+}
+
+:parts #eva_kerbal ~.Module_ResourceCapacities {
+    +Module_ResourceCapacities {
+        +Data_ResourceCapacities {}
+    }
+}

@@ -16,6 +16,9 @@ _UpgradeReport_Files/
 
 # Rider
 
+*.DotSettings
+.idea
+
 # User specific
 **/.idea/**/workspace.xml
 **/.idea/**/tasks.xml

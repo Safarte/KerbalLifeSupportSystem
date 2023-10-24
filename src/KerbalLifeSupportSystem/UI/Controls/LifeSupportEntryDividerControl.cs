@@ -1,14 +1,13 @@
 ﻿using UnityEngine.UIElements;
 
-namespace KerbalLifeSupportSystem.UI
-{
-    public class LifeSupportEntryDividerControl : VisualElement
-    {
-        public static string UssClassName = "ls-entry-divider";
+namespace KerbalLifeSupportSystem.UI;
 
-        public LifeSupportEntryDividerControl()
-        {
-            AddToClassList(UssClassName);
-        }
+public class LifeSupportEntryDividerControl : VisualElement
+{
+    private const string UssClassName = "ls-entry-divider";
+
+    public LifeSupportEntryDividerControl()
+    {
+        AddToClassList(UssClassName);
     }
 }

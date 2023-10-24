@@ -1,186 +1,187 @@
 ﻿using UnityEngine.UIElements;
 
-namespace KerbalLifeSupportSystem.UI
+namespace KerbalLifeSupportSystem.UI;
+
+public class LifeSupportSubEntryControl : VisualElement
 {
-    public class LifeSupportSubEntryControl : VisualElement
+    private const string UssClassName = "ls-vessel-sub-entry";
+
+    private const string UssTitleClassName = UssClassName + "__title";
+    private const string UssContentClassName = UssClassName + "__content";
+    private const string UssValueClassName = UssClassName + "__value";
+    private const string UssDividerClassName = UssClassName + "__divider";
+
+    private const string UssGrayClassName = "ls-monitor-gray";
+    private const string UssWhiteClassName = "ls-monitor-white";
+    private const string UssOrangeClassName = "ls-monitor-orange";
+    private const string UssRedClassName = "ls-monitor-red";
+
+    private readonly RemainingTimeLabel _foodLabel;
+    private readonly RemainingTimeLabel _oxygenLabel;
+    private readonly RemainingTimeLabel _waterLabel;
+
+    public readonly Label TitleLabel;
+
+    public LifeSupportSubEntryControl(string title, double food, double water, double oxygen, int crew,
+        bool displayTimes) : this()
     {
-        public static string UssClassName = "ls-vessel-sub-entry";
+        SetValues(title, food, water, oxygen, crew, displayTimes);
+    }
 
-        public static string UssTitleClassName = UssClassName + "__title";
-        public static string UssContentClassName = UssClassName + "__content";
-        public static string UssValueClassName = UssClassName + "__value";
-        public static string UssDividerClassName = UssClassName + "__divider";
+    public LifeSupportSubEntryControl()
+    {
+        AddToClassList(UssClassName);
 
-        public static string UssGrayClassName = "ls-monitor-gray";
-        public static string UssWhiteClassName = "ls-monitor-white";
-        public static string UssOrangeClassName = "ls-monitor-orange";
-        public static string UssRedClassName = "ls-monitor-red";
-
-        public Label TitleLabel;
-        public string Title { get => TitleLabel.text; set => TitleLabel.text = value; }
-
-        public VisualElement ContentContainer;
-
-        public RemainingTimeLabel FoodLabel;
-        public RemainingTimeLabel WaterLabel;
-        public RemainingTimeLabel OxygenLabel;
-
-        public Label FirstDividerLabel;
-        public Label SecondDividerLabel;
-
-        public void SetValues(string title, double food, double water, double oxygen, bool displayTimes)
+        TitleLabel = new Label
         {
-            Title = title;
-            FoodLabel.SetValue(food, displayTimes);
-            WaterLabel.SetValue(water, displayTimes);
-            OxygenLabel.SetValue(oxygen, displayTimes);
-        }
+            name = "title",
+            text = "-"
+        };
+        TitleLabel.AddToClassList(UssTitleClassName);
+        TitleLabel.AddToClassList(UssGrayClassName);
+        hierarchy.Add(TitleLabel);
 
-        public LifeSupportSubEntryControl(string title, double food, double water, double oxygen, bool displayTimes) : this()
+        var contentContainer1 = new VisualElement();
+        contentContainer1.AddToClassList(UssContentClassName);
+        hierarchy.Add(contentContainer1);
+
         {
-            SetValues(title, food, water, oxygen, displayTimes);
-        }
-
-        public LifeSupportSubEntryControl()
-        {
-            AddToClassList(UssClassName);
-
-            TitleLabel = new Label()
+            _foodLabel = new RemainingTimeLabel
             {
-                name = "title",
+                name = "food",
                 text = "-"
             };
-            TitleLabel.AddToClassList(UssTitleClassName);
-            TitleLabel.AddToClassList(UssGrayClassName);
-            hierarchy.Add(TitleLabel);
+            _foodLabel.AddToClassList(UssValueClassName);
+            _foodLabel.AddToClassList(UssWhiteClassName);
+            contentContainer1.Add(_foodLabel);
 
-            ContentContainer = new VisualElement();
-            ContentContainer.AddToClassList(UssContentClassName);
-            hierarchy.Add(ContentContainer);
-
+            var firstDividerLabel = new Label
             {
-                FoodLabel = new RemainingTimeLabel()
-                {
-                    name = "food",
-                    text = "-"
-                };
-                FoodLabel.AddToClassList(UssValueClassName);
-                FoodLabel.AddToClassList(UssWhiteClassName);
-                ContentContainer.Add(FoodLabel);
+                name = "divider-0",
+                text = "|"
+            };
+            firstDividerLabel.AddToClassList(UssDividerClassName);
+            firstDividerLabel.AddToClassList(UssGrayClassName);
+            contentContainer1.Add(firstDividerLabel);
 
-                FirstDividerLabel = new Label()
-                {
-                    name = "divider-0",
-                    text = "|"
-                };
-                FirstDividerLabel.AddToClassList(UssDividerClassName);
-                FirstDividerLabel.AddToClassList(UssGrayClassName);
-                ContentContainer.Add(FirstDividerLabel);
+            _waterLabel = new RemainingTimeLabel
+            {
+                name = "water",
+                text = "-"
+            };
+            _waterLabel.AddToClassList(UssValueClassName);
+            _waterLabel.AddToClassList(UssWhiteClassName);
+            contentContainer1.Add(_waterLabel);
 
-                WaterLabel = new RemainingTimeLabel()
-                {
-                    name = "water",
-                    text = "-"
-                };
-                WaterLabel.AddToClassList(UssValueClassName);
-                WaterLabel.AddToClassList(UssWhiteClassName);
-                ContentContainer.Add(WaterLabel);
+            var secondDividerLabel = new Label
+            {
+                name = "divider-1",
+                text = "|"
+            };
+            secondDividerLabel.AddToClassList(UssDividerClassName);
+            secondDividerLabel.AddToClassList(UssGrayClassName);
+            contentContainer1.Add(secondDividerLabel);
 
-                SecondDividerLabel = new Label()
-                {
-                    name = "divider-1",
-                    text = "|"
-                };
-                SecondDividerLabel.AddToClassList(UssDividerClassName);
-                SecondDividerLabel.AddToClassList(UssGrayClassName);
-                ContentContainer.Add(SecondDividerLabel);
+            _oxygenLabel = new RemainingTimeLabel
+            {
+                name = "oxygen",
+                text = "-"
+            };
+            _oxygenLabel.AddToClassList(UssValueClassName);
+            _oxygenLabel.AddToClassList(UssWhiteClassName);
+            contentContainer1.Add(_oxygenLabel);
+        }
+    }
 
-                OxygenLabel = new RemainingTimeLabel()
-                {
-                    name = "oxygen",
-                    text = "-"
-                };
-                OxygenLabel.AddToClassList(UssValueClassName);
-                OxygenLabel.AddToClassList(UssWhiteClassName);
-                ContentContainer.Add(OxygenLabel);
-            }
+    public string Title
+    {
+        get => TitleLabel.text;
+        set => TitleLabel.text = value;
+    }
+
+    public void SetValues(string title, double food, double water, double oxygen, int crew, bool displayTimes)
+    {
+        Title = title;
+        _foodLabel.SetValue(food, crew, displayTimes);
+        _waterLabel.SetValue(water, crew, displayTimes);
+        _oxygenLabel.SetValue(oxygen, crew, displayTimes);
+    }
+
+    public class RemainingTimeLabel : Label
+    {
+        private static string ToDateTime(double time)
+        {
+            var num = (long)Math.Truncate(time);
+            var seconds = (int)(num % 60L);
+            num -= seconds;
+            num /= 60L;
+            var minutes = (int)(num % 60L);
+            num -= minutes;
+            num /= 60L;
+            var hours = (int)(num % 6L);
+            num -= hours;
+            num /= 6L;
+            var days = (int)(num % 426L);
+            num -= days;
+            num /= 426L;
+            var years = (int)num;
+
+            var res = $"{minutes:d2}m{seconds:d2}s";
+
+            if (hours > 0)
+                res = hours + "h" + res;
+
+            if (days > 0)
+                res = $"{days}d " + res;
+
+            if (years > 0)
+                res = $"{years}y " + res;
+
+            return res;
         }
 
-        public class RemainingTimeLabel : Label
+        private void SetWhite()
         {
-            private string ToDateTime(double time)
+            EnableInClassList(UssOrangeClassName, false);
+            EnableInClassList(UssWhiteClassName, true);
+            EnableInClassList(UssRedClassName, false);
+        }
+
+        private void SetOrange()
+        {
+            EnableInClassList(UssOrangeClassName, true);
+            EnableInClassList(UssWhiteClassName, false);
+            EnableInClassList(UssRedClassName, false);
+        }
+
+        private void SetRed()
+        {
+            EnableInClassList(UssOrangeClassName, false);
+            EnableInClassList(UssWhiteClassName, false);
+            EnableInClassList(UssRedClassName, true);
+        }
+
+        public void SetValue(double time, int crew, bool displayTimes)
+        {
+            if (!displayTimes)
             {
-                if (time > 1e6 || time < 0)
-                    return "∞";
-
-                long num = (long)Math.Truncate(time);
-                int seconds = (int)(num % 60L);
-                num -= seconds;
-                num /= 60L;
-                int minutes = (int)(num % 60L);
-                num -= minutes;
-                num /= 60L;
-                int hours = (int)(num % 6L);
-                num -= hours;
-                num /= 6L;
-                int days = (int)(num % 426L);
-                num -= days;
-                num /= 426L;
-                int years = (int)num;
-
-                string res = $"{minutes:d2}m{seconds:d2}s";
-
-                if (hours > 0)
-                    res = hours.ToString() + "h" + res;
-
-                if (days > 0)
-                    res = $"{days}d " + res;
-
-                if (years > 0)
-                    res = $"{years}y " + res;
-
-                return res;
+                text = "";
+                return;
             }
 
-            private void SetWhite()
+            text = crew == 0 || time > 1e6 ? "∞" : ToDateTime(time);
+
+            if (time < 1800)
             {
-                EnableInClassList(UssOrangeClassName, false);
-                EnableInClassList(UssWhiteClassName, true);
-                EnableInClassList(UssRedClassName, false);
+                SetOrange();
+                text += " /!\\";
+
+                if (time < 10)
+                    SetRed();
             }
-            private void SetOrange()
+            else
             {
-                EnableInClassList(UssOrangeClassName, true);
-                EnableInClassList(UssWhiteClassName, false);
-                EnableInClassList(UssRedClassName, false);
-            }
-            private void SetRed()
-            {
-                EnableInClassList(UssOrangeClassName, false);
-                EnableInClassList(UssWhiteClassName, false);
-                EnableInClassList(UssRedClassName, true);
-            }
-
-            public void SetValue(double time, bool displayTimes)
-            {
-                if (!displayTimes)
-                {
-                    text = "";
-                    return;
-                }
-
-                text = ToDateTime(time);
-
-                if (time < 1800)
-                {
-                    SetOrange();
-                    text += " /!\\";
-
-                    if (time < 10)
-                        SetRed();
-                }
-                else
-                    SetWhite();
+                SetWhite();
             }
         }
     }

@@ -24,20 +24,20 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
     [PublicAPI] public const string ModName = MyPluginInfo.PLUGIN_NAME;
     [PublicAPI] public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
 
-    //internal ConfigEntry<bool> ConfigKerbalsDie;
-    internal ConfigEntry<float> ConfigResourceConsumptionRate;
-
-    public const string ToolbarOABButtonID = "BTN-KLSSPlanner";
+    public const string ToolbarOabButtonID = "BTN-KLSSPlanner";
     public const string ToolbarFlightButtonID = "BTN-KLSSMonitor";
 
     // UI Controllers
-    LifeSupportMonitorUIController klssMonitorController;
+    private LifeSupportMonitorUIController _klssMonitorController;
+
+    //internal ConfigEntry<bool> ConfigKerbalsDie;
+    internal ConfigEntry<float> ConfigResourceConsumptionRate;
 
     // Singleton instance of the plugin class
-    public static KerbalLifeSupportSystemPlugin Instance { get; set; }
+    public static KerbalLifeSupportSystemPlugin Instance { get; private set; }
 
     // Logger
-    public new static ManualLogSource Logger { get; set; }
+    public new static ManualLogSource Logger { get; private set; }
 
     public void Awake()
     {
@@ -47,11 +47,13 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
     private void SetupConfiguration()
     {
         //ConfigKerbalsDie = Config.Bind("Life Support", "Kerbals Die", false, "Do Kerbals die when out of food/water/oxygen, go on strike otherwise");
-        ConfigResourceConsumptionRate = Config.Bind("Life Support", "Resources Consumption Multiplier", 1f, new ConfigDescription("Life-support resources consumption rate multiplier", new AcceptableValueRange<float>(0f, 5f)));
+        ConfigResourceConsumptionRate = Config.Bind("Life Support", "Resources Consumption Multiplier", 1f,
+            new ConfigDescription("Life-support resources consumption rate multiplier",
+                new AcceptableValueRange<float>(0f, 5f)));
     }
 
     /// <summary>
-    /// Runs when the mod is first initialized.
+    ///     Runs when the mod is first initialized.
     /// </summary>
     public override void OnInitialized()
     {
@@ -60,20 +62,21 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
         Logger = base.Logger;
         Instance = this;
 
-        var klssPlannerUxml = AssetManager.GetAsset<VisualTreeAsset>($"{Info.Metadata.GUID}/klss_ui/ui/lifesupportmonitor.uxml");
+        var klssPlannerUxml =
+            AssetManager.GetAsset<VisualTreeAsset>($"{Info.Metadata.GUID}/klss_ui/ui/lifesupportmonitor.uxml");
         var klssPlannerWindow = Window.CreateFromUxml(klssPlannerUxml, "Life-Support Monitor", transform, true);
-        klssMonitorController = klssPlannerWindow.gameObject.AddComponent<LifeSupportMonitorUIController>();
+        _klssMonitorController = klssPlannerWindow.gameObject.AddComponent<LifeSupportMonitorUIController>();
 
         Appbar.RegisterOABAppButton(
             "Life-Support",
-            ToolbarOABButtonID,
+            ToolbarOabButtonID,
             AssetManager.GetAsset<Texture2D>($"{Info.Metadata.GUID}/images/icon.png"),
-            klssMonitorController.SetEnabled);
+            _klssMonitorController.SetEnabled);
 
         Appbar.RegisterAppButton(
             "Life-Support",
             ToolbarFlightButtonID,
             AssetManager.GetAsset<Texture2D>($"{Info.Metadata.GUID}/images/icon.png"),
-            klssMonitorController.SetEnabled);
+            _klssMonitorController.SetEnabled);
     }
 }

@@ -225,6 +225,7 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
         var resourceName = _resourceDB.GetResourceNameFromID(resource.resourceID);
 
         // For how long the resource was exhausted
+        if (!lastCons.ContainsKey(resourceName)) return false;
         var timeDelta = time - lastCons[resourceName];
 
         // Return true if exhausted for longer than the allowed grace period for this resource

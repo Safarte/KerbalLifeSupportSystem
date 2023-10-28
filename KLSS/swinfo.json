@@ -3,9 +3,9 @@
   "mod_id": "KerbalLifeSupportSystem",
   "author": "Safarte",
   "name": "Kerbal Life-Support System",
-  "description": "a",
+  "description": "Kerbals need their Snacks.",
   "source": "https://github.com/Safarte/KerbalLifeSupportSystem",
-  "version": "0.1.0",
+  "version": "0.1.0-pre",
   "version_check": "https://raw.githubusercontent.com/Safarte/KerbalLifeSupportSystem/main/KLSS/swinfo.json",
   "ksp2_version": {
     "min": "0.1.5",
@@ -29,7 +29,7 @@
     {
       "id": "PatchManager",
       "version": {
-        "min": "0.2.0",
+        "min": "0.3.0",
         "max": "*"
       }
     },

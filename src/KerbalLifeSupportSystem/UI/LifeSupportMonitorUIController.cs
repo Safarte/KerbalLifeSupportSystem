@@ -115,8 +115,11 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
             VesselName = vessel.DisplayName,
             CurrentCrew = vessel.Game.SessionManager.KerbalRosterManager
                 .GetAllKerbalsInVessel(vessel.SimulationObject.GlobalId).Count,
-            MaximumCrew = vessel.SimulationObject.IsKerbal ? 1 : vessel.TotalCommandCrewCapacity
+            MaximumCrew = vessel.SimulationObject.IsKerbal ? 1 : 0
         };
+
+        foreach (var part in vessel.SimulationObject.PartOwner.Parts)
+            data.MaximumCrew += !vessel.SimulationObject.IsKerbal ? part.PartData.crewCapacity : 0;
 
         // Consumption rate setting
         double consRate = KerbalLifeSupportSystemPlugin.Instance.ConfigResourceConsumptionRate.Value;
@@ -155,7 +158,7 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
                         waterRecyclerCapacity += converter.conversionRate.GetValue() *
                                                  def.OutputResources.Find(res => res.ResourceName == "Water").Rate;
                     }
-                    else if (def.InternalName == "KLSS_Greenhouse" || def.InternalName == "KLSS_FertilizedGreenhouse")
+                    else if (def.InternalName == "KLSS_Greenhouse" || def.InternalName == "KLSS_GreenhouseFertilized")
                     {
                         foodRecyclerCapacity += converter.conversionRate.GetValue() *
                                                 def.OutputResources.Find(res => res.ResourceName == "Food").Rate;

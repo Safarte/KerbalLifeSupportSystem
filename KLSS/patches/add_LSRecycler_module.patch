@@ -22,24 +22,24 @@
                                 AcceptanceThreshold: 0.001
                             },
                             {
-                                Rate: $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
+                                Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: "CarbonDioxide",
                                 AcceptanceThreshold: 0.00000001
                             },
                             {
-                                Rate: $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
+                                Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: "WasteWater",
                                 AcceptanceThreshold: 0.00000001
                             }
                         ],
                         OutputResources: [
                             {
-                                Rate: $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
+                                Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: "Oxygen",
                                 AcceptanceThreshold: 0.00000001
                             },
                             {
-                                Rate: $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
+                                Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: "Water",
                                 AcceptanceThreshold: 0.00000001
                             }  
@@ -51,19 +51,19 @@
                         FormulaLocalizationKey: "KLSS/LSR/Formulas/CO2Scrubber",
                         InputResources: [
                             {
-                                Rate: $crewCapacity,
+                                Rate: 0.5 * $crewCapacity,
                                 ResourceName: "ElectricCharge",
                                 AcceptanceThreshold: 0.001
                             },
                             {
-                                Rate: $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
+                                Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: "CarbonDioxide",
                                 AcceptanceThreshold: 0.00000001
                             }
                         ],
                         OutputResources: [
                             {
-                                Rate: $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
+                                Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: "Oxygen",
                                 AcceptanceThreshold: 0.00000001
                             }                         
@@ -75,19 +75,19 @@
                         FormulaLocalizationKey: "KLSS/LSR/Formulas/WaterRecycler",
                         InputResources: [
                             {
-                                Rate: $crewCapacity,
+                                Rate: 0.5 * $crewCapacity,
                                 ResourceName: "ElectricCharge",
                                 AcceptanceThreshold: 0.001
                             },
                             {
-                                Rate: $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
+                                Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: "WasteWater",
                                 AcceptanceThreshold: 0.00000001
                             }
                         ],
                         OutputResources: [
                             {
-                                Rate: $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
+                                Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: "Water",
                                 AcceptanceThreshold: 0.00000001
                             }                         

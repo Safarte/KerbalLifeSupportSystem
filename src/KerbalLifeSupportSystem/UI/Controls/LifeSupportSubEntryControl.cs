@@ -169,7 +169,7 @@ public class LifeSupportSubEntryControl : VisualElement
                 return;
             }
 
-            text = crew == 0 || time > 1e6 ? "∞" : ToDateTime(time);
+            text = crew == 0 || time > 1e11 ? "∞" : ToDateTime(time);
 
             if (time < 1800)
             {

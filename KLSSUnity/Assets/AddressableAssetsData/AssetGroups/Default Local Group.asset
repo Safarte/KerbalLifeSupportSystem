@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 03f445c9f82dd384c89a173866888aab
+  m_SerializeEntries:
+  - m_GUID: f2c702a5cde43f84a81529b5e34e7bd8
+    m_Address: KLSS_life_support_tank_1v_1x1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61228e959b138624995f62b26c196d4f
+    m_Address: KLSS_life_support_tank_1v_1x1_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: caf352683bd4f4f46b60d385a12fee22
+    m_Address: KLSS_life_support_tank_1v_1x1.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 19a724a448d4a124dad600ff5c1b9575
+    m_Address: KLSS_life_support_tank_2v_1x1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 91105d7e3f4d4744686950925d9dc518
+    m_Address: KLSS_life_support_tank_2v_1x1.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 288a1d9f70b72ea4e8aeff76038852a2
+    m_Address: KLSS_life_support_tank_2v_1x1_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1aa8f4710deae9145b2b81c1db125375
+    m_Address: KLSS_greenhouse_2v_long.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f09038681f8480a489331f5352bdc8ce
+    m_Address: KLSS_greenhouse_2v_long.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 385cff215d70d554eb1eb358b518cbbf
+    m_Address: KLSS_greenhouse_2v_long_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: cd28b809bdb884f4e8adb1d4278f6388, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c837402dcf4cb0149987b4717f31d67b, type: 2}
+    - {fileID: 11400000, guid: e380e39e2d8ff5d46a675bd48fddfb18, type: 2}

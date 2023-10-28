@@ -1,0 +1,672 @@
+{
+  "version": 0.3,
+  "useExternal": false,
+  "data": {
+    "partName": "KLSS_greenhouse_2v_long",
+    "author": "Safarte",
+    "category": "Utility",
+    "family": "0505-LifeSupport",
+    "childStageOffset": 0,
+    "cost": 0,
+    "crewCapacity": 0,
+    "stageOffset": 0,
+    "isCompound": false,
+    "sizeCategory": "M",
+    "stageType": "None",
+    "resourceCosts": [],
+    "tags": "life support",
+    "stagingIconAssetAddress": "",
+    "PartSizeDiameter": 0.0,
+    "angularDrag": 1.0,
+    "breakingForce": 200.0,
+    "breakingTorque": 200.0,
+    "buoyancy": 0.5,
+    "buoyancyUseSine": true,
+    "coLiftOffset": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "coMassOffset": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "coPressureOffset": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "coBuoyancy": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "coDisplacement": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "crashTolerance": 30.0,
+    "explosionPotential": 0.5,
+    "fuelCrossFeed": true,
+    "heatConductivity": 0.12,
+    "mass": 30.0,
+    "maxTemp": 750.0,
+    "attachRules": {
+      "stack": true,
+      "srfAttach": true,
+      "allowStack": true,
+      "allowSrfAttach": true,
+      "allowCollision": false,
+      "allowDock": false,
+      "allowRotate": false,
+      "allowRoot": false
+    },
+    "attachNodes": [
+      {
+        "nodeID": "top",
+        "NodeSymmetryGroupID": "",
+        "nodeType": "Stack",
+        "attachMethod": "FIXED_JOINT",
+        "IsMultiJoint": false,
+        "MultiJointMaxJoint": 0,
+        "MultiJointRadiusOffset": 0.0,
+        "MultiJointOnSingleAxis": false,
+        "SingleJointAxis": "X",
+        "MultiJointFullBreakStrength": false,
+        "position": {
+          "x": 0.0,
+          "y": 1.875,
+          "z": 0.0
+        },
+        "orientation": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "size": 1,
+        "visualSize": 1.0,
+        "isResourceCrossfeed": true,
+        "isRigid": false,
+        "angularStrengthMultiplier": 1.0,
+        "contactArea": 0.0,
+        "overrideDragArea": 0.0,
+        "isCompoundJoint": false
+      },
+      {
+        "nodeID": "bottom",
+        "NodeSymmetryGroupID": "",
+        "nodeType": "Stack",
+        "attachMethod": "FIXED_JOINT",
+        "IsMultiJoint": false,
+        "MultiJointMaxJoint": 0,
+        "MultiJointRadiusOffset": 0.0,
+        "MultiJointOnSingleAxis": false,
+        "SingleJointAxis": "X",
+        "MultiJointFullBreakStrength": false,
+        "position": {
+          "x": 0.0,
+          "y": -1.875,
+          "z": 0.0
+        },
+        "orientation": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        },
+        "size": 1,
+        "visualSize": 1.0,
+        "isResourceCrossfeed": true,
+        "isRigid": false,
+        "angularStrengthMultiplier": 1.0,
+        "contactArea": 0.0,
+        "overrideDragArea": 0.0,
+        "isCompoundJoint": false
+      },
+      {
+        "nodeID": "srfAttach",
+        "NodeSymmetryGroupID": "",
+        "nodeType": "Surface",
+        "attachMethod": "HINGE_JOINT",
+        "IsMultiJoint": false,
+        "MultiJointMaxJoint": 0,
+        "MultiJointRadiusOffset": 0.0,
+        "MultiJointOnSingleAxis": false,
+        "SingleJointAxis": "X",
+        "MultiJointFullBreakStrength": false,
+        "position": {
+          "x": 1.25,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "orientation": {
+          "x": 1.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": 1,
+        "visualSize": 1.0,
+        "isResourceCrossfeed": true,
+        "isRigid": false,
+        "angularStrengthMultiplier": 1.0,
+        "contactArea": 0.0,
+        "overrideDragArea": 0.0,
+        "isCompoundJoint": false
+      }
+    ],
+    "resourceContainers": [
+      {
+        "name": "Food",
+        "capacityUnits": 0.72,
+        "initialUnits": 0.0,
+        "NonStageable": true
+      },
+      {
+        "name": "Waste",
+        "capacityUnits": 0.72,
+        "initialUnits": 0.0,
+        "NonStageable": false
+      },
+      {
+        "name": "ElectricCharge",
+        "capacityUnits": 50.0,
+        "initialUnits": 50.0,
+        "NonStageable": true
+      }
+    ],
+    "AllowKinematicPhysicsIfIntersectTerrain": false,
+    "serializedPartModules": [
+      {
+        "Name": "PartComponentModule_Color",
+        "ComponentType": "KSP.Sim.impl.PartComponentModule_Color, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "BehaviourType": "KSP.Modules.Module_Color, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "ModuleData": [
+          {
+            "Name": "Data_Color",
+            "ModuleType": "KSP.Modules.Module_Color, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "DataType": "KSP.Modules.Data_Color, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "Data": null,
+            "DataObject": {
+              "$type": "KSP.Modules.Data_Color, Assembly-CSharp",
+              "Base": {
+                "ContextKey": "Base",
+                "storedValue": {
+                  "r": 0.654902,
+                  "g": 0.6666667,
+                  "b": 0.6862745,
+                  "a": 1.0
+                }
+              },
+              "Accent": {
+                "ContextKey": "Accent",
+                "storedValue": {
+                  "r": 0.4117647,
+                  "g": 0.443137258,
+                  "b": 0.5176471,
+                  "a": 1.0
+                }
+              },
+              "ModuleType": "KSP.Modules.Module_Color, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "DataType": "KSP.Modules.Data_Color, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "IsActiveInStagingProp": {
+                "ContextKey": null,
+                "storedValue": false
+              }
+            }
+          }
+        ]
+      },
+      {
+        "Name": "PartComponentModule_Drag",
+        "ComponentType": "KSP.Sim.impl.PartComponentModule_Drag, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "BehaviourType": "KSP.Modules.Module_Drag, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "ModuleData": [
+          {
+            "Name": "Data_Drag",
+            "ModuleType": "KSP.Modules.Module_Drag, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "DataType": "KSP.Modules.Data_Drag, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "Data": null,
+            "DataObject": {
+              "$type": "KSP.Modules.Data_Drag, Assembly-CSharp",
+              "BodyLiftEnabled": true,
+              "DragEnabled": true,
+              "bodyLiftMultiplier": 1.0,
+              "cubes": [],
+              "weightedArea": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "weightedExposedArea": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "weightedDrag": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "weightedDragMultiplier": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "weightedDepth": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "weightedCenter": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "weightedSize": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "isDragCubeRotated": false,
+              "dragCubeRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+              },
+              "UpdateExposedArea": false,
+              "ModuleType": "KSP.Modules.Module_Drag, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "DataType": "KSP.Modules.Data_Drag, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "IsActiveInStagingProp": {
+                "ContextKey": null,
+                "storedValue": false
+              }
+            }
+          }
+        ]
+      },
+      {
+        "Name": "PartComponentModule_ResourceCapacities",
+        "ComponentType": "KSP.Sim.impl.PartComponentModule_ResourceCapacities, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "BehaviourType": "KSP.Modules.Module_ResourceCapacities, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "ModuleData": [
+          {
+            "Name": "Data_ResourceCapacities",
+            "ModuleType": "KSP.Modules.Module_ResourceCapacities, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "DataType": "KSP.Modules.Data_ResourceCapacities, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "Data": null,
+            "DataObject": {
+              "$type": "KSP.Modules.Data_ResourceCapacities, Assembly-CSharp",
+              "ModuleType": "KSP.Modules.Module_ResourceCapacities, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "DataType": "KSP.Modules.Data_ResourceCapacities, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "IsActiveInStagingProp": {
+                "ContextKey": null,
+                "storedValue": false
+              }
+            }
+          }
+        ]
+      },
+      {
+        "Name": "PartComponentModule_ResourceConverter",
+        "ComponentType": "KSP.Sim.impl.PartComponentModule_ResourceConverter, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "BehaviourType": "KSP.Modules.Module_ResourceConverter, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "ModuleData": [
+          {
+            "Name": "Data_ResourceConverter",
+            "ModuleType": "KSP.Modules.Module_ResourceConverter, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "DataType": "KSP.Modules.Data_ResourceConverter, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "Data": null,
+            "DataObject": {
+              "$type": "KSP.Modules.Data_ResourceConverter, Assembly-CSharp",
+              "EnabledToggle": {
+                "ContextKey": "EnabledToggle",
+                "storedValue": false
+              },
+              "conversionRate": {
+                "ContextKey": "conversionRate",
+                "storedValue": 0.5
+              },
+              "Mode": {
+                "ContextKey": "Mode",
+                "storedValue": ""
+              },
+              "conversionState": "Inactive",
+              "HasEnoughResources": true,
+              "ConverterIsActive": true,
+              "SelectedFormula": 0,
+              "ToggleName": "KLSS/LSR/GreenhouseEnabled",
+              "StartActionName": "KLSS/LSR/StartGreenhouse",
+              "StopActionName": "KLSS/LSR/Tooltip/StopGreenhouse",
+              "ToggleActionName": "KLSS/LSR/Tooltip/ToggleGreenhouse",
+              "ConvertByMass": false,
+              "ResourceAutoShutdown": false,
+              "FormulaDefinitions": [
+                {
+                  "InternalName": "KLSS_Greenhouse",
+                  "FormulaLocalizationKey": "KLSS/LSR/Formulas/Greenhouse",
+                  "InputResources": [
+                    {
+                      "Rate": 10.0,
+                      "ResourceName": "ElectricCharge",
+                      "AcceptanceThreshold": 0.001
+                    }
+                  ],
+                  "OutputResources": [
+                    {
+                      "Rate": 1.85E-07,
+                      "ResourceName": "Food",
+                      "AcceptanceThreshold": 1E-08
+                    }
+                  ],
+                  "FluxGenerated": 0.0,
+                  "AcceptanceThreshold": 1E-08
+                },
+                {
+                  "InternalName": "KLSS_GreenhouseFertilized",
+                  "FormulaLocalizationKey": "KLSS/LSR/Formulas/GreenhouseFertilized",
+                  "InputResources": [
+                    {
+                      "Rate": 10.0,
+                      "ResourceName": "ElectricCharge",
+                      "AcceptanceThreshold": 0.001
+                    },
+                    {
+                      "Rate": 3.7E-07,
+                      "ResourceName": "Waste",
+                      "AcceptanceThreshold": 1E-08
+                    }
+                  ],
+                  "OutputResources": [
+                    {
+                      "Rate": 3.7E-07,
+                      "ResourceName": "Food",
+                      "AcceptanceThreshold": 1E-08
+                    }
+                  ],
+                  "FluxGenerated": 0.0,
+                  "AcceptanceThreshold": 1E-08
+                }
+              ],
+              "FluxGenerated": 0.0,
+              "ThermalAutoShutdown": false,
+              "AutoShutdownTemperature": 2000.0,
+              "SafeOperationTemperature": 1000.0,
+              "UseEmissive": false,
+              "UseEmissiveTemperature": false,
+              "EmissiveMaterialNames": [],
+              "EmissiveTemperatureCurve": {
+                "fCurve": {
+                  "keys": [],
+                  "length": 0,
+                  "preWrapMode": "ClampForever",
+                  "postWrapMode": "ClampForever"
+                },
+                "_minTime": 3.40282347E+38,
+                "_maxTime": -3.40282347E+38
+              },
+              "EmissiveLerpRateUp": 0.1,
+              "EmissiveLerpRateDown": 0.01,
+              "ProblematicResource": null,
+              "FormulaDefs": null,
+              "RequestConfigs": null,
+              "ModuleType": "KSP.Modules.Module_ResourceConverter, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "DataType": "KSP.Modules.Data_ResourceConverter, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "IsActiveInStagingProp": {
+                "ContextKey": null,
+                "storedValue": false
+              }
+            }
+          }
+        ]
+      },
+      {
+        "Name": "PartComponentModule_LitPart",
+        "ComponentType": "KSP.Sim.impl.PartComponentModule_LitPart, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "BehaviourType": "KSP.Modules.Module_LitPart, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "ModuleData": [
+          {
+            "Name": "Data_LitPart",
+            "ModuleType": "KSP.Modules.Module_LitPart, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "DataType": "KSP.Modules.Data_LitPart, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "Data": null,
+            "DataObject": {
+              "$type": "KSP.Modules.Data_LitPart, Assembly-CSharp",
+              "LightToggle": {
+                "ContextKey": "LightToggle",
+                "storedValue": false
+              },
+              "HasEnoughResources": false,
+              "LightObjectNames": [
+                "greenhouse_2v_long"
+              ],
+              "LightMaterialNames": [
+                "KLSS_greenhouse_2v_long"
+              ],
+              "Duration": 1.0,
+              "ColorGradientColors": [],
+              "ColorGradientTimes": [],
+              "RedColorGradient": {
+                "fCurve": {
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 0.74,
+                      "inTangent": 0.0,
+                      "outTangent": 0.0,
+                      "inWeight": 0.0,
+                      "outWeight": 0.333333343,
+                      "weightedMode": "None",
+                      "tangentMode": 34
+                    },
+                    {
+                      "time": 1.0,
+                      "value": 0.74,
+                      "inTangent": 0.0,
+                      "outTangent": 0.0,
+                      "inWeight": 0.333333343,
+                      "outWeight": 0.0,
+                      "weightedMode": "None",
+                      "tangentMode": 34
+                    }
+                  ],
+                  "length": 2,
+                  "preWrapMode": "ClampForever",
+                  "postWrapMode": "ClampForever"
+                },
+                "_minTime": 0.0,
+                "_maxTime": 1.0
+              },
+              "GreenColorGradient": {
+                "fCurve": {
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 0.41,
+                      "inTangent": 0.0,
+                      "outTangent": 0.0,
+                      "inWeight": 0.0,
+                      "outWeight": 0.333333343,
+                      "weightedMode": "None",
+                      "tangentMode": 34
+                    },
+                    {
+                      "time": 1.0,
+                      "value": 0.41,
+                      "inTangent": 0.0,
+                      "outTangent": 0.0,
+                      "inWeight": 0.333333343,
+                      "outWeight": 0.0,
+                      "weightedMode": "None",
+                      "tangentMode": 34
+                    }
+                  ],
+                  "length": 2,
+                  "preWrapMode": "ClampForever",
+                  "postWrapMode": "ClampForever"
+                },
+                "_minTime": 0.0,
+                "_maxTime": 1.0
+              },
+              "BlueColorGradient": {
+                "fCurve": {
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 0.24,
+                      "inTangent": 0.0,
+                      "outTangent": 0.0,
+                      "inWeight": 0.0,
+                      "outWeight": 0.333333343,
+                      "weightedMode": "None",
+                      "tangentMode": 34
+                    },
+                    {
+                      "time": 1.0,
+                      "value": 0.24,
+                      "inTangent": 0.0,
+                      "outTangent": 0.0,
+                      "inWeight": 0.333333343,
+                      "outWeight": 0.0,
+                      "weightedMode": "None",
+                      "tangentMode": 34
+                    }
+                  ],
+                  "length": 2,
+                  "preWrapMode": "ClampForever",
+                  "postWrapMode": "ClampForever"
+                },
+                "_minTime": 0.0,
+                "_maxTime": 1.0
+              },
+              "AlphaColorGradient": {
+                "fCurve": {
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 0.0,
+                      "inTangent": 1.0,
+                      "outTangent": 1.0,
+                      "inWeight": 0.0,
+                      "outWeight": 0.0,
+                      "weightedMode": "None",
+                      "tangentMode": 34
+                    },
+                    {
+                      "time": 1.0,
+                      "value": 1.0,
+                      "inTangent": 1.0,
+                      "outTangent": 1.0,
+                      "inWeight": 0.0,
+                      "outWeight": 0.0,
+                      "weightedMode": "None",
+                      "tangentMode": 34
+                    }
+                  ],
+                  "length": 2,
+                  "preWrapMode": "ClampForever",
+                  "postWrapMode": "ClampForever"
+                },
+                "_minTime": 0.0,
+                "_maxTime": 1.0
+              },
+              "DefaultActionGroup": "Lights",
+              "DefaultEnabledState": false,
+              "RequiredResourceName": "ElectricCharge",
+              "RequiredResourceThreshold": 1.0,
+              "LightIntensityMultiplier": 3.0,
+              "CurrentLightIntensity": 0.0,
+              "TargetLightIntensity": 0.0,
+              "DurationMultiplier": 0.0,
+              "IsTransitioning": false,
+              "Interpolation": 0.0,
+              "LightStateOnBlackout": false,
+              "ModuleType": "KSP.Modules.Module_LitPart, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "DataType": "KSP.Modules.Data_LitPart, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "IsActiveInStagingProp": {
+                "ContextKey": null,
+                "storedValue": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "resourceSummary": {
+      "Consumes": [],
+      "Generates": [],
+      "Contains": []
+    },
+    "PAMModuleSortOverride": [
+      {
+        "PartComponentModuleName": "PartComponentModule_ResourceConverter",
+        "sortIndex": 40
+      }
+    ],
+    "PAMModuleVisualsOverride": [
+      {
+        "PartComponentModuleName": "PartComponentModule_ResourceConverter",
+        "ModuleDisplayName": "PartModules/Greenhouse/Name",
+        "ShowHeader": true,
+        "ShowFooter": false
+      }
+    ],
+    "collisionVolumeBoundsScale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+    },
+    "emissiveConstant": 0.0,
+    "maximumDrag": 0.2,
+    "minimumDrag": 0.1,
+    "physicsMode": "Full",
+    "inverseStageCarryover": true,
+    "skinMassPerArea": 4.0,
+    "bodyLiftOnlyUnattachedLift": false,
+    "bodyLiftOnlyAttachName": "",
+    "maxLength": -1,
+    "radiatorHeadroom": 0.75,
+    "radiatorMax": 0.35,
+    "skinMaxTemp": 800.0,
+    "skinInternalConductionMult": 1.0,
+    "thermalMassModifier": 1.0,
+    "buoyancyUseCubeNamed": "",
+    "oabEditorCategory": "ALL",
+    "partType": "Rocket",
+    "PreferredOrientation": "NONE",
+    "MirrorTechnique": "Auto",
+    "CanSuggestOrientation": false,
+    "PickUpPointOffset": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "PickupRotationPointOffset": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "Title": "KLSS_greenhouse_2v_long",
+    "Subtitle": null,
+    "Manufacturer": null,
+    "Description": null
+  },
+  "modules": null,
+  "legacyModules": ""
+}

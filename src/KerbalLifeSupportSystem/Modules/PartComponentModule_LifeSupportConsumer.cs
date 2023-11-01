@@ -165,7 +165,6 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
     {
         var inputCount = _dataLifeSupportConsumer.LifeSupportDefinition.InputResources.Count;
         var outputCount = _dataLifeSupportConsumer.LifeSupportDefinition.OutputResources.Count;
-        var scale = KerbalLifeSupportSystemPlugin.Instance.ConfigResourceConsumptionRate.Value;
 
         _currentIngredientUnits = new ResourceUnitsPair[inputCount];
         _currentProductUnits = new ResourceUnitsPair[outputCount];
@@ -173,6 +172,8 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
         var resourceUnitsPair = new ResourceUnitsPair();
         for (var i = 0; i < inputCount; ++i)
         {
+            var scale = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates[
+                _dataLifeSupportConsumer.LifeSupportDefinition.InputResources[i].ResourceName].Value;
             resourceUnitsPair.resourceID = _dataLifeSupportConsumer.ResourceDefinitions[i];
             resourceUnitsPair.units = _dataLifeSupportConsumer.LifeSupportDefinition.InputResources[i].Rate *
                                       _dataLifeSupportConsumer.numKerbals * scale;
@@ -181,6 +182,15 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
 
         for (var i = 0; i < outputCount; ++i)
         {
+            var outputName = _dataLifeSupportConsumer.LifeSupportDefinition.OutputResources[i].ResourceName;
+            var inputName = outputName switch
+            {
+                "CarbonDioxide" => "Oxygen",
+                "WasteWater" => "Water",
+                "Waste" => "Food",
+                _ => "Food"
+            };
+            var scale = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates[inputName].Value;
             resourceUnitsPair.resourceID = _dataLifeSupportConsumer.ResourceDefinitions[inputCount + i];
             resourceUnitsPair.units = _dataLifeSupportConsumer.LifeSupportDefinition.OutputResources[i].Rate *
                                       _dataLifeSupportConsumer.numKerbals * scale;

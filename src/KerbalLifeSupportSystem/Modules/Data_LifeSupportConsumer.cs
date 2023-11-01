@@ -55,15 +55,24 @@ public class Data_LifeSupportConsumer : ModuleData
                 RequestConfig[i].FlowResource = resourceIdFromName;
                 RequestConfig[i].FlowDirection = FlowDirection.FLOW_OUTBOUND;
                 RequestConfig[i].FlowUnits = (double)LifeSupportDefinition.InputResources[i].Rate * numKerbals *
-                                             KerbalLifeSupportSystemPlugin.Instance.ConfigResourceConsumptionRate.Value;
+                                             KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates[resourceName]
+                                                 .Value;
             }
         }
 
         // Set up output resources
         for (var i = LifeSupportDefinition.InputResources.Count; i < length; ++i)
         {
-            var resourceIdFromName = _resourceDB.GetResourceIDFromName(LifeSupportDefinition
-                .OutputResources[i - LifeSupportDefinition.InputResources.Count].ResourceName);
+            var resourceName = LifeSupportDefinition.OutputResources[i - LifeSupportDefinition.InputResources.Count]
+                .ResourceName;
+            var inputName = resourceName switch
+            {
+                "CarbonDioxide" => "Oxygen",
+                "WasteWater" => "Water",
+                "Waste" => "Food",
+                _ => "Food"
+            };
+            var resourceIdFromName = _resourceDB.GetResourceIDFromName(resourceName);
             if (resourceIdFromName != ResourceDefinitionID.InvalidID)
             {
                 ResourceDefinitions[i] = resourceIdFromName;
@@ -72,7 +81,7 @@ public class Data_LifeSupportConsumer : ModuleData
                 RequestConfig[i].FlowDirection = FlowDirection.FLOW_INBOUND;
                 RequestConfig[i].FlowUnits =
                     (double)LifeSupportDefinition.OutputResources[i - LifeSupportDefinition.InputResources.Count].Rate *
-                    numKerbals * KerbalLifeSupportSystemPlugin.Instance.ConfigResourceConsumptionRate.Value;
+                    numKerbals * KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates[inputName].Value;
             }
         }
 

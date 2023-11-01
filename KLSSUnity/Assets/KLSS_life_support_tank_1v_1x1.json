@@ -309,42 +309,6 @@
                 "w": 1.0
               },
               "UpdateExposedArea": false,
-              "DragForceDirection": {
-                "ContextKey": "DragForceDirection",
-                "storedValue": {
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0.0
-                }
-              },
-              "DragForceMagnitude": {
-                "ContextKey": "DragForceMagnitude",
-                "storedValue": 0.0
-              },
-              "LiftForceDirection": {
-                "ContextKey": "LiftForceDirection",
-                "storedValue": {
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 0.0
-                }
-              },
-              "LiftForceMagnitude": {
-                "ContextKey": "LiftForceMagnitude",
-                "storedValue": 0.0
-              },
-              "ReferenceArea": {
-                "ContextKey": "ReferenceArea",
-                "storedValue": 0.0
-              },
-              "ExposedArea": {
-                "ContextKey": "ExposedArea",
-                "storedValue": 0.0
-              },
-              "TotalArea": {
-                "ContextKey": "TotalArea",
-                "storedValue": 0.0
-              },
               "ModuleType": "KSP.Modules.Module_Drag, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
               "DataType": "KSP.Modules.Data_Drag, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
               "IsActiveInStagingProp": {

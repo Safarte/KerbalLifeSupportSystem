@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4885fc08bde5a324cb0ecc35823a594b, type: 3}
   m_Name: KSP2UTSettings
   m_EditorClassIdentifier: 
+  gameObjectKeys: []
+  gameObjectValues: []
+  savedBuildPath: 
+  savedBuildMode: Everything
+  savedModAddressablesPath: 
+  savedKsp2Path: 

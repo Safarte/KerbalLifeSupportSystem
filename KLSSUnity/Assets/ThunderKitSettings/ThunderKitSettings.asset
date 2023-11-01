@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9057f7f601990a4883b2cb295c4f43e, type: 3}
   m_Name: ThunderKitSettings
   m_EditorClassIdentifier: 
-  editor: {fileID: 0}
   FirstLoad: 0
   ShowOnStartup: 1
   GameExecutable: KSP2_x64.exe
@@ -32,4 +31,4 @@ MonoBehaviour:
   SelectedManifest: {fileID: 0}
   QuickAccessPipelines: []
   QuickAccessManifests: []
-  ImportConfiguration: {fileID: 11400000, guid: d3046b8cfa0776d4f938495a0abcc75f, type: 2}
+  ImportConfiguration: {fileID: 11400000, guid: 04dcce1879d873d4882bba0af77a2b52, type: 2}

@@ -27,11 +27,11 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
     public const string ToolbarOabButtonID = "BTN-KLSSPlanner";
     public const string ToolbarFlightButtonID = "BTN-KLSSMonitor";
 
+    //internal ConfigEntry<bool> ConfigKerbalsDie;
+    internal readonly Dictionary<string, ConfigEntry<float>> ConsumptionRates = new();
+
     // UI Controllers
     private LifeSupportMonitorUIController _klssMonitorController;
-
-    //internal ConfigEntry<bool> ConfigKerbalsDie;
-    internal ConfigEntry<float> ConfigResourceConsumptionRate;
 
     // Singleton instance of the plugin class
     public static KerbalLifeSupportSystemPlugin Instance { get; private set; }
@@ -47,9 +47,12 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
     private void SetupConfiguration()
     {
         //ConfigKerbalsDie = Config.Bind("Life Support", "Kerbals Die", false, "Do Kerbals die when out of food/water/oxygen, go on strike otherwise");
-        ConfigResourceConsumptionRate = Config.Bind("Life Support", "Resources Consumption Multiplier", 1f,
-            new ConfigDescription("Life-support resources consumption rate multiplier",
-                new AcceptableValueRange<float>(0f, 5f)));
+        ConsumptionRates["Food"] = Config.Bind("Life-Support", "Food Consumption Multiplier (Base: 1kg/day)", 1f,
+            new ConfigDescription("Food consumption rate multiplier.", new AcceptableValueRange<float>(0f, 5f)));
+        ConsumptionRates["Water"] = Config.Bind("Life-Support", "Water Consumption Multiplier (Base: 3l/day)", 1f,
+            new ConfigDescription("Water consumption rate multiplier.", new AcceptableValueRange<float>(0f, 5f)));
+        ConsumptionRates["Oxygen"] = Config.Bind("Life-Support", "Oxygen Consumption Multiplier (Base: 1kg/day)", 1f,
+            new ConfigDescription("Oxygen consumption rate multiplier.", new AcceptableValueRange<float>(0f, 5f)));
     }
 
     /// <summary>

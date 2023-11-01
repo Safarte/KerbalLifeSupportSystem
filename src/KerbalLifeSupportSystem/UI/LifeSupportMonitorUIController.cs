@@ -51,6 +51,9 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         if (GameManager.Instance?.Game?.OAB?.Current?.Stats?.MainAssembly is not null)
         {
             var assembly = Game.OAB.Current.Stats.MainAssembly;
+
+            if (!_lifeSupportEntries.ContainsKey(assembly.Anchor.UniqueId)) PopulateLsEntries();
+
             _lifeSupportEntries[assembly.Anchor.UniqueId].SetValues(GetObjectAssemblyData(assembly), true);
         }
 
@@ -69,8 +72,6 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
                     _isLsEntriesDirty = true;
                 }
             }
-
-        if (_uiEnabled && Input.GetKey(KeyCode.Escape)) SetEnabled(false);
     }
 
     private void OnDestroy()
@@ -121,16 +122,18 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         foreach (var part in vessel.SimulationObject.PartOwner.Parts)
             data.MaximumCrew += !vessel.SimulationObject.IsKerbal ? part.PartData.crewCapacity : 0;
 
-        // Consumption rate setting
-        double consRate = KerbalLifeSupportSystemPlugin.Instance.ConfigResourceConsumptionRate.Value;
+        // Consumption rate settings
+        double foodRate = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates["Food"].Value;
+        double waterRate = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates["Water"].Value;
+        double oxygenRate = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates["Oxygen"].Value;
 
         // Base consumption rates
-        var curFoodRate = FoodPerSecond * consRate * data.CurrentCrew;
-        var maxFoodRate = FoodPerSecond * consRate * data.MaximumCrew;
-        var curWaterRate = WaterPerSecond * consRate * data.CurrentCrew;
-        var maxWaterRate = WaterPerSecond * consRate * data.MaximumCrew;
-        var curOxygenRate = OxygenPerSecond * consRate * data.CurrentCrew;
-        var maxOxygenRate = OxygenPerSecond * consRate * data.MaximumCrew;
+        var curFoodRate = FoodPerSecond * foodRate * data.CurrentCrew;
+        var maxFoodRate = FoodPerSecond * foodRate * data.MaximumCrew;
+        var curWaterRate = WaterPerSecond * waterRate * data.CurrentCrew;
+        var maxWaterRate = WaterPerSecond * waterRate * data.MaximumCrew;
+        var curOxygenRate = OxygenPerSecond * oxygenRate * data.CurrentCrew;
+        var maxOxygenRate = OxygenPerSecond * oxygenRate * data.MaximumCrew;
 
         // Compute the current capacities of the recyclers on the vessel
         var foodRecyclerCapacity = 0.0;
@@ -211,15 +214,17 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         foreach (var part in assembly.Parts) data.MaximumCrew += part.AvailablePart.PartData.crewCapacity;
 
         // Consumption rate setting
-        double consRate = KerbalLifeSupportSystemPlugin.Instance.ConfigResourceConsumptionRate.Value;
+        double foodRate = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates["Food"].Value;
+        double waterRate = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates["Water"].Value;
+        double oxygenRate = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates["Oxygen"].Value;
 
         // Base consumption rates
-        var curFoodRate = FoodPerSecond * consRate * data.CurrentCrew;
-        var maxFoodRate = FoodPerSecond * consRate * data.MaximumCrew;
-        var curWaterRate = WaterPerSecond * consRate * data.CurrentCrew;
-        var maxWaterRate = WaterPerSecond * consRate * data.MaximumCrew;
-        var curOxygenRate = OxygenPerSecond * consRate * data.CurrentCrew;
-        var maxOxygenRate = OxygenPerSecond * consRate * data.MaximumCrew;
+        var curFoodRate = FoodPerSecond * foodRate * data.CurrentCrew;
+        var maxFoodRate = FoodPerSecond * foodRate * data.MaximumCrew;
+        var curWaterRate = WaterPerSecond * waterRate * data.CurrentCrew;
+        var maxWaterRate = WaterPerSecond * waterRate * data.MaximumCrew;
+        var curOxygenRate = OxygenPerSecond * oxygenRate * data.CurrentCrew;
+        var maxOxygenRate = OxygenPerSecond * oxygenRate * data.MaximumCrew;
 
         // Compute the current capacities of the recyclers on the vessel
         var foodRecyclerCapacity = 0.0;
@@ -249,7 +254,7 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
                         waterRecyclerCapacity += converter.conversionRate.GetValue() *
                                                  def.OutputResources.Find(res => res.ResourceName == "Water").Rate;
                     }
-                    else if (def.InternalName == "KLSS_Greenhouse" || def.InternalName == "KLSS_FertilizedGreenhouse")
+                    else if (def.InternalName == "KLSS_Greenhouse" || def.InternalName == "KLSS_GreenhouseFertilized")
                     {
                         foodRecyclerCapacity += converter.conversionRate.GetValue() *
                                                 def.OutputResources.Find(res => res.ResourceName == "Food").Rate;

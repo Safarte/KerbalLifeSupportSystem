@@ -15,8 +15,30 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_Data:
     m_SerializedData: []
-  m_GUID: 03f445c9f82dd384c89a173866888aab
+  m_GUID: 77c854ec82ffc1647a4b5a9b71ef468e
   m_SerializeEntries:
+  - m_GUID: f09038681f8480a489331f5352bdc8ce
+    m_Address: KLSS_greenhouse_2v_long.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a7dc5ade3571f4468e585bcff481075
+    m_Address: KLSS_greenhouse_2v_long.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 385cff215d70d554eb1eb358b518cbbf
+    m_Address: KLSS_greenhouse_2v_long_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a73bc4a2ee716b8489335a84b5481a5d
+    m_Address: KLSS_life_support_tank_1v_1x1.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f2c702a5cde43f84a81529b5e34e7bd8
     m_Address: KLSS_life_support_tank_1v_1x1.prefab
     m_ReadOnly: 0
@@ -27,18 +49,12 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: caf352683bd4f4f46b60d385a12fee22
-    m_Address: KLSS_life_support_tank_1v_1x1.json
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - parts_data
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 19a724a448d4a124dad600ff5c1b9575
     m_Address: KLSS_life_support_tank_2v_1x1.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 91105d7e3f4d4744686950925d9dc518
+  - m_GUID: 1c5f8cf0031e49d4e951ff7215a19b78
     m_Address: KLSS_life_support_tank_2v_1x1.json
     m_ReadOnly: 0
     m_SerializedLabels:
@@ -49,25 +65,9 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1aa8f4710deae9145b2b81c1db125375
-    m_Address: KLSS_greenhouse_2v_long.json
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - parts_data
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f09038681f8480a489331f5352bdc8ce
-    m_Address: KLSS_greenhouse_2v_long.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 385cff215d70d554eb1eb358b518cbbf
-    m_Address: KLSS_greenhouse_2v_long_icon.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
-  m_Settings: {fileID: 11400000, guid: cd28b809bdb884f4e8adb1d4278f6388, type: 2}
+  m_Settings: {fileID: 11400000, guid: 1b626c4ce55065e4fbf2b32096fa98b0, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: c837402dcf4cb0149987b4717f31d67b, type: 2}
-    - {fileID: 11400000, guid: e380e39e2d8ff5d46a675bd48fddfb18, type: 2}
+    - {fileID: 11400000, guid: 4ad54d193b66b6b4cac1fcea11f34581, type: 2}
+    - {fileID: 11400000, guid: a4469ddb9fc863744bc92f328b1472e5, type: 2}

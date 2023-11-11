@@ -46,43 +46,47 @@ public class Data_LifeSupportConsumer : ModuleData
         // Set up input resources
         for (var i = 0; i < LifeSupportDefinition.InputResources.Count; ++i)
         {
+            // Resource Name & ID
             var resourceName = LifeSupportDefinition.InputResources[i].ResourceName;
             var resourceIdFromName = _resourceDB.GetResourceIDFromName(resourceName);
-            if (resourceIdFromName != ResourceDefinitionID.InvalidID)
+
+            if (resourceIdFromName == ResourceDefinitionID.InvalidID) continue;
+
+            // Consumption rate setting
+            var rate = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates[resourceName].Value;
+
+            ResourceDefinitions[i] = resourceIdFromName;
+            RequestConfig[i] = new ResourceFlowRequestCommandConfig
             {
-                ResourceDefinitions[i] = resourceIdFromName;
-                RequestConfig[i] = new ResourceFlowRequestCommandConfig();
-                RequestConfig[i].FlowResource = resourceIdFromName;
-                RequestConfig[i].FlowDirection = FlowDirection.FLOW_OUTBOUND;
-                RequestConfig[i].FlowUnits = (double)LifeSupportDefinition.InputResources[i].Rate * numKerbals *
-                                             KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates[resourceName]
-                                                 .Value;
-            }
+                FlowResource = resourceIdFromName,
+                FlowDirection = FlowDirection.FLOW_OUTBOUND,
+                FlowUnits = (double)LifeSupportDefinition.InputResources[i].Rate * numKerbals * rate
+            };
         }
 
         // Set up output resources
         for (var i = LifeSupportDefinition.InputResources.Count; i < length; ++i)
         {
-            var resourceName = LifeSupportDefinition.OutputResources[i - LifeSupportDefinition.InputResources.Count]
-                .ResourceName;
-            var inputName = resourceName switch
-            {
-                "CarbonDioxide" => "Oxygen",
-                "WasteWater" => "Water",
-                "Waste" => "Food",
-                _ => "Food"
-            };
+            // Shifted index for output resource
+            var index = i - LifeSupportDefinition.InputResources.Count;
+
+            // Resource Name & ID
+            var resourceName = LifeSupportDefinition.OutputResources[index].ResourceName;
             var resourceIdFromName = _resourceDB.GetResourceIDFromName(resourceName);
-            if (resourceIdFromName != ResourceDefinitionID.InvalidID)
+
+            if (resourceIdFromName == ResourceDefinitionID.InvalidID) continue;
+
+            // Consumption rate setting from corresponding input resource
+            var inputName = KerbalLifeSupportSystemPlugin.Instance.LsOutputInputNames[resourceName];
+            var rate = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates[inputName].Value;
+
+            ResourceDefinitions[i] = resourceIdFromName;
+            RequestConfig[i] = new ResourceFlowRequestCommandConfig
             {
-                ResourceDefinitions[i] = resourceIdFromName;
-                RequestConfig[i] = new ResourceFlowRequestCommandConfig();
-                RequestConfig[i].FlowResource = resourceIdFromName;
-                RequestConfig[i].FlowDirection = FlowDirection.FLOW_INBOUND;
-                RequestConfig[i].FlowUnits =
-                    (double)LifeSupportDefinition.OutputResources[i - LifeSupportDefinition.InputResources.Count].Rate *
-                    numKerbals * KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates[inputName].Value;
-            }
+                FlowResource = resourceIdFromName,
+                FlowDirection = FlowDirection.FLOW_INBOUND,
+                FlowUnits = (double)LifeSupportDefinition.OutputResources[index].Rate * rate
+            };
         }
 
         // Set up resource request

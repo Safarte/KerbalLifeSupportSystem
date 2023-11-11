@@ -1,0 +1,60 @@
+<linker>
+  <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="KSP.CorePartData" preserve="all" />
+    <type fullname="KSP.Modules.Module_Color" preserve="all" />
+    <type fullname="KSP.Modules.Module_Drag" preserve="all" />
+    <type fullname="KSP.Modules.Module_LitPart" preserve="all" />
+    <type fullname="KSP.Modules.Module_ResourceCapacities" preserve="all" />
+    <type fullname="KSP.Modules.Module_ResourceConverter" preserve="all" />
+    <type fullname="FloatCurve" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Game.PartsManagerCore/SerializedPartModuleDisplayOrder" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Game.PartsManagerCore/SerializedPartModuleDisplayVisuals" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Modules.Data_Color" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Modules.Data_Drag" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Modules.Data_LitPart" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Modules.Data_ResourceCapacities" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Modules.Data_ResourceConverter" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Modules.ResourceConversionState" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Modules.ResourceConverterFormulaDefinition" preserve="nothing" serialized="true" />
+    <type fullname="KSP.OAB.MirrorTechnique" preserve="nothing" serialized="true" />
+    <type fullname="KSP.OAB.OABEditorPartCategory" preserve="nothing" serialized="true" />
+    <type fullname="KSP.OAB.OABOrientation" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.Definitions.AttachNodeDefinition" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.Definitions.AttachRules" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.Definitions.ModuleDataList" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.Definitions.PartCore" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.Definitions.PartData" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.Definitions.PartModuleResourceSetting" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.Definitions.SerializedModuleData" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.Definitions.SerializedPartModule" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.Definitions.SerializedResourceInfo" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.ResourceSystem.ContainedResourceDefinition" preserve="nothing" serialized="true" />
+    <type fullname="KSP.Sim.ResourceSystem.ResourceFlowRequestHandle" preserve="nothing" serialized="true" />
+    <type fullname="Vector3d" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.Material" preserve="all" />
+    <type fullname="UnityEngine.Mesh" preserve="all" />
+    <type fullname="UnityEngine.MeshFilter" preserve="all" />
+    <type fullname="UnityEngine.MeshRenderer" preserve="all" />
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.Shader" preserve="all" />
+    <type fullname="UnityEngine.Sprite" preserve="all" />
+    <type fullname="UnityEngine.TextAsset" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+    <type fullname="UnityEngine.Transform" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.MeshCollider" preserve="all" />
+  </assembly>
+</linker>

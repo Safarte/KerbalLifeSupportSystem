@@ -6,7 +6,7 @@
   "description": "Kerbals need their Snacks.",
   "source": "https://github.com/Safarte/KerbalLifeSupportSystem",
   "version": "0.2.1",
-  "version_check": "https://raw.githubusercontent.com/Safarte/KerbalLifeSupportSystem/main/KLSS/swinfo.json",
+  "version_check": "https://raw.githubusercontent.com/Safarte/KerbalLifeSupportSystem/main/plugin_template/swinfo.json",
   "ksp2_version": {
     "min": "0.1.5",
     "max": "*"

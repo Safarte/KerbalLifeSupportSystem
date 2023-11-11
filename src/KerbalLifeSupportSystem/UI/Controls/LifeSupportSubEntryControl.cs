@@ -4,126 +4,129 @@ namespace KerbalLifeSupportSystem.UI;
 
 public class LifeSupportSubEntryControl : VisualElement
 {
-    private const string UssClassName = "ls-vessel-sub-entry";
+    private const string ClassName = "ls-vessel-sub-entry";
 
-    private const string UssTitleClassName = UssClassName + "__title";
-    private const string UssContentClassName = UssClassName + "__content";
-    private const string UssValueClassName = UssClassName + "__value";
-    private const string UssDividerClassName = UssClassName + "__divider";
+    private const string TitleClassName = ClassName + "__title";
+    private const string ContentClassName = ClassName + "__content";
+    private const string ValueClassName = ClassName + "__value";
+    private const string DividerClassName = ClassName + "__divider";
 
-    private const string UssGrayClassName = "ls-monitor-gray";
-    private const string UssWhiteClassName = "ls-monitor-white";
-    private const string UssOrangeClassName = "ls-monitor-orange";
-    private const string UssRedClassName = "ls-monitor-red";
+    private const string GrayClassName = "ls-monitor-gray";
+    private const string WhiteClassName = "ls-monitor-white";
+    private const string OrangeClassName = "ls-monitor-orange";
+    private const string RedClassName = "ls-monitor-red";
 
-    private readonly RemainingTimeLabel _foodLabel;
-    private readonly RemainingTimeLabel _oxygenLabel;
-    private readonly RemainingTimeLabel _waterLabel;
+    private readonly Dictionary<string, RemainingTimeLabel> _resourceLabels = new();
 
     public readonly Label TitleLabel;
 
-    public LifeSupportSubEntryControl(string title, double food, double water, double oxygen, int crew,
+    public LifeSupportSubEntryControl(string title, Dictionary<string, double> resourceCountdowns, int crew,
         bool displayTimes) : this()
     {
-        SetValues(title, food, water, oxygen, crew, displayTimes);
+        SetValues(title, resourceCountdowns, crew, displayTimes);
     }
 
     public LifeSupportSubEntryControl()
     {
-        AddToClassList(UssClassName);
+        AddToClassList(ClassName);
 
+        // Initialize title label
         TitleLabel = new Label
         {
             name = "title",
             text = "-"
         };
-        TitleLabel.AddToClassList(UssTitleClassName);
-        TitleLabel.AddToClassList(UssGrayClassName);
+        TitleLabel.AddToClassList(TitleClassName);
+        TitleLabel.AddToClassList(GrayClassName);
         hierarchy.Add(TitleLabel);
 
+        // Container for the resource countdowns
         var contentContainer1 = new VisualElement();
-        contentContainer1.AddToClassList(UssContentClassName);
+        contentContainer1.AddToClassList(ContentClassName);
         hierarchy.Add(contentContainer1);
 
         {
-            _foodLabel = new RemainingTimeLabel
+            var iter = 1;
+            // Add a resource countdown for each LS supply resource
+            foreach (var resource in KerbalLifeSupportSystemPlugin.Instance.LsInputResources)
             {
-                name = "food",
-                text = "-"
-            };
-            _foodLabel.AddToClassList(UssValueClassName);
-            _foodLabel.AddToClassList(UssWhiteClassName);
-            contentContainer1.Add(_foodLabel);
+                _resourceLabels[resource] = new RemainingTimeLabel
+                {
+                    name = resource,
+                    text = "-"
+                };
+                _resourceLabels[resource].AddToClassList(ValueClassName);
+                _resourceLabels[resource].AddToClassList(WhiteClassName);
+                contentContainer1.Add(_resourceLabels[resource]);
 
-            var firstDividerLabel = new Label
-            {
-                name = "divider-0",
-                text = "|"
-            };
-            firstDividerLabel.AddToClassList(UssDividerClassName);
-            firstDividerLabel.AddToClassList(UssGrayClassName);
-            contentContainer1.Add(firstDividerLabel);
+                // Add a divider between the resource countdowns
+                if (iter >= KerbalLifeSupportSystemPlugin.Instance.LsInputResources.Length) continue;
+                var dividerLabel = new Label
+                {
+                    name = "divider-0",
+                    text = "|"
+                };
+                dividerLabel.AddToClassList(DividerClassName);
+                dividerLabel.AddToClassList(GrayClassName);
+                contentContainer1.Add(dividerLabel);
 
-            _waterLabel = new RemainingTimeLabel
-            {
-                name = "water",
-                text = "-"
-            };
-            _waterLabel.AddToClassList(UssValueClassName);
-            _waterLabel.AddToClassList(UssWhiteClassName);
-            contentContainer1.Add(_waterLabel);
-
-            var secondDividerLabel = new Label
-            {
-                name = "divider-1",
-                text = "|"
-            };
-            secondDividerLabel.AddToClassList(UssDividerClassName);
-            secondDividerLabel.AddToClassList(UssGrayClassName);
-            contentContainer1.Add(secondDividerLabel);
-
-            _oxygenLabel = new RemainingTimeLabel
-            {
-                name = "oxygen",
-                text = "-"
-            };
-            _oxygenLabel.AddToClassList(UssValueClassName);
-            _oxygenLabel.AddToClassList(UssWhiteClassName);
-            contentContainer1.Add(_oxygenLabel);
+                ++iter;
+            }
         }
     }
 
     public string Title
     {
-        get => TitleLabel.text;
         set => TitleLabel.text = value;
     }
 
-    public void SetValues(string title, double food, double water, double oxygen, int crew, bool displayTimes)
+    public void SetValues(string title, Dictionary<string, double> resourceCountdowns, int crew, bool displayTimes)
     {
         Title = title;
-        _foodLabel.SetValue(food, crew, displayTimes);
-        _waterLabel.SetValue(water, crew, displayTimes);
-        _oxygenLabel.SetValue(oxygen, crew, displayTimes);
+        foreach (var (resource, value) in resourceCountdowns)
+            _resourceLabels[resource].SetValue(value, crew, displayTimes);
     }
 
-    public class RemainingTimeLabel : Label
+    /// <summary>
+    ///     Label for a time countdown
+    /// </summary>
+    private class RemainingTimeLabel : Label
     {
+        private const long SecondsInMinute = 60;
+        private const long MinutesInHour = 60;
+        private const long HoursInDay = 6;
+        private const long DaysInYear = 426;
+
+        /// <summary>
+        ///     Converts a time in seconds to a KSP formatted datetime string
+        /// </summary>
+        /// <param name="time">Duration in seconds</param>
+        /// <returns>Formatted KSP datetime string</returns>
         private static string ToDateTime(double time)
         {
             var num = (long)Math.Truncate(time);
-            var seconds = (int)(num % 60L);
+
+            // Seconds
+            var seconds = (int)(num % SecondsInMinute);
             num -= seconds;
-            num /= 60L;
-            var minutes = (int)(num % 60L);
+            num /= SecondsInMinute;
+
+            // Minutes
+            var minutes = (int)(num % MinutesInHour);
             num -= minutes;
-            num /= 60L;
-            var hours = (int)(num % 6L);
+            num /= MinutesInHour;
+
+            // Hours
+            var hours = (int)(num % HoursInDay);
             num -= hours;
-            num /= 6L;
-            var days = (int)(num % 426L);
+            num /= HoursInDay;
+
+            // Days
+            var days = (int)(num % DaysInYear);
             num -= days;
-            num /= 426L;
+            num /= DaysInYear;
+
+            // Years
             var years = (int)num;
 
             var res = $"{minutes:d2}m{seconds:d2}s";
@@ -142,25 +145,31 @@ public class LifeSupportSubEntryControl : VisualElement
 
         private void SetWhite()
         {
-            EnableInClassList(UssOrangeClassName, false);
-            EnableInClassList(UssWhiteClassName, true);
-            EnableInClassList(UssRedClassName, false);
+            EnableInClassList(OrangeClassName, false);
+            EnableInClassList(WhiteClassName, true);
+            EnableInClassList(RedClassName, false);
         }
 
         private void SetOrange()
         {
-            EnableInClassList(UssOrangeClassName, true);
-            EnableInClassList(UssWhiteClassName, false);
-            EnableInClassList(UssRedClassName, false);
+            EnableInClassList(OrangeClassName, true);
+            EnableInClassList(WhiteClassName, false);
+            EnableInClassList(RedClassName, false);
         }
 
         private void SetRed()
         {
-            EnableInClassList(UssOrangeClassName, false);
-            EnableInClassList(UssWhiteClassName, false);
-            EnableInClassList(UssRedClassName, true);
+            EnableInClassList(OrangeClassName, false);
+            EnableInClassList(WhiteClassName, false);
+            EnableInClassList(RedClassName, true);
         }
 
+        /// <summary>
+        ///     Update the countdown label value
+        /// </summary>
+        /// <param name="time">Remaining time</param>
+        /// <param name="crew">Crew amount</param>
+        /// <param name="displayTimes">Should the countdown time be displayed</param>
         public void SetValue(double time, int crew, bool displayTimes)
         {
             if (!displayTimes)
@@ -169,13 +178,16 @@ public class LifeSupportSubEntryControl : VisualElement
                 return;
             }
 
+            // Set the label to infinity if crew is 0 or time is too large
             text = crew == 0 || time > 1e11 ? "∞" : ToDateTime(time);
 
-            if (time < 1800)
+            // Add a warning symbol and set text to orange if less than 30 minutes remaining
+            if (time < 30 * SecondsInMinute)
             {
                 SetOrange();
                 text += " /!\\";
 
+                // Set text to red if less than 10 seconds remaining
                 if (time < 10)
                     SetRed();
             }

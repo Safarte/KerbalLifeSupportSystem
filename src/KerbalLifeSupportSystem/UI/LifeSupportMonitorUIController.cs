@@ -3,7 +3,6 @@ using KSP.Messages;
 using KSP.Modules;
 using KSP.OAB;
 using KSP.Sim.impl;
-using KSP.Sim.ResourceSystem;
 using KSP.UI.Binding;
 using UitkForKsp2.API;
 using UnityEngine;
@@ -14,41 +13,41 @@ namespace KerbalLifeSupportSystem.UI;
 
 internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
 {
-    private const double SecondsPerDay = 21600;
-    private const double FoodPerSecond = 0.001 / SecondsPerDay;
-    private const double WaterPerSecond = 3.0 / SecondsPerDay;
-    private const double OxygenPerSecond = 0.001 / SecondsPerDay;
-    private static VisualElement S_CONTAINER;
-    private static bool S_INITIALIZED;
+    private static VisualElement _container;
+    private static bool _initialized;
+
     private readonly Dictionary<IGGuid, LifeSupportEntryControl> _lifeSupportEntries = new();
     private Button _closeButton;
-    private ResourceDefinitionID _foodResourceId;
     private bool _isLsEntriesDirty;
     private ScrollView _lifeSupportEntriesView;
-    private ResourceDefinitionID _oxygenResourceId;
-
     private bool _uiEnabled;
-    private ResourceDefinitionID _waterResourceId;
 
     private void Start()
     {
+        // Setup the UI document
         SetupDocument();
+
+        // Initialize all event listeners
         InitMessages();
     }
 
     private void Update()
     {
-        if (!S_INITIALIZED) InitElements();
+        // Initialize UI elements
+        if (!_initialized) InitElements();
 
-        if (!_uiEnabled || GameManager.Instance?.Game?.ViewController?.Universe is null) return;
+        // Do not update if UI not visible or Game's Universe does not exist
+        if (!_uiEnabled || Game?.ViewController?.Universe is null) return;
 
+        // (Re)populate the UI entries if needed
         if (_isLsEntriesDirty)
         {
             _isLsEntriesDirty = false;
             PopulateLsEntries();
         }
 
-        if (GameManager.Instance?.Game?.OAB?.Current?.Stats?.MainAssembly is not null)
+        // Update the OAB Main Assembly entry
+        if (Game?.OAB?.Current?.Stats?.MainAssembly is not null)
         {
             var assembly = Game.OAB.Current.Stats.MainAssembly;
 
@@ -57,18 +56,21 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
             _lifeSupportEntries[assembly.Anchor.UniqueId].SetValues(GetObjectAssemblyData(assembly), true);
         }
 
+        // Update all the player's vessels entries
         foreach (var entry in _lifeSupportEntries)
-            if (GameManager.Instance?.Game?.OAB?.Current?.Stats?.MainAssembly is null ||
+            if (Game?.OAB?.Current?.Stats?.MainAssembly is null ||
                 entry.Key != Game.OAB.Current.Stats.MainAssembly.Anchor.UniqueId)
             {
                 var vessel = Game.ViewController.Universe.FindVesselComponent(entry.Key);
                 if (vessel != null)
                 {
+                    // Update the vessel entry
                     var isActiveVessel = Game.ViewController.IsActiveVessel(vessel);
                     entry.Value.SetValues(GetVesselData(vessel), isActiveVessel);
                 }
                 else
                 {
+                    // An entry corresponds to a null vessel meaning we need to repopulate the entries
                     _isLsEntriesDirty = true;
                 }
             }
@@ -79,6 +81,7 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         if (IsGameShuttingDown)
             return;
 
+        // Clean up every event subscriptions
         Game.Messages.Unsubscribe<GameLoadFinishedMessage>(OnLSEntriesDirtyingEvent);
         Game.Messages.Unsubscribe<VesselCreatedMessage>(OnLSEntriesDirtyingEvent);
         Game.Messages.Unsubscribe<VesselLaunchedMessage>(OnLSEntriesDirtyingEvent);
@@ -92,8 +95,12 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         Game.Messages.Unsubscribe<AddVesselToMapMessage>(OnLSEntriesDirtyingEvent);
     }
 
+    /// <summary>
+    ///     Set up all the needed game event subscriptions (LS UI entries refreshing).
+    /// </summary>
     private void InitMessages()
     {
+        // TODO: Remove potentially redundant event subscriptions
         Game.Messages.PersistentSubscribe<GameLoadFinishedMessage>(OnLSEntriesDirtyingEvent);
         Game.Messages.PersistentSubscribe<VesselCreatedMessage>(OnLSEntriesDirtyingEvent);
         Game.Messages.PersistentSubscribe<VesselLaunchedMessage>(OnLSEntriesDirtyingEvent);
@@ -107,8 +114,15 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         Game.Messages.PersistentSubscribe<AddVesselToMapMessage>(OnLSEntriesDirtyingEvent);
     }
 
+    /// <summary>
+    ///     Get the Life-Support entry data for the given vessel.
+    /// </summary>
+    /// <param name="vessel">Queried vessel</param>
+    /// <returns>Life-Support entry data for the vessel</returns>
     private LsEntryData GetVesselData(VesselComponent vessel)
     {
+        var containerGroup = vessel.GetControlOwner().PartOwner.ContainerGroup;
+
         LsEntryData data = new()
         {
             // Basic vessel information
@@ -116,89 +130,56 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
             VesselName = vessel.DisplayName,
             CurrentCrew = vessel.Game.SessionManager.KerbalRosterManager
                 .GetAllKerbalsInVessel(vessel.SimulationObject.GlobalId).Count,
-            MaximumCrew = vessel.SimulationObject.IsKerbal ? 1 : 0
+            MaximumCrew = vessel.SimulationObject.IsKerbal ? 1 : 0,
+            CurrentResourcesCountdowns = new Dictionary<string, double>(),
+            MaxResourcesCountdowns = new Dictionary<string, double>()
         };
 
+        // Iterate over parts to compute total crew capacity
         foreach (var part in vessel.SimulationObject.PartOwner.Parts)
             data.MaximumCrew += !vessel.SimulationObject.IsKerbal ? part.PartData.crewCapacity : 0;
 
-        // Consumption rate settings
-        double foodRate = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates["Food"].Value;
-        double waterRate = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates["Water"].Value;
-        double oxygenRate = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates["Oxygen"].Value;
+        // Initialize LS resources production rates from recyclers
+        Dictionary<string, double> recyclerCapacities = new();
+        foreach (var resource in KerbalLifeSupportSystemPlugin.Instance.LsInputResources)
+            recyclerCapacities[resource] = 0.0;
 
-        // Base consumption rates
-        var curFoodRate = FoodPerSecond * foodRate * data.CurrentCrew;
-        var maxFoodRate = FoodPerSecond * foodRate * data.MaximumCrew;
-        var curWaterRate = WaterPerSecond * waterRate * data.CurrentCrew;
-        var maxWaterRate = WaterPerSecond * waterRate * data.MaximumCrew;
-        var curOxygenRate = OxygenPerSecond * oxygenRate * data.CurrentCrew;
-        var maxOxygenRate = OxygenPerSecond * oxygenRate * data.MaximumCrew;
-
-        // Compute the current capacities of the recyclers on the vessel
-        var foodRecyclerCapacity = 0.0;
-        var waterRecyclerCapacity = 0.0;
-        var oxygenRecyclerCapacity = 0.0;
+        // Get the LS recycler production rates for the vessel
         foreach (var part in vessel.SimulationObject.PartOwner.Parts)
             if (part.TryGetModuleData<PartComponentModule_ResourceConverter, Data_ResourceConverter>(out var converter))
                 if (converter.ConverterIsActive)
-                {
-                    var def = converter.FormulaDefinitions[converter.SelectedFormula];
-                    if (def.InternalName == "KLSS_Combined")
-                    {
-                        waterRecyclerCapacity += converter.conversionRate.GetValue() *
-                                                 def.OutputResources.Find(res => res.ResourceName == "Water").Rate;
-                        oxygenRecyclerCapacity += converter.conversionRate.GetValue() *
-                                                  def.OutputResources.Find(res => res.ResourceName == "Oxygen").Rate;
-                    }
-                    else if (def.InternalName == "KLSS_CO2Scrubber")
-                    {
-                        oxygenRecyclerCapacity += converter.conversionRate.GetValue() *
-                                                  def.OutputResources.Find(res => res.ResourceName == "Oxygen").Rate;
-                    }
-                    else if (def.InternalName == "KLSS_WaterRecycler")
-                    {
-                        waterRecyclerCapacity += converter.conversionRate.GetValue() *
-                                                 def.OutputResources.Find(res => res.ResourceName == "Water").Rate;
-                    }
-                    else if (def.InternalName == "KLSS_Greenhouse" || def.InternalName == "KLSS_GreenhouseFertilized")
-                    {
-                        foodRecyclerCapacity += converter.conversionRate.GetValue() *
-                                                def.OutputResources.Find(res => res.ResourceName == "Food").Rate;
-                    }
-                }
+                    GetRecyclerCapacities(converter, ref recyclerCapacities);
 
-        curFoodRate -= Math.Min(foodRecyclerCapacity, curFoodRate);
-        maxFoodRate -= Math.Min(foodRecyclerCapacity, maxFoodRate);
-        curWaterRate -= Math.Min(waterRecyclerCapacity, curWaterRate);
-        maxWaterRate -= Math.Min(waterRecyclerCapacity, maxWaterRate);
-        curOxygenRate -= Math.Min(oxygenRecyclerCapacity, curOxygenRate);
-        maxOxygenRate -= Math.Min(oxygenRecyclerCapacity, maxOxygenRate);
+        foreach (var resource in KerbalLifeSupportSystemPlugin.Instance.LsInputResources)
+        {
+            // Consumption rate setting
+            double rate = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates[resource].Value;
 
-        // Get information about the resource containers
-        _foodResourceId = Game.ResourceDefinitionDatabase.GetResourceIDFromName("Food");
-        _waterResourceId = Game.ResourceDefinitionDatabase.GetResourceIDFromName("Water");
-        _oxygenResourceId = Game.ResourceDefinitionDatabase.GetResourceIDFromName("Oxygen");
-        var containerGroup = vessel.GetControlOwner().PartOwner.ContainerGroup;
+            // Consumption rates for current and maximum amount of crew
+            var curRate = KerbalLifeSupportSystemPlugin.Instance.LsConsumptionRates[resource] * rate * data.CurrentCrew;
+            var maxRate = KerbalLifeSupportSystemPlugin.Instance.LsConsumptionRates[resource] * rate * data.MaximumCrew;
 
-        // Food
-        var food = containerGroup.GetResourceStoredUnits(_foodResourceId);
-        data.CurFood = food / curFoodRate;
-        data.MaxFood = food / maxFoodRate;
+            // Subtract recyclers resource production rate
+            curRate -= Math.Min(recyclerCapacities[resource], curRate);
+            maxRate -= Math.Min(recyclerCapacities[resource], maxRate);
 
-        // Water
-        var water = containerGroup.GetResourceStoredUnits(_waterResourceId);
-        data.CurWater = water / curWaterRate;
-        data.MaxWater = water / maxWaterRate;
+            // Get currently stored resource amount
+            var resourceId = Game.ResourceDefinitionDatabase.GetResourceIDFromName(resource);
+            var stored = containerGroup.GetResourceStoredUnits(resourceId);
 
-        // Oxygen
-        var oxygen = containerGroup.GetResourceStoredUnits(_oxygenResourceId);
-        data.CurOxygen = oxygen / curOxygenRate;
-        data.MaxOxygen = oxygen / maxOxygenRate;
+            // Set the current & max crew resource countdowns
+            data.CurrentResourcesCountdowns[resource] = stored / curRate;
+            data.MaxResourcesCountdowns[resource] = stored / maxRate;
+        }
 
         return data;
     }
 
+    /// <summary>
+    ///     Get the Life-Support entry data for the given OAB assembly.
+    /// </summary>
+    /// <param name="assembly">Queried assembly</param>
+    /// <returns>Life-Support entry data for the assembly</returns>
     private LsEntryData GetObjectAssemblyData(IObjectAssembly assembly)
     {
         LsEntryData data = new()
@@ -208,110 +189,116 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
             VesselName = Game.OAB.Current.Stats.CurrentWorkspaceVehicleDisplayName.GetValue(),
             CurrentCrew = Game.SessionManager.KerbalRosterManager
                 .GetAllKerbalsInAssembly(Game.SessionManager.KerbalRosterManager.KSCGuid, assembly).Count,
-            MaximumCrew = 0
+            MaximumCrew = 0,
+            CurrentResourcesCountdowns = new Dictionary<string, double>(),
+            MaxResourcesCountdowns = new Dictionary<string, double>()
         };
 
+        // Iterate over parts to compute total crew capacity
         foreach (var part in assembly.Parts) data.MaximumCrew += part.AvailablePart.PartData.crewCapacity;
 
-        // Consumption rate setting
-        double foodRate = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates["Food"].Value;
-        double waterRate = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates["Water"].Value;
-        double oxygenRate = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates["Oxygen"].Value;
+        // Initialize LS resources production rates from recyclers
+        Dictionary<string, double> recyclerCapacities = new();
+        foreach (var resource in KerbalLifeSupportSystemPlugin.Instance.LsInputResources)
+            recyclerCapacities[resource] = 0.0;
 
-        // Base consumption rates
-        var curFoodRate = FoodPerSecond * foodRate * data.CurrentCrew;
-        var maxFoodRate = FoodPerSecond * foodRate * data.MaximumCrew;
-        var curWaterRate = WaterPerSecond * waterRate * data.CurrentCrew;
-        var maxWaterRate = WaterPerSecond * waterRate * data.MaximumCrew;
-        var curOxygenRate = OxygenPerSecond * oxygenRate * data.CurrentCrew;
-        var maxOxygenRate = OxygenPerSecond * oxygenRate * data.MaximumCrew;
-
-        // Compute the current capacities of the recyclers on the vessel
-        var foodRecyclerCapacity = 0.0;
-        var waterRecyclerCapacity = 0.0;
-        var oxygenRecyclerCapacity = 0.0;
+        // Get the LS recycler production rates for the vessel
         foreach (var part in assembly.Parts)
-            if (part.TryGetModule(out Module_ResourceConverter module_converter))
-            {
-                var converter = module_converter._dataResourceConverter;
+            if (part.TryGetModuleData<PartComponentModule_ResourceConverter, Data_ResourceConverter>(out var converter))
                 if (converter.EnabledToggle.GetValue())
-                {
-                    var def = converter.FormulaDefinitions[converter.SelectedFormula];
-                    if (def.InternalName == "KLSS_Combined")
-                    {
-                        waterRecyclerCapacity += converter.conversionRate.GetValue() *
-                                                 def.OutputResources.Find(res => res.ResourceName == "Water").Rate;
-                        oxygenRecyclerCapacity += converter.conversionRate.GetValue() *
-                                                  def.OutputResources.Find(res => res.ResourceName == "Oxygen").Rate;
-                    }
-                    else if (def.InternalName == "KLSS_CO2Scrubber")
-                    {
-                        oxygenRecyclerCapacity += converter.conversionRate.GetValue() *
-                                                  def.OutputResources.Find(res => res.ResourceName == "Oxygen").Rate;
-                    }
-                    else if (def.InternalName == "KLSS_WaterRecycler")
-                    {
-                        waterRecyclerCapacity += converter.conversionRate.GetValue() *
-                                                 def.OutputResources.Find(res => res.ResourceName == "Water").Rate;
-                    }
-                    else if (def.InternalName == "KLSS_Greenhouse" || def.InternalName == "KLSS_GreenhouseFertilized")
-                    {
-                        foodRecyclerCapacity += converter.conversionRate.GetValue() *
-                                                def.OutputResources.Find(res => res.ResourceName == "Food").Rate;
-                    }
-                }
-            }
+                    GetRecyclerCapacities(converter, ref recyclerCapacities);
 
-        curFoodRate -= Math.Min(foodRecyclerCapacity, curFoodRate);
-        maxFoodRate -= Math.Min(foodRecyclerCapacity, maxFoodRate);
-        curWaterRate -= Math.Min(waterRecyclerCapacity, curWaterRate);
-        maxWaterRate -= Math.Min(waterRecyclerCapacity, maxWaterRate);
-        curOxygenRate -= Math.Min(oxygenRecyclerCapacity, curOxygenRate);
-        maxOxygenRate -= Math.Min(oxygenRecyclerCapacity, maxOxygenRate);
+        foreach (var resource in KerbalLifeSupportSystemPlugin.Instance.LsInputResources)
+        {
+            // Consumption rate setting
+            double rate = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates[resource].Value;
 
-        // Food
-        var food = 0.0;
-        assembly.TryGetPartsWithResourceStored("Food", out var resourceParts);
-        foreach (var part in resourceParts)
-        foreach (var resource in part.Resources)
-            if (resource.Name == "Food")
-                food += resource.Count;
-        data.CurFood = food / curFoodRate;
-        data.MaxFood = food / maxFoodRate;
+            // Consumption rates for current and maximum amount of crew
+            var curRate = KerbalLifeSupportSystemPlugin.Instance.LsConsumptionRates[resource] * rate * data.CurrentCrew;
+            var maxRate = KerbalLifeSupportSystemPlugin.Instance.LsConsumptionRates[resource] * rate * data.MaximumCrew;
 
-        // Water
-        var water = 0.0;
-        assembly.TryGetPartsWithResourceStored("Water", out resourceParts);
-        foreach (var part in resourceParts)
-        foreach (var resource in part.Resources)
-            if (resource.Name == "Water")
-                water += resource.Count;
-        data.CurWater = water / curWaterRate;
-        data.MaxWater = water / maxWaterRate;
+            // Subtract recyclers resource production rate
+            curRate -= Math.Min(recyclerCapacities[resource], curRate);
+            maxRate -= Math.Min(recyclerCapacities[resource], maxRate);
 
-        // Oxygen
-        var oxygen = 0.0;
-        assembly.TryGetPartsWithResourceStored("Oxygen", out resourceParts);
-        foreach (var part in resourceParts)
-        foreach (var resource in part.Resources)
-            if (resource.Name == "Oxygen")
-                oxygen += resource.Count;
-        data.CurOxygen = oxygen / curOxygenRate;
-        data.MaxOxygen = oxygen / maxOxygenRate;
+            // Get currently stored resource amount
+            var stored = GetAssemblyResourceStored(assembly, resource);
+
+            // Set the current & max crew resource countdowns
+            data.CurrentResourcesCountdowns[resource] = stored / curRate;
+            data.MaxResourcesCountdowns[resource] = stored / maxRate;
+        }
 
         return data;
     }
 
+    /// <summary>
+    ///     Get the total amount of <paramref name="resource" /> in the OAB assembly.
+    /// </summary>
+    /// <param name="assembly">OAB object assembly</param>
+    /// <param name="resource">Queried resource name</param>
+    /// <returns>Amount of stored resource</returns>
+    private double GetAssemblyResourceStored(IObjectAssembly assembly, string resource)
+    {
+        // Get list of parts containing the resource
+        assembly.TryGetPartsWithResourceStored(resource, out var resourceParts);
+
+        // Get the resource ID
+        var resourceId = Game.ResourceDefinitionDatabase.GetResourceIDFromName(resource);
+
+        // Accumulate the amount of resource stored in the parts
+        var stored = 0.0;
+        foreach (var part in resourceParts)
+        foreach (var container in part.Containers)
+            stored += container.GetResourceStoredUnits(resourceId);
+
+        return stored;
+    }
+
+    /// <summary>
+    ///     Adds all the recyclers production capacities for the converter's selected formula.
+    /// </summary>
+    /// <param name="converter">The ResourceConverter module data</param>
+    /// <param name="recyclerCapacities">Reference to the recycler capacities dictionary for all LS resources</param>
+    private static void GetRecyclerCapacities(Data_ResourceConverter converter,
+        ref Dictionary<string, double> recyclerCapacities)
+    {
+        // Selected recycler formula definition
+        var selectedFormula = converter.SelectedFormula;
+
+        // Needed to avoid weird behaviour in the VAB caused by incomplete initialization of the ModuleData
+        if (converter.SelectedFormula < 0 || converter.SelectedFormula >= converter.FormulaDefinitions.Count)
+            selectedFormula = 0;
+
+        var def = converter.FormulaDefinitions[selectedFormula];
+
+        // Add the recyclers' production rate for each produced LS resource
+        foreach (var resource in KerbalLifeSupportSystemPlugin.Instance.LsInputResources)
+            if (def.OutputResources.Any(res => res.ResourceName == resource))
+                recyclerCapacities[resource] += converter.conversionRate.GetValue() *
+                                                def.OutputResources
+                                                    .Find(res => res.ResourceName == resource).Rate;
+    }
+
+    /// <summary>
+    ///     Set the Life-Support UI visibility state
+    /// </summary>
+    /// <param name="newState"></param>
     public void SetEnabled(bool newState)
     {
         _uiEnabled = newState;
-        S_CONTAINER.style.display = newState ? DisplayStyle.Flex : DisplayStyle.None;
+        _container.style.display = newState ? DisplayStyle.Flex : DisplayStyle.None;
+
+        // Update the toolbars toggle value
         GameObject.Find(KerbalLifeSupportSystemPlugin.ToolbarOabButtonID)?.GetComponent<UIValue_WriteBool_Toggle>()
             ?.SetValue(newState);
         GameObject.Find(KerbalLifeSupportSystemPlugin.ToolbarFlightButtonID)?.GetComponent<UIValue_WriteBool_Toggle>()
             ?.SetValue(newState);
     }
 
+    /// <summary>
+    ///     Setup the UI document (localization and starting position)
+    /// </summary>
     private void SetupDocument()
     {
         var document = GetComponent<UIDocument>();
@@ -323,38 +310,49 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
             document.EnableLocalization();
 
         // root Visual Element
-        S_CONTAINER = document.rootVisualElement;
+        _container = document.rootVisualElement;
 
         // Move the GUI to its starting position
-        S_CONTAINER[0].transform.position = new Vector2(500, 50);
-        S_CONTAINER[0].CenterByDefault();
+        _container[0].transform.position = new Vector2(500, 50);
+        _container[0].CenterByDefault();
 
         // Hide the GUI by default
-        S_CONTAINER.style.display = DisplayStyle.None;
+        _container.style.display = DisplayStyle.None;
     }
 
+    /// <summary>
+    ///     Initialize UI elements
+    /// </summary>
     private void InitElements()
     {
-        _closeButton = S_CONTAINER.Q<Button>("close-button");
+        // Close button
+        _closeButton = _container.Q<Button>("close-button");
         _closeButton.RegisterCallback<ClickEvent>(OnCloseButton);
 
-        _lifeSupportEntriesView = S_CONTAINER.Q<ScrollView>("ls-entries-body");
+        // Life-Support entries list
+        _lifeSupportEntriesView = _container.Q<ScrollView>("ls-entries-body");
 
-        S_INITIALIZED = true;
+        _initialized = true;
     }
 
+    /// <summary>
+    ///     Closes the Life-Support UI on Close Button click
+    /// </summary>
     private void OnCloseButton(ClickEvent evt)
     {
         SetEnabled(false);
     }
 
+    /// <summary>
+    ///     Populate the Life-Support UI entries with all relevant vessels & EVA Kerbals
+    /// </summary>
     private void PopulateLsEntries()
     {
         // Reset life-support UI entries
         _lifeSupportEntries.Clear();
         _lifeSupportEntriesView.Clear();
 
-        // If in a OAB & we have a main assembly, add it to the entries
+        // If in a OAB & there is a main assembly, add it to the entries
         if (GameManager.Instance?.Game?.OAB?.Current?.Stats?.MainAssembly != null)
         {
             var assembly = Game.OAB.Current.Stats.MainAssembly;
@@ -373,6 +371,8 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         foreach (var vessel in vessels)
         {
             var simulationObject = vessel.SimulationObject;
+
+            // Add vessel to the entries if it has non-zero crew capacity or if it is a Kerbal in EVA
             if (simulationObject is { IsKerbal: true } ||
                 (simulationObject.IsVessel && vessel.TotalCommandCrewCapacity > 0))
             {
@@ -386,20 +386,31 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
             }
         }
 
+        // Sort the entries based on the defined ordering
         _lifeSupportEntriesView.Sort(CompareLsEntries);
     }
 
+    /// <summary>
+    ///     Sets up the entries to be re-initialized on the next update tick
+    /// </summary>
     private void OnLSEntriesDirtyingEvent(MessageCenterMessage msg)
     {
         _isLsEntriesDirty = true;
     }
 
+    /// <summary>
+    ///     Comparator for Life-Support UI entries, active OAB assembly and active vessels are shown on top.
+    /// </summary>
+    /// <param name="e1">First LS UI entry</param>
+    /// <param name="e2">Second LS UI entry</param>
+    /// <returns>Comparison result (-1, 0 or 1)</returns>
     private int CompareLsEntries(VisualElement e1, VisualElement e2)
     {
         if (e1 is not LifeSupportEntryControl ls1 || e2 is not LifeSupportEntryControl ls2)
             return 0;
 
-        if (GameManager.Instance?.Game?.OAB?.Current?.Stats?.MainAssembly != null)
+        // The current OAB assembly should always be first
+        if (Game?.OAB?.Current?.Stats?.MainAssembly != null)
         {
             var id = Game.OAB.Current.Stats.MainAssembly.Anchor.UniqueId;
             if (ls1.Data.Id == id)
@@ -408,6 +419,7 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
                 return 1;
         }
 
+        // In flight, the active vessel should always be first
         var vessel1 = Game.ViewController.Universe.FindVesselComponent(ls1.Data.Id);
         if (Game.ViewController.IsActiveVessel(vessel1))
             return -1;
@@ -415,6 +427,7 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         if (Game.ViewController.IsActiveVessel(vessel2))
             return 1;
 
+        // Lexical ordering for all other entries
         return string.CompareOrdinal(vessel1.DisplayName, vessel2.DisplayName);
     }
 }

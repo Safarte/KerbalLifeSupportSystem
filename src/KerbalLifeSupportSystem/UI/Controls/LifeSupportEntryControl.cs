@@ -5,8 +5,8 @@ namespace KerbalLifeSupportSystem.UI;
 
 public class LifeSupportEntryControl : VisualElement
 {
-    private const string UssClassName = "ls-vessel-entry";
-    private const string UssVesselNameClassName = "ls-vessel-sub-entry__vessel-name";
+    private const string ClassName = "ls-vessel-entry";
+    private const string VesselNameClassName = "ls-vessel-sub-entry__vessel-name";
     private readonly LifeSupportSubEntryControl _currentCew;
     private readonly LifeSupportSubEntryControl _header;
     private readonly LifeSupportSubEntryControl _maximumCrew;
@@ -23,10 +23,11 @@ public class LifeSupportEntryControl : VisualElement
 
     private LifeSupportEntryControl()
     {
-        AddToClassList(UssClassName);
+        AddToClassList(ClassName);
+
         _header = new LifeSupportSubEntryControl();
         _header.TitleLabel.AddManipulator(new Clickable(() => SetExpanded(!_expanded)));
-        _header.TitleLabel.EnableInClassList(UssVesselNameClassName, true);
+        _header.TitleLabel.EnableInClassList(VesselNameClassName, true);
         hierarchy.Add(_header);
 
         _currentCew = new LifeSupportSubEntryControl();
@@ -44,20 +45,19 @@ public class LifeSupportEntryControl : VisualElement
     public void SetValues(LsEntryData data, bool isActiveVessel)
     {
         name = "ls-entry__" + data.VesselName;
-
         Data = data;
 
-        _currentCew.style.display = _expanded ? DisplayStyle.Flex : DisplayStyle.None;
-        _maximumCrew.style.display = _expanded ? DisplayStyle.Flex : DisplayStyle.None;
-
         var headerTitle = data.VesselName + " " + (_expanded ? "▼" : "▶");
-        var curCrewTitle = $"Current Crew ({data.CurrentCrew}):";
-        var maxCrewTitle = $"Maximum Crew ({data.MaximumCrew}):";
-
-        _header.SetValues(headerTitle, data.CurFood, data.CurWater, data.CurOxygen, data.CurrentCrew, !_expanded);
+        _header.SetValues(headerTitle, data.CurrentResourcesCountdowns, data.CurrentCrew, !_expanded);
         _header.TitleLabel.EnableInClassList("ls-vessel-sub-entry__title_active", isActiveVessel);
-        _currentCew.SetValues(curCrewTitle, data.CurFood, data.CurWater, data.CurOxygen, data.CurrentCrew, _expanded);
-        _maximumCrew.SetValues(maxCrewTitle, data.MaxFood, data.MaxWater, data.MaxOxygen, data.MaximumCrew, _expanded);
+
+        var curCrewTitle = $"Current Crew ({data.CurrentCrew}):";
+        _currentCew.SetValues(curCrewTitle, data.CurrentResourcesCountdowns, data.CurrentCrew, _expanded);
+        _currentCew.style.display = _expanded ? DisplayStyle.Flex : DisplayStyle.None;
+
+        var maxCrewTitle = $"Maximum Crew ({data.MaximumCrew}):";
+        _maximumCrew.SetValues(maxCrewTitle, data.MaxResourcesCountdowns, data.MaximumCrew, _expanded);
+        _maximumCrew.style.display = _expanded ? DisplayStyle.Flex : DisplayStyle.None;
     }
 
     private void SetExpanded(bool newValue)
@@ -71,11 +71,7 @@ public class LifeSupportEntryControl : VisualElement
         public string VesselName;
         public int CurrentCrew;
         public int MaximumCrew;
-        public double CurFood;
-        public double CurWater;
-        public double CurOxygen;
-        public double MaxFood;
-        public double MaxWater;
-        public double MaxOxygen;
+        public Dictionary<string, double> CurrentResourcesCountdowns;
+        public Dictionary<string, double> MaxResourcesCountdowns;
     }
 }

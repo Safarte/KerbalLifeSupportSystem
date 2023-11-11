@@ -23,9 +23,11 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
     [PublicAPI] public const string ModGuid = MyPluginInfo.PLUGIN_GUID;
     [PublicAPI] public const string ModName = MyPluginInfo.PLUGIN_NAME;
     [PublicAPI] public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
-
     public const string ToolbarOabButtonID = "BTN-KLSSPlanner";
     public const string ToolbarFlightButtonID = "BTN-KLSSMonitor";
+
+    private const int SecondsPerDay = 21600;
+    private const int SecondsPerHour = 3600;
 
     //internal ConfigEntry<bool> ConfigKerbalsDie;
     internal readonly Dictionary<string, ConfigEntry<float>> ConsumptionRates = new();
@@ -33,26 +35,50 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
     // UI Controllers
     private LifeSupportMonitorUIController _klssMonitorController;
 
+    public string[] LsInputResources { get; set; } = { "Food", "Water", "Oxygen" };
+
+    public Dictionary<string, double> LsConsumptionRates { get; set; } = new()
+    {
+        { "Food", 0.001 / SecondsPerDay },
+        { "Water", 3.0 / SecondsPerDay },
+        { "Oxygen", 0.001 / SecondsPerDay }
+    };
+
+    public Dictionary<string, double> LsGracePeriods { get; set; } = new()
+    {
+        { "Food", 30 * SecondsPerDay },
+        { "Water", 3 * SecondsPerDay },
+        { "Oxygen", 2 * SecondsPerHour }
+    };
+
+    public Dictionary<string, string> LsOutputInputNames { get; set; } = new()
+    {
+        { "Waste", "Food" },
+        { "WasteWater", "Water" },
+        { "CarbonDioxide", "Oxygen" }
+    };
+
+    public Dictionary<string, string[]> LsRecyclerNames { get; set; } =
+        new()
+        {
+            { "Food", new string[2] { "KLSS_Greenhouse", "KLSS_GreenhouseFertilized" } },
+            { "Water", new string[2] { "KLSS_WaterRecycler", "KLSS_Combined" } },
+            { "Oxygen", new string[2] { "KLSS_CO2Scrubber", "KLSS_Combined" } }
+        };
+
+
     // Singleton instance of the plugin class
     public static KerbalLifeSupportSystemPlugin Instance { get; private set; }
 
     // Logger
     public new static ManualLogSource Logger { get; private set; }
 
-    public void Awake()
-    {
-        SetupConfiguration();
-    }
-
     private void SetupConfiguration()
     {
-        //ConfigKerbalsDie = Config.Bind("Life Support", "Kerbals Die", false, "Do Kerbals die when out of food/water/oxygen, go on strike otherwise");
-        ConsumptionRates["Food"] = Config.Bind("Life-Support", "Food Consumption Multiplier (Base: 1kg/day)", 1f,
-            new ConfigDescription("Food consumption rate multiplier.", new AcceptableValueRange<float>(0f, 5f)));
-        ConsumptionRates["Water"] = Config.Bind("Life-Support", "Water Consumption Multiplier (Base: 3l/day)", 1f,
-            new ConfigDescription("Water consumption rate multiplier.", new AcceptableValueRange<float>(0f, 5f)));
-        ConsumptionRates["Oxygen"] = Config.Bind("Life-Support", "Oxygen Consumption Multiplier (Base: 1kg/day)", 1f,
-            new ConfigDescription("Oxygen consumption rate multiplier.", new AcceptableValueRange<float>(0f, 5f)));
+        foreach (var resource in LsInputResources)
+            ConsumptionRates[resource] = Config.Bind("Life-Support", $"{resource} Consumption Multiplier", 1f,
+                new ConfigDescription(
+                    $"{resource} consumption rate multiplier.", new AcceptableValueRange<float>(0f, 5f)));
     }
 
     /// <summary>
@@ -81,5 +107,10 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
             ToolbarFlightButtonID,
             AssetManager.GetAsset<Texture2D>($"{Info.Metadata.GUID}/images/icon.png"),
             _klssMonitorController.SetEnabled);
+    }
+
+    public override void OnPostInitialized()
+    {
+        SetupConfiguration();
     }
 }

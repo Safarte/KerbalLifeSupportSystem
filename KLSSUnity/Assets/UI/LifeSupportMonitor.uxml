@@ -5,8 +5,8 @@
             <ui:VisualElement name="border" class="border">
                 <ui:VisualElement name="container" class="container">
                     <ui:VisualElement name="title-bar" class="title-bar">
-                        <ui:VisualElement name="title-icon" class="text-dark title-icon" />
-                        <ui:Label text="LIFE-SUPPORT" display-tooltip-when-elided="true" name="title" class="text-light title" />
+                        <ui:VisualElement name="title-icon" class="title-icon text-light" />
+                        <ui:Label text="LIFE-SUPPORT" display-tooltip-when-elided="true" name="title" class="title ls-monitor-white" />
                         <ui:VisualElement name="title-line" class="title-line">
                             <ui:Label text="––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––" display-tooltip-when-elided="true" name="title-line-dashes" class="text-dark" style="margin-left: 0; margin-right: 0; margin-top: -2px; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; font-size: 14px; overflow: hidden;" />
                             <ui:Label text="/" display-tooltip-when-elided="true" name="title-line-slash" class="text-dark" style="font-size: 10px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />

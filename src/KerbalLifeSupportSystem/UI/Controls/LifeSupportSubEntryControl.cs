@@ -30,6 +30,7 @@ public class LifeSupportSubEntryControl : VisualElement
     {
         AddToClassList(ClassName);
 
+        // Initialize title label
         TitleLabel = new Label
         {
             name = "title",
@@ -39,12 +40,14 @@ public class LifeSupportSubEntryControl : VisualElement
         TitleLabel.AddToClassList(GrayClassName);
         hierarchy.Add(TitleLabel);
 
+        // Container for the resource countdowns
         var contentContainer1 = new VisualElement();
         contentContainer1.AddToClassList(ContentClassName);
         hierarchy.Add(contentContainer1);
 
         {
             var iter = 1;
+            // Add a resource countdown for each LS supply resource
             foreach (var resource in KerbalLifeSupportSystemPlugin.Instance.LsInputResources)
             {
                 _resourceLabels[resource] = new RemainingTimeLabel
@@ -56,6 +59,7 @@ public class LifeSupportSubEntryControl : VisualElement
                 _resourceLabels[resource].AddToClassList(WhiteClassName);
                 contentContainer1.Add(_resourceLabels[resource]);
 
+                // Add a divider between the resource countdowns
                 if (iter >= KerbalLifeSupportSystemPlugin.Instance.LsInputResources.Length) continue;
                 var dividerLabel = new Label
                 {
@@ -73,7 +77,6 @@ public class LifeSupportSubEntryControl : VisualElement
 
     public string Title
     {
-        get => TitleLabel.text;
         set => TitleLabel.text = value;
     }
 
@@ -84,23 +87,46 @@ public class LifeSupportSubEntryControl : VisualElement
             _resourceLabels[resource].SetValue(value, crew, displayTimes);
     }
 
+    /// <summary>
+    ///     Label for a time countdown
+    /// </summary>
     private class RemainingTimeLabel : Label
     {
+        private const long SecondsInMinute = 60;
+        private const long MinutesInHour = 60;
+        private const long HoursInDay = 6;
+        private const long DaysInYear = 426;
+
+        /// <summary>
+        ///     Converts a time in seconds to a KSP formatted datetime string
+        /// </summary>
+        /// <param name="time">Duration in seconds</param>
+        /// <returns>Formatted KSP datetime string</returns>
         private static string ToDateTime(double time)
         {
             var num = (long)Math.Truncate(time);
-            var seconds = (int)(num % 60L);
+
+            // Seconds
+            var seconds = (int)(num % SecondsInMinute);
             num -= seconds;
-            num /= 60L;
-            var minutes = (int)(num % 60L);
+            num /= SecondsInMinute;
+
+            // Minutes
+            var minutes = (int)(num % MinutesInHour);
             num -= minutes;
-            num /= 60L;
-            var hours = (int)(num % 6L);
+            num /= MinutesInHour;
+
+            // Hours
+            var hours = (int)(num % HoursInDay);
             num -= hours;
-            num /= 6L;
-            var days = (int)(num % 426L);
+            num /= HoursInDay;
+
+            // Days
+            var days = (int)(num % DaysInYear);
             num -= days;
-            num /= 426L;
+            num /= DaysInYear;
+
+            // Years
             var years = (int)num;
 
             var res = $"{minutes:d2}m{seconds:d2}s";
@@ -138,6 +164,12 @@ public class LifeSupportSubEntryControl : VisualElement
             EnableInClassList(RedClassName, true);
         }
 
+        /// <summary>
+        ///     Update the countdown label value
+        /// </summary>
+        /// <param name="time">Remaining time</param>
+        /// <param name="crew">Crew amount</param>
+        /// <param name="displayTimes">Should the countdown time be displayed</param>
         public void SetValue(double time, int crew, bool displayTimes)
         {
             if (!displayTimes)
@@ -146,13 +178,16 @@ public class LifeSupportSubEntryControl : VisualElement
                 return;
             }
 
+            // Set the label to infinity if crew is 0 or time is too large
             text = crew == 0 || time > 1e11 ? "∞" : ToDateTime(time);
 
-            if (time < 1800)
+            // Add a warning symbol and set text to orange if less than 30 minutes remaining
+            if (time < 30 * SecondsInMinute)
             {
                 SetOrange();
                 text += " /!\\";
 
+                // Set text to red if less than 10 seconds remaining
                 if (time < 10)
                     SetRed();
             }

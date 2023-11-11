@@ -24,6 +24,7 @@ public class LifeSupportEntryControl : VisualElement
     private LifeSupportEntryControl()
     {
         AddToClassList(ClassName);
+
         _header = new LifeSupportSubEntryControl();
         _header.TitleLabel.AddManipulator(new Clickable(() => SetExpanded(!_expanded)));
         _header.TitleLabel.EnableInClassList(VesselNameClassName, true);
@@ -44,20 +45,19 @@ public class LifeSupportEntryControl : VisualElement
     public void SetValues(LsEntryData data, bool isActiveVessel)
     {
         name = "ls-entry__" + data.VesselName;
-
         Data = data;
 
-        _currentCew.style.display = _expanded ? DisplayStyle.Flex : DisplayStyle.None;
-        _maximumCrew.style.display = _expanded ? DisplayStyle.Flex : DisplayStyle.None;
-
         var headerTitle = data.VesselName + " " + (_expanded ? "▼" : "▶");
-        var curCrewTitle = $"Current Crew ({data.CurrentCrew}):";
-        var maxCrewTitle = $"Maximum Crew ({data.MaximumCrew}):";
-
         _header.SetValues(headerTitle, data.CurrentResourcesCountdowns, data.CurrentCrew, !_expanded);
         _header.TitleLabel.EnableInClassList("ls-vessel-sub-entry__title_active", isActiveVessel);
+
+        var curCrewTitle = $"Current Crew ({data.CurrentCrew}):";
         _currentCew.SetValues(curCrewTitle, data.CurrentResourcesCountdowns, data.CurrentCrew, _expanded);
+        _currentCew.style.display = _expanded ? DisplayStyle.Flex : DisplayStyle.None;
+
+        var maxCrewTitle = $"Maximum Crew ({data.MaximumCrew}):";
         _maximumCrew.SetValues(maxCrewTitle, data.MaxResourcesCountdowns, data.MaximumCrew, _expanded);
+        _maximumCrew.style.display = _expanded ? DisplayStyle.Flex : DisplayStyle.None;
     }
 
     private void SetExpanded(bool newValue)

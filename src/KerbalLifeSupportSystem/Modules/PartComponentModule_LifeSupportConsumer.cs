@@ -8,13 +8,6 @@ namespace KerbalLifeSupportSystem.Modules;
 
 public class PartComponentModule_LifeSupportConsumer : PartComponentModule
 {
-    // Base constants
-    private const int SecondsPerHour = 3600;
-    private const int SecondsPerDay = 86400;
-    private const int FoodGracePeriod = 30 * SecondsPerDay;
-    private const int WaterGracePeriod = 3 * SecondsPerDay;
-    private const int OxygenGracePeriod = 2 * SecondsPerHour;
-
     // Container group for the vessel
     private ResourceContainerGroup _containerGroup;
 
@@ -183,13 +176,7 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
         for (var i = 0; i < outputCount; ++i)
         {
             var outputName = _dataLifeSupportConsumer.LifeSupportDefinition.OutputResources[i].ResourceName;
-            var inputName = outputName switch
-            {
-                "CarbonDioxide" => "Oxygen",
-                "WasteWater" => "Water",
-                "Waste" => "Food",
-                _ => "Food"
-            };
+            var inputName = KerbalLifeSupportSystemPlugin.Instance.LsOutputInputNames[outputName];
             var scale = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates[inputName].Value;
             resourceUnitsPair.resourceID = _dataLifeSupportConsumer.ResourceDefinitions[inputCount + i];
             resourceUnitsPair.units = _dataLifeSupportConsumer.LifeSupportDefinition.OutputResources[i].Rate *
@@ -239,13 +226,7 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
         var timeDelta = time - lastCons[resourceName];
 
         // Return true if exhausted for longer than the allowed grace period for this resource
-        return timeDelta > resourceName switch
-        {
-            "Food" => FoodGracePeriod,
-            "Water" => WaterGracePeriod,
-            "Oxygen" => OxygenGracePeriod,
-            _ => SecondsPerDay
-        };
+        return timeDelta > KerbalLifeSupportSystemPlugin.Instance.LsGracePeriods[resourceName];
     }
 
     private static void OnKerbalLocationChanged(MessageCenterMessage msg)

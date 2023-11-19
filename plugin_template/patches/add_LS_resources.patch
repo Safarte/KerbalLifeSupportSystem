@@ -1,6 +1,6 @@
 @use 'constants';
 
-:parts ~#eva_kerbal {
+:parts ~#eva_kerbal ~#seat_0v_external_crew {
     * > resourceContainers {
         $crewCapacity: $parent["crewCapacity"];
         @if $crewCapacity > 0 {

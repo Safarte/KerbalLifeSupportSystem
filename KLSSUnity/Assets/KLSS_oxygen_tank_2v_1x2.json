@@ -158,13 +158,13 @@
     "resourceContainers": [
       {
         "name": "Oxygen",
-        "capacityUnits": 1.0,
-        "initialUnits": 1.0,
+        "capacityUnits": 1.278,
+        "initialUnits": 1.278,
         "NonStageable": true
       },
       {
         "name": "CarbonDioxide",
-        "capacityUnits": 1.0,
+        "capacityUnits": 1.278,
         "initialUnits": 0.0,
         "NonStageable": false
       }

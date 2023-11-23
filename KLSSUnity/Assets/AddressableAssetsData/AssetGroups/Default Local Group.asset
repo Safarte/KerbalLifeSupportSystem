@@ -161,6 +161,54 @@ MonoBehaviour:
     m_SerializedLabels:
     - parts_data
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba01e50aeec21ed4b8ba14d477666561
+    m_Address: KLSS_food_pack_2v_radial.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1ec1beb7cfc58645a15392678ac24ac
+    m_Address: KLSS_food_pack_2v_radial.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e173bcaf38f5ec54fb7a75aeedc2f6d5
+    m_Address: KLSS_food_pack_2v_radial_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0dd0814aa9890e14f88a28ce242e418a
+    m_Address: KLSS_water_tank_2v_radial.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1906226cc6e1fe944ac1bbe5921cfd3e
+    m_Address: KLSS_water_tank_2v_radial.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 29ed24e3c59326c4a93c2c8883e8f59f
+    m_Address: KLSS_water_tank_2v_radial_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0e3914090bdeb2d48b760912d75ea80b
+    m_Address: KLSS_oxygen_tank_2v_radial.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7e935e1bd59e3d489839d648951d78d
+    m_Address: KLSS_oxygen_tank_2v_radial.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7bbaf8e0bd340d444a6f308e478f5953
+    m_Address: KLSS_oxygen_tank_2v_radial_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1b626c4ce55065e4fbf2b32096fa98b0, type: 2}
   m_SchemaSet:

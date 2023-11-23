@@ -158,13 +158,13 @@
     "resourceContainers": [
       {
         "name": "Water",
-        "capacityUnits": 3000.0,
-        "initialUnits": 3000.0,
+        "capacityUnits": 3834.0,
+        "initialUnits": 3834.0,
         "NonStageable": true
       },
       {
         "name": "WasteWater",
-        "capacityUnits": 3000.0,
+        "capacityUnits": 3834.0,
         "initialUnits": 0.0,
         "NonStageable": false
       }

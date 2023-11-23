@@ -207,15 +207,27 @@ MonoBehaviour:
         isCompoundJoint: 0
       resourceContainers:
       - name: Food
-        capacityUnits: 1
-        initialUnits: 1
+        capacityUnits: 1.278
+        initialUnits: 1.278
         NonStageable: 1
       - name: Waste
-        capacityUnits: 1
+        capacityUnits: 1.278
         initialUnits: 0
         NonStageable: 0
       AllowKinematicPhysicsIfIntersectTerrain: 0
-      serializedPartModules: []
+      serializedPartModules:
+      - Name: PartComponentModule_Color
+        ModuleData:
+        - Name: Data_Color
+          Data: 
+      - Name: PartComponentModule_ResourceCapacities
+        ModuleData:
+        - Name: Data_ResourceCapacities
+          Data: 
+      - Name: PartComponentModule_Drag
+        ModuleData:
+        - Name: Data_Drag
+          Data: 
       resourceSummary:
         Consumes: []
         Generates: []

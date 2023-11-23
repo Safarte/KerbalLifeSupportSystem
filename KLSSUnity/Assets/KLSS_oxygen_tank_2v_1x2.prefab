@@ -964,11 +964,11 @@ MonoBehaviour:
         isCompoundJoint: 0
       resourceContainers:
       - name: Oxygen
-        capacityUnits: 1
-        initialUnits: 1
+        capacityUnits: 1.278
+        initialUnits: 1.278
         NonStageable: 1
       - name: CarbonDioxide
-        capacityUnits: 1
+        capacityUnits: 1.278
         initialUnits: 0
         NonStageable: 0
       AllowKinematicPhysicsIfIntersectTerrain: 0

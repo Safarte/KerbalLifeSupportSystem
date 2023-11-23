@@ -44,20 +44,35 @@ Parts/Subtitle/KLSS_oxygen_tank_2v_1x2,Text,,Medium Oxygen Storage
 Parts/Manufacturer/KLSS_oxygen_tank_2v_1x2,Text,,Yummy Snacks Inc.
 Parts/Description/KLSS_oxygen_tank_2v_1x2,Text,,The MFS-200 is a medium-diameter Oxygen storage module. This is what was used on the famous Kygnus resupply vessel.
 
-Parts/Title/KLSS_food_pack_0v_radial,Text,,TFS-10
-Parts/Subtitle/KLSS_food_pack_0v_radial,Text,,Tiny Food Storage
+Parts/Title/KLSS_food_pack_0v_radial,Text,,PFS-10
+Parts/Subtitle/KLSS_food_pack_0v_radial,Text,,Portable Food Storage
 Parts/Manufacturer/KLSS_food_pack_0v_radial,Text,,Yummy Snacks Inc.
-Parts/Description/KLSS_food_pack_0v_radial,Text,,The TFS-10 is an extra small radially attached Food pack. Perfect for quick rover expedition on another world.
+Parts/Description/KLSS_food_pack_0v_radial,Text,,The PFS-10 is an extra small radially attached Food pack. Perfect for quick rover expedition on another world.
 
-Parts/Title/KLSS_water_tank_0v_radial,Text,,TWS-10
-Parts/Subtitle/KLSS_water_tank_0v_radial,Text,,Tiny Water Storage
+Parts/Title/KLSS_water_tank_0v_radial,Text,,PWS-10
+Parts/Subtitle/KLSS_water_tank_0v_radial,Text,,Portable Water Storage
 Parts/Manufacturer/KLSS_water_tank_0v_radial,Text,,Yummy Snacks Inc.
-Parts/Description/KLSS_water_tank_0v_radial,Text,,The TWS-10 is an extra small radially attached Water tank. Perfect for quick rover expedition on another world.
+Parts/Description/KLSS_water_tank_0v_radial,Text,,The PWS-10 is an extra small radially attached Water tank. Perfect for quick rover expedition on another world.
 
-Parts/Title/KLSS_oxygen_tank_0v_radial,Text,,TOS-10
-Parts/Subtitle/KLSS_oxygen_tank_0v_radial,Text,,Tiny Oxygen Storage
+Parts/Title/KLSS_oxygen_tank_0v_radial,Text,,POS-10
+Parts/Subtitle/KLSS_oxygen_tank_0v_radial,Text,,Portable Oxygen Storage
 Parts/Manufacturer/KLSS_oxygen_tank_0v_radial,Text,,Yummy Snacks Inc.
-Parts/Description/KLSS_oxygen_tank_0v_radial,Text,,The TOS-10 is an extra small radially attached Oxygen tank. Perfect for quick rover expedition on another world.
+Parts/Description/KLSS_oxygen_tank_0v_radial,Text,,The POS-10 is an extra small radially attached Oxygen tank. Perfect for quick rover expedition on another world.
+
+Parts/Title/KLSS_food_pack_2v_radial,Text,,TFC-300
+Parts/Subtitle/KLSS_food_pack_2v_radial,Text,,Triangular Food Container
+Parts/Manufacturer/KLSS_food_pack_2v_radial,Text,,Yummy Snacks Inc.
+Parts/Description/KLSS_food_pack_2v_radial,Text,,The TFC-300 is a medium size radially attached Food container. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.
+
+Parts/Title/KLSS_water_tank_2v_radial,Text,,TWC-300
+Parts/Subtitle/KLSS_water_tank_2v_radial,Text,,Triangular Water Container
+Parts/Manufacturer/KLSS_water_tank_2v_radial,Text,,Yummy Snacks Inc.
+Parts/Description/KLSS_water_tank_2v_radial,Text,,The TWC-300 is a medium size radially attached Water tank. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.
+
+Parts/Title/KLSS_oxygen_tank_2v_radial,Text,,TOC-300
+Parts/Subtitle/KLSS_oxygen_tank_2v_radial,Text,,Triangular Oxygen Container
+Parts/Manufacturer/KLSS_oxygen_tank_2v_radial,Text,,Yummy Snacks Inc.
+Parts/Description/KLSS_oxygen_tank_2v_radial,Text,,The TOC-300 is a medium size radially attached Oxygen tank. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.
 
 Parts/Title/KLSS_greenhouse_2v_long,Text,,GRN-250
 Parts/Subtitle/KLSS_greenhouse_2v_long,Text,,Medium Cylindrical Greenhouse

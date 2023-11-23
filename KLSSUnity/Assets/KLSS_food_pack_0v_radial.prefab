@@ -166,14 +166,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3979884115585123116}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: -0, w: 0}
   m_LocalPosition: {x: -0.063045174, y: 0.565687, z: 0.26253825}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2247037584253853783}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: -90}
 --- !u!114 &6767617335719909148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,12 +242,12 @@ MonoBehaviour:
         SingleJointAxis: 0
         MultiJointFullBreakStrength: 0
         position:
-          x: 0
-          y: -0.14
+          x: 0.14
+          y: 0
           z: 0
         orientation:
-          x: 0
-          y: -1
+          x: 1
+          y: 0
           z: 0
         size: 1
         visualSize: 1
@@ -259,11 +259,11 @@ MonoBehaviour:
         isCompoundJoint: 0
       resourceContainers:
       - name: Food
-        capacityUnits: 0.01
-        initialUnits: 0.01
+        capacityUnits: 0.015
+        initialUnits: 0.015
         NonStageable: 1
       - name: Waste
-        capacityUnits: 0.01
+        capacityUnits: 0.015
         initialUnits: 0
         NonStageable: 0
       AllowKinematicPhysicsIfIntersectTerrain: 0
@@ -419,11 +419,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6877547182000437509}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: -0.7071068, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 737323824098141159}
   m_Father: {fileID: 2530574316697363466}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 90}

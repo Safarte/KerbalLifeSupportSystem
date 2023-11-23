@@ -1,6 +1,6 @@
 @use 'constants';
 
-:parts #eva_kerbal > resourceContainers {
+:parts (#eva_kerbal,#seat_0v_external_crew) > resourceContainers {
     +CarbonDioxide {
         capacityUnits: $EVA_CAPACITY_DAYS * $OXYGEN_PER_DAY;
         initialUnits: 0.0;
@@ -27,7 +27,7 @@
     }
 }
 
-:parts #eva_kerbal ~.Module_ResourceCapacities {
+:parts (#eva_kerbal,#seat_0v_external_crew) ~.Module_ResourceCapacities {
     +Module_ResourceCapacities {
         +Data_ResourceCapacities {}
     }

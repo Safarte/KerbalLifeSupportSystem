@@ -76,13 +76,13 @@
         "SingleJointAxis": "X",
         "MultiJointFullBreakStrength": false,
         "position": {
-          "x": 0.0,
-          "y": -0.14,
+          "x": 0.14,
+          "y": 0.0,
           "z": 0.0
         },
         "orientation": {
-          "x": 0.0,
-          "y": -1.0,
+          "x": 1.0,
+          "y": 0.0,
           "z": 0.0
         },
         "size": 1,
@@ -98,13 +98,13 @@
     "resourceContainers": [
       {
         "name": "Food",
-        "capacityUnits": 0.01,
-        "initialUnits": 0.01,
+        "capacityUnits": 0.015,
+        "initialUnits": 0.015,
         "NonStageable": true
       },
       {
         "name": "Waste",
-        "capacityUnits": 0.01,
+        "capacityUnits": 0.015,
         "initialUnits": 0.0,
         "NonStageable": false
       }

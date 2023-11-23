@@ -1,7 +1,7 @@
 @use 'builtin:list';
 @use 'constants';
 
-:parts ~#eva_kerbal {
+:parts ~#eva_kerbal ~#seat_0v_external_crew {
     @if $$crewCapacity > 0 {
         $crewCapacity: $$crewCapacity;
         +Module_ResourceConverter {

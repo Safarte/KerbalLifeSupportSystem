@@ -587,7 +587,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8474190121950013628, guid: 0de2ea6ca55384645bebae95d318863a, type: 3}
       propertyPath: m_Name
-      value: KLSS_water_tank_0v_radial_d
+      value: KLSS_water_tank_0v_radial
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

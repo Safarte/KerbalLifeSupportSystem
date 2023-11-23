@@ -19,15 +19,60 @@ KLSS/LSR/Tooltip/ToggleGreenhouse,Text,,Toggle Greenhouse
 KLSS/LSR/Formulas/Greenhouse,Text,,Unfertilized
 KLSS/LSR/Formulas/GreenhouseFertilized,Text,,Fertilized
 
-Parts/Title/KLSS_life_support_tank_1v_1x1,Text,,SLSS-100
-Parts/Subtitle/KLSS_life_support_tank_1v_1x1,Text,,Small Life-Support Storage
+Parts/Title/KLSS_life_support_tank_1v_1x1,Text,,SCS-100
+Parts/Subtitle/KLSS_life_support_tank_1v_1x1,Text,,Small Combined Storage
 Parts/Manufacturer/KLSS_life_support_tank_1v_1x1,Text,,Yummy Snacks Inc.
 Parts/Description/KLSS_life_support_tank_1v_1x1,Text,,The SLSS-100 is a short small-diameter Life-Support storage module. Perfect for your near-Kerbin solo missions or your daring long-distance missions.
 
-Parts/Title/KLSS_life_support_tank_2v_1x1,Text,,MLSS-100
-Parts/Subtitle/KLSS_life_support_tank_2v_1x1,Text,,Medium Life-Support Storage
+Parts/Title/KLSS_life_support_tank_2v_1x1,Text,,MCS-100
+Parts/Subtitle/KLSS_life_support_tank_2v_1x1,Text,,Medium Combined Storage
 Parts/Manufacturer/KLSS_life_support_tank_2v_1x1,Text,,Yummy Snacks Inc.
 Parts/Description/KLSS_life_support_tank_2v_1x1,Text,,The MLSS-100 is a short medium-diameter Life-Support storage module. If you need a service module to go to the Mun this is the part for you!
+
+Parts/Title/KLSS_food_tank_2v_1x2,Text,,MFS-200
+Parts/Subtitle/KLSS_food_tank_2v_1x2,Text,,Medium Food Storage
+Parts/Manufacturer/KLSS_food_tank_2v_1x2,Text,,Yummy Snacks Inc.
+Parts/Description/KLSS_food_tank_2v_1x2,Text,,The MFS-200 is a medium-diameter Food storage module. This is what was used on the famous Kygnus resupply vessel.
+
+Parts/Title/KLSS_water_tank_2v_1x2,Text,,MWS-200
+Parts/Subtitle/KLSS_water_tank_2v_1x2,Text,,Medium Water Storage
+Parts/Manufacturer/KLSS_water_tank_2v_1x2,Text,,Yummy Snacks Inc.
+Parts/Description/KLSS_water_tank_2v_1x2,Text,,The MFS-200 is a medium-diameter Water storage module. This is what was used on the famous Kygnus resupply vessel.
+
+Parts/Title/KLSS_oxygen_tank_2v_1x2,Text,,MOS-200
+Parts/Subtitle/KLSS_oxygen_tank_2v_1x2,Text,,Medium Oxygen Storage
+Parts/Manufacturer/KLSS_oxygen_tank_2v_1x2,Text,,Yummy Snacks Inc.
+Parts/Description/KLSS_oxygen_tank_2v_1x2,Text,,The MFS-200 is a medium-diameter Oxygen storage module. This is what was used on the famous Kygnus resupply vessel.
+
+Parts/Title/KLSS_food_pack_0v_radial,Text,,PFS-10
+Parts/Subtitle/KLSS_food_pack_0v_radial,Text,,Portable Food Storage
+Parts/Manufacturer/KLSS_food_pack_0v_radial,Text,,Yummy Snacks Inc.
+Parts/Description/KLSS_food_pack_0v_radial,Text,,The PFS-10 is an extra small radially attached Food pack. Perfect for quick rover expedition on another world.
+
+Parts/Title/KLSS_water_tank_0v_radial,Text,,PWS-10
+Parts/Subtitle/KLSS_water_tank_0v_radial,Text,,Portable Water Storage
+Parts/Manufacturer/KLSS_water_tank_0v_radial,Text,,Yummy Snacks Inc.
+Parts/Description/KLSS_water_tank_0v_radial,Text,,The PWS-10 is an extra small radially attached Water tank. Perfect for quick rover expedition on another world.
+
+Parts/Title/KLSS_oxygen_tank_0v_radial,Text,,POS-10
+Parts/Subtitle/KLSS_oxygen_tank_0v_radial,Text,,Portable Oxygen Storage
+Parts/Manufacturer/KLSS_oxygen_tank_0v_radial,Text,,Yummy Snacks Inc.
+Parts/Description/KLSS_oxygen_tank_0v_radial,Text,,The POS-10 is an extra small radially attached Oxygen tank. Perfect for quick rover expedition on another world.
+
+Parts/Title/KLSS_food_pack_2v_radial,Text,,TFC-300
+Parts/Subtitle/KLSS_food_pack_2v_radial,Text,,Triangular Food Container
+Parts/Manufacturer/KLSS_food_pack_2v_radial,Text,,Yummy Snacks Inc.
+Parts/Description/KLSS_food_pack_2v_radial,Text,,The TFC-300 is a medium size radially attached Food container. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.
+
+Parts/Title/KLSS_water_tank_2v_radial,Text,,TWC-300
+Parts/Subtitle/KLSS_water_tank_2v_radial,Text,,Triangular Water Container
+Parts/Manufacturer/KLSS_water_tank_2v_radial,Text,,Yummy Snacks Inc.
+Parts/Description/KLSS_water_tank_2v_radial,Text,,The TWC-300 is a medium size radially attached Water tank. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.
+
+Parts/Title/KLSS_oxygen_tank_2v_radial,Text,,TOC-300
+Parts/Subtitle/KLSS_oxygen_tank_2v_radial,Text,,Triangular Oxygen Container
+Parts/Manufacturer/KLSS_oxygen_tank_2v_radial,Text,,Yummy Snacks Inc.
+Parts/Description/KLSS_oxygen_tank_2v_radial,Text,,The TOC-300 is a medium size radially attached Oxygen tank. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.
 
 Parts/Title/KLSS_greenhouse_2v_long,Text,,GRN-250
 Parts/Subtitle/KLSS_greenhouse_2v_long,Text,,Medium Cylindrical Greenhouse

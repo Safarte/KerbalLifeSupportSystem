@@ -44,14 +44,14 @@ An up-to-date visual list of all parts added by this KSP2 mod.
 
 ![medium oxygen storage part](../KLSSUnity/Assets/KLSS_oxygen_tank_2v_1x2_icon.png)
 
-### MFS-200 / Triangular Food Container (M)
+### TFC-300 / Triangular Food Container (M)
 
 ![triangular food container part](../KLSSUnity/Assets/KLSS_food_pack_2v_radial_icon.png)
 
-### MWS-200 / Triangular Water Container (M)
+### TWC-300 / Triangular Water Container (M)
 
 ![triangular water container part](../KLSSUnity/Assets/KLSS_water_tank_2v_radial_icon.png)
 
-### MOS-200 / Triangular Oxygen Container (M)
+### TOC-300 / Triangular Oxygen Container (M)
 
 ![triangular oxygen container part](../KLSSUnity/Assets/KLSS_oxygen_tank_2v_radial_icon.png)

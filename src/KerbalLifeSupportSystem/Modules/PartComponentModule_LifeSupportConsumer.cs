@@ -229,10 +229,59 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
         return timeDelta > KerbalLifeSupportSystemPlugin.Instance.LsGracePeriods[resourceName];
     }
 
-    private static void OnKerbalLocationChanged(MessageCenterMessage msg)
+    /// <summary>
+    ///     Handles the transfer of resources to Kerbals going on EVA and from those returning from EVA
+    /// </summary>
+    private void OnKerbalLocationChanged(MessageCenterMessage msg)
     {
         if (msg is not KerbalLocationChanged kerbalLocationChanged)
             return;
-        var simObjectId = kerbalLocationChanged.OldLocation.SimObjectId;
+
+        // Old location
+        var oldLocationId = kerbalLocationChanged.OldLocation.SimObjectId;
+        var oldSimObject = Game.UniverseModel.FindSimObject(oldLocationId);
+
+        // New location
+        var newLocationId = kerbalLocationChanged.Kerbal.Location.SimObjectId;
+        var newSimObject = Game.UniverseModel.FindSimObject(newLocationId);
+
+        if (oldLocationId.Equals(Part.SimulationObject.GlobalId) && newSimObject.IsPart &&
+            newSimObject.Part.PartOwner.SimulationObject.IsKerbal)
+            // Kerbal left the current part to go on EVA
+        {
+            // Number of Kerbals remaining in the part
+            var remainingKerbals = _rosterManager.GetAllKerbalsInSimObject(Part.SimulationObject.GlobalId).Count;
+
+            // Kerbal resource container group
+            var kerbalContainerGroup = newSimObject.Part.PartOwner.ContainerGroup;
+
+            for (var i = 0; i < _dataLifeSupportConsumer.LifeSupportDefinition.InputResources.Count; ++i)
+            {
+                var resourceID = _dataLifeSupportConsumer.ResourceDefinitions[i];
+
+                // Split the remaining resources evenly between the EVA Kerbal & the Kerbals remaining in the part
+                var resourceUnits =
+                    Math.Min(_containerGroup.GetResourceStoredUnits(resourceID) / (1 + remainingKerbals),
+                        kerbalContainerGroup.GetResourceCapacityUnits(resourceID));
+
+                _containerGroup.RemoveResourceUnits(resourceID, resourceUnits);
+                kerbalContainerGroup.AddResourceUnits(resourceID, resourceUnits);
+            }
+        }
+        else if (newLocationId.Equals(Part.SimulationObject.GlobalId) && oldSimObject.IsPart &&
+                 oldSimObject.Part.PartOwner.SimulationObject.IsKerbal)
+            // Kerbal entered the current part from EVA
+        {
+            // Kerbal resource container group
+            var kerbalContainerGroup = oldSimObject.Part.PartOwner.ContainerGroup;
+
+            // Resource request configs setup
+            for (var i = 0; i < _dataLifeSupportConsumer.LifeSupportDefinition.InputResources.Count; ++i)
+            {
+                var resourceID = _dataLifeSupportConsumer.ResourceDefinitions[i];
+
+                _containerGroup.AddResourceUnits(resourceID, kerbalContainerGroup.GetResourceStoredUnits(resourceID));
+            }
+        }
     }
 }

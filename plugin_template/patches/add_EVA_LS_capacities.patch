@@ -11,15 +11,15 @@
     }
     +Oxygen {
         capacityUnits: $EVA_CAPACITY_DAYS * $OXYGEN_PER_DAY;
-        initialUnits: $EVA_CAPACITY_DAYS * $OXYGEN_PER_DAY;
+        initialUnits: 0.0;
     }
     +Water {
         capacityUnits: $EVA_CAPACITY_DAYS * $WATER_PER_DAY;
-        initialUnits: $EVA_CAPACITY_DAYS * $WATER_PER_DAY;
+        initialUnits: 0.0;
     }
     +Food {
         capacityUnits: $EVA_CAPACITY_DAYS * $FOOD_PER_DAY;
-        initialUnits: $EVA_CAPACITY_DAYS * $FOOD_PER_DAY;
+        initialUnits: 0.0;
     }
     +Waste {
         capacityUnits: $EVA_CAPACITY_DAYS * $FOOD_PER_DAY;

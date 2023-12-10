@@ -364,7 +364,7 @@
                   ],
                   "OutputResources": [
                     {
-                      "Rate": 1.85E-07,
+                      "Rate": 9.26E-08,
                       "ResourceName": "Food",
                       "AcceptanceThreshold": 1E-08
                     }
@@ -382,14 +382,14 @@
                       "AcceptanceThreshold": 0.001
                     },
                     {
-                      "Rate": 3.7E-07,
-                      "ResourceName": "Waste",
+                      "Rate": 1.852E-07,
+                      "ResourceName": "Fertilizer",
                       "AcceptanceThreshold": 1E-08
                     }
                   ],
                   "OutputResources": [
                     {
-                      "Rate": 3.7E-07,
+                      "Rate": 1.852E-07,
                       "ResourceName": "Food",
                       "AcceptanceThreshold": 1E-08
                     }

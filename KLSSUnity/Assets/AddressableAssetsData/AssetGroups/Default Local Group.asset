@@ -209,6 +209,22 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97fc7eced947bfb4191e5d8ba0a23bc3
+    m_Address: KLSS_composter_2v_short_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 178030daf35c3cb4d8f2afaac364b7bf
+    m_Address: KLSS_composter_2v_short.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f4df081b4a064a48b293c9e53752be6
+    m_Address: KLSS_composter_2v_short.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1b626c4ce55065e4fbf2b32096fa98b0, type: 2}
   m_SchemaSet:

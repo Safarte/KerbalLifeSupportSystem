@@ -387,7 +387,7 @@ MonoBehaviour:
         ResourceName: ElectricCharge
         AcceptanceThreshold: 0.001
       OutputResources:
-      - Rate: 0.000000185
+      - Rate: 0.0000000926
         ResourceName: Food
         AcceptanceThreshold: 0.00000001
       FluxGenerated: 0
@@ -398,11 +398,11 @@ MonoBehaviour:
       - Rate: 10
         ResourceName: ElectricCharge
         AcceptanceThreshold: 0.001
-      - Rate: 0.00000037
-        ResourceName: Waste
+      - Rate: 0.0000001852
+        ResourceName: Fertilizer
         AcceptanceThreshold: 0.00000001
       OutputResources:
-      - Rate: 0.00000037
+      - Rate: 0.0000001852
         ResourceName: Food
         AcceptanceThreshold: 0.00000001
       FluxGenerated: 0

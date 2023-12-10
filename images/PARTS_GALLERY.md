@@ -8,6 +8,10 @@ An up-to-date visual list of all parts added by this KSP2 mod.
 
 ![Medium cylindrical greenhouse part](../KLSSUnity/Assets/KLSS_greenhouse_2v_long_icon.png)
 
+### CPST-150 / Medium Inline Composter (M)
+
+![medium inline composter part](../KLSSUnity/Assets/KLSS_composter_2v_short_icon.png)
+
 ## Combined Storage
 
 ### SCS-100 / Small Combined Storage (S)

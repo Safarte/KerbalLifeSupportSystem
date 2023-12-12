@@ -1,6 +1,6 @@
 @use 'constants';
 
-:parts (#eva_kerbal,#seat_0v_external_crew) > resourceContainers {
+:parts #eva_kerbal > resourceContainers {
     +CarbonDioxide {
         capacityUnits: $EVA_CAPACITY_DAYS * $OXYGEN_PER_DAY;
         initialUnits: 0.0;
@@ -20,6 +20,33 @@
     +Food {
         capacityUnits: $EVA_CAPACITY_DAYS * $FOOD_PER_DAY;
         initialUnits: 0.0;
+    }
+    +Waste {
+        capacityUnits: $EVA_CAPACITY_DAYS * $FOOD_PER_DAY;
+        initialUnits: 0.0;
+    }
+}
+
+:parts #seat_0v_external_crew > resourceContainers {
+    +CarbonDioxide {
+        capacityUnits: $EVA_CAPACITY_DAYS * $OXYGEN_PER_DAY;
+        initialUnits: 0.0;
+    }
+    +WasteWater {
+        capacityUnits: $EVA_CAPACITY_DAYS * $WATER_PER_DAY;
+        initialUnits: 0.0;
+    }
+    +Oxygen {
+        capacityUnits: $EVA_CAPACITY_DAYS * $OXYGEN_PER_DAY;
+        initialUnits: $EVA_CAPACITY_DAYS * $OXYGEN_PER_DAY;
+    }
+    +Water {
+        capacityUnits: $EVA_CAPACITY_DAYS * $WATER_PER_DAY;
+        initialUnits: $EVA_CAPACITY_DAYS * $WATER_PER_DAY;
+    }
+    +Food {
+        capacityUnits: $EVA_CAPACITY_DAYS * $FOOD_PER_DAY;
+        initialUnits: $EVA_CAPACITY_DAYS * $FOOD_PER_DAY;
     }
     +Waste {
         capacityUnits: $EVA_CAPACITY_DAYS * $FOOD_PER_DAY;

@@ -11,20 +11,20 @@ public class Module_LifeSupportConsumer : PartBehaviourModule
 
     public override Type PartComponentModuleType => typeof(PartComponentModule_LifeSupportConsumer);
 
-    public override void AddDataModules()
+    protected override void AddDataModules()
     {
         base.AddDataModules();
         _dataLifeSupportConsumer ??= new Data_LifeSupportConsumer();
         DataModules.TryAddUnique(_dataLifeSupportConsumer, out _dataLifeSupportConsumer);
     }
 
-    public override void OnInitialize()
+    protected override void OnInitialize()
     {
         base.OnInitialize();
         if (PartBackingMode == PartBackingModes.Flight) moduleIsEnabled = true;
     }
 
-    public override void OnModuleOABFixedUpdate(float deltaTime)
+    protected override void OnModuleOABFixedUpdate(float deltaTime)
     {
         if ((OABPart == null || !(_dataLifeSupportConsumer.RequestHandle == ResourceFlowRequestHandle.InvalidID))
             && (resourceFlowRequestBroker == null ||

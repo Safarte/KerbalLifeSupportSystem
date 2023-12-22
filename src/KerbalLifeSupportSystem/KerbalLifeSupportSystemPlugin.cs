@@ -2,10 +2,13 @@
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using JetBrains.Annotations;
+using KerbalLifeSupportSystem.Modules;
 using KerbalLifeSupportSystem.UI;
+using KSP.Sim.impl;
 using SpaceWarp;
 using SpaceWarp.API.Assets;
 using SpaceWarp.API.Mods;
+using SpaceWarp.API.Parts;
 using SpaceWarp.API.UI.Appbar;
 using UitkForKsp2;
 using UitkForKsp2.API;
@@ -72,6 +75,15 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
 
     // Logger
     public new static ManualLogSource Logger { get; private set; }
+
+    private void Awake()
+    {
+        // Make sure the life-support consumer and the recyclers are working in the background
+        PartComponentModuleOverride
+            .RegisterModuleForBackgroundResourceProcessing<PartComponentModule_LifeSupportConsumer>();
+        PartComponentModuleOverride
+            .RegisterModuleForBackgroundResourceProcessing<PartComponentModule_ResourceConverter>();
+    }
 
     private void SetupConfiguration()
     {

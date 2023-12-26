@@ -1,50 +1,41 @@
-@use 'builtin:list';
-@use 'constants';
+@use constants;
 
-:parts {
-    @if $$crewCapacity > 0 {
-        +Module_LifeSupportConsumer {
-            +Data_LifeSupportConsumer {
-                +LifeSupportDefinition {
-                    InternalName: "KerbalLifeSupport";
-                    FormulaLocalizationKey: "KLSS/LSR/Formulas/LifeSupport";
-                    InputResources: [
-                        {
-                            Rate: $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
-                            ResourceName: "Oxygen",
-                            AcceptanceThreshold: 0.00000001
-                        },
-                        {
-                            Rate: $WATER_PER_DAY / $SECONDS_PER_DAY,
-                            ResourceName: "Water",
-                            AcceptanceThreshold: 0.0001
-                        },
-                        {
-                            Rate: $FOOD_PER_DAY / $SECONDS_PER_DAY,
-                            ResourceName: "Food",
-                            AcceptanceThreshold: 0.00000001
-                        }
-                    ];
-                    OutputResources: [
-                        {
-                            Rate: $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
-                            ResourceName: "CarbonDioxide",
-                            AcceptanceThreshold: 0.00000001
-                        },
-                        {
-                            Rate: $WATER_PER_DAY / $SECONDS_PER_DAY,
-                            ResourceName: "WasteWater",
-                            AcceptanceThreshold: 0.0001
-                        },
-                        {
-                            Rate: $FOOD_PER_DAY / $SECONDS_PER_DAY,
-                            ResourceName: "Waste",
-                            AcceptanceThreshold: 0.00000001
-                        }
-                    ];
-                    AcceptanceThreshold: 0.000001;
-                }
+:parts ~#eva_kerbal ~#seat_0v_external_crew {
+    * > resourceContainers {
+        $crewCapacity: $parent["crewCapacity"];
+        @if $crewCapacity > 0 {
+            +CarbonDioxide {
+                capacityUnits: $POD_CAPACITY_DAYS * $OXYGEN_PER_DAY * $crewCapacity;
+                initialUnits: 0.0;
             }
+            +WasteWater {
+                capacityUnits: $POD_CAPACITY_DAYS * $WATER_PER_DAY * $crewCapacity;
+                initialUnits: 0.0;
+            }
+            +Oxygen {
+                capacityUnits: $POD_CAPACITY_DAYS * $OXYGEN_PER_DAY * $crewCapacity;
+                initialUnits: $POD_CAPACITY_DAYS * $OXYGEN_PER_DAY * $crewCapacity;
+            }
+            +Water {
+                capacityUnits: $POD_CAPACITY_DAYS * $WATER_PER_DAY * $crewCapacity;
+                initialUnits: $POD_CAPACITY_DAYS * $WATER_PER_DAY * $crewCapacity;
+            }
+            +Food {
+                capacityUnits: $POD_CAPACITY_DAYS * $FOOD_PER_DAY * $crewCapacity;
+                initialUnits: $POD_CAPACITY_DAYS * $FOOD_PER_DAY * $crewCapacity;
+            }
+            +Waste {
+                capacityUnits: $POD_CAPACITY_DAYS * $FOOD_PER_DAY * $crewCapacity;
+                initialUnits: 0.0;
+            }
+        }
+    }
+}
+
+:parts ~#eva_kerbal ~.Module_ResourceCapacities {
+    @if $$crewCapacity > 0 {
+        +Module_ResourceCapacities {
+            +Data_ResourceCapacities {}
         }
     }
 }

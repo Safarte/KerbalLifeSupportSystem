@@ -1,5 +1,4 @@
-@use 'builtin:list';
-@use 'constants';
+@use constants;
 
 :parts ~#eva_kerbal ~#seat_0v_external_crew {
     @if $$crewCapacity > 0 {
@@ -13,82 +12,82 @@
                 ToggleActionName: "KLSS/LSR/ToggleRecycler";
                 FormulaDefinitions: [
                     {
-                        InternalName: "KLSS_Combined",
+                        InternalName: KLSS_Combined,
                         FormulaLocalizationKey: "KLSS/LSR/Formulas/Combined",
                         InputResources: [
                             {
                                 Rate: $crewCapacity,
-                                ResourceName: "ElectricCharge",
+                                ResourceName: ElectricCharge,
                                 AcceptanceThreshold: 0.001
                             },
                             {
                                 Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
-                                ResourceName: "CarbonDioxide",
+                                ResourceName: CarbonDioxide,
                                 AcceptanceThreshold: 0.00000001
                             },
                             {
                                 Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
-                                ResourceName: "WasteWater",
+                                ResourceName: WasteWater,
                                 AcceptanceThreshold: 0.00000001
                             }
                         ],
                         OutputResources: [
                             {
                                 Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
-                                ResourceName: "Oxygen",
+                                ResourceName: Oxygen,
                                 AcceptanceThreshold: 0.00000001
                             },
                             {
                                 Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
-                                ResourceName: "Water",
+                                ResourceName: Water,
                                 AcceptanceThreshold: 0.00000001
                             }  
                         ],
                         AcceptanceThreshold: 0.00000001
                     },
                     {
-                        InternalName: "KLSS_CO2Scrubber",
+                        InternalName: KLSS_CO2Scrubber,
                         FormulaLocalizationKey: "KLSS/LSR/Formulas/CO2Scrubber",
                         InputResources: [
                             {
                                 Rate: 0.5 * $crewCapacity,
-                                ResourceName: "ElectricCharge",
+                                ResourceName: ElectricCharge,
                                 AcceptanceThreshold: 0.001
                             },
                             {
                                 Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
-                                ResourceName: "CarbonDioxide",
+                                ResourceName: CarbonDioxide,
                                 AcceptanceThreshold: 0.00000001
                             }
                         ],
                         OutputResources: [
                             {
                                 Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
-                                ResourceName: "Oxygen",
+                                ResourceName: Oxygen,
                                 AcceptanceThreshold: 0.00000001
                             }                         
                         ],
                         AcceptanceThreshold: 0.00000001
                     },
                     {
-                        InternalName: "KLSS_WaterRecycler",
+                        InternalName: KLSS_WaterRecycler,
                         FormulaLocalizationKey: "KLSS/LSR/Formulas/WaterRecycler",
                         InputResources: [
                             {
                                 Rate: 0.5 * $crewCapacity,
-                                ResourceName: "ElectricCharge",
+                                ResourceName: ElectricCharge,
                                 AcceptanceThreshold: 0.001
                             },
                             {
                                 Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
-                                ResourceName: "WasteWater",
+                                ResourceName: WasteWater,
                                 AcceptanceThreshold: 0.00000001
                             }
                         ],
                         OutputResources: [
                             {
                                 Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
-                                ResourceName: "Water",
+                                ResourceName: Water,
                                 AcceptanceThreshold: 0.00000001
                             }                         
                         ],
@@ -97,15 +96,15 @@
                 ];
             }
         }
-        PAMModuleSortOverride: +[
+        PAMModuleSortOverride +: [
             {
-                PartComponentModuleName: "PartComponentModule_ResourceConverter",
+                PartComponentModuleName: PartComponentModule_ResourceConverter,
                 sortIndex: 40
             }
         ];
-        PAMModuleVisualsOverride: +[
+        PAMModuleVisualsOverride +: [
             {
-                PartComponentModuleName: "PartComponentModule_ResourceConverter",
+                PartComponentModuleName: PartComponentModule_ResourceConverter,
                 ModuleDisplayName: "PartModules/LifeSupportRecycler/Name",
                 ShowHeader: true,
                 ShowFooter: false

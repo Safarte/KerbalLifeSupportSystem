@@ -2,7 +2,7 @@
 
 :parts ~#eva_kerbal ~#seat_0v_external_crew {
     * > resourceContainers {
-        $crewCapacity: $parent["crewCapacity"];
+        $crewCapacity: $parent[crewCapacity];
         @if $crewCapacity > 0 {
             +CarbonDioxide {
                 capacityUnits: $POD_CAPACITY_DAYS * $OXYGEN_PER_DAY * $crewCapacity;

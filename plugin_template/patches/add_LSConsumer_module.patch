@@ -1,44 +1,43 @@
-@use 'builtin:list';
-@use 'constants';
+@use constants;
 
 :parts {
     @if $$crewCapacity > 0 {
         +Module_LifeSupportConsumer {
             +Data_LifeSupportConsumer {
                 +LifeSupportDefinition {
-                    InternalName: "KerbalLifeSupport";
+                    InternalName: KerbalLifeSupport;
                     FormulaLocalizationKey: "KLSS/LSR/Formulas/LifeSupport";
                     InputResources: [
                         {
                             Rate: $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
-                            ResourceName: "Oxygen",
+                            ResourceName: Oxygen,
                             AcceptanceThreshold: 0.00000001
                         },
                         {
                             Rate: $WATER_PER_DAY / $SECONDS_PER_DAY,
-                            ResourceName: "Water",
+                            ResourceName: Water,
                             AcceptanceThreshold: 0.0001
                         },
                         {
                             Rate: $FOOD_PER_DAY / $SECONDS_PER_DAY,
-                            ResourceName: "Food",
+                            ResourceName: Food,
                             AcceptanceThreshold: 0.00000001
                         }
                     ];
                     OutputResources: [
                         {
                             Rate: $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
-                            ResourceName: "CarbonDioxide",
+                            ResourceName: CarbonDioxide,
                             AcceptanceThreshold: 0.00000001
                         },
                         {
                             Rate: $WATER_PER_DAY / $SECONDS_PER_DAY,
-                            ResourceName: "WasteWater",
+                            ResourceName: WasteWater,
                             AcceptanceThreshold: 0.0001
                         },
                         {
                             Rate: $FOOD_PER_DAY / $SECONDS_PER_DAY,
-                            ResourceName: "Waste",
+                            ResourceName: Waste,
                             AcceptanceThreshold: 0.00000001
                         }
                     ];

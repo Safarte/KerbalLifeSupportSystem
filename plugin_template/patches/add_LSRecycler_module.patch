@@ -5,7 +5,7 @@
         +Module_LifeSupportConsumer {
             +Data_LifeSupportConsumer {
                 +LifeSupportDefinition {
-                    InternalName: "KerbalLifeSupport";
+                    InternalName: KerbalLifeSupport;
                     FormulaLocalizationKey: "KLSS/LSR/Formulas/LifeSupport";
                     InputResources: [
                         {

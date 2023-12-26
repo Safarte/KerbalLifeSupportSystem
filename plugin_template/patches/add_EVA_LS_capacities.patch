@@ -1,4 +1,4 @@
-@use 'constants';
+@use constants;
 
 :parts #eva_kerbal > resourceContainers {
     +CarbonDioxide {

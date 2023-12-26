@@ -1,42 +1,42 @@
 :science #tNode_1v_utility_01 {
-    UnlockedPartsIDs: +[
-        "KLSS_life_support_tank_1v_1x1"
+    UnlockedPartsIDs +: [
+        KLSS_life_support_tank_1v_1x1
     ];
 }
 
 :science #tNode_2v_payload {
-    UnlockedPartsIDs: +[
-        "KLSS_life_support_tank_2v_1x1"
+    UnlockedPartsIDs +: [
+        KLSS_life_support_tank_2v_1x1
     ];
 }
 
 :science #tNode_1v_rover {
-    UnlockedPartsIDs: +[
-        "KLSS_food_pack_0v_radial",
-        "KLSS_water_tank_0v_radial",
-        "KLSS_oxygen_tank_0v_radial"
+    UnlockedPartsIDs +: [
+        KLSS_food_pack_0v_radial,
+        KLSS_water_tank_0v_radial,
+        KLSS_oxygen_tank_0v_radial
     ];
 }
 
 :science #tNode_2v_docking {
-    UnlockedPartsIDs: +[
-        "KLSS_food_tank_2v_1x2",
-        "KLSS_water_tank_2v_1x2",
-        "KLSS_oxygen_tank_2v_1x2"
+    UnlockedPartsIDs +: [
+        KLSS_food_tank_2v_1x2,
+        KLSS_water_tank_2v_1x2,
+        KLSS_oxygen_tank_2v_1x2
     ];
 }
 
 :science #tNode_3v_payload_01 {
-    UnlockedPartsIDs: +[
-        "KLSS_food_pack_2v_radial",
-        "KLSS_water_tank_2v_radial",
-        "KLSS_oxygen_tank_2v_radial"
+    UnlockedPartsIDs +: [
+        KLSS_food_pack_2v_radial,
+        KLSS_water_tank_2v_radial,
+        KLSS_oxygen_tank_2v_radial
     ];
 }
 
 :science #tNode_2v_electronics_02 {
-    UnlockedPartsIDs: +[
-        "KLSS_greenhouse_2v_long",
-        "KLSS_composter_2v_short"
+    UnlockedPartsIDs +: [
+        KLSS_greenhouse_2v_long,
+        KLSS_composter_2v_short
     ];
 }

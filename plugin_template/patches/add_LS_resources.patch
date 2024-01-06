@@ -32,7 +32,7 @@
     }
 }
 
-:parts ~#eva_kerbal ~.Module_ResourceCapacities {
+:parts ~#eva_kerbal ~#lab_2v_science_orbital ~#lab_2v_science_marine ~.Module_ResourceCapacities {
     @if $$crewCapacity > 0 {
         +Module_ResourceCapacities {
             +Data_ResourceCapacities {}

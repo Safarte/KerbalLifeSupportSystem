@@ -1,6 +1,6 @@
 @use constants;
 
-:parts ~#eva_kerbal ~#seat_0v_external_crew {
+:parts ~#eva_kerbal ~#seat_0v_external_crew ~#lab_2v_science_orbital ~#lab_2v_science_marine {
     @if $$crewCapacity > 0 {
         $crewCapacity: $$crewCapacity;
         +Module_ResourceConverter {

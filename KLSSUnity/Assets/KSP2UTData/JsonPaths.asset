@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87a7c8ca6df943af9ea67de238f088e6, type: 3}
+  m_Name: JsonPaths
+  m_EditorClassIdentifier: 
+  Keys:
+  - KLSS_composter_2v_short
+  - KLSS_life_support_tank_1v_1x1
+  - KLSS_greenhouse_2v_long
+  - KLSS_oxygen_tank_2v_radial
+  - KLSS_life_support_tank_2v_1x1
+  - KLSS_food_tank_2v_1x2
+  - KLSS_food_pack_0v_radial
+  - KLSS_food_pack_2v_radial
+  - KLSS_water_tank_2v_radial
+  - KLSS_water_tank_0v_radial
+  - KLSS_water_tank_2v_1x2
+  - KLSS_oxygen_tank_0v_radial
+  - KLSS_oxygen_tank_2v_1x2
+  Values:
+  - '%NAME%.json'
+  - '%NAME%.json'
+  - '%NAME%.json'
+  - '%NAME%.json'
+  - '%NAME%.json'
+  - '%NAME%.json'
+  - '%NAME%.json'
+  - '%NAME%.json'
+  - '%NAME%.json'
+  - '%NAME%.json'
+  - '%NAME%.json'
+  - '%NAME%.json'
+  - '%NAME%.json'

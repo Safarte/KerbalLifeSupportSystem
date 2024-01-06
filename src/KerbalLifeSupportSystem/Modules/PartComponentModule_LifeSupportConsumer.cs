@@ -102,12 +102,8 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
         // Get resource request response
         _returnedRequestResolution = resourceFlowRequestBroker.GetRequestState(_dataLifeSupportConsumer.RequestHandle);
 
-        if (_returnedRequestResolution.WasLastTickDeliveryAccepted)
-        {
-            // If delivery was accepted, update the "last consumed" database
-            UpdateLastConsumed(time);
-        }
-        else
+        UpdateLastConsumed(time);
+        if (!_returnedRequestResolution.WasLastTickDeliveryAccepted)
         {
             // If delivery was denied, resend a resource request only for the remaining resources
             ClearMissingResources();

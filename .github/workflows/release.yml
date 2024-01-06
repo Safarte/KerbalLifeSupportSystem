@@ -1,0 +1,75 @@
+name: Upload release
+env:
+  MOD_ID: 3485
+  KSP2_ID: 22407
+
+on:
+  release:
+    types: [ "published" ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download NuGet
+        id: download-nuget
+        run: |
+          sudo curl -o /usr/local/bin/nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+
+      - name: Install jq
+        uses: dcarbone/install-jq-action@v2.1.0
+
+      - name: Build the solution
+        run: |
+          version=$(jq -r '.version' plugin_template/swinfo.json)
+          echo "Version is $version"
+          echo "version=$version" >> $GITHUB_ENV
+          dotnet build "KerbalLifeSupportSystem.sln" -c Release
+          echo "release_filename=KerbalLifeSupportSystem-$version.zip" >> $GITHUB_ENV
+          echo "zip=$(ls -1 dist/KerbalLifeSupportSystem-*.zip | head -n 1)" >> $GITHUB_ENV
+          echo "upload_url=$(wget -qO- https://api.github.com/repos/$GITHUB_REPOSITORY/releases | jq '.[0].upload_url' | tr -d \")" >> $GITHUB_ENV
+          echo "changelog=$(wget -qO- https://api.github.com/repos/$GITHUB_REPOSITORY/releases | jq '.[0].body' | tr -d \")" >> $GITHUB_ENV
+          echo "${{ env.changelog }}" > ./changelog.md
+
+      - name: Upload zip to release
+        uses: shogo82148/actions-upload-release-asset@v1.7.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ env.upload_url }}
+          asset_path: ${{ env.zip }}
+          asset_name: ${{ env.release_filename }}
+          asset_content_type: application/zip
+          
+      - name: Add Mask
+        run: echo "::add-mask::${{ secrets.SPACEDOCK_PASSWORD }}"
+        
+      - name: Log in to spacedock
+        run: |
+          login_response=$(curl -F username=${{ secrets.SPACEDOCK_USER }} -F password=${{ secrets.SPACEDOCK_PASSWORD }} -c ./cookies "https://spacedock.info/api/login")
+          login_errored=$(echo $login_response | jq .error)
+          if [ "$login_errored" == "true" ]; then
+            echo "Login to space dock errored: $(echo $login_response | jq .reason)"
+            exit 1
+          else
+            echo "Login to space dock successful"
+          fi
+          
+      - name: Query latest game version
+        run: |
+          echo "LATEST_GAME_VERSION=$(curl 'https://spacedock.info/api/${{ env.KSP2_ID }}/versions' | jq '.[0].friendly_version' | tr -d \")" >> $GITHUB_ENV
+          
+      - name: Update mod on spacedock
+        run: |
+          result=$(curl -b ./cookies -F "version=${{ env.version }}" -F "changelog=@./changelog.md" -F "game-version=${{ env.LATEST_GAME_VERSION }}" -F "notify-followers=yes" -F "zipball=@${{ env.zip }}" "https://spacedock.info/api/mod/${{ env.MOD_ID }}/update")
+          errored=$(echo $result | jq .error)
+          if [ "$errored" == "true" ]; then
+            echo "Upload to space dock errored: $(echo $result | jq .reason)"
+            exit 1
+          else
+            echo "Upload to space dock successful"
+          fi

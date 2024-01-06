@@ -6,6 +6,7 @@
     <type fullname="KSP.Modules.Module_LitPart" preserve="all" />
     <type fullname="KSP.Modules.Module_ResourceCapacities" preserve="all" />
     <type fullname="KSP.Modules.Module_ResourceConverter" preserve="all" />
+    <type fullname="KSP.VFX.Reentry.ReentryMesh" preserve="all" />
     <type fullname="FloatCurve" preserve="nothing" serialized="true" />
     <type fullname="KSP.Game.PartsManagerCore/SerializedPartModuleDisplayOrder" preserve="nothing" serialized="true" />
     <type fullname="KSP.Game.PartsManagerCore/SerializedPartModuleDisplayVisuals" preserve="nothing" serialized="true" />
@@ -30,6 +31,8 @@
     <type fullname="KSP.Sim.Definitions.SerializedResourceInfo" preserve="nothing" serialized="true" />
     <type fullname="KSP.Sim.ResourceSystem.ContainedResourceDefinition" preserve="nothing" serialized="true" />
     <type fullname="KSP.Sim.ResourceSystem.ResourceFlowRequestHandle" preserve="nothing" serialized="true" />
+    <type fullname="KSP.VFX.Reentry.ReentryGroupData" preserve="nothing" serialized="true" />
+    <type fullname="KSP.VFX.Reentry.ReentryMeshGroupType" preserve="nothing" serialized="true" />
     <type fullname="Vector3d" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
@@ -43,6 +46,7 @@
   </assembly>
   <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.LODGroup" preserve="all" />
     <type fullname="UnityEngine.Material" preserve="all" />
     <type fullname="UnityEngine.Mesh" preserve="all" />
     <type fullname="UnityEngine.MeshFilter" preserve="all" />

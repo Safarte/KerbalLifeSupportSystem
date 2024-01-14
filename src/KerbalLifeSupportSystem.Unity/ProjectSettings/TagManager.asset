@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  tags:
+  - GUIText
+  - SmartWater
+  - KSC
+  - LaunchPad
+  - Kerbin
+  - Mun
+  - Runway
+  - Ladder
+  - Airlock
+  - krakensbane
+  - Icon_Hidden
+  - Icon_Only
+  - NoAttach
+  - KSC_VAB_Main_Building
+  - KSC_VAB_Tanks
+  - KSC_VAB_Round_Tank
+  - KSC_VAB_Pod_Memorial
+  - KSC_VAB_SouthComplex
+  - KSC_VAB_Grounds
+  - KSC_SPH_Main_Building
+  - KSC_SPH_Tanks
+  - KSC_SPH_Round_Tank
+  - KSC_SPH_Water_Tower
+  - KSC_SPH_Grounds
+  - KSC_Mission_Control
+  - KSC_Mission_Control_Grounds
+  - KSC_Tracking_Station_Hub
+  - KSC_Tracking_Station_Dish_North
+  - KSC_Tracking_Station_Dish_South
+  - KSC_Tracking_Station_Dish_East
+  - KSC_Tracking_Station_Grounds
+  - KSC_R&D_Main_Building
+  - KSC_R&D_Central_Building
+  - KSC_R&D_Side_Lab
+  - KSC_R&D_Observatory
+  - KSC_R&D_Wind_Tunnel
+  - KSC_R&D_Corner_Lab
+  - KSC_R&D_Tanks
+  - KSC_R&D_Small_Lab
+  - KSC_R&D_Grounds
+  - KSC_Flag_Pole
+  - KSC_Astronaut_Complex
+  - KSC_Astronaut_Complex_Grounds
+  - KSC_Administration
+  - KSC_Administration_Grounds
+  - KSC_Runway_Section_1
+  - KSC_Runway_Section_2
+  - KSC_Runway_Section_3
+  - KSC_Runway_Section_4
+  - KSC_Runway_Section_5
+  - KSC_Runway_09
+  - KSC_Runway_27
+  - KSC_Runway_Light_NE
+  - KSC_Runway_Light_NW
+  - KSC_Runway_Light_SE
+  - KSC_Runway_Light_SW
+  - KSC_Pad_Water_Tower
+  - KSC_Pad_Tanks
+  - KSC_Pad_Round_Tank
+  - KSC_Pad_Flag_Pole
+  - KSC_Pad_Grounds
+  - KSC_LaunchPad_Platform
+  - KSC_Crawlerway
+  - MapFXObject
+  - LaunchpadFX
+  - Baikerbanur_Launchpad
+  - Baikerbanur
+  - UI_FLIGHT_HUD
+  - UI_VAB
+  - UI_VAB_PARTS_PANEL
+  - UI_VAB_PARTS_PANEL_HIDDEN
+  - CAM_CUTSCENE
+  - Monument
+  - CutScenePrefab
+  - AtmC
+  - ManeuverNode
+  - VesselGroupRoot
+  - FuelTank
+  - TankIce
+  - EngineDemo
+  - Game Manager
+  - Game Instance
+  - UI_VAB_MANIPULATIONTOOL
+  - Test Runner
+  - PRELAUNCH_Water
+  - PRELAUNCH_Root
+  - PRELAUNCH_Sparks
+  - Staging-Stage
+  - Staging-Bin
+  - Wwise
+  - Dummy ViewObject
+  - WheelCollidersIgnore
+  - ContrailsTransform
+  - WingTipVorticesTransform
+  - KSCSelectableBuilding
+  - MainMenuScaledCamera
+  - Wheel_Piston_Collider
+  - DragCubeMesh
+  - Graphics Manager
+  - Mouse Manager
+  - KerbalEVAModelsRoot
+  - NoSameVesselCollision
+  - KerbalManager_Element
+  - OrbitalUIElement
+  - KerbalJetpackRoot
+  - UI_SCROLL
+  - Aux
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Render.PostProcessing
+  - Water
+  - UI
+  - UI.ResearchDevelopment
+  - Physx.Wheel
+  - OAB.Scenery
+  - OAB.Parts
+  - Scaled.Scenery
+  - Physx.WheelIgnore
+  - Render.DebugVectors
+  - KSCBuildings
+  - Local.Terrain
+  - Local.Scenery
+  - Internal.Scenery
+  - Local.Characters
+  - Render.Skybox
+  - Local.Parts
+  - Local.PartsActive
+  - Physx.PartTriggers
+  - Physx.Scenery
+  - 
+  - UI.PhotoBooth
+  - UI.Additional
+  - UI.OAB
+  - Map
+  - Physx.Terrain
+  - Render.DragRender
+  - Render.Flares
+  - Physx.Invisible
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+  - name: SceneUI
+    uniqueID: 2617436113
+  - name: Main
+    uniqueID: 856390857
+  - name: Apps
+    uniqueID: 3881061425
+  - name: Actions
+    uniqueID: 3344496545
+  - name: ScreenMessages
+    uniqueID: 3922335887
+  - name: Dialogs
+    uniqueID: 140877403
+  - name: DragDrop
+    uniqueID: 3248275973
+  - name: Tweening
+    uniqueID: 3158114503
+  - name: Tooltips
+    uniqueID: 1069578171
+  - name: MasterUI
+    uniqueID: 1328672607

@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 1742339303
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: klss_ui.bundle
+      Dependencies: {}

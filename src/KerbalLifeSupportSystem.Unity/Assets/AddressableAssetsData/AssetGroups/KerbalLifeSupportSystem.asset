@@ -1,0 +1,233 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: KerbalLifeSupportSystem
+  m_EditorClassIdentifier: 
+  m_GroupName: KerbalLifeSupportSystem
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 7255e8ec59fefb74f82ff1b22addad88
+  m_SerializeEntries:
+  - m_GUID: 318517b1a727b2145ad88f10c9676427
+    m_Address: KLSS_composter_2v_short.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3dc98095e820ab548a0f237dd1283cee
+    m_Address: KLSS_composter_2v_short.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf028e4319c0e92409da9b8282bc953b
+    m_Address: KLSS_composter_2v_short_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d9d743b9e942c9a4087f83e3e1889802
+    m_Address: KLSS_food_pack_0v_radial.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b438ef3911ecdac4695b530839f828a9
+    m_Address: KLSS_food_pack_0v_radial.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ad150c8499c13f44a644e8cad5d7a63
+    m_Address: KLSS_food_pack_0v_radial_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db8f1d7a8f4313a4f9a9bb960582d6f2
+    m_Address: KLSS_food_pack_2v_radial.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e570c2360cc54bf4588636dff217b4ab
+    m_Address: KLSS_food_pack_2v_radial.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dba1f4abf81634a4f8e9cd29d6c1acdc
+    m_Address: KLSS_food_pack_2v_radial_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5c9a35ff6311aa64385cf7e51ff5f324
+    m_Address: KLSS_food_tank_2v_1x2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0edb5fd84122c9644957cf78ae24d7cf
+    m_Address: KLSS_food_tank_2v_1x2.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 752cf926e28067648a095bde4fa2ca96
+    m_Address: KLSS_food_tank_2v_1x2_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb5da39294cb5a04f96e2d34b6dd7039
+    m_Address: KLSS_greenhouse_2v_long.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a93b632e1dadc1b42bd4745f5372a6b2
+    m_Address: KLSS_greenhouse_2v_long.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c9dc305b436a16948a118c1101ad7dcd
+    m_Address: KLSS_greenhouse_2v_long_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed37dd27f30dd854abfa5bf8f4508f71
+    m_Address: KLSS_life_support_tank_1v_1x1.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88b45a74a9c2e414ba2355d6fb08277e
+    m_Address: KLSS_life_support_tank_1v_1x1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2be328c6afd5b3642b44f9063882e3d3
+    m_Address: KLSS_life_support_tank_1v_1x1_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ecd509ad07a13f14b9bfd8e99e42d7a6
+    m_Address: KLSS_life_support_tank_2v_1x1.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af2c26c4ce067ce469fcceb28bcadabd
+    m_Address: KLSS_life_support_tank_2v_1x1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44aee171796465d4aae627cfada217a1
+    m_Address: KLSS_life_support_tank_2v_1x1_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4f7fedc337976da43a9ec83e890d274f
+    m_Address: KLSS_oxygen_tank_0v_radial.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c691f38c0b8c0334084275ba0be5457f
+    m_Address: KLSS_oxygen_tank_0v_radial.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 29a876cb77422cd459815a7c2bfedfe6
+    m_Address: KLSS_oxygen_tank_0v_radial_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fbb9c20eb3723084abbadf20915cfff9
+    m_Address: KLSS_oxygen_tank_2v_1x2.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c876572a84d061b438fd356ab5054958
+    m_Address: KLSS_oxygen_tank_2v_1x2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 94b704b0c6d9ee445b7a3e968cadd70e
+    m_Address: KLSS_oxygen_tank_2v_1x2_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 485f658ee6c459c478c2dc519d08670b
+    m_Address: KLSS_oxygen_tank_2v_radial.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de656fc4714402542bd340bd03ac1544
+    m_Address: KLSS_oxygen_tank_2v_radial.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ab5785ddc0fdf54fb47b5f2b21d1b90
+    m_Address: KLSS_oxygen_tank_2v_radial_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cd314d203b54ce141acdda72b8a9984b
+    m_Address: KLSS_water_tank_0v_radial.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d5673da1233f8b44e9310802e144e29c
+    m_Address: KLSS_water_tank_0v_radial.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ebc1baeced9bd784f98e8a4a059f47aa
+    m_Address: KLSS_water_tank_0v_radial_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b263b420398d24047b7e814ee15a6ba3
+    m_Address: KLSS_water_tank_2v_1x2.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a891181395d8c2f47b13a3b271d58814
+    m_Address: KLSS_water_tank_2v_1x2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 94224e57c4c408646a044c4ec74ea96b
+    m_Address: KLSS_water_tank_2v_1x2_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4626317b1cb3a4429d6925e13ccd77c
+    m_Address: KLSS_water_tank_2v_radial.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7cc56bce6f669754a88370adb0e9b2d4
+    m_Address: KLSS_water_tank_2v_radial.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 953b8b917e983b74f84e9f6ac0be236d
+    m_Address: KLSS_water_tank_2v_radial_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: ab0e05a9dcf69b340a5b2a3d0207d022, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 695272a0eedeebf43994fec83e90592d, type: 2}
+    - {fileID: 11400000, guid: 08ea309ee70b8d245871bf85f412ee4f, type: 2}

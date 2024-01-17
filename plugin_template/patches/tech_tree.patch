@@ -26,7 +26,7 @@
     ];
 }
 
-:science (#tNode_3v_payload_01,#wmcc_heavy_payloads) {
+:science (#tNode_3v_payload_01, #wmcc_heavy_payloads) {
     UnlockedPartsIDs +: [
         KLSS_food_pack_2v_radial,
         KLSS_water_tank_2v_radial,
@@ -34,7 +34,7 @@
     ];
 }
 
-:science (#tNode_2v_electronics_02,#wmcc_advanced_electronics_plus) {
+:science (#tNode_2v_electronics_02, #wmcc_advanced_electronics_plus) {
     UnlockedPartsIDs +: [
         KLSS_greenhouse_2v_long,
         KLSS_composter_2v_short

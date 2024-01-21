@@ -10,20 +10,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          lfs: true
 
       - name: Build the solution
         run: dotnet build "KerbalLifeSupportSystem.sln" -c Release
-
-      - name: Find zip
-        id: find-zip
-        run: |
-          echo "zip=$(ls -1 dist/KerbalLifeSupportSystem-*.zip | head -n 1)" >> $GITHUB_ENV
-          echo "artifact_name=KerbalLifeSupportSystemRelease" >> $GITHUB_ENV
-
-      - name: Upload zip artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.artifact_name }}
-          path: ${{ env.zip }}

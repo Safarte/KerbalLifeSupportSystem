@@ -6,6 +6,7 @@ An up-to-date visual list of all parts added by this KSP2 mod.
 
 ### GRN-250 / Medium Cylindrical Greenhouse (M)
 
+
 ![Medium cylindrical greenhouse part](../src/KerbalLifeSupportSystem.Unity/Assets/KLSS_greenhouse_2v_long_icon.png)
 
 ### CPST-150 / Medium Inline Composter (M)

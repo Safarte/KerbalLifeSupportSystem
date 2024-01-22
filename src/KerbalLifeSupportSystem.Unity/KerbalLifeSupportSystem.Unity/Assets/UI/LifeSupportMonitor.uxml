@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/LifeSupportMonitor.uss?fileID=7433441132597879392&amp;guid=948e20e61fdf82d429c77f4d910ef16a&amp;type=3#LifeSupportMonitor" />
+    <Style src="project://database/Assets/UI/LifeSupportMonitor.uss?fileID=7433441132597879392&amp;guid=6be64aa9dee7c0a40ad195c88689017d&amp;type=3#LifeSupportMonitor" />
     <ui:VisualElement name="root" class="root">
         <ui:VisualElement name="dark-bg" class="dark-bg">
             <ui:VisualElement name="border" class="border">

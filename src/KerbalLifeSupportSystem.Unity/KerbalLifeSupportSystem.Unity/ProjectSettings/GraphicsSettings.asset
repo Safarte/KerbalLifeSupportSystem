@@ -6,13 +6,13 @@ GraphicsSettings:
   serializedVersion: 15
   m_Deferred:
     m_Mode: 1
-    m_Shader: {fileID: 27, guid: 0a843f598e093919d9cbaa5d0ef0be70, type: 2}
+    m_Shader: {fileID: 69, guid: 0000000000000000f000000000000000, type: 0}
   m_DeferredReflections:
     m_Mode: 1
-    m_Shader: {fileID: 107, guid: 6ac6698179b5e562cb96540a62d40aba, type: 2}
+    m_Shader: {fileID: 74, guid: 0000000000000000f000000000000000, type: 0}
   m_ScreenSpaceShadows:
     m_Mode: 1
-    m_Shader: {fileID: 65, guid: f468094628b69808ada3f748b1d2cc63, type: 2}
+    m_Shader: {fileID: 64, guid: 0000000000000000f000000000000000, type: 0}
   m_DepthNormals:
     m_Mode: 2
     m_Shader: {fileID: 90, guid: c54f0470ed9d1438b1d229e6973bdea7, type: 2}

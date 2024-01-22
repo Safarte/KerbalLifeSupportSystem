@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KerbalLifeSupportSystem", "src\KerbalLifeSupportSystem\KerbalLifeSupportSystem.csproj", "{6440ACC6-EEF0-4621-93AE-28B316BD90C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KerbalLifeSupportSystem.Unity", "src\KerbalLifeSupportSystem.Unity\KerbalLifeSupportSystem.Unity.csproj", "{BADDEE50-86A5-4AD0-9EE2-75468AD8AAAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,14 @@ Global
 		{6440ACC6-EEF0-4621-93AE-28B316BD90C5}.DeployAndRun|Any CPU.Build.0 = DeployAndRun|Any CPU
 		{6440ACC6-EEF0-4621-93AE-28B316BD90C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6440ACC6-EEF0-4621-93AE-28B316BD90C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BADDEE50-86A5-4AD0-9EE2-75468AD8AAAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BADDEE50-86A5-4AD0-9EE2-75468AD8AAAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BADDEE50-86A5-4AD0-9EE2-75468AD8AAAC}.Deploy|Any CPU.ActiveCfg = Deploy|Any CPU
+		{BADDEE50-86A5-4AD0-9EE2-75468AD8AAAC}.Deploy|Any CPU.Build.0 = Deploy|Any CPU
+		{BADDEE50-86A5-4AD0-9EE2-75468AD8AAAC}.DeployAndRun|Any CPU.ActiveCfg = DeployAndRun|Any CPU
+		{BADDEE50-86A5-4AD0-9EE2-75468AD8AAAC}.DeployAndRun|Any CPU.Build.0 = DeployAndRun|Any CPU
+		{BADDEE50-86A5-4AD0-9EE2-75468AD8AAAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BADDEE50-86A5-4AD0-9EE2-75468AD8AAAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

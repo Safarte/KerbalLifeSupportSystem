@@ -4,6 +4,8 @@ using KSP.Sim;
 using KSP.Sim.impl;
 using KSP.Sim.ResourceSystem;
 
+// ReSharper disable InconsistentNaming
+
 namespace KerbalLifeSupportSystem.Modules;
 
 public class PartComponentModule_LifeSupportConsumer : PartComponentModule
@@ -18,17 +20,11 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
     // Module data
     private Data_LifeSupportConsumer _dataLifeSupportConsumer;
 
-    // Are there resource requests that need to be handled
-    private bool _hasPendingRequests;
-
     // List of Kerbals in the part
     private List<KerbalInfo> _kerbalsInSimObject = new();
 
     // Game's database for the resource definitions
     private ResourceDefinitionDatabase _resourceDB;
-
-    // State of the last resource request resolution
-    private FlowRequestResolutionState _returnedRequestResolution;
 
     // Game's Kerbals roster manager
     private KerbalRosterManager _rosterManager;
@@ -56,12 +52,7 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
             _rosterManager = GameManager.Instance.Game.SessionManager.KerbalRosterManager;
 
             // Set up resource request
-            resourceFlowRequestBroker.SetCommands(_dataLifeSupportConsumer.RequestHandle,
-                _dataLifeSupportConsumer.LifeSupportDefinition.AcceptanceThreshold,
-                _dataLifeSupportConsumer.RequestConfig);
-            resourceFlowRequestBroker.SetRequestActive(_dataLifeSupportConsumer.RequestHandle);
-            RefreshIngredientDataStructures();
-            SetResourceRates();
+            SetupIngredientDataStructures();
 
             // Kerbal EVA handling
             Game.Messages.Subscribe<KerbalLocationChanged>(OnKerbalLocationChanged);
@@ -86,40 +77,63 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
             if (!_dataLifeSupportConsumer.lastConsumed.ContainsKey(kerbal.NameKey))
                 _dataLifeSupportConsumer.lastConsumed[kerbal.NameKey] = new Dictionary<string, double>();
 
-        // Send life-support resource request
-        RefreshIngredientDataStructures();
-        SendResourceRequest();
-
-        // Handle resource request response
-        if (_hasPendingRequests) ResolveResourceRequest(universalTime);
-        _hasPendingRequests = true;
-
+        UpdateIngredients();
+        SendResourceRequest(deltaUniversalTime);
+        UpdateLastConsumed(universalTime);
         UpdateKerbalsStatus(universalTime);
     }
 
-    private void ResolveResourceRequest(double time)
+    /// <summary>
+    ///     Update ingredient and product data structures
+    /// </summary>
+    private void UpdateIngredients()
     {
-        // Get resource request response
-        _returnedRequestResolution = resourceFlowRequestBroker.GetRequestState(_dataLifeSupportConsumer.RequestHandle);
-
-        UpdateLastConsumed(time);
-        if (!_returnedRequestResolution.WasLastTickDeliveryAccepted)
+        // Products
+        for (var i = 0; i < _currentProductUnits.Length; ++i)
         {
-            // If delivery was denied, resend a resource request only for the remaining resources
-            ClearMissingResources();
-            SendResourceRequest();
+            // Find product resource scale setting
+            var outputName = _dataLifeSupportConsumer.LifeSupportDefinition.OutputResources[i].ResourceName;
+            var inputName = KerbalLifeSupportSystemPlugin.Instance.LsOutputInputNames[outputName];
+            var scale = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates[inputName].Value;
+
+            // Remove product from request if container full
+            _currentProductUnits[i].units =
+                _containerGroup.GetResourceCapacityUnits(_currentProductUnits[i].resourceID) <
+                _dataLifeSupportConsumer.LifeSupportDefinition.AcceptanceThreshold
+                    ? 0.0
+                    : _dataLifeSupportConsumer.LifeSupportDefinition.OutputResources[i].Rate *
+                      _dataLifeSupportConsumer.numKerbals * scale;
         }
 
-        _hasPendingRequests = false;
+        // Ingredients
+        for (var i = 0; i < _currentIngredientUnits.Length; ++i)
+        {
+            // Find ingredient resource scale setting
+            var scale = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates[
+                _dataLifeSupportConsumer.LifeSupportDefinition.InputResources[i].ResourceName].Value;
+
+            // Remove ingredient from request if container empty
+            _currentIngredientUnits[i].units =
+                _containerGroup.GetResourceStoredUnits(_currentIngredientUnits[i].resourceID) <
+                _dataLifeSupportConsumer.LifeSupportDefinition.AcceptanceThreshold
+                    ? 0.0
+                    : _currentIngredientUnits[i].units =
+                        _dataLifeSupportConsumer.LifeSupportDefinition.InputResources[i].Rate *
+                        _dataLifeSupportConsumer.numKerbals * scale;
+        }
     }
 
+    /// <summary>
+    ///     Update the Data_LifeSupportConsumer.lastConsumed data structure based on remaining supplies
+    /// </summary>
+    /// <param name="time"></param>
     private void UpdateLastConsumed(double time)
     {
         foreach (var ingredient in _currentIngredientUnits)
         {
             var resourceName = _resourceDB.GetResourceNameFromID(ingredient.resourceID);
 
-            // If resource is not exhausted, set last consumed to now
+            // If resource is not exhausted, set last consumed to given time
             if (_containerGroup.GetResourceStoredUnits(ingredient.resourceID) >
                 _dataLifeSupportConsumer.LifeSupportDefinition.AcceptanceThreshold)
                 foreach (var kerbal in _kerbalsInSimObject)
@@ -127,30 +141,30 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
         }
     }
 
-    private void ClearMissingResources()
+    /// <summary>
+    ///     Consume ingredients and produce products based on the current consumption data structures and elapsed time
+    /// </summary>
+    /// <param name="deltaTime">Elapsed universal time</param>
+    private void SendResourceRequest(double deltaTime)
     {
-        // Clear missing products
-        for (var i = 0; i < _currentProductUnits.Length; ++i)
-            if (_containerGroup.GetResourceCapacityUnits(_currentProductUnits[i].resourceID) <
-                _dataLifeSupportConsumer.LifeSupportDefinition.AcceptanceThreshold)
-                _currentProductUnits[i].units = 0.0;
+        var inputCount = _dataLifeSupportConsumer.LifeSupportDefinition.InputResources.Count;
+        var outputCount = _dataLifeSupportConsumer.LifeSupportDefinition.OutputResources.Count;
 
-        // Clear missing ingredients
-        for (var i = 0; i < _currentIngredientUnits.Length; ++i)
-            if (_containerGroup.GetResourceStoredUnits(_currentIngredientUnits[i].resourceID) <
-                _dataLifeSupportConsumer.LifeSupportDefinition.AcceptanceThreshold)
-                _currentIngredientUnits[i].units = 0.0;
+        // Ingredients
+        for (var i = 0; i < inputCount; ++i)
+            _containerGroup.RemoveResourceUnits(_currentIngredientUnits[i].resourceID, _currentIngredientUnits[i].units,
+                deltaTime);
+
+        // Products
+        for (var i = 0; i < outputCount; ++i)
+            _containerGroup.AddResourceUnits(_currentProductUnits[i].resourceID, _currentProductUnits[i].units,
+                deltaTime);
     }
 
-    private void SendResourceRequest()
-    {
-        SetResourceRates();
-        resourceFlowRequestBroker.SetCommands(_dataLifeSupportConsumer.RequestHandle,
-            _dataLifeSupportConsumer.LifeSupportDefinition.AcceptanceThreshold, _dataLifeSupportConsumer.RequestConfig);
-        resourceFlowRequestBroker.SetRequestActive(_dataLifeSupportConsumer.RequestHandle);
-    }
-
-    private void RefreshIngredientDataStructures()
+    /// <summary>
+    ///     Setup the data structures storing the ingredients and products for life-support on the part
+    /// </summary>
+    private void SetupIngredientDataStructures()
     {
         var inputCount = _dataLifeSupportConsumer.LifeSupportDefinition.InputResources.Count;
         var outputCount = _dataLifeSupportConsumer.LifeSupportDefinition.OutputResources.Count;
@@ -161,9 +175,14 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
         var resourceUnitsPair = new ResourceUnitsPair();
         for (var i = 0; i < inputCount; ++i)
         {
-            var scale = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates[
-                _dataLifeSupportConsumer.LifeSupportDefinition.InputResources[i].ResourceName].Value;
-            resourceUnitsPair.resourceID = _dataLifeSupportConsumer.ResourceDefinitions[i];
+            // Resource name
+            var inputName = _dataLifeSupportConsumer.LifeSupportDefinition.InputResources[i].ResourceName;
+
+            // Consumption scale setting
+            var scale = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates[inputName].Value;
+
+            // Setup the resource
+            resourceUnitsPair.resourceID = _resourceDB.GetResourceIDFromName(inputName);
             resourceUnitsPair.units = _dataLifeSupportConsumer.LifeSupportDefinition.InputResources[i].Rate *
                                       _dataLifeSupportConsumer.numKerbals * scale;
             _currentIngredientUnits[i] = resourceUnitsPair;
@@ -171,27 +190,25 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
 
         for (var i = 0; i < outputCount; ++i)
         {
+            // Resource name
             var outputName = _dataLifeSupportConsumer.LifeSupportDefinition.OutputResources[i].ResourceName;
+
+            // Get consumption scale from corresponding input resource
             var inputName = KerbalLifeSupportSystemPlugin.Instance.LsOutputInputNames[outputName];
             var scale = KerbalLifeSupportSystemPlugin.Instance.ConsumptionRates[inputName].Value;
-            resourceUnitsPair.resourceID = _dataLifeSupportConsumer.ResourceDefinitions[inputCount + i];
+
+            // Setup resource
+            resourceUnitsPair.resourceID = _resourceDB.GetResourceIDFromName(outputName);
             resourceUnitsPair.units = _dataLifeSupportConsumer.LifeSupportDefinition.OutputResources[i].Rate *
                                       _dataLifeSupportConsumer.numKerbals * scale;
             _currentProductUnits[i] = resourceUnitsPair;
         }
     }
 
-    private void SetResourceRates()
-    {
-        var inputCount = _dataLifeSupportConsumer.LifeSupportDefinition.InputResources.Count;
-
-        for (var i = 0; i < _dataLifeSupportConsumer.RequestConfig.Length; ++i)
-            _dataLifeSupportConsumer.RequestConfig[i].FlowUnits =
-                i >= inputCount
-                    ? _currentProductUnits[i - inputCount].units
-                    : _currentIngredientUnits[i].units;
-    }
-
+    /// <summary>
+    ///     Updates the status of all Kerbals in the part based on the last time they consumed LS resources
+    /// </summary>
+    /// <param name="universalTime">Current universal time</param>
     private void UpdateKerbalsStatus(double universalTime)
     {
         foreach (var kerbal in _kerbalsInSimObject)
@@ -251,9 +268,10 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
             // Kerbal resource container group
             var kerbalContainerGroup = newSimObject.Part.PartOwner.ContainerGroup;
 
+            // Transfer resources to new EVA Kerbal
             for (var i = 0; i < _dataLifeSupportConsumer.LifeSupportDefinition.InputResources.Count; ++i)
             {
-                var resourceID = _dataLifeSupportConsumer.ResourceDefinitions[i];
+                var resourceID = _currentIngredientUnits[i].resourceID;
 
                 // Split the remaining resources evenly between the EVA Kerbal & the Kerbals remaining in the part
                 var resourceUnits =
@@ -271,10 +289,10 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
             // Kerbal resource container group
             var kerbalContainerGroup = oldSimObject.Part.PartOwner.ContainerGroup;
 
-            // Resource request configs setup
+            // Transfer all resources remaining on the Kerbal to the new vessel
             for (var i = 0; i < _dataLifeSupportConsumer.LifeSupportDefinition.InputResources.Count; ++i)
             {
-                var resourceID = _dataLifeSupportConsumer.ResourceDefinitions[i];
+                var resourceID = _currentIngredientUnits[i].resourceID;
 
                 _containerGroup.AddResourceUnits(resourceID, kerbalContainerGroup.GetResourceStoredUnits(resourceID));
             }

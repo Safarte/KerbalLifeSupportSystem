@@ -18,32 +18,32 @@
                             {
                                 Rate: $crewCapacity,
                                 ResourceName: ElectricCharge,
-                                AcceptanceThreshold: 0.001
+                                AcceptanceThreshold: 0.01
                             },
                             {
                                 Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: CarbonDioxide,
-                                AcceptanceThreshold: 0.00000001
+                                AcceptanceThreshold: 0.01
                             },
                             {
                                 Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: WasteWater,
-                                AcceptanceThreshold: 0.00000001
+                                AcceptanceThreshold: 0.01
                             }
                         ],
                         OutputResources: [
                             {
                                 Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: Oxygen,
-                                AcceptanceThreshold: 0.00000001
+                                AcceptanceThreshold: 0.01
                             },
                             {
                                 Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: Water,
-                                AcceptanceThreshold: 0.00000001
+                                AcceptanceThreshold: 0.01
                             }  
                         ],
-                        AcceptanceThreshold: 0.00000001
+                        AcceptanceThreshold: 0.000001
                     },
                     {
                         InternalName: KLSS_CO2Scrubber,
@@ -52,22 +52,22 @@
                             {
                                 Rate: 0.5 * $crewCapacity,
                                 ResourceName: ElectricCharge,
-                                AcceptanceThreshold: 0.001
+                                AcceptanceThreshold: 0.01
                             },
                             {
                                 Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: CarbonDioxide,
-                                AcceptanceThreshold: 0.00000001
+                                AcceptanceThreshold: 0.01
                             }
                         ],
                         OutputResources: [
                             {
                                 Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $OXYGEN_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: Oxygen,
-                                AcceptanceThreshold: 0.00000001
+                                AcceptanceThreshold: 0.01
                             }                         
                         ],
-                        AcceptanceThreshold: 0.00000001
+                        AcceptanceThreshold: 0.000001
                     },
                     {
                         InternalName: KLSS_WaterRecycler,
@@ -76,22 +76,22 @@
                             {
                                 Rate: 0.5 * $crewCapacity,
                                 ResourceName: ElectricCharge,
-                                AcceptanceThreshold: 0.001
+                                AcceptanceThreshold: 0.01
                             },
                             {
                                 Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: WasteWater,
-                                AcceptanceThreshold: 0.00000001
+                                AcceptanceThreshold: 0.01
                             }
                         ],
                         OutputResources: [
                             {
                                 Rate: $RECYCLER_EFFICIENCY * $crewCapacity * $WATER_PER_DAY / $SECONDS_PER_DAY,
                                 ResourceName: Water,
-                                AcceptanceThreshold: 0.00000001
+                                AcceptanceThreshold: 0.01
                             }                         
                         ],
-                        AcceptanceThreshold: 0.00000001
+                        AcceptanceThreshold: 0.000001
                     }
                 ];
             }

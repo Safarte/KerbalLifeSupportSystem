@@ -14,6 +14,6 @@
         <PackageReference Include="UnityEngine.Modules" Version="2022.3.5"/>
     </ItemGroup>
     <ItemGroup Label="Project references">
-        <ProjectReference Include="..\KerbalLifeSupportSytem.Unity\KerbalLifeSupportSytem.Unity.csproj" Private="false"/>
+        <ProjectReference Include="..\KerbalLifeSupportSystem.Unity\KerbalLifeSupportSystem.Unity.csproj" Private="false"/>
     </ItemGroup>
 </Project>

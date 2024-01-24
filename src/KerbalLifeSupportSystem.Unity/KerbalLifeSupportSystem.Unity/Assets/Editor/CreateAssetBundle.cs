@@ -6,7 +6,7 @@ public class CreateAssetBundles
     [MenuItem("Assets/Build AssetBundles")]
     static void BuildAllAssetBundles()
     {
-        string assetBundleDirectory = "Assets/AssetBundles";
+        string assetBundleDirectory = "Assets/plugin_template/assets/bundles";
         if (!Directory.Exists(assetBundleDirectory))
         {
             Directory.CreateDirectory(assetBundleDirectory);

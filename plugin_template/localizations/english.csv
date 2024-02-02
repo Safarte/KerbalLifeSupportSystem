@@ -1,92 +1,92 @@
-Key,Type,Desc,English
+Key,Type,Desc,English,Chinese (Simplified)
 
-VAB/PartsPicker/0505-LifeSupport,Text,,Life Support
+VAB/PartsPicker/0505-LifeSupport,Text,,Life Support,生命保障
 
-PartModules/LifeSupportRecycler/Name,Text,,Life Support
-KLSS/LSR/RecyclerEnabled,Text,,Recycler Enabled
-KLSS/LSR/StartRecycler,Text,,Start Recycler
-KLSS/LSR/Tooltip/StopRecycler,Text,,Stop Recycler
-KLSS/LSR/Tooltip/ToggleRecycler,Text,,Toggle Recycler
-KLSS/LSR/Formulas/CO2Scrubber,Text,,CO2 Scrubber
-KLSS/LSR/Formulas/WaterRecycler,Text,,Water Recycler
-KLSS/LSR/Formulas/Combined,Text,,CO2 Scrubber + Water Recycler
+PartModules/LifeSupportRecycler/Name,Text,,Life Support,生命保障
+KLSS/LSR/RecyclerEnabled,Text,,Recycler Enabled,循环处理器已启用
+KLSS/LSR/StartRecycler,Text,,Start Recycler,启用循环处理器
+KLSS/LSR/Tooltip/StopRecycler,Text,,Stop Recycler,停用循环处理器
+KLSS/LSR/Tooltip/ToggleRecycler,Text,,Toggle Recycler,切换循环模式
+KLSS/LSR/Formulas/CO2Scrubber,Text,,CO2 Scrubber,CO2洗涤器
+KLSS/LSR/Formulas/WaterRecycler,Text,,Water Recycler,水回收器
+KLSS/LSR/Formulas/Combined,Text,,CO2 Scrubber + Water Recycler,CO2洗涤器 + 水回收器
 
-PartModules/Greenhouse/Name,Text,,Greenhouse
-KLSS/LSR/GreenhouseEnabled,Text,,Greenhouse Enabled
-KLSS/LSR/StartGreenhouse,Text,,Start Greenhouse
-KLSS/LSR/Tooltip/StopGreenhouse,Text,,Stop Greenhouse
-KLSS/LSR/Tooltip/ToggleGreenhouse,Text,,Toggle Greenhouse
-KLSS/LSR/Formulas/Greenhouse,Text,,Unfertilized
-KLSS/LSR/Formulas/GreenhouseFertilized,Text,,Fertilized
+PartModules/Greenhouse/Name,Text,,Greenhouse,温室
+KLSS/LSR/GreenhouseEnabled,Text,,Greenhouse Enabled,温室已启用
+KLSS/LSR/StartGreenhouse,Text,,Start Greenhouse,启用温室
+KLSS/LSR/Tooltip/StopGreenhouse,Text,,Stop Greenhouse,停用温室
+KLSS/LSR/Tooltip/ToggleGreenhouse,Text,,Toggle Greenhouse,切换温室模式
+KLSS/LSR/Formulas/Greenhouse,Text,,Unfertilized,不施肥
+KLSS/LSR/Formulas/GreenhouseFertilized,Text,,Fertilized,施肥
 
-PartModules/Composter/Name,Text,,Composter
-KLSS/LSR/ComposterEnabled,Text,,Composter Enabled
-KLSS/LSR/StartComposter,Text,,Start Composter
-KLSS/LSR/Tooltip/StopComposter,Text,,Stop Composter
-KLSS/LSR/Tooltip/ToggleComposter,Text,,Toggle Composter
-KLSS/LSR/Formulas/Composter,Text,,Composter
+PartModules/Composter/Name,Text,,Composter,堆肥舱
+KLSS/LSR/ComposterEnabled,Text,,Composter Enabled,堆肥舱已启用
+KLSS/LSR/StartComposter,Text,,Start Composter,启用堆肥舱
+KLSS/LSR/Tooltip/StopComposter,Text,,Stop Composter,停用堆肥舱
+KLSS/LSR/Tooltip/ToggleComposter,Text,,Toggle Composter,切换堆肥模式
+KLSS/LSR/Formulas/Composter,Text,,Composter,堆肥
 
-Parts/Title/KLSS_life_support_tank_1v_1x1,Text,,SCS-100
-Parts/Subtitle/KLSS_life_support_tank_1v_1x1,Text,,Small Combined Storage
-Parts/Manufacturer/KLSS_life_support_tank_1v_1x1,Text,,Yummy Snacks Inc.
-Parts/Description/KLSS_life_support_tank_1v_1x1,Text,,The SLSS-100 is a short small-diameter Life-Support storage module. Perfect for your near-Kerbin solo missions or your daring long-distance missions.
+Parts/Title/KLSS_life_support_tank_1v_1x1,Text,,SCS-100,SCS-100
+Parts/Subtitle/KLSS_life_support_tank_1v_1x1,Text,,Small Combined Storage,小型混合储藏舱
+Parts/Manufacturer/KLSS_life_support_tank_1v_1x1,Text,,Yummy Snacks Inc.,好吃零食公司
+Parts/Description/KLSS_life_support_tank_1v_1x1,Text,,The SLSS-100 is a short small-diameter Life-Support storage module. Perfect for your near-Kerbin solo missions or your daring long-distance missions.,SLSS-100是一款小型的生命保障资源储藏模块。非常适合你在坎星附近的单人任务或大胆的长途任务。
 
-Parts/Title/KLSS_life_support_tank_2v_1x1,Text,,MCS-100
-Parts/Subtitle/KLSS_life_support_tank_2v_1x1,Text,,Medium Combined Storage
-Parts/Manufacturer/KLSS_life_support_tank_2v_1x1,Text,,Yummy Snacks Inc.
-Parts/Description/KLSS_life_support_tank_2v_1x1,Text,,The MLSS-100 is a short medium-diameter Life-Support storage module. If you need a service module to go to the Mun this is the part for you!
+Parts/Title/KLSS_life_support_tank_2v_1x1,Text,,MCS-100,MCS-100
+Parts/Subtitle/KLSS_life_support_tank_2v_1x1,Text,,Medium Combined Storage,中型混合储藏舱
+Parts/Manufacturer/KLSS_life_support_tank_2v_1x1,Text,,Yummy Snacks Inc.,好吃零食公司
+Parts/Description/KLSS_life_support_tank_2v_1x1,Text,,The MLSS-100 is a short medium-diameter Life-Support storage module. If you need a service module to go to the Mun this is the part for you!,MLSS-100是一款中型的生命保障资源储藏模块。如果你需要去Mun，这就是适合你的一款服务舱！
 
-Parts/Title/KLSS_food_tank_2v_1x2,Text,,MFS-200
-Parts/Subtitle/KLSS_food_tank_2v_1x2,Text,,Medium Food Storage
-Parts/Manufacturer/KLSS_food_tank_2v_1x2,Text,,Yummy Snacks Inc.
-Parts/Description/KLSS_food_tank_2v_1x2,Text,,The MFS-200 is a medium-diameter Food storage module. This is what was used on the famous Kygnus resupply vessel.
+Parts/Title/KLSS_food_tank_2v_1x2,Text,,MFS-200,MFS-200
+Parts/Subtitle/KLSS_food_tank_2v_1x2,Text,,Medium Food Storage,中型食物储藏舱
+Parts/Manufacturer/KLSS_food_tank_2v_1x2,Text,,Yummy Snacks Inc.,好吃零食公司
+Parts/Description/KLSS_food_tank_2v_1x2,Text,,The MFS-200 is a medium-diameter Food storage module. This is what was used on the famous Kygnus resupply vessel.,MFS-200是一款中型的食品储藏模块。这就是著名的天鹅座号补给飞船所使用的模块。
 
-Parts/Title/KLSS_water_tank_2v_1x2,Text,,MWS-200
-Parts/Subtitle/KLSS_water_tank_2v_1x2,Text,,Medium Water Storage
-Parts/Manufacturer/KLSS_water_tank_2v_1x2,Text,,Yummy Snacks Inc.
-Parts/Description/KLSS_water_tank_2v_1x2,Text,,The MFS-200 is a medium-diameter Water storage module. This is what was used on the famous Kygnus resupply vessel.
+Parts/Title/KLSS_water_tank_2v_1x2,Text,,MWS-200,MWS-200
+Parts/Subtitle/KLSS_water_tank_2v_1x2,Text,,Medium Water Storage,中型水储藏舱
+Parts/Manufacturer/KLSS_water_tank_2v_1x2,Text,,Yummy Snacks Inc.,好吃零食公司
+Parts/Description/KLSS_water_tank_2v_1x2,Text,,The MFS-200 is a medium-diameter Water storage module. This is what was used on the famous Kygnus resupply vessel.,MWS-200是一款中型的水储藏模块。这就是著名的天鹅座号补给飞船所使用的模块。
 
-Parts/Title/KLSS_oxygen_tank_2v_1x2,Text,,MOS-200
-Parts/Subtitle/KLSS_oxygen_tank_2v_1x2,Text,,Medium Oxygen Storage
-Parts/Manufacturer/KLSS_oxygen_tank_2v_1x2,Text,,Yummy Snacks Inc.
-Parts/Description/KLSS_oxygen_tank_2v_1x2,Text,,The MFS-200 is a medium-diameter Oxygen storage module. This is what was used on the famous Kygnus resupply vessel.
+Parts/Title/KLSS_oxygen_tank_2v_1x2,Text,,MOS-200,MOS-200
+Parts/Subtitle/KLSS_oxygen_tank_2v_1x2,Text,,Medium Oxygen Storage,中型氧气储藏舱
+Parts/Manufacturer/KLSS_oxygen_tank_2v_1x2,Text,,Yummy Snacks Inc.,好吃零食公司
+Parts/Description/KLSS_oxygen_tank_2v_1x2,Text,,The MFS-200 is a medium-diameter Oxygen storage module. This is what was used on the famous Kygnus resupply vessel.,MOS-200是一款中型的氧气储藏模块。这就是著名的天鹅座号补给飞船所使用的模块。
 
-Parts/Title/KLSS_food_pack_0v_radial,Text,,PFS-10
-Parts/Subtitle/KLSS_food_pack_0v_radial,Text,,Portable Food Storage
-Parts/Manufacturer/KLSS_food_pack_0v_radial,Text,,Yummy Snacks Inc.
-Parts/Description/KLSS_food_pack_0v_radial,Text,,The PFS-10 is an extra small radially attached Food pack. Perfect for quick rover expedition on another world.
+Parts/Title/KLSS_food_pack_0v_radial,Text,,PFS-10,PFS-10
+Parts/Subtitle/KLSS_food_pack_0v_radial,Text,,Portable Food Storage,便携式食物储藏包
+Parts/Manufacturer/KLSS_food_pack_0v_radial,Text,,Yummy Snacks Inc.,好吃零食公司
+Parts/Description/KLSS_food_pack_0v_radial,Text,,The PFS-10 is an extra small radially attached Food pack. Perfect for quick rover expedition on another world.,PFS-10是一款超小型径向连接的食物包。非常适合在另一个世界进行快速漫游探险。
 
-Parts/Title/KLSS_water_tank_0v_radial,Text,,PWS-10
-Parts/Subtitle/KLSS_water_tank_0v_radial,Text,,Portable Water Storage
-Parts/Manufacturer/KLSS_water_tank_0v_radial,Text,,Yummy Snacks Inc.
-Parts/Description/KLSS_water_tank_0v_radial,Text,,The PWS-10 is an extra small radially attached Water tank. Perfect for quick rover expedition on another world.
+Parts/Title/KLSS_water_tank_0v_radial,Text,,PWS-10,PWS-10
+Parts/Subtitle/KLSS_water_tank_0v_radial,Text,,Portable Water Storage,便携式水储藏罐
+Parts/Manufacturer/KLSS_water_tank_0v_radial,Text,,Yummy Snacks Inc.,好吃零食公司
+Parts/Description/KLSS_water_tank_0v_radial,Text,,The PWS-10 is an extra small radially attached Water tank. Perfect for quick rover expedition on another world.,PWS-10是一款超小型径向连接的水罐。非常适合在另一个世界进行快速漫游探险。
 
-Parts/Title/KLSS_oxygen_tank_0v_radial,Text,,POS-10
-Parts/Subtitle/KLSS_oxygen_tank_0v_radial,Text,,Portable Oxygen Storage
-Parts/Manufacturer/KLSS_oxygen_tank_0v_radial,Text,,Yummy Snacks Inc.
-Parts/Description/KLSS_oxygen_tank_0v_radial,Text,,The POS-10 is an extra small radially attached Oxygen tank. Perfect for quick rover expedition on another world.
+Parts/Title/KLSS_oxygen_tank_0v_radial,Text,,POS-10,POS-10
+Parts/Subtitle/KLSS_oxygen_tank_0v_radial,Text,,Portable Oxygen Storage,便携式氧气储藏罐
+Parts/Manufacturer/KLSS_oxygen_tank_0v_radial,Text,,Yummy Snacks Inc.,好吃零食公司
+Parts/Description/KLSS_oxygen_tank_0v_radial,Text,,The POS-10 is an extra small radially attached Oxygen tank. Perfect for quick rover expedition on another world.,POS-10是一款超小型径向连接的氧气罐。非常适合在另一个世界进行快速漫游探险。
 
-Parts/Title/KLSS_food_pack_2v_radial,Text,,TFC-300
-Parts/Subtitle/KLSS_food_pack_2v_radial,Text,,Triangular Food Container
-Parts/Manufacturer/KLSS_food_pack_2v_radial,Text,,Yummy Snacks Inc.
-Parts/Description/KLSS_food_pack_2v_radial,Text,,The TFC-300 is a medium size radially attached Food container. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.
+Parts/Title/KLSS_food_pack_2v_radial,Text,,TFC-300,TFC-300
+Parts/Subtitle/KLSS_food_pack_2v_radial,Text,,Triangular Food Container,三角形食物容器
+Parts/Manufacturer/KLSS_food_pack_2v_radial,Text,,Yummy Snacks Inc.,好吃零食公司
+Parts/Description/KLSS_food_pack_2v_radial,Text,,The TFC-300 is a medium size radially attached Food container. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.,TFC-300是一款中型的径向连接的食物容器。这个巧克力条形状的存储空间是你执行殖民地间补给任务所需的。
 
-Parts/Title/KLSS_water_tank_2v_radial,Text,,TWC-300
-Parts/Subtitle/KLSS_water_tank_2v_radial,Text,,Triangular Water Container
-Parts/Manufacturer/KLSS_water_tank_2v_radial,Text,,Yummy Snacks Inc.
-Parts/Description/KLSS_water_tank_2v_radial,Text,,The TWC-300 is a medium size radially attached Water tank. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.
+Parts/Title/KLSS_water_tank_2v_radial,Text,,TWC-300,TWC-300
+Parts/Subtitle/KLSS_water_tank_2v_radial,Text,,Triangular Water Container,三角形水容器
+Parts/Manufacturer/KLSS_water_tank_2v_radial,Text,,Yummy Snacks Inc.,好吃零食公司
+Parts/Description/KLSS_water_tank_2v_radial,Text,,The TWC-300 is a medium size radially attached Water tank. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.,TWC-300是一款中型的径向连接的水容器。这个巧克力条形状的存储空间是你执行殖民地间补给任务所需的。
 
-Parts/Title/KLSS_oxygen_tank_2v_radial,Text,,TOC-300
-Parts/Subtitle/KLSS_oxygen_tank_2v_radial,Text,,Triangular Oxygen Container
-Parts/Manufacturer/KLSS_oxygen_tank_2v_radial,Text,,Yummy Snacks Inc.
-Parts/Description/KLSS_oxygen_tank_2v_radial,Text,,The TOC-300 is a medium size radially attached Oxygen tank. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.
+Parts/Title/KLSS_oxygen_tank_2v_radial,Text,,TOC-300,TOC-300
+Parts/Subtitle/KLSS_oxygen_tank_2v_radial,Text,,Triangular Oxygen Container,三角形氧气容器
+Parts/Manufacturer/KLSS_oxygen_tank_2v_radial,Text,,Yummy Snacks Inc.,好吃零食公司
+Parts/Description/KLSS_oxygen_tank_2v_radial,Text,,The TOC-300 is a medium size radially attached Oxygen tank. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.,TOC-300是一款中型的径向连接的氧气容器。这个巧克力条形状的存储空间是你执行殖民地间补给任务所需的。
 
-Parts/Title/KLSS_greenhouse_2v_long,Text,,GRN-250
-Parts/Subtitle/KLSS_greenhouse_2v_long,Text,,Medium Cylindrical Greenhouse
-Parts/Manufacturer/KLSS_greenhouse_2v_long,Text,,Yummy Snacks Inc.
-Parts/Description/KLSS_greenhouse_2v_long,Text,,Our fine botanists have perfected the technology needed to grow Leeks & Snacks in any situation: orbit, ground base, anything!
+Parts/Title/KLSS_greenhouse_2v_long,Text,,GRN-250,GRN-250
+Parts/Subtitle/KLSS_greenhouse_2v_long,Text,,Medium Cylindrical Greenhouse,中型圆筒温室
+Parts/Manufacturer/KLSS_greenhouse_2v_long,Text,,Yummy Snacks Inc.,好吃零食公司
+Parts/Description/KLSS_greenhouse_2v_long,Text,,"Our fine botanists have perfected the technology needed to grow Leeks & Snacks in any situation: orbit, ground base, anything!","我们优秀的植物学家已经完善了在任何情况下种植蔬菜和零食所需的技术：轨道、地面、任何地方！"
 
-Parts/Title/KLSS_composter_2v_short,Text,,CPST-150
-Parts/Subtitle/KLSS_composter_2v_short,Text,,Medium Inline Composter
-Parts/Manufacturer/KLSS_composter_2v_short,Text,,Yummy Snacks Inc.
-Parts/Description/KLSS_composter_2v_short,Text,,Let's not let all the byproducts coming from our Kerbals go to waste! Convert Waste from Kerbals into Fertilizer that can be used in greenhouses.
+Parts/Title/KLSS_composter_2v_short,Text,,CPST-150,CPST-150
+Parts/Subtitle/KLSS_composter_2v_short,Text,,Medium Inline Composter,中型轴向堆肥舱
+Parts/Manufacturer/KLSS_composter_2v_short,Text,,Yummy Snacks Inc.,好吃零食公司
+Parts/Description/KLSS_composter_2v_short,Text,,Let's not let all the byproducts coming from our Kerbals go to waste! Convert Waste from Kerbals into Fertilizer that can be used in greenhouses.,我们不要让坎巴拉人的生活垃圾被浪费掉！将维生系统的副产品转化为可用于温室的肥料。

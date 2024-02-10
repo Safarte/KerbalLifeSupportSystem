@@ -6,7 +6,7 @@
                 <ui:VisualElement name="container" class="container">
                     <ui:VisualElement name="title-bar" class="title-bar">
                         <ui:VisualElement name="title-icon" class="title-icon text-light" />
-                        <ui:Label text="LIFE-SUPPORT" display-tooltip-when-elided="true" name="title" class="title ls-monitor-gray" />
+                        <ui:Label text="LIFE-SUPPORT" display-tooltip-when-elided="true" name="title" class="title ls-monitor-white" />
                         <ui:VisualElement name="title-line" class="title-line">
                             <ui:Label text="––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––" display-tooltip-when-elided="true" name="title-line-dashes" class="text-dark" style="margin-left: 0; margin-right: 0; margin-top: -2px; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; font-size: 14px; overflow: hidden;" />
                             <ui:Label text="/" display-tooltip-when-elided="true" name="title-line-slash" class="text-dark" style="font-size: 10px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
@@ -24,7 +24,9 @@
                     <ui:VisualElement name="ls-entries" class="lsEntries">
                         <KerbalLifeSupportSystem.Unity.Runtime.LifeSupportHeaderControl ResourceCount="3" name="ls-entries-header" />
                         <ui:VisualElement name="ls-entries-divider" class="lsEntriesDivider" />
-                        <ui:ScrollView name="ls-entries-body" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible" class="body" />
+                        <ui:ScrollView name="ls-entries-body" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible" class="body">
+                            <KerbalLifeSupportSystem.Unity.Runtime.LifeSupportEntryControl />
+                        </ui:ScrollView>
                     </ui:VisualElement>
                     <ui:VisualElement name="settings" class="settings">
                         <ui:Toggle label="Show Empty Vessels" name="settings-show-empty" class="toggle ls-setting" />

@@ -21,12 +21,11 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
     private Data_LifeSupportConsumer _dataLifeSupportConsumer;
 
     // List of Kerbals in the part
-    private List<KerbalInfo> _kerbalsInSimObject = new();
+    private List<KerbalInfo> _kerbalsInSimObject = [];
 
-    // Game's database for the resource definitions
+    // Useful game objects
+    private NotificationManager _notificationManager;
     private ResourceDefinitionDatabase _resourceDB;
-
-    // Game's Kerbals roster manager
     private KerbalRosterManager _rosterManager;
 
     public override Type PartBehaviourModuleType => typeof(Module_LifeSupportConsumer);
@@ -46,8 +45,8 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
         else
         {
             // Initialize useful objects
-            _dataLifeSupportConsumer.SetupResourceRequest(resourceFlowRequestBroker);
             _containerGroup = Part.PartOwner.ContainerGroup;
+            _notificationManager = GameManager.Instance.Game.Notifications;
             _resourceDB = GameManager.Instance.Game.ResourceDefinitionDatabase;
             _rosterManager = GameManager.Instance.Game.SessionManager.KerbalRosterManager;
 
@@ -61,7 +60,6 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
 
     public override void OnShutdown()
     {
-        RemoveResourceRequest(_dataLifeSupportConsumer.RequestHandle);
         Game.Messages.Unsubscribe<KerbalLocationChanged>(OnKerbalLocationChanged);
     }
 
@@ -74,8 +72,12 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
 
         // Initialize the last consumed database if needed
         foreach (var kerbal in _kerbalsInSimObject)
+        {
             if (!_dataLifeSupportConsumer.lastConsumed.ContainsKey(kerbal.NameKey))
                 _dataLifeSupportConsumer.lastConsumed[kerbal.NameKey] = new Dictionary<string, double>();
+            if (!_dataLifeSupportConsumer.exhaustNotificationSent.ContainsKey(kerbal.NameKey))
+                _dataLifeSupportConsumer.exhaustNotificationSent[kerbal.NameKey] = new Dictionary<string, bool>();
+        }
 
         UpdateIngredients();
         SendResourceRequest(deltaUniversalTime);
@@ -216,7 +218,11 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
             if (ResourceExhausted(kerbal, ingredient, universalTime))
             {
                 KerbalLifeSupportSystemPlugin.Logger.LogInfo("Kerbal " + kerbal.NameKey + " ran out of life-support.");
-                _rosterManager.DestroyKerbal(kerbal.Id);
+                if (Part.PartOwner.SimulationObject.IsKerbal)
+                    Part.PartOwner.SimulationObject.Destroy(universalTime);
+                else
+                    _rosterManager.DestroyKerbal(kerbal.Id);
+
                 break;
             }
     }
@@ -238,8 +244,30 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
         if (!lastCons.ContainsKey(resourceName)) return false;
         var timeDelta = time - lastCons[resourceName];
 
+        if (timeDelta > KerbalLifeSupportSystemPlugin.Instance.LsGracePeriods[resourceName])
+            NotifyKerbalDied(time, kerbal.NameKey, resourceName);
+
         // Return true if exhausted for longer than the allowed grace period for this resource
         return timeDelta > KerbalLifeSupportSystemPlugin.Instance.LsGracePeriods[resourceName];
+    }
+
+    private void NotifyKerbalDied(double universalTime, string kerbalName, string resourceName)
+    {
+        _notificationManager.ProcessNotification(new NotificationData
+        {
+            Tier = NotificationTier.Alert,
+            Importance = NotificationImportance.High,
+            AlertTitle = new NotificationLineItemData
+            {
+                ObjectParams = [Part.PartOwner.SimulationObject.Vessel.Name, resourceName],
+                LocKey = "KLSS/Notifications/ResourceExhausted"
+            },
+            TimeStamp = universalTime,
+            FirstLine = new NotificationLineItemData
+            {
+                LocKey = kerbalName
+            }
+        });
     }
 
     /// <summary>
@@ -281,6 +309,14 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
                 _containerGroup.RemoveResourceUnits(resourceID, resourceUnits);
                 kerbalContainerGroup.AddResourceUnits(resourceID, resourceUnits);
             }
+
+            // Initialize new object's lastConsumed
+            if (newSimObject.Part
+                .TryGetModuleData<PartComponentModule_LifeSupportConsumer, Data_LifeSupportConsumer>(out var data))
+            {
+                var evaKerbalName = _rosterManager.GetAllKerbalsInSimObject(newLocationId)[0].NameKey;
+                data.lastConsumed[evaKerbalName] = _dataLifeSupportConsumer.lastConsumed[evaKerbalName];
+            }
         }
         else if (newLocationId.Equals(Part.SimulationObject.GlobalId) && oldSimObject.IsPart &&
                  oldSimObject.Part.PartOwner.SimulationObject.IsKerbal)
@@ -295,6 +331,14 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
                 var resourceID = _currentIngredientUnits[i].resourceID;
 
                 _containerGroup.AddResourceUnits(resourceID, kerbalContainerGroup.GetResourceStoredUnits(resourceID));
+            }
+
+            // Transfer Kerbal lastConsumed
+            if (oldSimObject.Part
+                .TryGetModuleData<PartComponentModule_LifeSupportConsumer, Data_LifeSupportConsumer>(out var data))
+            {
+                var evaKerbalName = _rosterManager.GetAllKerbalsInSimObject(oldLocationId)[0].NameKey;
+                _dataLifeSupportConsumer.lastConsumed[evaKerbalName] = data.lastConsumed[evaKerbalName];
             }
         }
     }

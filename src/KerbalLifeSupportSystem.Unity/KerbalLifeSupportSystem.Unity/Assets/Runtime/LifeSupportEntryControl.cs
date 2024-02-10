@@ -129,7 +129,7 @@ namespace KerbalLifeSupportSystem.Unity.Runtime
 
                     var resourceRemainingTimes = new List<double>();
                     for (var i = 0; i < _resourcesCount.GetValueFromBag(bag, cc); i++)
-                        resourceRemainingTimes.Add(53971612);
+                        resourceRemainingTimes.Add(50);
                     control.SetResourceCountdowns(resourceRemainingTimes);
                 }
             }

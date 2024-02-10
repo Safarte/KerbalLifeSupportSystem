@@ -11,10 +11,6 @@ namespace KerbalLifeSupportSystem.Unity.Runtime
         private const string ClassName = "lsEntryCell";
         private const string TextClassName = ClassName + "__text";
 
-        private const string WhiteClassName = "ls-monitor-white";
-        private const string OrangeClassName = "ls-monitor-orange";
-        private const string RedClassName = "ls-monitor-red";
-
         private readonly RemainingTimeLabel _label;
 
         private EntryCell()
@@ -40,6 +36,10 @@ namespace KerbalLifeSupportSystem.Unity.Runtime
         /// </summary>
         private class RemainingTimeLabel : Label
         {
+            private const string GrayClassName = "ls-monitor-gray";
+            private const string OrangeClassName = "ls-monitor-orange";
+            private const string RedClassName = "ls-monitor-red";
+
             private const long SecondsInMinute = 60;
             private const long MinutesInHour = 60;
             private const long HoursInDay = 6;
@@ -84,31 +84,31 @@ namespace KerbalLifeSupportSystem.Unity.Runtime
                     < MinutesInHour * SecondsInMinute => $"{minutes:d2}m{seconds:d2}s",
                     < HoursInDay * MinutesInHour * SecondsInMinute => $" {hours}h{minutes:d2}m",
                     < 100 * HoursInDay * MinutesInHour * SecondsInMinute => $"{days}d {hours}h",
-                    < DaysInYear * HoursInDay * MinutesInHour * SecondsInMinute => $"{days}d",
+                    < DaysInYear * HoursInDay * MinutesInHour * SecondsInMinute => $"{days}d {hours}h",
                     _ => $"{years}y {days}d"
                 };
 
                 return res;
             }
 
-            private void SetWhite()
+            private void SetGray()
             {
+                EnableInClassList(GrayClassName, true);
                 EnableInClassList(OrangeClassName, false);
-                EnableInClassList(WhiteClassName, true);
                 EnableInClassList(RedClassName, false);
             }
 
             private void SetOrange()
             {
+                EnableInClassList(GrayClassName, false);
                 EnableInClassList(OrangeClassName, true);
-                EnableInClassList(WhiteClassName, false);
                 EnableInClassList(RedClassName, false);
             }
 
             private void SetRed()
             {
+                EnableInClassList(GrayClassName, false);
                 EnableInClassList(OrangeClassName, false);
-                EnableInClassList(WhiteClassName, false);
                 EnableInClassList(RedClassName, true);
             }
 
@@ -124,17 +124,15 @@ namespace KerbalLifeSupportSystem.Unity.Runtime
                 // Add a warning symbol and set text to orange if less than an hour remaining
                 if (time < MinutesInHour * SecondsInMinute)
                 {
+                    text = "! " + text;
                     SetOrange();
-                    text = "/!\\ " + text;
 
                     // Set text to red if less than 1 minute remaining
                     if (time < SecondsInMinute)
                         SetRed();
                 }
                 else
-                {
-                    SetWhite();
-                }
+                    SetGray();
             }
         }
     }

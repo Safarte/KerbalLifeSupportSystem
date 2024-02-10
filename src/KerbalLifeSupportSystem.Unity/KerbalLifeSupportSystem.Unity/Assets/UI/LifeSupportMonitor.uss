@@ -156,7 +156,7 @@
 }
 
 .ls-monitor-gray {
-    color: rgb(173, 182, 208);
+    color: rgb(192, 199, 213);
 }
 
 .ls-monitor-white {
@@ -429,7 +429,6 @@
 .lsEntryCell__text {
     position: absolute;
     font-size: var(--unity-metrics-default-font_normal_size);
-    color: rgb(173, 182, 208);
     width: 80%;
     overflow: hidden;
     text-overflow: ellipsis;

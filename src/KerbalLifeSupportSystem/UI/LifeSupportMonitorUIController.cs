@@ -32,19 +32,23 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
     private Toggle _showEmptyToggle;
     private Toggle _activeOnTopToggle;
 
+    // Game Notification Manager
+    private NotificationManager _notificationManager;
+
     // Dictionary with references to all visible life-support entries
     private readonly Dictionary<IGGuid, LifeSupportEntryControl> _lsEntries = new();
 
     // Track if the life-support entries need to be repopulated
     private bool _isLsEntriesDirty;
 
+    // Track which resource exhausted notifications have been sent
+    private readonly Dictionary<IGGuid, Dictionary<string, bool>> _exhaustedNotificationSent = new();
 
     /// <summary>
     ///     The state of the window. Setting this value will open or close the window.
     /// </summary>
     public bool IsWindowOpen
     {
-        get => _isWindowOpen;
         set
         {
             _isWindowOpen = value;
@@ -114,6 +118,9 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
 
         // Mark entries as dirty to trigger initialization
         _isLsEntriesDirty = true;
+
+        // Set up notification manager
+        _notificationManager = GameManager.Instance.Game.Notifications;
     }
 
     private void Update()
@@ -139,15 +146,15 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         }
 
         // Update all the player's vessels entries
-        foreach (var entry in _lsEntries)
+        foreach (var (id, entry) in _lsEntries)
             if (Game?.OAB?.Current?.Stats?.MainAssembly is null ||
-                entry.Key != Game.OAB.Current.Stats.MainAssembly.Anchor.UniqueId)
+                id != Game.OAB.Current.Stats.MainAssembly.Anchor.UniqueId)
             {
-                var vessel = Game.ViewController.Universe.FindVesselComponent(entry.Key);
+                var vessel = Game.ViewController.Universe.FindVesselComponent(id);
                 if (vessel != null)
                 {
                     // Update the vessel entry
-                    entry.Value.SetData(GetVesselData(vessel));
+                    entry.SetData(GetVesselData(vessel));
                 }
                 else
                 {
@@ -177,6 +184,10 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
             CurCrewRemainingTimes = [],
             MaxCrewRemainingTimes = []
         };
+
+        // Add vessel to notifications tracker if not in it
+        if (!_exhaustedNotificationSent.ContainsKey(vessel.SimulationObject.GlobalId))
+            _exhaustedNotificationSent[vessel.SimulationObject.GlobalId] = new Dictionary<string, bool>();
 
         // Iterate over parts to compute total crew capacity
         foreach (var part in vessel.SimulationObject.PartOwner.Parts)
@@ -210,8 +221,18 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
             var resourceId = Game.ResourceDefinitionDatabase.GetResourceIDFromName(resource);
             var stored = containerGroup.GetResourceStoredUnits(resourceId);
 
+            var curTime = data.CurrentCrew > 0 ? stored / curRate : 1e12;
+
+            // Add resource to notifications tracker if not present
+            if (!_exhaustedNotificationSent[vessel.SimulationObject.GlobalId].ContainsKey(resource))
+                _exhaustedNotificationSent[vessel.SimulationObject.GlobalId][resource] = curTime < 1;
+
+            // Send Resource Exhausted notification
+            if (curTime < 1)
+                NotifyResourceExhausted(Game.UniverseModel.UniverseTime, vessel, resource);
+
             // Set the current & max crew resource countdowns
-            data.CurCrewRemainingTimes.Add(stored / curRate);
+            data.CurCrewRemainingTimes.Add(curTime);
             data.MaxCrewRemainingTimes.Add(stored / maxRate);
         }
 
@@ -268,11 +289,43 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
             var stored = GetAssemblyResourceStored(assembly, resource);
 
             // Set the current & max crew resource countdowns
-            data.CurCrewRemainingTimes.Add(stored / curRate);
+            data.CurCrewRemainingTimes.Add(data.CurrentCrew > 0 ? stored / curRate : 1e12);
             data.MaxCrewRemainingTimes.Add(stored / maxRate);
         }
 
         return data;
+    }
+
+    private void NotifyResourceExhausted(double universalTime, VesselComponent vessel, string resourceName)
+    {
+        var id = vessel.SimulationObject.GlobalId;
+        if (_exhaustedNotificationSent.ContainsKey(id) && _exhaustedNotificationSent[id][resourceName])
+            return;
+
+        _notificationManager.ProcessNotification(new NotificationData
+        {
+            Tier = NotificationTier.Alert,
+            Importance = NotificationImportance.High,
+            AlertTitle = new NotificationLineItemData
+            {
+                ObjectParams = [resourceName],
+                LocKey = "KLSS/Notifications/ResourceGraceStarted"
+            },
+            TimeStamp = universalTime,
+            FirstLine = new NotificationLineItemData
+            {
+                LocKey = vessel.DisplayName
+            }
+        });
+
+        if (_exhaustedNotificationSent.TryGetValue(id, out var value))
+        {
+            value[resourceName] = true;
+        }
+        else
+        {
+            _exhaustedNotificationSent[id] = new Dictionary<string, bool> { { resourceName, true } };
+        }
     }
 
     /// <summary>
@@ -499,6 +552,7 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         Game.Messages.Unsubscribe<SubassemblyLoadedMessage>(OnLSEntriesDirtyingEvent);
         Game.Messages.Unsubscribe<WorkspaceLoadedMessage>(OnLSEntriesDirtyingEvent);
         Game.Messages.Unsubscribe<AddVesselToMapMessage>(OnLSEntriesDirtyingEvent);
+        Game.Messages.Unsubscribe<KerbalLocationChanged>(OnLSEntriesDirtyingEvent);
     }
 
     /// <summary>
@@ -518,5 +572,6 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         Game.Messages.PersistentSubscribe<SubassemblyLoadedMessage>(OnLSEntriesDirtyingEvent);
         Game.Messages.PersistentSubscribe<WorkspaceLoadedMessage>(OnLSEntriesDirtyingEvent);
         Game.Messages.PersistentSubscribe<AddVesselToMapMessage>(OnLSEntriesDirtyingEvent);
+        Game.Messages.PersistentSubscribe<KerbalLocationChanged>(OnLSEntriesDirtyingEvent);
     }
 }

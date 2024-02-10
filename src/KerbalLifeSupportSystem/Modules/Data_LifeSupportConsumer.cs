@@ -16,11 +16,15 @@ public class Data_LifeSupportConsumer : ModuleData
     // Number of Kerbals currently in the part
     public int numKerbals;
 
-
     [KSPState]
     [HideInInspector]
     [Tooltip("Last time each input resource was consumed for each kerbal currently in the vessel.")]
     public Dictionary<string, Dictionary<string, double>> lastConsumed = new();
+
+    [KSPState]
+    [HideInInspector]
+    [Tooltip("Was 'exhausted' notification sent for each input resource for each kerbal currently in the vessel.")]
+    public Dictionary<string, Dictionary<string, bool>> exhaustNotificationSent = new();
 
     public override Type ModuleType => typeof(Module_LifeSupportConsumer);
 }

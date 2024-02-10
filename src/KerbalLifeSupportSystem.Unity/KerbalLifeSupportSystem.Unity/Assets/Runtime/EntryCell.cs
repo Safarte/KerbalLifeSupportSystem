@@ -5,7 +5,6 @@ using UnityEngine.UIElements;
 
 namespace KerbalLifeSupportSystem.Unity.Runtime
 {
-    // TODO: finish
     public class EntryCell : VisualElement
     {
         private const string ClassName = "lsEntryCell";

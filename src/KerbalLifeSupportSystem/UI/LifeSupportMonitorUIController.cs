@@ -8,7 +8,6 @@ using KSP.UI.Binding;
 using UitkForKsp2.API;
 using UnityEngine;
 using UnityEngine.UIElements;
-using KerbalLifeSupportSystem.Extensions;
 
 namespace KerbalLifeSupportSystem.UI;
 
@@ -80,30 +79,24 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         // Since we're cloning the UXML tree from a VisualTreeAsset, the actual root element is a TemplateContainer,
         // so we need to get the first child of the TemplateContainer to get our actual root VisualElement.
         _rootElement = _window.rootVisualElement[0];
-        _rootElement.StopMouseEventsPropagation();
 
         // "Kerbal / Vessel / Both" filter
         _filter = _rootElement.Q<LifeSupportFilterControl>("ls-filter-select");
-        _filter.FilterChanged += FilterAndSortEntries;
 
         // Search Bar
         _searchBar = _rootElement.Q<TextField>("search-bar");
-        _searchBar.RegisterValueChangedCallback(_ => FilterAndSortEntries());
 
         // Life-support entries header
         _header = _rootElement.Q<LifeSupportHeaderControl>("ls-entries-header");
-        _header.UpdateSort += FilterAndSortEntries;
 
         // Life-support entries list
         _lsEntriesView = _rootElement.Q<ScrollView>("ls-entries-body");
 
         // "Show empty vessels" toggle setting
         _showEmptyToggle = _rootElement.Q<Toggle>("settings-show-empty");
-        _showEmptyToggle.RegisterValueChangedCallback(_ => FilterAndSortEntries());
 
         // "Active vessel on top" toggle setting
         _activeOnTopToggle = _rootElement.Q<Toggle>("settings-active-on-top");
-        _activeOnTopToggle.RegisterValueChangedCallback(_ => FilterAndSortEntries());
 
         // Center the window by default
         _rootElement.CenterByDefault();
@@ -162,6 +155,8 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
                     _isLsEntriesDirty = true;
                 }
             }
+
+        FilterAndSortEntries();
     }
 
     /// <summary>
@@ -386,7 +381,7 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         _header.SetResources(resourceNames);
 
         // Get list of all owned vessels
-        List<VesselComponent> vessels = new();
+        List<VesselComponent> vessels = [];
         Game.ViewController.Universe.GetAllOwnedVessels(Game.LocalPlayer.PlayerId, ref vessels);
 
         // Get list of owned vessel IDs
@@ -417,7 +412,6 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
             {
                 _lsEntries[assembly.Anchor.UniqueId] =
                     new LifeSupportEntryControl(GetObjectAssemblyData(assembly));
-                _lsEntries[assembly.Anchor.UniqueId].NeedsSorting += FilterAndSortEntries;
 
                 KerbalLifeSupportSystemPlugin.Logger.LogInfo("Added <" +
                                                              Game.OAB.Current.Stats.CurrentWorkspaceVehicleDisplayName
@@ -437,13 +431,10 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
 
             _lsEntries[simulationObject.GlobalId] =
                 new LifeSupportEntryControl(GetVesselData(simulationObject.Vessel));
-            _lsEntries[simulationObject.GlobalId].NeedsSorting += FilterAndSortEntries;
 
             KerbalLifeSupportSystemPlugin.Logger.LogInfo("Added <" + simulationObject.Vessel.DisplayName +
                                                          "> to the Life-Support UI list.");
         }
-
-        FilterAndSortEntries();
     }
 
     private void FilterAndSortEntries()
@@ -458,19 +449,25 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
     private void FilterLsEntries()
     {
         var filteredEntries = new List<LifeSupportEntryControl>();
-        KerbalLifeSupportSystemPlugin.Logger.LogInfo("Filtering LS Entries.");
 
         foreach (var (id, entry) in _lsEntries)
         {
             if (!_showEmptyToggle.value && entry.CurrentCrew <= 0) continue;
 
             var simObject = Game.ViewController.Universe.FindSimObject(id);
-            if (_filter.SelectedType != LifeSupportFilterControl.FilterType.Both &&
-                (_filter.SelectedType != LifeSupportFilterControl.FilterType.Kerbal || !simObject.IsKerbal) &&
-                (_filter.SelectedType != LifeSupportFilterControl.FilterType.Vessel || !simObject.IsVessel)) continue;
-
-            if (_searchBar.value == "" || entry.Name.Contains(_searchBar.value))
-                filteredEntries.Add(entry);
+            switch (_filter.SelectedType)
+            {
+                case LifeSupportFilterControl.FilterType.Both:
+                case LifeSupportFilterControl.FilterType.Kerbal when simObject.IsKerbal:
+                case LifeSupportFilterControl.FilterType.Vessel when !simObject.IsKerbal:
+                {
+                    if (_searchBar.value == "" || entry.Name.Contains(_searchBar.value))
+                        filteredEntries.Add(entry);
+                    break;
+                }
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         // Apply changes to ls entries view
@@ -542,17 +539,18 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
 
         // Clean up every event subscriptions
         Game.Messages.Unsubscribe<GameLoadFinishedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<VesselCreatedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<VesselLaunchedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<VesselDestroyedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<VesselRecoveredMessage>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.Unsubscribe<VesselCreatedMessage>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.Unsubscribe<VesselLaunchedMessage>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.Unsubscribe<VesselDestroyedMessage>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.Unsubscribe<VesselRecoveredMessage>(OnLSEntriesDirtyingEvent);
         Game.Messages.Unsubscribe<VesselSplitMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<VesselChangedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<OABNewAssemblyMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<SubassemblyLoadedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<WorkspaceLoadedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<AddVesselToMapMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<KerbalLocationChanged>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.Unsubscribe<VesselChangedMessage>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.Unsubscribe<OABNewAssemblyMessage>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.Unsubscribe<SubassemblyLoadedMessage>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.Unsubscribe<WorkspaceLoadedMessage>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.Unsubscribe<AddVesselToMapMessage>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.Unsubscribe<KerbalLocationChanged>(OnLSEntriesDirtyingEvent);
+        Game.Messages.Unsubscribe<VesselChangingMessage>(OnLSEntriesDirtyingEvent);
     }
 
     /// <summary>
@@ -562,16 +560,17 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
     {
         // TODO: Remove potentially redundant event subscriptions
         Game.Messages.PersistentSubscribe<GameLoadFinishedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<VesselCreatedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<VesselLaunchedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<VesselDestroyedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<VesselRecoveredMessage>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.PersistentSubscribe<VesselCreatedMessage>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.PersistentSubscribe<VesselLaunchedMessage>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.PersistentSubscribe<VesselDestroyedMessage>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.PersistentSubscribe<VesselRecoveredMessage>(OnLSEntriesDirtyingEvent);
         Game.Messages.PersistentSubscribe<VesselSplitMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<VesselChangedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<OABNewAssemblyMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<SubassemblyLoadedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<WorkspaceLoadedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<AddVesselToMapMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<KerbalLocationChanged>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.PersistentSubscribe<VesselChangedMessage>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.PersistentSubscribe<OABNewAssemblyMessage>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.PersistentSubscribe<SubassemblyLoadedMessage>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.PersistentSubscribe<WorkspaceLoadedMessage>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.PersistentSubscribe<AddVesselToMapMessage>(OnLSEntriesDirtyingEvent);
+        // Game.Messages.PersistentSubscribe<KerbalLocationChanged>(OnLSEntriesDirtyingEvent);
+        Game.Messages.PersistentSubscribe<VesselChangingMessage>(OnLSEntriesDirtyingEvent);
     }
 }

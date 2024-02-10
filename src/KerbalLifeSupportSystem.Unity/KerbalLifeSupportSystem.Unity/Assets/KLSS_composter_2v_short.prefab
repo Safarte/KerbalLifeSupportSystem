@@ -1022,7 +1022,7 @@ MonoBehaviour:
         AcceptanceThreshold: 0.001
       - Rate: 0.0000003704
         ResourceName: Waste
-        AcceptanceThreshold: 0.001
+        AcceptanceThreshold: 0.00000001
       OutputResources:
       - Rate: 0.0000003704
         ResourceName: Fertilizer

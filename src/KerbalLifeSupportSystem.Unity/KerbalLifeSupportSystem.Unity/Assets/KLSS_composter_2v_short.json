@@ -364,7 +364,7 @@
                     {
                       "Rate": 3.704E-07,
                       "ResourceName": "Waste",
-                      "AcceptanceThreshold": 0.001
+                      "AcceptanceThreshold": 1E-08
                     }
                   ],
                   "OutputResources": [
@@ -621,6 +621,7 @@
     "skinInternalConductionMult": 1.0,
     "thermalMassModifier": 1.0,
     "buoyancyUseCubeNamed": "",
+    "HasReportStorage": false,
     "oabEditorCategory": "ALL",
     "partType": "Rocket",
     "PreferredOrientation": "NONE",

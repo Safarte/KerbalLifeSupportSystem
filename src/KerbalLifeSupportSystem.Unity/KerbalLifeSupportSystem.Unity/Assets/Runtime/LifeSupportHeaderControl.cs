@@ -17,9 +17,6 @@ namespace KerbalLifeSupportSystem.Unity.Runtime
         public readonly HeaderCell NameCell;
         public readonly List<HeaderCell> HeaderCells = new();
 
-        // Event called when sorting order is updated
-        public event Action UpdateSort;
-
         public LifeSupportHeaderControl()
         {
             AddToClassList(ClassName);
@@ -75,8 +72,6 @@ namespace KerbalLifeSupportSystem.Unity.Runtime
 
                 HeaderCells[i].UpdateSortDirectionIndicator();
             }
-
-            UpdateSort?.Invoke();
         }
 
         public new class UxmlFactory : UxmlFactory<LifeSupportHeaderControl, UxmlTraits>

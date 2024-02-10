@@ -24,15 +24,12 @@ namespace KerbalLifeSupportSystem.Unity.Runtime
         // List of currently displayed remaining times
         public List<double> Times;
 
-        // Event sent when filtering or sorting needs to happen
-        public event Action NeedsSorting;
-
         public LifeSupportEntryControl()
         {
             AddToClassList(ClassName);
 
             _nameCell = new EntryNameCell();
-            _nameCell.TogglePin += OnTogglePin;
+            _nameCell.TogglePin += () => EnableInClassList(PinnedClassName, _nameCell.Pinned);
             hierarchy.Add(_nameCell);
         }
 
@@ -44,12 +41,6 @@ namespace KerbalLifeSupportSystem.Unity.Runtime
         public bool IsPinned => _nameCell.Pinned;
         public string Name => _nameCell.Name;
         public int CurrentCrew => _nameCell.KerbalCounter.CurrentCrew;
-
-        private void OnTogglePin()
-        {
-            EnableInClassList(PinnedClassName, _nameCell.Pinned);
-            NeedsSorting?.Invoke();
-        }
 
         private void SetResourceCountdowns(List<double> resourceRemainingTimes)
         {
@@ -81,9 +72,6 @@ namespace KerbalLifeSupportSystem.Unity.Runtime
 
         public void SetData(LsEntryData data)
         {
-            if (Name != data.VesselName || IsActive != data.IsActive)
-                NeedsSorting?.Invoke();
-
             _nameCell.Name = data.VesselName;
 
             EnableInClassList(ActiveClassName, data.IsActive);

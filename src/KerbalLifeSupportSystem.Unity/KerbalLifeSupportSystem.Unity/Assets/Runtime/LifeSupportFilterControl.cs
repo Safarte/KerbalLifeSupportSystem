@@ -27,9 +27,6 @@ namespace KerbalLifeSupportSystem.Unity.Runtime
         // Selected filter type
         public FilterType SelectedType = FilterType.Both;
 
-        // Event sent when selected filter type changes
-        public event Action FilterChanged;
-
         public LifeSupportFilterControl()
         {
             AddToClassList(ClassName);
@@ -56,7 +53,6 @@ namespace KerbalLifeSupportSystem.Unity.Runtime
         {
             SelectedType = type;
             UpdateSelectionColor();
-            FilterChanged?.Invoke();
         }
 
         private void UpdateSelectionColor()

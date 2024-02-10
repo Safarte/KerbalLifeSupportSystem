@@ -73,10 +73,10 @@ namespace KerbalLifeSupportSystem.Unity.Runtime
             // Set current crew to selected
             _curCrewLabel.AddToClassList(BoldTextClassName);
 
-            RegisterCallback<ClickEvent>(OnClick);
+            clicked += OnClick;
         }
 
-        private void OnClick(ClickEvent evt)
+        private void OnClick()
         {
             IsMaxCrewSelected = !IsMaxCrewSelected;
             _curCrewLabel.EnableInClassList(BoldTextClassName, !IsMaxCrewSelected);

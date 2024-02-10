@@ -382,7 +382,7 @@
                       "AcceptanceThreshold": 0.001
                     },
                     {
-                      "Rate": 1.852E-07,
+                      "Rate": 1.85E-07,
                       "ResourceName": "Fertilizer",
                       "AcceptanceThreshold": 1E-08
                     }
@@ -641,6 +641,7 @@
     "skinInternalConductionMult": 1.0,
     "thermalMassModifier": 1.0,
     "buoyancyUseCubeNamed": "",
+    "HasReportStorage": false,
     "oabEditorCategory": "ALL",
     "partType": "Rocket",
     "PreferredOrientation": "NONE",

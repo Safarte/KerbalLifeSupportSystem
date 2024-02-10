@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2718065445
+CRC: 3578505126
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 506bef5e991589eeaa5a248649dd95f0
+    Hash: dcf99b9155e917f6b4de498e78c331da
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3da58612f9551b4ca6692124ee68c015
@@ -20,6 +20,10 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers:
+- AssemblyName: KerbalLifeSupportSystem.Unity.Runtime
+  ClassName: KerbalLifeSupportSystem.Unity.Runtime.LifeSupportFilterControl/UxmlFactory
+- AssemblyName: KerbalLifeSupportSystem.Unity.Runtime
+  ClassName: KerbalLifeSupportSystem.Unity.Runtime.LifeSupportHeaderControl/UxmlFactory
 - AssemblyName: UnityEngine.UIElementsModule
   ClassName: UnityEngine.UIElements.Button/UxmlFactory
 - AssemblyName: UnityEngine.UIElementsModule
@@ -40,6 +44,10 @@ SerializeReferenceClassIdentifiers:
   ClassName: UnityEngine.UIElements.StyleSheets.Dimension
 - AssemblyName: UnityEngine.UIElementsModule
   ClassName: UnityEngine.UIElements.StyleValueHandle
+- AssemblyName: UnityEngine.UIElementsModule
+  ClassName: UnityEngine.UIElements.TextField/UxmlFactory
+- AssemblyName: UnityEngine.UIElementsModule
+  ClassName: UnityEngine.UIElements.Toggle/UxmlFactory
 - AssemblyName: UnityEngine.UIElementsModule
   ClassName: UnityEngine.UIElements.UxmlRootElementFactory
 - AssemblyName: UnityEngine.UIElementsModule

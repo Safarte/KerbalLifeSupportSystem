@@ -187,7 +187,7 @@
 }
 
 .lsHeaderNameCell {
-    flex-grow: 12;
+    flex-grow: 10;
 }
 
 .lsHeader__divider {
@@ -211,6 +211,9 @@
     font-size: var(--unity-metrics-default-font_normal_size);
     position: absolute;
     left: 10px;
+    max-width: 87%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .lsHeaderCell:hover {
@@ -374,7 +377,7 @@
     flex-direction: row;
     justify-content: space-between;
     -unity-font-definition: var(--font-medium);
-    flex-grow: 12;
+    flex-grow: 10;
 }
 
 .lsEntryNameCell__text {

@@ -20,9 +20,24 @@ namespace KerbalLifeSupportSystem.Unity.Runtime
         private const string SelectedClassName = SelectorClassName + "Selected";
 
         // Internal elements
+        private readonly Label _selectorVessels;
+        private readonly Label _selectorKerbals;
         private readonly Label _selectorBoth;
-        private readonly Label _selectorKerbal;
-        private readonly Label _selectorVessel;
+
+        public string VesselsSelectText
+        {
+            set => _selectorVessels.text = value;
+        }
+
+        public string KerbalSelectText
+        {
+            set => _selectorKerbals.text = value;
+        }
+
+        public string BothSelectText
+        {
+            set => _selectorBoth.text = value;
+        }
 
         // Selected filter type
         public FilterType SelectedType = FilterType.Both;
@@ -31,15 +46,15 @@ namespace KerbalLifeSupportSystem.Unity.Runtime
         {
             AddToClassList(ClassName);
 
-            _selectorVessel = new Label { name = "ls-select-vessel", text = "Vessels" };
-            _selectorVessel.AddManipulator(new Clickable(() => UpdateFilterType(FilterType.Vessel)));
-            _selectorVessel.AddToClassList(SelectorClassName);
-            hierarchy.Add(_selectorVessel);
+            _selectorVessels = new Label { name = "ls-select-vessel", text = "Vessels" };
+            _selectorVessels.AddManipulator(new Clickable(() => UpdateFilterType(FilterType.Vessel)));
+            _selectorVessels.AddToClassList(SelectorClassName);
+            hierarchy.Add(_selectorVessels);
 
-            _selectorKerbal = new Label { name = "ls-select-vessel", text = "Kerbals" };
-            _selectorKerbal.AddManipulator(new Clickable(() => UpdateFilterType(FilterType.Kerbal)));
-            _selectorKerbal.AddToClassList(SelectorClassName);
-            hierarchy.Add(_selectorKerbal);
+            _selectorKerbals = new Label { name = "ls-select-vessel", text = "Kerbals" };
+            _selectorKerbals.AddManipulator(new Clickable(() => UpdateFilterType(FilterType.Kerbal)));
+            _selectorKerbals.AddToClassList(SelectorClassName);
+            hierarchy.Add(_selectorKerbals);
 
             _selectorBoth = new Label { name = "ls-select-vessel", text = "Both" };
             _selectorBoth.AddManipulator(new Clickable(() => UpdateFilterType(FilterType.Both)));
@@ -57,8 +72,8 @@ namespace KerbalLifeSupportSystem.Unity.Runtime
 
         private void UpdateSelectionColor()
         {
-            _selectorVessel.EnableInClassList(SelectedClassName, SelectedType == FilterType.Vessel);
-            _selectorKerbal.EnableInClassList(SelectedClassName, SelectedType == FilterType.Kerbal);
+            _selectorVessels.EnableInClassList(SelectedClassName, SelectedType == FilterType.Vessel);
+            _selectorKerbals.EnableInClassList(SelectedClassName, SelectedType == FilterType.Kerbal);
             _selectorBoth.EnableInClassList(SelectedClassName, SelectedType == FilterType.Both);
         }
 

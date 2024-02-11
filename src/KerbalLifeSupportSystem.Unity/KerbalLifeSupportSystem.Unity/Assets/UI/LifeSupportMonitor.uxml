@@ -29,9 +29,9 @@
                         </ui:ScrollView>
                     </ui:VisualElement>
                     <ui:VisualElement name="settings" class="settings">
-                        <ui:Toggle label="Show Empty Vessels" name="settings-show-empty" class="toggle ls-setting" />
+                        <ui:Toggle label="Show empty vessels" name="settings-show-empty" class="toggle ls-setting" />
                         <ui:Label tabindex="-1" text="|" display-tooltip-when-elided="true" name="settings-divider" class="ls-setting__divider" />
-                        <ui:Toggle label="Active Vessel on Top" name="settings-active-on-top" value="true" class="toggle ls-setting" />
+                        <ui:Toggle label="Active vessel on top" name="settings-active-on-top" value="true" class="toggle ls-setting" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>

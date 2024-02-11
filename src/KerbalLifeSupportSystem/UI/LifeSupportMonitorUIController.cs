@@ -1,4 +1,5 @@
-﻿using KerbalLifeSupportSystem.Unity.Runtime;
+﻿using I2.Loc;
+using KerbalLifeSupportSystem.Unity.Runtime;
 using KSP.Game;
 using KSP.Messages;
 using KSP.Modules;
@@ -23,6 +24,7 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
     private bool _isWindowOpen;
 
     // The elements of the window that we need to access
+    private Label _title;
     private VisualElement _rootElement;
     private LifeSupportFilterControl _filter;
     private TextField _searchBar;
@@ -80,6 +82,9 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         // so we need to get the first child of the TemplateContainer to get our actual root VisualElement.
         _rootElement = _window.rootVisualElement[0];
 
+        // Title
+        _title = _rootElement.Q<Label>("title");
+
         // "Kerbal / Vessel / Both" filter
         _filter = _rootElement.Q<LifeSupportFilterControl>("ls-filter-select");
 
@@ -114,6 +119,9 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
 
         // Set up notification manager
         _notificationManager = GameManager.Instance.Game.Notifications;
+
+        // Apply localizations
+        ApplyLocalization();
     }
 
     private void Update()
@@ -376,8 +384,10 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
     /// </summary>
     private void PopulateLsEntries()
     {
-        // Set Header resource names
-        var resourceNames = new List<string>(KerbalLifeSupportSystemPlugin.Instance.LsInputResources);
+        // Set Header localized resource names
+        List<string> resourceNames = [];
+        foreach (var res in KerbalLifeSupportSystemPlugin.Instance.LsInputResources)
+            resourceNames.Add(new LocalizedString("Resource/DisplayName/" + res));
         _header.SetResources(resourceNames);
 
         // Get list of all owned vessels
@@ -532,45 +542,42 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         return comp;
     }
 
+    private void ApplyLocalization()
+    {
+        _title.text = new LocalizedString("KLSS/UI/Monitor/Title");
+        _filter.VesselsSelectText = new LocalizedString("KLSS/UI/Monitor/FilterVessels");
+        _filter.KerbalSelectText = new LocalizedString("KLSS/UI/Monitor/FilterKerbals");
+        _filter.BothSelectText = new LocalizedString("KLSS/UI/Monitor/FilterBoth");
+        _header.NameCell.Text = new LocalizedString("KLSS/UI/Monitor/HeaderName");
+        _showEmptyToggle.label = new LocalizedString("KLSS/UI/Monitor/SettingShowEmpty");
+        _activeOnTopToggle.label = new LocalizedString("KLSS/UI/Monitor/SettingActiveOnTop");
+        // Set Header localized resource names
+        List<string> resourceNames = [];
+        foreach (var res in KerbalLifeSupportSystemPlugin.Instance.LsInputResources)
+            resourceNames.Add(new LocalizedString("Resource/DisplayName/" + res));
+        _header.SetResources(resourceNames);
+    }
+
     private void OnDestroy()
     {
         if (IsGameShuttingDown)
             return;
 
         // Clean up every event subscriptions
+        Game.Messages.Unsubscribe<GameLanguageChangedMessage>(_ => ApplyLocalization());
         Game.Messages.Unsubscribe<GameLoadFinishedMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.Unsubscribe<VesselCreatedMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.Unsubscribe<VesselLaunchedMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.Unsubscribe<VesselDestroyedMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.Unsubscribe<VesselRecoveredMessage>(OnLSEntriesDirtyingEvent);
         Game.Messages.Unsubscribe<VesselSplitMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.Unsubscribe<VesselChangedMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.Unsubscribe<OABNewAssemblyMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.Unsubscribe<SubassemblyLoadedMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.Unsubscribe<WorkspaceLoadedMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.Unsubscribe<AddVesselToMapMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.Unsubscribe<KerbalLocationChanged>(OnLSEntriesDirtyingEvent);
         Game.Messages.Unsubscribe<VesselChangingMessage>(OnLSEntriesDirtyingEvent);
     }
 
     /// <summary>
-    ///     Set up all the needed game event subscriptions (LS UI entries refreshing).
+    ///     Set up all the needed game event subscriptions.
     /// </summary>
     private void SubscribeToMessages()
     {
-        // TODO: Remove potentially redundant event subscriptions
+        Game.Messages.PersistentSubscribe<GameLanguageChangedMessage>(_ => ApplyLocalization());
         Game.Messages.PersistentSubscribe<GameLoadFinishedMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.PersistentSubscribe<VesselCreatedMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.PersistentSubscribe<VesselLaunchedMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.PersistentSubscribe<VesselDestroyedMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.PersistentSubscribe<VesselRecoveredMessage>(OnLSEntriesDirtyingEvent);
         Game.Messages.PersistentSubscribe<VesselSplitMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.PersistentSubscribe<VesselChangedMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.PersistentSubscribe<OABNewAssemblyMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.PersistentSubscribe<SubassemblyLoadedMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.PersistentSubscribe<WorkspaceLoadedMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.PersistentSubscribe<AddVesselToMapMessage>(OnLSEntriesDirtyingEvent);
-        // Game.Messages.PersistentSubscribe<KerbalLocationChanged>(OnLSEntriesDirtyingEvent);
         Game.Messages.PersistentSubscribe<VesselChangingMessage>(OnLSEntriesDirtyingEvent);
     }
 }

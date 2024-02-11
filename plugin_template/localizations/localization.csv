@@ -23,6 +23,14 @@ KLSS/LSR/Tooltip/ToggleComposter,Text,,Toggle Composter,切换堆肥模式,Bascu
 KLSS/LSR/Formulas/Composter,Text,,Composter,堆肥,Composteur
 KLSS/Notifications/ResourceGraceStarted,Text,,"A vessel has run out of ""{0}""",,"Un vaisseau est à court de ""{0}"""
 KLSS/Notifications/ResourceExhausted,Text,,"A Kerbal on board ""{0}"" has died from lack of ""{1}""",,"Un Kerbal à bord de ""{0}"" est mort de manque de ""{1}"""
+KLSS/UI/AppBar/Title,Text,,Life-Support,,Support de vie
+KLSS/UI/Monitor/Title,Text,,LIFE-SUPPORT,,SUPPORT DE VIE
+KLSS/UI/Monitor/FilterVessels,Text,,Vessels,,Vaisseaux
+KLSS/UI/Monitor/FilterKerbals,Text,,Kerbals,,Kerbals
+KLSS/UI/Monitor/FilterBoth,Text,,Both,,Tout
+KLSS/UI/Monitor/HeaderName,Text,,Name,,Nom
+KLSS/UI/Monitor/SettingShowEmpty,Text,,Show empty vessels,,Voir vaisseaux vides
+KLSS/UI/Monitor/SettingActiveOnTop,Text,,Active vessel on top,,Vaisseau actif en haut
 Parts/Title/KLSS_life_support_tank_1v_1x1,Text,,SCS-100,SCS-100,SCS-100
 Parts/Subtitle/KLSS_life_support_tank_1v_1x1,Text,,Small Combined Storage,小型混合储藏舱,Petit Stockage Combiné
 Parts/Manufacturer/KLSS_life_support_tank_1v_1x1,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.

@@ -2,6 +2,7 @@
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
+using I2.Loc;
 using JetBrains.Annotations;
 using KerbalLifeSupportSystem.Modules;
 using KerbalLifeSupportSystem.UI;
@@ -129,13 +130,13 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
         lsMonitorController.IsWindowOpen = false;
 
         Appbar.RegisterOABAppButton(
-            "Life-Support",
+            new LocalizedString("KLSS/UI/AppBar/Title"),
             ToolbarOabButtonID,
             AssetManager.GetAsset<Texture2D>($"{ModGuid}/images/icon.png"),
             isOpen => lsMonitorController.IsWindowOpen = isOpen);
 
         Appbar.RegisterAppButton(
-            "Life-Support",
+            new LocalizedString("KLSS/UI/AppBar/Title"),
             ToolbarFlightButtonID,
             AssetManager.GetAsset<Texture2D>($"{ModGuid}/images/icon.png"),
             isOpen => lsMonitorController.IsWindowOpen = isOpen);

@@ -480,7 +480,7 @@
     padding-top: 0;
     padding-bottom: 0;
     background-color: rgb(36, 39, 48);
-    width: 27%;
+    width: 29%;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;

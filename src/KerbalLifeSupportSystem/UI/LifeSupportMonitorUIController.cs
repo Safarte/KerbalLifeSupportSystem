@@ -475,8 +475,6 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
                         filteredEntries.Add(entry);
                     break;
                 }
-                default:
-                    throw new ArgumentOutOfRangeException();
             }
         }
 

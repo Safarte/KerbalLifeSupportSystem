@@ -1,4 +1,6 @@
-﻿using KSP.Game;
+﻿using I2.Loc;
+using KerbalLifeSupportSystem.Unity.Runtime;
+using KSP.Game;
 using KSP.Messages;
 using KSP.Modules;
 using KSP.OAB;
@@ -7,37 +9,125 @@ using KSP.UI.Binding;
 using UitkForKsp2.API;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static KerbalLifeSupportSystem.UI.LifeSupportEntryControl;
 
 namespace KerbalLifeSupportSystem.UI;
 
+/// <summary>
+///     Controller for the LifeSupportMonitor UI
+/// </summary>
 internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
 {
-    private static VisualElement _container;
-    private static bool _initialized;
+    // The UIDocument component of the window game object
+    private UIDocument _window;
 
-    private readonly Dictionary<IGGuid, LifeSupportEntryControl> _lifeSupportEntries = new();
-    private Button _closeButton;
+    // The backing field for the IsWindowOpen property
+    private bool _isWindowOpen;
+
+    // The elements of the window that we need to access
+    private Label _title;
+    private VisualElement _rootElement;
+    private LifeSupportFilterControl _filter;
+    private TextField _searchBar;
+    private LifeSupportHeaderControl _header;
+    private ScrollView _lsEntriesView;
+    private Toggle _showEmptyToggle;
+    private Toggle _activeOnTopToggle;
+
+    // Game Notification Manager
+    private NotificationManager _notificationManager;
+
+    // Dictionary with references to all visible life-support entries
+    private readonly Dictionary<IGGuid, LifeSupportEntryControl> _lsEntries = new();
+
+    // Track if the life-support entries need to be repopulated
     private bool _isLsEntriesDirty;
-    private ScrollView _lifeSupportEntriesView;
-    private bool _uiEnabled;
 
-    private void Start()
+    // Track which resource exhausted notifications have been sent
+    private readonly Dictionary<IGGuid, Dictionary<string, bool>> _exhaustedNotificationSent = new();
+
+    /// <summary>
+    ///     The state of the window. Setting this value will open or close the window.
+    /// </summary>
+    public bool IsWindowOpen
     {
-        // Setup the UI document
-        SetupDocument();
+        set
+        {
+            _isWindowOpen = value;
 
-        // Initialize all event listeners
-        InitMessages();
+            // Set the display style of the root element to show or hide the window
+            _rootElement.style.display = value ? DisplayStyle.Flex : DisplayStyle.None;
+
+            // Update the Flight AppBar button state
+            GameObject.Find(KerbalLifeSupportSystemPlugin.ToolbarFlightButtonID)
+                ?.GetComponent<UIValue_WriteBool_Toggle>()
+                ?.SetValue(value);
+
+            // Update the OAB AppBar button state
+            GameObject.Find(KerbalLifeSupportSystemPlugin.ToolbarOabButtonID)
+                ?.GetComponent<UIValue_WriteBool_Toggle>()
+                ?.SetValue(value);
+        }
+    }
+
+    /// <summary>
+    /// Runs when the window is first created, and every time the window is re-enabled.
+    /// </summary>
+    private void OnEnable()
+    {
+        // Get the UIDocument component from the game object
+        _window = GetComponent<UIDocument>();
+
+        // Get the root element of the window.
+        // Since we're cloning the UXML tree from a VisualTreeAsset, the actual root element is a TemplateContainer,
+        // so we need to get the first child of the TemplateContainer to get our actual root VisualElement.
+        _rootElement = _window.rootVisualElement[0];
+
+        // Title
+        _title = _rootElement.Q<Label>("title");
+
+        // "Kerbal / Vessel / Both" filter
+        _filter = _rootElement.Q<LifeSupportFilterControl>("ls-filter-select");
+
+        // Search Bar
+        _searchBar = _rootElement.Q<TextField>("search-bar");
+
+        // Life-support entries header
+        _header = _rootElement.Q<LifeSupportHeaderControl>("ls-entries-header");
+
+        // Life-support entries list
+        _lsEntriesView = _rootElement.Q<ScrollView>("ls-entries-body");
+
+        // "Show empty vessels" toggle setting
+        _showEmptyToggle = _rootElement.Q<Toggle>("settings-show-empty");
+
+        // "Active vessel on top" toggle setting
+        _activeOnTopToggle = _rootElement.Q<Toggle>("settings-active-on-top");
+
+        // Center the window by default
+        _rootElement.CenterByDefault();
+
+        // Get the close button from the window
+        var closeButton = _rootElement.Q<Button>("close-button");
+        // Add a click event handler to the close button
+        closeButton.clicked += () => IsWindowOpen = false;
+
+        // Subscribe to entries dirtying events
+        SubscribeToMessages();
+
+        // Mark entries as dirty to trigger initialization
+        _isLsEntriesDirty = true;
+
+        // Set up notification manager
+        _notificationManager = GameManager.Instance.Game.Notifications;
+
+        // Apply localizations
+        ApplyLocalization();
     }
 
     private void Update()
     {
-        // Initialize UI elements
-        if (!_initialized) InitElements();
-
         // Do not update if UI not visible or Game's Universe does not exist
-        if (!_uiEnabled || Game?.ViewController?.Universe is null) return;
+        if (!_isWindowOpen || Game?.ViewController?.Universe is null) return;
 
         // (Re)populate the UI entries if needed
         if (_isLsEntriesDirty)
@@ -51,22 +141,21 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         {
             var assembly = Game.OAB.Current.Stats.MainAssembly;
 
-            if (!_lifeSupportEntries.ContainsKey(assembly.Anchor.UniqueId)) PopulateLsEntries();
+            if (!_lsEntries.ContainsKey(assembly.Anchor.UniqueId)) PopulateLsEntries();
 
-            _lifeSupportEntries[assembly.Anchor.UniqueId].SetValues(GetObjectAssemblyData(assembly), true);
+            _lsEntries[assembly.Anchor.UniqueId].SetData(GetObjectAssemblyData(assembly));
         }
 
         // Update all the player's vessels entries
-        foreach (var entry in _lifeSupportEntries)
+        foreach (var (id, entry) in _lsEntries)
             if (Game?.OAB?.Current?.Stats?.MainAssembly is null ||
-                entry.Key != Game.OAB.Current.Stats.MainAssembly.Anchor.UniqueId)
+                id != Game.OAB.Current.Stats.MainAssembly.Anchor.UniqueId)
             {
-                var vessel = Game.ViewController.Universe.FindVesselComponent(entry.Key);
+                var vessel = Game.ViewController.Universe.FindVesselComponent(id);
                 if (vessel != null)
                 {
                     // Update the vessel entry
-                    var isActiveVessel = Game.ViewController.IsActiveVessel(vessel);
-                    entry.Value.SetValues(GetVesselData(vessel), isActiveVessel);
+                    entry.SetData(GetVesselData(vessel));
                 }
                 else
                 {
@@ -74,44 +163,8 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
                     _isLsEntriesDirty = true;
                 }
             }
-    }
 
-    private void OnDestroy()
-    {
-        if (IsGameShuttingDown)
-            return;
-
-        // Clean up every event subscriptions
-        Game.Messages.Unsubscribe<GameLoadFinishedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<VesselCreatedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<VesselLaunchedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<VesselDestroyedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<VesselRecoveredMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<VesselSplitMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<VesselChangedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<OABNewAssemblyMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<SubassemblyLoadedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<WorkspaceLoadedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.Unsubscribe<AddVesselToMapMessage>(OnLSEntriesDirtyingEvent);
-    }
-
-    /// <summary>
-    ///     Set up all the needed game event subscriptions (LS UI entries refreshing).
-    /// </summary>
-    private void InitMessages()
-    {
-        // TODO: Remove potentially redundant event subscriptions
-        Game.Messages.PersistentSubscribe<GameLoadFinishedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<VesselCreatedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<VesselLaunchedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<VesselDestroyedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<VesselRecoveredMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<VesselSplitMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<VesselChangedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<OABNewAssemblyMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<SubassemblyLoadedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<WorkspaceLoadedMessage>(OnLSEntriesDirtyingEvent);
-        Game.Messages.PersistentSubscribe<AddVesselToMapMessage>(OnLSEntriesDirtyingEvent);
+        FilterAndSortEntries();
     }
 
     /// <summary>
@@ -119,21 +172,25 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
     /// </summary>
     /// <param name="vessel">Queried vessel</param>
     /// <returns>Life-Support entry data for the vessel</returns>
-    private LsEntryData GetVesselData(VesselComponent vessel)
+    private LifeSupportEntryControl.LsEntryData GetVesselData(VesselComponent vessel)
     {
         var containerGroup = vessel.GetControlOwner().PartOwner.ContainerGroup;
 
-        LsEntryData data = new()
+        LifeSupportEntryControl.LsEntryData data = new()
         {
             // Basic vessel information
-            Id = vessel.GlobalId,
             VesselName = vessel.DisplayName,
+            IsActive = vessel.Game.ViewController.IsActiveVessel(vessel),
             CurrentCrew = vessel.Game.SessionManager.KerbalRosterManager
                 .GetAllKerbalsInVessel(vessel.SimulationObject.GlobalId).Count,
             MaximumCrew = vessel.SimulationObject.IsKerbal ? 1 : 0,
-            CurrentResourcesCountdowns = new Dictionary<string, double>(),
-            MaxResourcesCountdowns = new Dictionary<string, double>()
+            CurCrewRemainingTimes = [],
+            MaxCrewRemainingTimes = []
         };
+
+        // Add vessel to notifications tracker if not in it
+        if (!_exhaustedNotificationSent.ContainsKey(vessel.SimulationObject.GlobalId))
+            _exhaustedNotificationSent[vessel.SimulationObject.GlobalId] = new Dictionary<string, bool>();
 
         // Iterate over parts to compute total crew capacity
         foreach (var part in vessel.SimulationObject.PartOwner.Parts)
@@ -167,9 +224,19 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
             var resourceId = Game.ResourceDefinitionDatabase.GetResourceIDFromName(resource);
             var stored = containerGroup.GetResourceStoredUnits(resourceId);
 
+            var curTime = data.CurrentCrew > 0 ? stored / curRate : 1e12;
+
+            // Add resource to notifications tracker if not present
+            if (!_exhaustedNotificationSent[vessel.SimulationObject.GlobalId].ContainsKey(resource))
+                _exhaustedNotificationSent[vessel.SimulationObject.GlobalId][resource] = curTime < 1;
+
+            // Send Resource Exhausted notification
+            if (curTime < 1)
+                NotifyResourceExhausted(Game.UniverseModel.UniverseTime, vessel, resource);
+
             // Set the current & max crew resource countdowns
-            data.CurrentResourcesCountdowns[resource] = stored / curRate;
-            data.MaxResourcesCountdowns[resource] = stored / maxRate;
+            data.CurCrewRemainingTimes.Add(curTime);
+            data.MaxCrewRemainingTimes.Add(stored / maxRate);
         }
 
         return data;
@@ -180,18 +247,18 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
     /// </summary>
     /// <param name="assembly">Queried assembly</param>
     /// <returns>Life-Support entry data for the assembly</returns>
-    private LsEntryData GetObjectAssemblyData(IObjectAssembly assembly)
+    private LifeSupportEntryControl.LsEntryData GetObjectAssemblyData(IObjectAssembly assembly)
     {
-        LsEntryData data = new()
+        LifeSupportEntryControl.LsEntryData data = new()
         {
             // Basic vessel information
-            Id = assembly.Anchor.UniqueId,
             VesselName = Game.OAB.Current.Stats.CurrentWorkspaceVehicleDisplayName.GetValue(),
+            IsActive = true,
             CurrentCrew = Game.SessionManager.KerbalRosterManager
                 .GetAllKerbalsInAssembly(Game.SessionManager.KerbalRosterManager.KSCGuid, assembly).Count,
             MaximumCrew = 0,
-            CurrentResourcesCountdowns = new Dictionary<string, double>(),
-            MaxResourcesCountdowns = new Dictionary<string, double>()
+            CurCrewRemainingTimes = [],
+            MaxCrewRemainingTimes = []
         };
 
         // Iterate over parts to compute total crew capacity
@@ -225,11 +292,43 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
             var stored = GetAssemblyResourceStored(assembly, resource);
 
             // Set the current & max crew resource countdowns
-            data.CurrentResourcesCountdowns[resource] = stored / curRate;
-            data.MaxResourcesCountdowns[resource] = stored / maxRate;
+            data.CurCrewRemainingTimes.Add(data.CurrentCrew > 0 ? stored / curRate : 1e12);
+            data.MaxCrewRemainingTimes.Add(stored / maxRate);
         }
 
         return data;
+    }
+
+    private void NotifyResourceExhausted(double universalTime, VesselComponent vessel, string resourceName)
+    {
+        var id = vessel.SimulationObject.GlobalId;
+        if (_exhaustedNotificationSent.ContainsKey(id) && _exhaustedNotificationSent[id][resourceName])
+            return;
+
+        _notificationManager.ProcessNotification(new NotificationData
+        {
+            Tier = NotificationTier.Alert,
+            Importance = NotificationImportance.High,
+            AlertTitle = new NotificationLineItemData
+            {
+                ObjectParams = [resourceName],
+                LocKey = "KLSS/Notifications/ResourceGraceStarted"
+            },
+            TimeStamp = universalTime,
+            FirstLine = new NotificationLineItemData
+            {
+                LocKey = vessel.DisplayName
+            }
+        });
+
+        if (_exhaustedNotificationSent.TryGetValue(id, out var value))
+        {
+            value[resourceName] = true;
+        }
+        else
+        {
+            _exhaustedNotificationSent[id] = new Dictionary<string, bool> { { resourceName, true } };
+        }
     }
 
     /// <summary>
@@ -281,113 +380,107 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
     }
 
     /// <summary>
-    ///     Set the Life-Support UI visibility state
-    /// </summary>
-    /// <param name="newState"></param>
-    public void SetEnabled(bool newState)
-    {
-        _uiEnabled = newState;
-        _container.style.display = newState ? DisplayStyle.Flex : DisplayStyle.None;
-
-        // Update the toolbars toggle value
-        GameObject.Find(KerbalLifeSupportSystemPlugin.ToolbarOabButtonID)?.GetComponent<UIValue_WriteBool_Toggle>()
-            ?.SetValue(newState);
-        GameObject.Find(KerbalLifeSupportSystemPlugin.ToolbarFlightButtonID)?.GetComponent<UIValue_WriteBool_Toggle>()
-            ?.SetValue(newState);
-    }
-
-    /// <summary>
-    ///     Setup the UI document (localization and starting position)
-    /// </summary>
-    private void SetupDocument()
-    {
-        var document = GetComponent<UIDocument>();
-
-        // Set up localization
-        if (document.TryGetComponent<DocumentLocalization>(out var localization))
-            localization.Localize();
-        else
-            document.EnableLocalization();
-
-        // root Visual Element
-        _container = document.rootVisualElement;
-
-        // Move the GUI to its starting position
-        _container[0].transform.position = new Vector2(500, 50);
-        _container[0].CenterByDefault();
-
-        // Hide the GUI by default
-        _container.style.display = DisplayStyle.None;
-    }
-
-    /// <summary>
-    ///     Initialize UI elements
-    /// </summary>
-    private void InitElements()
-    {
-        // Close button
-        _closeButton = _container.Q<Button>("close-button");
-        _closeButton.RegisterCallback<ClickEvent>(OnCloseButton);
-
-        // Life-Support entries list
-        _lifeSupportEntriesView = _container.Q<ScrollView>("ls-entries-body");
-
-        _initialized = true;
-    }
-
-    /// <summary>
-    ///     Closes the Life-Support UI on Close Button click
-    /// </summary>
-    private void OnCloseButton(ClickEvent evt)
-    {
-        SetEnabled(false);
-    }
-
-    /// <summary>
     ///     Populate the Life-Support UI entries with all relevant vessels & EVA Kerbals
     /// </summary>
     private void PopulateLsEntries()
     {
-        // Reset life-support UI entries
-        _lifeSupportEntries.Clear();
-        _lifeSupportEntriesView.Clear();
+        // Set Header localized resource names
+        List<string> resourceNames = [];
+        foreach (var res in KerbalLifeSupportSystemPlugin.Instance.LsInputResources)
+            resourceNames.Add(new LocalizedString("Resource/DisplayName/" + res));
+        _header.SetResources(resourceNames);
+
+        // Get list of all owned vessels
+        List<VesselComponent> vessels = [];
+        Game.ViewController.Universe.GetAllOwnedVessels(Game.LocalPlayer.PlayerId, ref vessels);
+
+        // Get list of owned vessel IDs
+        var vesselIds = new List<IGGuid>();
+        foreach (var vessel in vessels) vesselIds.Add(vessel.SimulationObject.GlobalId);
+
+        // Mark entries that are neither the OAB assembly or an owned vessel to be removed
+        var toRemove = new List<IGGuid>();
+        foreach (var (id, _) in _lsEntries)
+        {
+            if (vesselIds.Contains(id) ||
+                (Game?.OAB?.Current?.Stats?.MainAssembly != null &&
+                 id == Game.OAB.Current.Stats.MainAssembly.Anchor.UniqueId))
+                continue;
+            toRemove.Add(id);
+        }
+
+        // Remove marked entries
+        foreach (var id in toRemove) _lsEntries.Remove(id);
 
         // If in a OAB & there is a main assembly, add it to the entries
-        if (GameManager.Instance?.Game?.OAB?.Current?.Stats?.MainAssembly != null)
+        if (Game?.OAB?.Current?.Stats?.MainAssembly != null)
         {
             var assembly = Game.OAB.Current.Stats.MainAssembly;
-            _lifeSupportEntries[assembly.Anchor.UniqueId] =
-                new LifeSupportEntryControl(GetObjectAssemblyData(assembly), true, true);
-            _lifeSupportEntriesView.Add(_lifeSupportEntries[assembly.Anchor.UniqueId]);
 
-            KerbalLifeSupportSystemPlugin.Logger.LogInfo("Added <" +
-                                                         Game.OAB.Current.Stats.CurrentWorkspaceVehicleDisplayName
-                                                             .GetValue() + "> to the Life-Support UI list.");
+            // Add OAB assembly entry if not already present
+            if (!_lsEntries.ContainsKey(assembly.Anchor.UniqueId))
+            {
+                _lsEntries[assembly.Anchor.UniqueId] =
+                    new LifeSupportEntryControl(GetObjectAssemblyData(assembly));
+
+                KerbalLifeSupportSystemPlugin.Logger.LogInfo("Added <" +
+                                                             Game.OAB.Current.Stats.CurrentWorkspaceVehicleDisplayName
+                                                                 .GetValue() + "> to the Life-Support UI list.");
+            }
         }
 
         // Add an entry for each vessel owned by the player
-        List<VesselComponent> vessels = new();
-        Game.ViewController.Universe.GetAllOwnedVessels(Game.LocalPlayer.PlayerId, ref vessels);
         foreach (var vessel in vessels)
         {
             var simulationObject = vessel.SimulationObject;
 
             // Add vessel to the entries if it has non-zero crew capacity or if it is a Kerbal in EVA
-            if (simulationObject is { IsKerbal: true } ||
-                (simulationObject.IsVessel && vessel.TotalCommandCrewCapacity > 0))
-            {
-                var isActiveVessel = Game.ViewController.IsActiveVessel(simulationObject.Vessel);
-                _lifeSupportEntries[simulationObject.GlobalId] =
-                    new LifeSupportEntryControl(GetVesselData(simulationObject.Vessel), isActiveVessel, isActiveVessel);
-                _lifeSupportEntriesView.Add(_lifeSupportEntries[simulationObject.GlobalId]);
+            if (_lsEntries.ContainsKey(simulationObject.GlobalId) ||
+                (simulationObject is not { IsKerbal: true } &&
+                 (!simulationObject.IsVessel || vessel.TotalCommandCrewCapacity <= 0))) continue;
 
-                KerbalLifeSupportSystemPlugin.Logger.LogInfo("Added <" + simulationObject.Vessel.DisplayName +
-                                                             "> to the Life-Support UI list.");
+            _lsEntries[simulationObject.GlobalId] =
+                new LifeSupportEntryControl(GetVesselData(simulationObject.Vessel));
+
+            KerbalLifeSupportSystemPlugin.Logger.LogInfo("Added <" + simulationObject.Vessel.DisplayName +
+                                                         "> to the Life-Support UI list.");
+        }
+    }
+
+    private void FilterAndSortEntries()
+    {
+        // Reset life-support entries ScrollView
+        FilterLsEntries();
+
+        // Sort the entries based on the defined ordering
+        _lsEntriesView.Sort(CompareLsEntries);
+    }
+
+    private void FilterLsEntries()
+    {
+        var filteredEntries = new List<LifeSupportEntryControl>();
+
+        foreach (var (id, entry) in _lsEntries)
+        {
+            if (!_showEmptyToggle.value && entry.CurrentCrew <= 0) continue;
+
+            var simObject = Game.ViewController.Universe.FindSimObject(id);
+            switch (_filter.SelectedType)
+            {
+                case LifeSupportFilterControl.FilterType.Both:
+                case LifeSupportFilterControl.FilterType.Kerbal when simObject.IsKerbal:
+                case LifeSupportFilterControl.FilterType.Vessel when !simObject.IsKerbal:
+                {
+                    if (_searchBar.value == "" || entry.Name.Contains(_searchBar.value))
+                        filteredEntries.Add(entry);
+                    break;
+                }
             }
         }
 
-        // Sort the entries based on the defined ordering
-        _lifeSupportEntriesView.Sort(CompareLsEntries);
+        // Apply changes to ls entries view
+        _lsEntriesView.Clear();
+        foreach (var entry in filteredEntries) _lsEntriesView.Add(entry);
     }
 
     /// <summary>
@@ -399,7 +492,8 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
     }
 
     /// <summary>
-    ///     Comparator for Life-Support UI entries, active OAB assembly and active vessels are shown on top.
+    ///     Comparator for Life-Support UI entries, active OAB assembly and active vessels are shown on top, followed by
+    ///     pinned entries, followed by other entries. The sorting order follows the selected sorting.
     /// </summary>
     /// <param name="e1">First LS UI entry</param>
     /// <param name="e2">Second LS UI entry</param>
@@ -409,25 +503,79 @@ internal class LifeSupportMonitorUIController : KerbalMonoBehaviour
         if (e1 is not LifeSupportEntryControl ls1 || e2 is not LifeSupportEntryControl ls2)
             return 0;
 
-        // The current OAB assembly should always be first
-        if (Game?.OAB?.Current?.Stats?.MainAssembly != null)
+        return _activeOnTopToggle.value switch
         {
-            var id = Game.OAB.Current.Stats.MainAssembly.Anchor.UniqueId;
-            if (ls1.Data.Id == id)
-                return -1;
-            if (ls2.Data.Id == id)
-                return 1;
+            true when ls1.IsActive => -1,
+            true when ls2.IsActive => 1,
+            _ => ls1.IsPinned switch
+            {
+                true when ls2.IsPinned => CompareEntriesSort(ls1, ls2),
+                true => -1,
+                _ => ls2.IsPinned ? 1 : CompareEntriesSort(ls1, ls2)
+            }
+        };
+    }
+
+    /// <summary>
+    /// Comparator for Life-Support entries based on current selected sort direction
+    /// </summary>
+    /// <param name="ls1">First LS UI entry</param>
+    /// <param name="ls2">Second LS UI entry</param>
+    /// <returns>Comparison result (-1, 0 or 1)</returns>
+    private int CompareEntriesSort(LifeSupportEntryControl ls1, LifeSupportEntryControl ls2)
+    {
+        if (_header.NameCell.SortDirection != HeaderCell.SortType.None)
+            return (_header.NameCell.SortDirection == HeaderCell.SortType.Decreasing ? 1 : -1) *
+                   string.CompareOrdinal(ls1.Name, ls2.Name);
+
+        var comp = 0;
+
+        for (var i = 0; i < _header.HeaderCells.Count; i++)
+        {
+            var dir = _header.HeaderCells[i].SortDirection;
+            if (dir != HeaderCell.SortType.None)
+                comp += (dir == HeaderCell.SortType.Increasing ? 1 : -1) * ls1.Times[i].CompareTo(ls2.Times[i]);
         }
 
-        // In flight, the active vessel should always be first
-        var vessel1 = Game.ViewController.Universe.FindVesselComponent(ls1.Data.Id);
-        if (Game.ViewController.IsActiveVessel(vessel1))
-            return -1;
-        var vessel2 = Game.ViewController.Universe.FindVesselComponent(ls2.Data.Id);
-        if (Game.ViewController.IsActiveVessel(vessel2))
-            return 1;
+        return comp;
+    }
 
-        // Lexical ordering for all other entries
-        return string.CompareOrdinal(vessel1.DisplayName, vessel2.DisplayName);
+    private void ApplyLocalization()
+    {
+        _title.text = new LocalizedString("KLSS/UI/Monitor/Title");
+        _filter.VesselsSelectText = new LocalizedString("KLSS/UI/Monitor/FilterVessels");
+        _filter.KerbalSelectText = new LocalizedString("KLSS/UI/Monitor/FilterKerbals");
+        _filter.BothSelectText = new LocalizedString("KLSS/UI/Monitor/FilterBoth");
+        _header.NameCell.Text = new LocalizedString("KLSS/UI/Monitor/HeaderName");
+        _showEmptyToggle.label = new LocalizedString("KLSS/UI/Monitor/SettingShowEmpty");
+        _activeOnTopToggle.label = new LocalizedString("KLSS/UI/Monitor/SettingActiveOnTop");
+        // Set Header localized resource names
+        List<string> resourceNames = [];
+        foreach (var res in KerbalLifeSupportSystemPlugin.Instance.LsInputResources)
+            resourceNames.Add(new LocalizedString("Resource/DisplayName/" + res));
+        _header.SetResources(resourceNames);
+    }
+
+    private void OnDestroy()
+    {
+        if (IsGameShuttingDown)
+            return;
+
+        // Clean up every event subscriptions
+        Game.Messages.Unsubscribe<GameLanguageChangedMessage>(_ => ApplyLocalization());
+        Game.Messages.Unsubscribe<GameLoadFinishedMessage>(OnLSEntriesDirtyingEvent);
+        Game.Messages.Unsubscribe<VesselSplitMessage>(OnLSEntriesDirtyingEvent);
+        Game.Messages.Unsubscribe<VesselChangingMessage>(OnLSEntriesDirtyingEvent);
+    }
+
+    /// <summary>
+    ///     Set up all the needed game event subscriptions.
+    /// </summary>
+    private void SubscribeToMessages()
+    {
+        Game.Messages.PersistentSubscribe<GameLanguageChangedMessage>(_ => ApplyLocalization());
+        Game.Messages.PersistentSubscribe<GameLoadFinishedMessage>(OnLSEntriesDirtyingEvent);
+        Game.Messages.PersistentSubscribe<VesselSplitMessage>(OnLSEntriesDirtyingEvent);
+        Game.Messages.PersistentSubscribe<VesselChangingMessage>(OnLSEntriesDirtyingEvent);
     }
 }

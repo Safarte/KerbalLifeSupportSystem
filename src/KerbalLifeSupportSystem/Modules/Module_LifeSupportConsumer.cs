@@ -1,6 +1,7 @@
 ﻿using KSP.Sim.Definitions;
-using KSP.Sim.ResourceSystem;
 using UnityEngine;
+
+// ReSharper disable InconsistentNaming
 
 namespace KerbalLifeSupportSystem.Modules;
 
@@ -22,14 +23,5 @@ public class Module_LifeSupportConsumer : PartBehaviourModule
     {
         base.OnInitialize();
         if (PartBackingMode == PartBackingModes.Flight) moduleIsEnabled = true;
-    }
-
-    protected override void OnModuleOABFixedUpdate(float deltaTime)
-    {
-        if ((OABPart == null || !(_dataLifeSupportConsumer.RequestHandle == ResourceFlowRequestHandle.InvalidID))
-            && (resourceFlowRequestBroker == null ||
-                resourceFlowRequestBroker.TryGetCurrentRequest(_dataLifeSupportConsumer.RequestHandle, out var _)))
-            return;
-        _dataLifeSupportConsumer.SetupResourceRequest(resourceFlowRequestBroker);
     }
 }

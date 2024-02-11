@@ -1,6 +1,8 @@
-﻿using BepInEx;
+﻿using System.Reflection;
+using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
+using I2.Loc;
 using JetBrains.Annotations;
 using KerbalLifeSupportSystem.Modules;
 using KerbalLifeSupportSystem.UI;
@@ -26,8 +28,14 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
     [PublicAPI] public const string ModGuid = MyPluginInfo.PLUGIN_GUID;
     [PublicAPI] public const string ModName = MyPluginInfo.PLUGIN_NAME;
     [PublicAPI] public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
-    public const string ToolbarOabButtonID = "BTN-KLSSPlanner";
+
+    /// Singleton instance of the plugin class
+    [PublicAPI]
+    public static KerbalLifeSupportSystemPlugin Instance { get; set; }
+
+    // AppBar button IDs
     public const string ToolbarFlightButtonID = "BTN-KLSSMonitor";
+    public const string ToolbarOabButtonID = "BTN-KLSSPlanner";
 
     private const int SecondsPerDay = 21600;
     private const int SecondsPerHour = 3600;
@@ -35,10 +43,7 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
     //internal ConfigEntry<bool> ConfigKerbalsDie;
     internal readonly Dictionary<string, ConfigEntry<float>> ConsumptionRates = new();
 
-    // UI Controllers
-    private LifeSupportMonitorUIController _klssMonitorController;
-
-    public string[] LsInputResources { get; set; } = { "Food", "Water", "Oxygen" };
+    public string[] LsInputResources { get; set; } = ["Food", "Water", "Oxygen"];
 
     public Dictionary<string, double> LsConsumptionRates { get; set; } = new()
     {
@@ -64,14 +69,11 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
     public Dictionary<string, string[]> LsRecyclerNames { get; set; } =
         new()
         {
-            { "Food", new string[2] { "KLSS_Greenhouse", "KLSS_GreenhouseFertilized" } },
-            { "Water", new string[2] { "KLSS_WaterRecycler", "KLSS_Combined" } },
-            { "Oxygen", new string[2] { "KLSS_CO2Scrubber", "KLSS_Combined" } }
+            { "Food", ["KLSS_Greenhouse", "KLSS_GreenhouseFertilized"] },
+            { "Water", ["KLSS_WaterRecycler", "KLSS_Combined"] },
+            { "Oxygen", ["KLSS_CO2Scrubber", "KLSS_Combined"] }
         };
 
-
-    // Singleton instance of the plugin class
-    public static KerbalLifeSupportSystemPlugin Instance { get; private set; }
 
     // Logger
     public new static ManualLogSource Logger { get; private set; }
@@ -85,14 +87,6 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
             .RegisterModuleForBackgroundResourceProcessing<PartComponentModule_ResourceConverter>();
     }
 
-    private void SetupConfiguration()
-    {
-        foreach (var resource in LsInputResources)
-            ConsumptionRates[resource] = Config.Bind("Life-Support", $"{resource} Consumption Multiplier", 1f,
-                new ConfigDescription(
-                    $"{resource} consumption rate multiplier.", new AcceptableValueRange<float>(0f, 5f)));
-    }
-
     /// <summary>
     ///     Runs when the mod is first initialized.
     /// </summary>
@@ -103,26 +97,73 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
         Logger = base.Logger;
         Instance = this;
 
-        var klssPlannerUxml =
-            AssetManager.GetAsset<VisualTreeAsset>($"{Info.Metadata.GUID}/klss_ui/ui/lifesupportmonitor.uxml");
-        var klssPlannerWindow = Window.CreateFromUxml(klssPlannerUxml, "Life-Support Monitor", transform, true);
-        _klssMonitorController = klssPlannerWindow.gameObject.AddComponent<LifeSupportMonitorUIController>();
+        LoadAssemblies();
+
+        // Load the UI from the asset bundle
+        var lsMonitorUxml = AssetManager.GetAsset<VisualTreeAsset>($"{ModGuid}/klss_ui/ui/lifesupportmonitor.uxml");
+
+        // Create the window options object
+        var windowOptions = new WindowOptions
+        {
+            // The ID of the window. It should be unique to your mod.
+            WindowId = "KerbalLifeSupportSystem_LSMonitor",
+            // The transform of parent game object of the window.
+            // If null, it will be created under the main canvas.
+            Parent = null,
+            // Whether or not the window can be hidden with F2.
+            IsHidingEnabled = true,
+            // Whether to disable game input when typing into text fields.
+            DisableGameInputForTextFields = true,
+            MoveOptions = new MoveOptions
+            {
+                // Whether or not the window can be moved by dragging.
+                IsMovingEnabled = true,
+                // Whether or not the window can only be moved within the screen bounds.
+                CheckScreenBounds = true
+            }
+        };
+
+        // Create the window
+        var lsMonitorWindow = Window.Create(windowOptions, lsMonitorUxml);
+        // Add a controller for the UI to the window's game object
+        var lsMonitorController = lsMonitorWindow.gameObject.AddComponent<LifeSupportMonitorUIController>();
+        lsMonitorController.IsWindowOpen = false;
 
         Appbar.RegisterOABAppButton(
-            "Life-Support",
+            new LocalizedString("KLSS/UI/AppBar/Title"),
             ToolbarOabButtonID,
-            AssetManager.GetAsset<Texture2D>($"{Info.Metadata.GUID}/images/icon.png"),
-            _klssMonitorController.SetEnabled);
+            AssetManager.GetAsset<Texture2D>($"{ModGuid}/images/icon.png"),
+            isOpen => lsMonitorController.IsWindowOpen = isOpen);
 
         Appbar.RegisterAppButton(
-            "Life-Support",
+            new LocalizedString("KLSS/UI/AppBar/Title"),
             ToolbarFlightButtonID,
-            AssetManager.GetAsset<Texture2D>($"{Info.Metadata.GUID}/images/icon.png"),
-            _klssMonitorController.SetEnabled);
+            AssetManager.GetAsset<Texture2D>($"{ModGuid}/images/icon.png"),
+            isOpen => lsMonitorController.IsWindowOpen = isOpen);
     }
 
     public override void OnPostInitialized()
     {
         SetupConfiguration();
+    }
+
+    private void SetupConfiguration()
+    {
+        foreach (var resource in LsInputResources)
+            ConsumptionRates[resource] = Config.Bind("Life-Support", $"{resource} Consumption Multiplier", 1f,
+                new ConfigDescription(
+                    $"{resource} consumption rate multiplier.", new AcceptableValueRange<float>(0f, 5f)));
+    }
+
+    /// <summary>
+    /// Loads all the assemblies for the mod.
+    /// </summary>
+    private static void LoadAssemblies()
+    {
+        // Load the Unity project assembly
+        var currentFolder = new FileInfo(Assembly.GetExecutingAssembly().Location).Directory!.FullName;
+        var unityAssembly = Assembly.LoadFrom(Path.Combine(currentFolder, "KerbalLifeSupportSystem.Unity.dll"));
+        // Register any custom UI controls from the loaded assembly
+        CustomControls.RegisterFromAssembly(unityAssembly);
     }
 }

@@ -26,7 +26,13 @@ MonoBehaviour:
   - KLSS_water_tank_0v_radial
   - KLSS_water_tank_2v_1x2
   - KLSS_water_tank_2v_radial
+  - KLSS_storage_0v_radial
+  - KLSS_storage_2v_radial
+  - KLSS_storage_2v_1x2
   Values:
+  - '%NAME%.json'
+  - '%NAME%.json'
+  - '%NAME%.json'
   - '%NAME%.json'
   - '%NAME%.json'
   - '%NAME%.json'

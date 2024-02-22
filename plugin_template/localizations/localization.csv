@@ -31,6 +31,7 @@ KLSS/UI/Monitor/FilterBoth,Text,,Both,全部,Tout
 KLSS/UI/Monitor/HeaderName,Text,,Name,名称,Nom
 KLSS/UI/Monitor/SettingShowEmpty,Text,,Show empty vessels,显示空载具,Voir vaisseaux vides
 KLSS/UI/Monitor/SettingActiveOnTop,Text,,Active vessel on top,置顶当前载具,Vaisseau actif en haut
+KLSS/Variants/TankType,Text,,Tank Type,,Type de Stockage
 Parts/Title/KLSS_life_support_tank_1v_1x1,Text,,SCS-100,SCS-100,SCS-100
 Parts/Subtitle/KLSS_life_support_tank_1v_1x1,Text,,Small Combined Storage,小型混合储藏舱,Petit Stockage Combiné
 Parts/Manufacturer/KLSS_life_support_tank_1v_1x1,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
@@ -83,3 +84,15 @@ Parts/Title/KLSS_composter_2v_short,Text,,CPST-150,CPST-150,CPST-150
 Parts/Subtitle/KLSS_composter_2v_short,Text,,Medium Inline Composter,中型轴向堆肥舱,Composteur Cylindrique Moyen
 Parts/Manufacturer/KLSS_composter_2v_short,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
 Parts/Description/KLSS_composter_2v_short,Text,,Let's not let all the byproducts coming from our Kerbals go to waste! Convert Waste from Kerbals into Fertilizer that can be used in greenhouses.,我们不要让坎巴拉人的生活垃圾被浪费掉！将维生系统的副产品转化为可用于温室的肥料。,Ne gaspillons pas les rejets de nos Kerbals! Convertissez les déchets produits en engrais utilisable dans les serres.
+Parts/Title/KLSS_storage_0v_radial,Text,,PSS-10,PSS-10,PSS-10
+Parts/Subtitle/KLSS_storage_0v_radial,Text,,Portable Supplies Storage,,Stockage de Provisions Portatif
+Parts/Manufacturer/KLSS_storage_0v_radial,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
+Parts/Description/KLSS_storage_0v_radial,,,The PSS-10 is an extra small radially attached supplies pack. Perfect for quick rover expedition on another world.,,Le PFS-10 est un petit pack de provisions attaché radialement. Parfait pour les expéditions en rover.
+Parts/Title/KLSS_storage_2v_radial,Text,,TSC-300,TSC-300,TSC-300
+Parts/Subtitle/KLSS_storage_2v_radial,Text,,Triangular Supplies Container,,Conteneur de Provisions
+Parts/Manufacturer/KLSS_storage_2v_radial,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
+Parts/Description/KLSS_storage_2v_radial,,,The TFC-300 is a medium size radially attached supplies container. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.,,Le TFC-300 est un conteneur de provisions attaché radialement. Ce conteneur de la forme d'une fameuse barre chocolatée est parfait pour réapprovisionner vos colonies.
+Parts/Title/KLSS_storage_2v_1x2,Text,,MSS-200,MSS-200,MSS-200
+Parts/Subtitle/KLSS_storage_2v_1x2,Text,,Medium Supplies Storage,,Stockage de Provisions Moyen
+Parts/Manufacturer/KLSS_storage_2v_1x2,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
+Parts/Description/KLSS_storage_2v_1x2,,,The MWS-200 is a medium-diameter supplies storage module. This is what was used on the famous Kygnus resupply vessel.,,Le MFS-200 est un module de stockage de provisions de taille M. Notablement utilisé pour le vaisseau Kygnus.

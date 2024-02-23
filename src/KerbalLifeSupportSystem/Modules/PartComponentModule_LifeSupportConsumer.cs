@@ -1,5 +1,6 @@
 ﻿using KSP.Game;
 using KSP.Messages;
+using KSP.Modules;
 using KSP.Sim;
 using KSP.Sim.impl;
 using KSP.Sim.ResourceSystem;
@@ -74,7 +75,15 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
         foreach (var kerbal in _kerbalsInSimObject)
         {
             if (!_dataLifeSupportConsumer.lastConsumed.ContainsKey(kerbal.NameKey))
+            {
                 _dataLifeSupportConsumer.lastConsumed[kerbal.NameKey] = new Dictionary<string, double>();
+                foreach (var ingredient in _currentIngredientUnits)
+                {
+                    var resourceName = _resourceDB.GetResourceNameFromID(ingredient.resourceID);
+                    _dataLifeSupportConsumer.lastConsumed[kerbal.NameKey][resourceName] = 0.0;
+                }
+            }
+
             if (!_dataLifeSupportConsumer.exhaustNotificationSent.ContainsKey(kerbal.NameKey))
                 _dataLifeSupportConsumer.exhaustNotificationSent[kerbal.NameKey] = new Dictionary<string, bool>();
         }
@@ -214,17 +223,61 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
     private void UpdateKerbalsStatus(double universalTime)
     {
         foreach (var kerbal in _kerbalsInSimObject)
-        foreach (var ingredient in _currentIngredientUnits)
-            if (ResourceExhausted(kerbal, ingredient, universalTime))
-            {
-                KerbalLifeSupportSystemPlugin.Logger.LogInfo("Kerbal " + kerbal.NameKey + " ran out of life-support.");
-                if (Part.PartOwner.SimulationObject.IsKerbal)
-                    Part.PartOwner.SimulationObject.Destroy(universalTime);
-                else
-                    _rosterManager.DestroyKerbal(kerbal.Id);
+        {
+            var anyExhausted = false;
+            foreach (var ingredient in _currentIngredientUnits)
+                if (ResourceExhausted(kerbal, ingredient, universalTime))
+                {
+                    var resourceName = _resourceDB.GetResourceNameFromID(ingredient.resourceID);
+                    HandleExhaustedResource(kerbal, resourceName, universalTime);
 
-                break;
+                    anyExhausted = true;
+                    break;
+                }
+
+            if (!anyExhausted && _dataLifeSupportConsumer.kerbalsOnStrike.Contains(kerbal.NameKey))
+            {
+                _dataLifeSupportConsumer.kerbalsOnStrike.Remove(kerbal.NameKey);
+                _dataLifeSupportConsumer.strikeNotificationSent[kerbal.NameKey] = false;
+                UpdateCommandStatus();
             }
+        }
+    }
+
+    private void HandleExhaustedResource(KerbalInfo kerbal, string resourceName, double universalTime)
+    {
+        if (KerbalLifeSupportSystemPlugin.Instance.ConfigKerbalsDie.Value)
+        {
+            NotifyKerbalDied(universalTime, kerbal.NameKey, resourceName);
+            KillKerbal(kerbal, universalTime);
+        }
+        else
+        {
+            NotifyKerbalOnStrike(universalTime, kerbal.NameKey, resourceName);
+            if (_dataLifeSupportConsumer.kerbalsOnStrike.Add(kerbal.NameKey)) UpdateCommandStatus();
+        }
+    }
+
+    private void UpdateCommandStatus()
+    {
+        if (Part.TryGetModule(typeof(PartComponentModule_Command), out var module) &&
+            module is PartComponentModule_Command commandModule)
+        {
+            commandModule.UpdateKerbalControlStatus();
+            commandModule.UpdateControlStatus();
+        }
+    }
+
+    private void KillKerbal(KerbalInfo kerbal, double universalTime)
+    {
+        if (Part.PartOwner.SimulationObject.IsKerbal)
+            Part.PartOwner.SimulationObject.Destroy(universalTime);
+        else
+        {
+            _dataLifeSupportConsumer.lastConsumed.Remove(kerbal.NameKey);
+            _dataLifeSupportConsumer.exhaustNotificationSent.Remove(kerbal.NameKey);
+            _rosterManager.DestroyKerbal(kerbal.Id);
+        }
     }
 
     /// <summary>
@@ -244,9 +297,6 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
         if (!lastCons.ContainsKey(resourceName)) return false;
         var timeDelta = time - lastCons[resourceName];
 
-        if (timeDelta > KerbalLifeSupportSystemPlugin.Instance.LsGracePeriods[resourceName])
-            NotifyKerbalDied(time, kerbal.NameKey, resourceName);
-
         // Return true if exhausted for longer than the allowed grace period for this resource
         return timeDelta > KerbalLifeSupportSystemPlugin.Instance.LsGracePeriods[resourceName];
     }
@@ -260,7 +310,7 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
             AlertTitle = new NotificationLineItemData
             {
                 ObjectParams = [Part.PartOwner.SimulationObject.Vessel.Name, resourceName],
-                LocKey = "KLSS/Notifications/ResourceExhausted"
+                LocKey = "KLSS/Notifications/ResourceExhaustedDied"
             },
             TimeStamp = universalTime,
             FirstLine = new NotificationLineItemData
@@ -268,6 +318,30 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
                 LocKey = kerbalName
             }
         });
+    }
+
+    private void NotifyKerbalOnStrike(double universalTime, string kerbalName, string resourceName)
+    {
+        if (_dataLifeSupportConsumer.strikeNotificationSent.ContainsKey(kerbalName) &&
+            _dataLifeSupportConsumer.strikeNotificationSent[kerbalName])
+            return;
+
+        _notificationManager.ProcessNotification(new NotificationData
+        {
+            Tier = NotificationTier.Alert,
+            Importance = NotificationImportance.High,
+            AlertTitle = new NotificationLineItemData
+            {
+                ObjectParams = [Part.PartOwner.SimulationObject.Vessel.Name, resourceName],
+                LocKey = "KLSS/Notifications/ResourceExhaustedStrike"
+            },
+            TimeStamp = universalTime,
+            FirstLine = new NotificationLineItemData
+            {
+                LocKey = kerbalName
+            }
+        });
+        _dataLifeSupportConsumer.strikeNotificationSent[kerbalName] = true;
     }
 
     /// <summary>

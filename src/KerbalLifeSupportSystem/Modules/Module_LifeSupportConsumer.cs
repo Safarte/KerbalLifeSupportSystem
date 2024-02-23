@@ -12,14 +12,14 @@ public class Module_LifeSupportConsumer : PartBehaviourModule
 
     public override Type PartComponentModuleType => typeof(PartComponentModule_LifeSupportConsumer);
 
-    protected override void AddDataModules()
+    public override void AddDataModules()
     {
         base.AddDataModules();
         _dataLifeSupportConsumer ??= new Data_LifeSupportConsumer();
         DataModules.TryAddUnique(_dataLifeSupportConsumer, out _dataLifeSupportConsumer);
     }
 
-    protected override void OnInitialize()
+    public override void OnInitialize()
     {
         base.OnInitialize();
         if (PartBackingMode == PartBackingModes.Flight) moduleIsEnabled = true;

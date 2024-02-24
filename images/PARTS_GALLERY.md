@@ -51,7 +51,7 @@ An up-to-date visual list of all parts added by this KSP2 mod.
 
 ### TFC-300 / Triangular Food Container (M)
 
-![triangular food container part](../KerbalLifeSupportSystem.Unity|g/KerbalLifeSupportSystem.Unity/Assets/KLSS_food_pack_2v_radial_icon.png)
+![triangular food container part](../KerbalLifeSupportSystem.Unity/KerbalLifeSupportSystem.Unity/Assets/KLSS_food_pack_2v_radial_icon.png)
 
 ### TWC-300 / Triangular Water Container (M)
 

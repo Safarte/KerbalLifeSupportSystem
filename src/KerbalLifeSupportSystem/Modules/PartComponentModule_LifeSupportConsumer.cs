@@ -239,11 +239,17 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
             {
                 _dataLifeSupportConsumer.kerbalsOnStrike.Remove(kerbal.NameKey);
                 _dataLifeSupportConsumer.strikeNotificationSent[kerbal.NameKey] = false;
-                UpdateCommandStatus();
+                UpdateCommandAndExperimentsStatus();
             }
         }
     }
 
+    /// <summary>
+    /// Handle killing or sending the Kerbal on strike depending on the user config
+    /// </summary>
+    /// <param name="kerbal">Handled Kerbal</param>
+    /// <param name="resourceName">Exhausted resource name</param>
+    /// <param name="universalTime">Current universal time</param>
     private void HandleExhaustedResource(KerbalInfo kerbal, string resourceName, double universalTime)
     {
         if (KerbalLifeSupportSystemPlugin.Instance.ConfigKerbalsDie.Value)
@@ -254,11 +260,14 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
         else
         {
             NotifyKerbalOnStrike(universalTime, kerbal.NameKey, resourceName);
-            if (_dataLifeSupportConsumer.kerbalsOnStrike.Add(kerbal.NameKey)) UpdateCommandStatus();
+            if (_dataLifeSupportConsumer.kerbalsOnStrike.Add(kerbal.NameKey)) UpdateCommandAndExperimentsStatus();
         }
     }
 
-    private void UpdateCommandStatus()
+    /// <summary>
+    /// Update the command status of the part taking kerbals on strike into account and update experiments validity
+    /// </summary>
+    private void UpdateCommandAndExperimentsStatus()
     {
         if (Part.TryGetModule(typeof(PartComponentModule_Command), out var module) &&
             module is PartComponentModule_Command commandModule)
@@ -266,8 +275,19 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
             commandModule.UpdateKerbalControlStatus();
             commandModule.UpdateControlStatus();
         }
+
+        if (Part.TryGetModule(typeof(PartComponentModule_ScienceExperiment), out module) &&
+            module is PartComponentModule_ScienceExperiment scienceModule)
+        {
+            scienceModule.CheckAllExperimentsValidity();
+        }
     }
 
+    /// <summary>
+    /// Kill a Kerbal
+    /// </summary>
+    /// <param name="kerbal">Killed Kerbal</param>
+    /// <param name="universalTime">Current universal time</param>
     private void KillKerbal(KerbalInfo kerbal, double universalTime)
     {
         if (Part.PartOwner.SimulationObject.IsKerbal)
@@ -301,6 +321,12 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
         return timeDelta > KerbalLifeSupportSystemPlugin.Instance.LsGracePeriods[resourceName];
     }
 
+    /// <summary>
+    /// Send a notification indicating a Kerbal has died due to lack of supplies
+    /// </summary>
+    /// <param name="universalTime">Current universal time</param>
+    /// <param name="kerbalName">Name of the Kerbal</param>
+    /// <param name="resourceName">Name of the resource the Kerbal ran out of</param>
     private void NotifyKerbalDied(double universalTime, string kerbalName, string resourceName)
     {
         _notificationManager.ProcessNotification(new NotificationData
@@ -320,6 +346,12 @@ public class PartComponentModule_LifeSupportConsumer : PartComponentModule
         });
     }
 
+    /// <summary>
+    /// Send a notification indicating a Kerbal has gone on strike due to lack of supplies
+    /// </summary>
+    /// <param name="universalTime">Current universal time</param>
+    /// <param name="kerbalName">Name of the Kerbal</param>
+    /// <param name="resourceName">Name of the resource the Kerbal ran out of</param>
     private void NotifyKerbalOnStrike(double universalTime, string kerbalName, string resourceName)
     {
         if (_dataLifeSupportConsumer.strikeNotificationSent.ContainsKey(kerbalName) &&

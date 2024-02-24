@@ -23,7 +23,7 @@ KLSS/LSR/Tooltip/ToggleComposter,Text,,Toggle Composter,切换堆肥模式,Bascu
 KLSS/LSR/Formulas/Composter,Text,,Composter,堆肥,Composteur
 KLSS/Notifications/ResourceGraceStarted,Text,,"A vessel has run out of ""{0}""","一艘载具耗尽了""{0}""","Un vaisseau est à court de ""{0}"""
 KLSS/Notifications/ResourceExhaustedDied,Text,,"A Kerbal on board ""{0}"" has died from lack of ""{1}""","载具""{0}""上的一名乘员因缺少""{1}""而牺牲","Un Kerbal à bord de ""{0}"" est mort de manque de ""{1}"""
-KLSS/Notifications/ResourceExhaustedStrike,Text,,"A Kerbal on board ""{0}"" went on strike from lack of ""{1}""",,"Un Kerbal à bord de ""{0}"" est en grève à cause d'un manque de ""{1}"""
+KLSS/Notifications/ResourceExhaustedStrike,Text,,"A Kerbal on board ""{0}"" went on strike from lack of ""{1}""","载具""{0}""上的一名乘员因缺少""{1}""而罢工","Un Kerbal à bord de ""{0}"" est en grève à cause d'un manque de ""{1}"""
 KLSS/UI/AppBar/Title,Text,,Life-Support,生命保障,Support de vie
 KLSS/UI/Monitor/Title,Text,,LIFE-SUPPORT,生命保障,SUPPORT DE VIE
 KLSS/UI/Monitor/FilterVessels,Text,,Vessels,载具,Vaisseaux

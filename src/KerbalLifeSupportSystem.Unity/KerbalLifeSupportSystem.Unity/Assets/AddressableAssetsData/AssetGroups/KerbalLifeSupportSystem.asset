@@ -225,6 +225,54 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1f0338931dcd7e40a292a3e533b9a09
+    m_Address: KLSS_storage_0v_radial.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0fab42c11e5726c4ca6463bbf64e4293
+    m_Address: KLSS_storage_0v_radial.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d36594f215efcf14aa3fa057df522ed6
+    m_Address: KLSS_storage_0v_radial_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f7650c621fd2544490c3baa83dca05e
+    m_Address: KLSS_storage_2v_radial.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 410b7955ae327fb4aa823c50c18bd369
+    m_Address: KLSS_storage_2v_radial.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df601eb6faf93c84d9e6de1f87469fae
+    m_Address: KLSS_storage_2v_radial_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c62f507a9c6f1747831bc53d5353ef6
+    m_Address: KLSS_storage_2v_1x2.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f29aadd8a127b6b488e13b70f97cf773
+    m_Address: KLSS_storage_2v_1x2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 550ca1588debc004dad83fc8a5eb2bc8
+    m_Address: KLSS_storage_2v_1x2_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ab0e05a9dcf69b340a5b2a3d0207d022, type: 2}
   m_SchemaSet:

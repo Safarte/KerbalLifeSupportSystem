@@ -1,0 +1,56 @@
+@new(spring_cleaning, KLSS_food_tank_2v_1x2_cleanup)
+:json {
+  PartId: KLSS_food_tank_2v_1x2;
+  Hidden: true;
+  Toggleable: false;
+}
+@new(spring_cleaning, KLSS_water_tank_2v_1x2_cleanup)
+:json {
+  PartId: KLSS_water_tank_2v_1x2;
+  Hidden: true;
+  Toggleable: false;
+}
+@new(spring_cleaning, KLSS_oxygen_tank_2v_1x2_cleanup)
+:json {
+  PartId: KLSS_oxygen_tank_2v_1x2;
+  Hidden: true;
+  Toggleable: false;
+}
+
+@new(spring_cleaning, KLSS_food_pack_0v_radial_cleanup)
+:json {
+  PartId: KLSS_food_pack_0v_radial;
+  Hidden: true;
+  Toggleable: false;
+}
+@new(spring_cleaning, KLSS_water_tank_0v_radial_cleanup)
+:json {
+  PartId: KLSS_water_tank_0v_radial;
+  Hidden: true;
+  Toggleable: false;
+}
+@new(spring_cleaning, KLSS_oxygen_tank_0v_radial_cleanup)
+:json {
+  PartId: KLSS_oxygen_tank_0v_radial;
+  Hidden: true;
+  Toggleable: false;
+}
+
+@new(spring_cleaning, KLSS_food_pack_2v_radial_cleanup)
+:json {
+  PartId: KLSS_food_pack_2v_radial;
+  Hidden: true;
+  Toggleable: false;
+}
+@new(spring_cleaning, KLSS_water_tank_2v_radial_cleanup)
+:json {
+  PartId: KLSS_water_tank_2v_radial;
+  Hidden: true;
+  Toggleable: false;
+}
+@new(spring_cleaning, KLSS_oxygen_tank_2v_radial_cleanup)
+:json {
+  PartId: KLSS_oxygen_tank_2v_radial;
+  Hidden: true;
+  Toggleable: false;
+}

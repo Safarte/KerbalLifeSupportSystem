@@ -14,6 +14,7 @@
     <!-- Package references -->
     <ItemGroup>
         <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" PrivateAssets="all"/>
+        <PackageReference Include="Premonition.Core" Version="0.2.0"/>
         <PackageReference Include="UnityEngine.Modules" Version="2022.3.5" PrivateAssets="all"/>
     </ItemGroup>
 </Project>

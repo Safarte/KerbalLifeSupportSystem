@@ -1,0 +1,181 @@
+@use "VSwift:*";
+
+:parts #KLSS_storage_0v_radial {
+  @include part-switch() {
+    +TankType {
+      VariantSetLocalizationKey: "KLSS/Variants/TankType";
+      +Food {
+        VariantLocalizationKey: "Resource/DisplayName/Food";
+        +TransformActivator {
+          Transforms: [food];
+        }
+      }
+      +Water {
+        VariantLocalizationKey: "Resource/DisplayName/Water";
+        +TransformActivator {
+          Transforms: [water];
+        }
+        +ResourceContainerAdder {
+          Containers: [
+            {
+              Name: "Water",
+              CapacityUnits: 45.0,
+              InitialUnits: 45.0
+            },
+            {
+              Name: "WasteWater",
+              CapacityUnits: 45.0,
+              InitialUnits: 0.0
+            }
+          ];
+        }
+        +ResourceContainerRemover {
+          Containers: [Food, Waste];
+        }
+      }
+      +Oxygen {
+        VariantLocalizationKey: "Resource/DisplayName/Oxygen";
+        +TransformActivator {
+          Transforms: [oxygen];
+        }
+        +ResourceContainerAdder {
+          Containers: [
+            {
+              Name: "Oxygen",
+              CapacityUnits: 0.015,
+              InitialUnits: 0.015
+            },
+            {
+              Name: "CarbonDioxide",
+              CapacityUnits: 0.015,
+              InitialUnits: 0.0
+            }
+          ];
+        }
+        +ResourceContainerRemover {
+          Containers: [Food, Waste];
+        }
+      }
+    }
+  }
+}
+
+:parts #KLSS_storage_2v_radial {
+  @include part-switch() {
+    +TankType {
+      VariantSetLocalizationKey: "KLSS/Variants/TankType";
+      +Food {
+        VariantLocalizationKey: "Resource/DisplayName/Food";
+        +TransformActivator {
+          Transforms: [food];
+        }
+      }
+      +Water {
+        VariantLocalizationKey: "Resource/DisplayName/Water";
+        +TransformActivator {
+          Transforms: [water];
+        }
+        +ResourceContainerAdder {
+          Containers: [
+            {
+              Name: "Water",
+              CapacityUnits: 7668.0,
+              InitialUnits: 7668.0
+            },
+            {
+              Name: "WasteWater",
+              CapacityUnits: 7668.0,
+              InitialUnits: 0.0
+            }
+          ];
+        }
+        +ResourceContainerRemover {
+          Containers: [Food, Waste];
+        }
+      }
+      +Oxygen {
+        VariantLocalizationKey: "Resource/DisplayName/Oxygen";
+        +TransformActivator {
+          Transforms: [oxygen];
+        }
+        +ResourceContainerAdder {
+          Containers: [
+            {
+              Name: "Oxygen",
+              CapacityUnits: 2.556,
+              InitialUnits: 2.556
+            },
+            {
+              Name: "CarbonDioxide",
+              CapacityUnits: 2.556,
+              InitialUnits: 0.0
+            }
+          ];
+        }
+        +ResourceContainerRemover {
+          Containers: [Food, Waste];
+        }
+      }
+    }
+  }
+}
+
+:parts #KLSS_storage_2v_1x2 {
+  @include part-switch() {
+    +TankType {
+      VariantSetLocalizationKey: "KLSS/Variants/TankType";
+      +Food {
+        VariantLocalizationKey: "Resource/DisplayName/Food";
+        +TransformActivator {
+          Transforms: [food];
+        }
+      }
+      +Water {
+        VariantLocalizationKey: "Resource/DisplayName/Water";
+        +TransformActivator {
+          Transforms: [water];
+        }
+        +ResourceContainerAdder {
+          Containers: [
+            {
+              Name: "Water",
+              CapacityUnits: 3834.0,
+              InitialUnits: 3834.0
+            },
+            {
+              Name: "WasteWater",
+              CapacityUnits: 3834.0,
+              InitialUnits: 0.0
+            }
+          ];
+        }
+        +ResourceContainerRemover {
+          Containers: [Food, Waste];
+        }
+      }
+      +Oxygen {
+        VariantLocalizationKey: "Resource/DisplayName/Oxygen";
+        +TransformActivator {
+          Transforms: [oxygen];
+        }
+        +ResourceContainerAdder {
+          Containers: [
+            {
+              Name: "Oxygen",
+              CapacityUnits: 1.278,
+              InitialUnits: 1.278
+            },
+            {
+              Name: "CarbonDioxide",
+              CapacityUnits: 1.278,
+              InitialUnits: 0.0
+            }
+          ];
+        }
+        +ResourceContainerRemover {
+          Containers: [Food, Waste];
+        }
+      }
+    }
+  }
+}

@@ -40,7 +40,7 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
     private const int SecondsPerDay = 21600;
     private const int SecondsPerHour = 3600;
 
-    //internal ConfigEntry<bool> ConfigKerbalsDie;
+    internal ConfigEntry<bool> ConfigKerbalsDie;
     internal readonly Dictionary<string, ConfigEntry<float>> ConsumptionRates = new();
 
     public string[] LsInputResources { get; set; } = ["Food", "Water", "Oxygen"];
@@ -149,6 +149,10 @@ public class KerbalLifeSupportSystemPlugin : BaseSpaceWarpPlugin
 
     private void SetupConfiguration()
     {
+        ConfigKerbalsDie = Config.Bind("Life-Support", "Kerbals Die", true,
+            new ConfigDescription(
+                "Kerbals die when running out of life-support supplies. They go on strike and stop working otherwise."));
+
         foreach (var resource in LsInputResources)
             ConsumptionRates[resource] = Config.Bind("Life-Support", $"{resource} Consumption Multiplier", 1f,
                 new ConfigDescription(

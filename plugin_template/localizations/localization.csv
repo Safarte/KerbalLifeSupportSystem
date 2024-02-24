@@ -22,7 +22,8 @@ KLSS/LSR/Tooltip/StopComposter,Text,,Stop Composter,停用堆肥舱,Éteindre Co
 KLSS/LSR/Tooltip/ToggleComposter,Text,,Toggle Composter,切换堆肥模式,Basculer Composteur
 KLSS/LSR/Formulas/Composter,Text,,Composter,堆肥,Composteur
 KLSS/Notifications/ResourceGraceStarted,Text,,"A vessel has run out of ""{0}""","一艘载具耗尽了""{0}""","Un vaisseau est à court de ""{0}"""
-KLSS/Notifications/ResourceExhausted,Text,,"A Kerbal on board ""{0}"" has died from lack of ""{1}""","载具""{0}""上的一名乘员因缺少""{1}""而牺牲","Un Kerbal à bord de ""{0}"" est mort de manque de ""{1}"""
+KLSS/Notifications/ResourceExhaustedDied,Text,,"A Kerbal on board ""{0}"" has died from lack of ""{1}""","载具""{0}""上的一名乘员因缺少""{1}""而牺牲","Un Kerbal à bord de ""{0}"" est mort de manque de ""{1}"""
+KLSS/Notifications/ResourceExhaustedStrike,Text,,"A Kerbal on board ""{0}"" went on strike from lack of ""{1}""","载具""{0}""上的一名乘员因缺少""{1}""而罢工","Un Kerbal à bord de ""{0}"" est en grève à cause d'un manque de ""{1}"""
 KLSS/UI/AppBar/Title,Text,,Life-Support,生命保障,Support de vie
 KLSS/UI/Monitor/Title,Text,,LIFE-SUPPORT,生命保障,SUPPORT DE VIE
 KLSS/UI/Monitor/FilterVessels,Text,,Vessels,载具,Vaisseaux
@@ -31,6 +32,7 @@ KLSS/UI/Monitor/FilterBoth,Text,,Both,全部,Tout
 KLSS/UI/Monitor/HeaderName,Text,,Name,名称,Nom
 KLSS/UI/Monitor/SettingShowEmpty,Text,,Show empty vessels,显示空载具,Voir vaisseaux vides
 KLSS/UI/Monitor/SettingActiveOnTop,Text,,Active vessel on top,置顶当前载具,Vaisseau actif en haut
+KLSS/Variants/TankType,Text,,Tank Type,储藏类型,Type de Stockage
 Parts/Title/KLSS_life_support_tank_1v_1x1,Text,,SCS-100,SCS-100,SCS-100
 Parts/Subtitle/KLSS_life_support_tank_1v_1x1,Text,,Small Combined Storage,小型混合储藏舱,Petit Stockage Combiné
 Parts/Manufacturer/KLSS_life_support_tank_1v_1x1,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
@@ -42,39 +44,39 @@ Parts/Description/KLSS_life_support_tank_2v_1x1,Text,,The MCS-100 is a short med
 Parts/Title/KLSS_food_tank_2v_1x2,Text,,MFS-200,MFS-200,MFS-200
 Parts/Subtitle/KLSS_food_tank_2v_1x2,Text,,Medium Food Storage,中型食物储藏舱,Stockage de Nourriture Moyen
 Parts/Manufacturer/KLSS_food_tank_2v_1x2,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
-Parts/Description/KLSS_food_tank_2v_1x2,Text,,The MFS-200 is a medium-diameter Food storage module. This is what was used on the famous Kygnus resupply vessel.,MFS-200是一款中型的食品储藏模块。这就是著名的天鹅座号补给飞船所使用的模块。,Le MFS-200 est un module de stockage de nourriture de taille M. Notablement utilisé pour le vaisseau Kygnus.
+Parts/Description/KLSS_food_tank_2v_1x2,Text,,The MFS-200 is a medium-diameter Food storage module. This is what was used on the famous Kygnus resupply vessel.,MFS-200是一款中型的食品储藏模块。这是著名的天鹅座号补给飞船所使用的模块。,Le MFS-200 est un module de stockage de nourriture de taille M. Notablement utilisé pour le vaisseau Kygnus.
 Parts/Title/KLSS_water_tank_2v_1x2,Text,,MWS-200,MWS-200,MWS-200
 Parts/Subtitle/KLSS_water_tank_2v_1x2,Text,,Medium Water Storage,中型水储藏舱,Stockage d'Eau Moyen
 Parts/Manufacturer/KLSS_water_tank_2v_1x2,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
-Parts/Description/KLSS_water_tank_2v_1x2,Text,,The MWS-200 is a medium-diameter Water storage module. This is what was used on the famous Kygnus resupply vessel.,MWS-200是一款中型的水储藏模块。这就是著名的天鹅座号补给飞船所使用的模块。,Le MWS-200 est un module de stockage d'eau de taille M. Notablement utilisé pour le vaisseau Kygnus.
+Parts/Description/KLSS_water_tank_2v_1x2,Text,,The MWS-200 is a medium-diameter Water storage module. This is what was used on the famous Kygnus resupply vessel.,MWS-200是一款中型的水储藏模块。这是著名的天鹅座号补给飞船所使用的模块。,Le MWS-200 est un module de stockage d'eau de taille M. Notablement utilisé pour le vaisseau Kygnus.
 Parts/Title/KLSS_oxygen_tank_2v_1x2,Text,,MOS-200,MOS-200,MOS-200
 Parts/Subtitle/KLSS_oxygen_tank_2v_1x2,Text,,Medium Oxygen Storage,中型氧气储藏舱,Stockage d'Oxygène Moyen
 Parts/Manufacturer/KLSS_oxygen_tank_2v_1x2,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
-Parts/Description/KLSS_oxygen_tank_2v_1x2,Text,,The MOS-200 is a medium-diameter Oxygen storage module. This is what was used on the famous Kygnus resupply vessel.,MOS-200是一款中型的氧气储藏模块。这就是著名的天鹅座号补给飞船所使用的模块。,Le MOS-200 est un module de stockage d'oxygène de taille M. Notablement utilisé pour le vaisseau Kygnus.
+Parts/Description/KLSS_oxygen_tank_2v_1x2,Text,,The MOS-200 is a medium-diameter Oxygen storage module. This is what was used on the famous Kygnus resupply vessel.,MOS-200是一款中型的氧气储藏模块。这是著名的天鹅座号补给飞船所使用的模块。,Le MOS-200 est un module de stockage d'oxygène de taille M. Notablement utilisé pour le vaisseau Kygnus.
 Parts/Title/KLSS_food_pack_0v_radial,Text,,PFS-10,PFS-10,PFS-10
 Parts/Subtitle/KLSS_food_pack_0v_radial,Text,,Portable Food Storage,便携式食物储藏包,Stockage de Nourriture Portatif
 Parts/Manufacturer/KLSS_food_pack_0v_radial,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
-Parts/Description/KLSS_food_pack_0v_radial,Text,,The PFS-10 is an extra small radially attached Food pack. Perfect for quick rover expedition on another world.,PFS-10是一款超小型径向连接的食物包。非常适合在另一个世界进行快速漫游探险。,Le PFS-10 est un petit pack de nourriture attaché radialement. Parfait pour les expéditions en rover.
+Parts/Description/KLSS_food_pack_0v_radial,Text,,The PFS-10 is an extra small radially attached Food pack. Perfect for quick rover expedition on another world.,PFS-10是一款超小型径向连接的食物包。非常适合在另一个世界进行简短的漫游探险。,Le PFS-10 est un petit pack de nourriture attaché radialement. Parfait pour les expéditions en rover.
 Parts/Title/KLSS_water_tank_0v_radial,Text,,PWS-10,PWS-10,PWS-10
 Parts/Subtitle/KLSS_water_tank_0v_radial,Text,,Portable Water Storage,便携式水储藏罐,Stockage d'Eau Portatif
 Parts/Manufacturer/KLSS_water_tank_0v_radial,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
-Parts/Description/KLSS_water_tank_0v_radial,Text,,The PWS-10 is an extra small radially attached Water tank. Perfect for quick rover expedition on another world.,PWS-10是一款超小型径向连接的水罐。非常适合在另一个世界进行快速漫游探险。,Le PWS-10 est un petit réservoir d'eau attaché radialement. Parfait pour les expéditions en rover.
+Parts/Description/KLSS_water_tank_0v_radial,Text,,The PWS-10 is an extra small radially attached Water tank. Perfect for quick rover expedition on another world.,PWS-10是一款超小型径向连接的水罐。非常适合在另一个世界进行简短的漫游探险。,Le PWS-10 est un petit réservoir d'eau attaché radialement. Parfait pour les expéditions en rover.
 Parts/Title/KLSS_oxygen_tank_0v_radial,Text,,POS-10,POS-10,POS-10
 Parts/Subtitle/KLSS_oxygen_tank_0v_radial,Text,,Portable Oxygen Storage,便携式氧气储藏罐,Stockage d'Oxygène Portatif
 Parts/Manufacturer/KLSS_oxygen_tank_0v_radial,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
-Parts/Description/KLSS_oxygen_tank_0v_radial,Text,,The POS-10 is an extra small radially attached Oxygen tank. Perfect for quick rover expedition on another world.,POS-10是一款超小型径向连接的氧气罐。非常适合在另一个世界进行快速漫游探险。,Le POS-10 est une petite bombonne d'oxygène attachée radialement. Parfaite pour les expéditions en rover.
+Parts/Description/KLSS_oxygen_tank_0v_radial,Text,,The POS-10 is an extra small radially attached Oxygen tank. Perfect for quick rover expedition on another world.,POS-10是一款超小型径向连接的氧气罐。非常适合在另一个世界进行简短的漫游探险。,Le POS-10 est une petite bombonne d'oxygène attachée radialement. Parfaite pour les expéditions en rover.
 Parts/Title/KLSS_food_pack_2v_radial,Text,,TFC-300,TFC-300,TFC-300
 Parts/Subtitle/KLSS_food_pack_2v_radial,Text,,Triangular Food Container,三角形食物容器,Conteneur de Nourriture
 Parts/Manufacturer/KLSS_food_pack_2v_radial,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
-Parts/Description/KLSS_food_pack_2v_radial,Text,,The TFC-300 is a medium size radially attached Food container. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.,TFC-300是一款中型的径向连接的食物容器。这个巧克力条形状的存储空间是你执行殖民地间补给任务所需的。,Le TFC-300 est un conteneur de nourriture attaché radialement. Ce conteneur de la forme d'une fameuse barre chocolatée est parfait pour réapprovisionner vos colonies.
+Parts/Description/KLSS_food_pack_2v_radial,Text,,The TFC-300 is a medium size radially attached Food container. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.,TFC-300是一款中型的径向连接的食物容器。这个巧克力棒形状的存储空间是你执行殖民地间补给任务所需的。,Le TFC-300 est un conteneur de nourriture attaché radialement. Ce conteneur de la forme d'une fameuse barre chocolatée est parfait pour réapprovisionner vos colonies.
 Parts/Title/KLSS_water_tank_2v_radial,Text,,TWC-300,TWC-300,TWC-300
 Parts/Subtitle/KLSS_water_tank_2v_radial,Text,,Triangular Water Container,三角形水容器,Conteneur d'Eau
 Parts/Manufacturer/KLSS_water_tank_2v_radial,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
-Parts/Description/KLSS_water_tank_2v_radial,Text,,The TWC-300 is a medium size radially attached Water tank. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.,TWC-300是一款中型的径向连接的水容器。这个巧克力条形状的存储空间是你执行殖民地间补给任务所需的。,Le TWC-300 est un conteneur d'eau attaché radialement. Ce conteneur de la forme d'une fameuse barre chocolatée est parfait pour réapprovisionner vos colonies.
+Parts/Description/KLSS_water_tank_2v_radial,Text,,The TWC-300 is a medium size radially attached Water tank. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.,TWC-300是一款中型的径向连接的水容器。这个巧克力棒形状的存储空间是你执行殖民地间补给任务所需的。,Le TWC-300 est un conteneur d'eau attaché radialement. Ce conteneur de la forme d'une fameuse barre chocolatée est parfait pour réapprovisionner vos colonies.
 Parts/Title/KLSS_oxygen_tank_2v_radial,Text,,TOC-300,TOC-300,TOC-300
 Parts/Subtitle/KLSS_oxygen_tank_2v_radial,Text,,Triangular Oxygen Container,三角形氧气容器,Conteneur d'Oxygène
 Parts/Manufacturer/KLSS_oxygen_tank_2v_radial,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
-Parts/Description/KLSS_oxygen_tank_2v_radial,Text,,The TOC-300 is a medium size radially attached Oxygen tank. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.,TOC-300是一款中型的径向连接的氧气容器。这个巧克力条形状的存储空间是你执行殖民地间补给任务所需的。,Le TOC-300 est un conteneur d'oxygène attaché radialement. Ce conteneur de la forme d'une fameuse barre chocolatée est parfait pour réapprovisionner vos colonies.
+Parts/Description/KLSS_oxygen_tank_2v_radial,Text,,The TOC-300 is a medium size radially attached Oxygen tank. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.,TOC-300是一款中型的径向连接的氧气容器。这个巧克力棒形状的存储空间是你执行殖民地间补给任务所需的。,Le TOC-300 est un conteneur d'oxygène attaché radialement. Ce conteneur de la forme d'une fameuse barre chocolatée est parfait pour réapprovisionner vos colonies.
 Parts/Title/KLSS_greenhouse_2v_long,Text,,GRN-250,GRN-250,GRN-250
 Parts/Subtitle/KLSS_greenhouse_2v_long,Text,,Medium Cylindrical Greenhouse,中型圆筒温室,Serre Cylindrique Moyenne
 Parts/Manufacturer/KLSS_greenhouse_2v_long,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
@@ -82,4 +84,16 @@ Parts/Description/KLSS_greenhouse_2v_long,Text,,"Our fine botanists have perfect
 Parts/Title/KLSS_composter_2v_short,Text,,CPST-150,CPST-150,CPST-150
 Parts/Subtitle/KLSS_composter_2v_short,Text,,Medium Inline Composter,中型轴向堆肥舱,Composteur Cylindrique Moyen
 Parts/Manufacturer/KLSS_composter_2v_short,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
-Parts/Description/KLSS_composter_2v_short,Text,,Let's not let all the byproducts coming from our Kerbals go to waste! Convert Waste from Kerbals into Fertilizer that can be used in greenhouses.,我们不要让坎巴拉人的生活垃圾被浪费掉！将维生系统的副产品转化为可用于温室的肥料。,Ne gaspillons pas les rejets de nos Kerbals! Convertissez les déchets produits en engrais utilisable dans les serres.
+Parts/Description/KLSS_composter_2v_short,Text,,Let's not let all the byproducts coming from our Kerbals go to waste! Convert Waste from Kerbals into Fertilizer that can be used in greenhouses.,我们不能浪费坎巴拉人的生活垃圾！将维生系统的副产品转化为可用于温室的肥料。,Ne gaspillons pas les rejets de nos Kerbals! Convertissez les déchets produits en engrais utilisable dans les serres.
+Parts/Title/KLSS_storage_0v_radial,Text,,PSS-10,PSS-10,PSS-10
+Parts/Subtitle/KLSS_storage_0v_radial,Text,,Portable Supplies Storage,便携式补给包,Stockage de Provisions Portatif
+Parts/Manufacturer/KLSS_storage_0v_radial,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
+Parts/Description/KLSS_storage_0v_radial,,,The PSS-10 is an extra small radially attached supplies pack. Perfect for quick rover expedition on another world.,PSS-10是一款超小型径向连接的补给包。非常适合在另一个世界进行简短的漫游探险。,Le PSS-10 est un petit pack de provisions attaché radialement. Parfait pour les expéditions en rover.
+Parts/Title/KLSS_storage_2v_radial,Text,,TSC-300,TSC-300,TSC-300
+Parts/Subtitle/KLSS_storage_2v_radial,Text,,Triangular Supplies Container,三角形补给容器,Conteneur de Provisions
+Parts/Manufacturer/KLSS_storage_2v_radial,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
+Parts/Description/KLSS_storage_2v_radial,,,The TSC-300 is a medium size radially attached supplies container. This is the kind of chocolate-shaped storage space you'll need for your inter-colonial resupply missions.,TSC-300是一款中型的径向连接的补给容器。这个巧克力棒形状的存储空间是你执行殖民地间补给任务所需的。,Le TSC-300 est un conteneur de provisions attaché radialement. Ce conteneur de la forme d'une fameuse barre chocolatée est parfait pour réapprovisionner vos colonies.
+Parts/Title/KLSS_storage_2v_1x2,Text,,MSS-200,MSS-200,MSS-200
+Parts/Subtitle/KLSS_storage_2v_1x2,Text,,Medium Supplies Storage,中型补给储藏舱,Stockage de Provisions Moyen
+Parts/Manufacturer/KLSS_storage_2v_1x2,Text,,Yummy Snacks Inc.,好吃零食公司,Miam Miam S.A.
+Parts/Description/KLSS_storage_2v_1x2,,,The MSS-200 is a medium-diameter supplies storage module. This is what was used on the famous Kygnus resupply vessel.,MSS-200是一款中型的补给储藏模块。这是著名的天鹅座号补给飞船所使用的模块。,Le MSS-200 est un module de stockage de provisions de taille M. Notablement utilisé pour le vaisseau Kygnus.

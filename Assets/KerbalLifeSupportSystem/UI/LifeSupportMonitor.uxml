@@ -1,0 +1,23 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/KerbalLifeSupportSystem/UI/LifeSupportMonitor.uss?fileID=7433441132597879392&amp;guid=06afc58e5efb24a4893b8784a41c26f1&amp;type=3#LifeSupportMonitor"/>
+    <UitkForKsp2.Controls.AppShell close-button-name="close-button" icon-sprite="project://database/Assets/KerbalLifeSupportSystem/UI/icon.png?fileID=6934086728263231946&amp;guid=a3bb6ec5fdbd3024186bc50cf8011de0&amp;type=3#icon_0" title="LIFE-SUPPORT" title-name="title">
+        <ui:VisualElement name="toolbar" class="toolbar">
+            <KerbalLifeSupportSystem.UI.Controls.LifeSupportFilterControl name="ls-filter-select"/>
+            <ui:TextField picking-mode="Ignore" name="search-bar" password="false" class="searchBar">
+                <ui:VisualElement name="search-icon" style="position: absolute; right: 2px; width: 24px; height: 24px; top: 2px; background-image: url(&quot;project://database/Assets/KerbalLifeSupportSystem/UI/search-icon.png?fileID=2800000&amp;guid=da33afa2d658fba40982c5e1671e88a2&amp;type=3#search-icon&quot;); -unity-background-image-tint-color: rgb(63, 66, 78);"/>
+            </ui:TextField>
+        </ui:VisualElement>
+        <ui:VisualElement name="ls-entries" class="lsEntries">
+            <KerbalLifeSupportSystem.UI.Controls.LifeSupportHeaderControl ResourceCount="3" name="ls-entries-header"/>
+            <ui:VisualElement name="ls-entries-divider" class="lsEntriesDivider"/>
+            <ui:ScrollView name="ls-entries-body" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible" class="body">
+                <KerbalLifeSupportSystem.UI.Controls.LifeSupportEntryControl resource-count="3" vessel-name="Test"/>
+            </ui:ScrollView>
+        </ui:VisualElement>
+        <ui:VisualElement name="settings" class="settings">
+            <ui:Toggle label="Show empty vessels" name="settings-show-empty" class="toggle ls-setting"/>
+            <ui:Label tabindex="-1" text="|" display-tooltip-when-elided="true" name="settings-divider" class="ls-setting__divider"/>
+            <ui:Toggle label="Active vessel on top" name="settings-active-on-top" value="true" class="toggle ls-setting"/>
+        </ui:VisualElement>
+    </UitkForKsp2.Controls.AppShell>
+</ui:UXML>

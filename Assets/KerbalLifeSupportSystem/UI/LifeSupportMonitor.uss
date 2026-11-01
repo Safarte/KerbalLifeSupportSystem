@@ -1,0 +1,464 @@
+.text-dark {
+    color: rgb(63, 66, 78);
+    -unity-background-image-tint-color: rgb(85, 88, 102);
+}
+
+.text-light {
+    color: rgb(173, 182, 208);
+    -unity-background-image-tint-color: rgb(173, 182, 208);
+}
+
+.close-button-icon {
+    background-image: url("project://database/Assets/UI/cross.png?fileID=21300000&guid=1a1faae07f1baca42b68045e08eea8b0&type=3#cross");
+    width: 12px;
+    height: 12px;
+}
+
+.close-button-icon:hover {
+    background-image: url("project://database/Assets/UI/cross.png?fileID=21300000&guid=1a1faae07f1baca42b68045e08eea8b0&type=3#cross");
+    width: 12px;
+    height: 12px;
+    -unity-background-image-tint-color: rgb(143, 0, 0);
+}
+
+
+
+
+
+
+
+.body {
+    flex-shrink: 1;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 10px;
+}
+
+
+
+
+
+
+
+.title {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: var(--unity-metrics-default-font_normal_size);
+}
+
+.close-button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-left-color: rgba(175, 178, 190, 0);
+    border-right-color: rgba(175, 178, 190, 0);
+    border-top-color: rgba(175, 178, 190, 0);
+    border-bottom-color: rgba(175, 178, 190, 0);
+    width: 30px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.ls-monitor-gray {
+    color: rgb(192, 199, 213);
+}
+
+.ls-monitor-white {
+    color: rgb(214, 224, 255);
+}
+
+.ls-monitor-orange {
+    color: rgb(204, 171, 0);
+}
+
+.ls-monitor-red {
+    color: rgb(209, 22, 13);
+}
+
+.lsHeader {
+    flex-direction: row;
+    min-height: 24px;
+    justify-content: space-between;
+    margin-left: 5px;
+    margin-right: 12px;
+}
+
+.lsHeaderCell {
+    flex-direction: row;
+    -unity-font-definition: var(--font-medium);
+    min-width: 90px;
+}
+
+.lsHeaderNameCell {
+    min-width: 250px;
+}
+
+.lsHeader__divider {
+    color: rgb(85, 88, 102);
+    font-size: var(--unity-metrics-default-font_normal_size);
+}
+
+.lsHeaderCell__sortIndicator {
+    color: rgb(173, 182, 208);
+    font-size: var(--unity-metrics-default-font_normal_size);
+    position: absolute;
+    right: 4px;
+    -unity-text-align: upper-right;
+}
+
+.lsHeaderCell__text {
+    color: rgb(173, 182, 208);
+    font-size: var(--unity-metrics-default-font_normal_size);
+    position: absolute;
+    left: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lsHeaderCell:hover {
+    -unity-font-definition: var(--font-bold);
+}
+
+.toolbar {
+    flex-direction: row;
+    height: 32px;
+}
+
+.lsEntries {
+    background-color: rgba(29, 32, 41, 0.92);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    flex-grow: 1;
+    margin-top: 5px;
+    min-height: 100px;
+}
+
+.lsFilter {
+    flex-direction: row;
+    width: 50%;
+    background-color: rgba(29, 32, 41, 0.92);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left-color: rgb(63, 66, 78);
+    border-right-color: rgb(63, 66, 78);
+    border-top-color: rgb(63, 66, 78);
+    border-bottom-color: rgb(63, 66, 78);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+.lsFilter__select {
+    flex-basis: 0;
+    flex-grow: 1;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    -unity-text-align: middle-center;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: rgb(42, 45, 56);
+    -unity-font-definition: var(--font-medium);
+    color: rgb(214, 224, 255);
+    font-size: var(--unity-metrics-default-font_normal_size);
+}
+
+.lsFilter__select:hover {
+    -unity-font-definition: var(--font-bold);
+    background-color: rgba(68, 74, 92, 0.92);
+}
+
+.lsFilter__selectSelected {
+    background-color: rgba(84, 86, 205, 0.92);
+    -unity-font-definition: var(--font-bold);
+}
+
+.lsFilter__selectSelected:hover {
+    background-color: rgba(106, 108, 204, 0.92);
+}
+
+.searchBar {
+    flex-basis: 0;
+    flex-grow: 1;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-color: rgb(63, 66, 78);
+    border-right-color: rgb(63, 66, 78);
+    border-top-color: rgb(63, 66, 78);
+    border-bottom-color: rgb(63, 66, 78);
+    background-color: rgba(29, 32, 41, 0.92);
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 5px;
+}
+
+#toolbar .unity-base-text-field__input {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+    -unity-font-definition: var(--font-medium);
+}
+
+.lsEntry {
+    flex-direction: row;
+    background-color: rgb(42, 45, 56);
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-left-color: rgb(85, 88, 102);
+    border-right-color: rgb(85, 88, 102);
+    border-top-color: rgb(85, 88, 102);
+    border-bottom-color: rgb(85, 88, 102);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    margin-left: 5px;
+    margin-right: 2px;
+    justify-content: space-between;
+}
+
+.lsEntry__pinned {
+    border-left-color: rgb(173, 182, 208);
+    border-right-color: rgb(173, 182, 208);
+    border-top-color: rgb(173, 182, 208);
+    border-bottom-color: rgb(173, 182, 208);
+}
+
+.lsEntry__active {
+    border-left-color: rgb(84, 86, 205);
+    border-right-color: rgb(84, 86, 205);
+    border-top-color: rgb(84, 86, 205);
+    border-bottom-color: rgb(84, 86, 205);
+}
+
+.lsEntryNameCell {
+    flex-direction: row;
+    justify-content: space-between;
+    -unity-font-definition: var(--font-medium);
+    min-width: 250px;
+}
+
+.lsEntryNameCell__text {
+    position: absolute;
+    left: 12%;
+    font-size: var(--unity-metrics-default-font_normal_size);
+    color: rgb(173, 182, 208);
+    width: 56%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lsEntryNameCell__pinButton {
+    width: 20px;
+    height: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: rgb(36, 39, 48);
+    position: absolute;
+    top: 13%;
+    left: 2%;
+}
+
+.lsEntryNameCell__pinButton__icon {
+    width: 100%;
+    height: 100%;
+    background-image: url("project://database/Assets/KerbalLifeSupportSystem/UI/pin_clear.png?fileID=2800000&guid=530e34532d6422e42836206bb4d520d7&type=3#pin_clear");
+    -unity-background-image-tint-color: rgb(173, 182, 208);
+}
+
+.lsEntryNameCell__pinButton__icon__enabled {
+    background-image: url("project://database/Assets/KerbalLifeSupportSystem/UI/pin.png?fileID=2800000&guid=df13322a781b6f644b763c0c81a7e48e&type=3#pin");
+}
+
+.lsEntryCell {
+    flex-direction: row;
+    justify-content: space-between;
+    -unity-font-definition: var(--font-medium);
+    min-width: 90px;
+}
+
+.lsEntryCell__text {
+    position: absolute;
+    font-size: var(--unity-metrics-default-font_normal_size);
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    right: 5px;
+    -unity-text-align: upper-right;
+}
+
+.lsEntriesDivider {
+    background-color: rgb(85, 88, 102);
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    height: 1px;
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px;
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    margin-bottom: 1%;
+    flex-shrink: 0;
+}
+
+.unity-scroller--vertical {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: absolute;
+    right: -1%;
+    height: 100%;
+}
+
+.kerbalCounter {
+    position: absolute;
+    right: 2%;
+    top: 13%;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 2px;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: rgb(36, 39, 48);
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    max-height: 20px;
+}
+
+.kerbalCounter__icon {
+    width: 18px;
+    height: 18px;
+    -unity-background-image-tint-color: rgb(173, 182, 208);
+    background-image: url("project://database/Assets/KerbalLifeSupportSystem/UI/current_crew.png?fileID=2800000&guid=cc54c98ad030fa840b4b4ab5affbb114&type=3#current_crew");
+}
+
+.kerbalCounter__text {
+    color: rgb(173, 182, 208);
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-text-align: upper-center;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--unity-metrics-default-font_tiny_size);
+    width: 30%;
+}
+
+.kerbalCounter__text__bold {
+    -unity-font-style: bold;
+}
+
+.kerbalCounter__slash {
+    font-size: var(--unity-metrics-default-font_small_size);
+    color: rgb(173, 182, 208);
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 0;
+    margin-right: -6%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.kerbalCounter__text__current {
+    margin-right: -4%;
+}
+
+.kerbalCounter__text__max {
+}
+
+.settings {
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 5px;
+}
+
+.ls-setting {
+    flex-grow: 0;
+    color: rgb(173, 182, 208);
+    font-size: 13px;
+}
+
+.ls-setting__divider {
+    color: rgb(173, 182, 208);
+    margin-left: 5%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: 3%;
+}
+
+.root {
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    width: 600px;
+}

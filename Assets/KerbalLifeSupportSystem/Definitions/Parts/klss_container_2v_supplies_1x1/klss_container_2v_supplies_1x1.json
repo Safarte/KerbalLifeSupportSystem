@@ -1,0 +1,522 @@
+{
+  "version": 0.3,
+  "useExternal": false,
+  "data": {
+    "partName": "klss_container_2v_supplies_1x1",
+    "author": "Safarte",
+    "category": "Utility",
+    "family": "0504-Supplies",
+    "childStageOffset": 0,
+    "cost": 100,
+    "crewCapacity": 0,
+    "stageOffset": 0,
+    "isCompound": false,
+    "sizeKey": "MD",
+    "sizeCategory": "Auto",
+    "stageType": "None",
+    "resourceCosts": [],
+    "tags": "supplies,life support",
+    "stagingIconAssetAddress": "",
+    "PartSizeDiameter": 0.0,
+    "angularDrag": 1.0,
+    "breakingForce": 100.0,
+    "breakingTorque": 100.0,
+    "buoyancy": 1.0,
+    "buoyancyUseSine": true,
+    "coLiftOffset": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "coMassOffset": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "coPressureOffset": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "coBuoyancy": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "coDisplacement": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "crashTolerance": 10.0,
+    "explosionPotential": 0.5,
+    "fuelCrossFeed": true,
+    "heatConductivity": 0.12,
+    "mass": 4.0,
+    "maxTemp": 750.0,
+    "attachRules": {
+      "stack": true,
+      "srfAttach": true,
+      "allowStack": true,
+      "allowSrfAttach": true,
+      "allowCollision": false,
+      "allowDock": false,
+      "allowRotate": false,
+      "allowRoot": false
+    },
+    "attachNodes": [
+      {
+        "nodeID": "top",
+        "NodeSymmetryGroupID": "",
+        "nodeType": "Stack",
+        "attachMethod": "FIXED_JOINT",
+        "IsMultiJoint": false,
+        "MultiJointMaxJoint": 0,
+        "MultiJointRadiusOffset": 0.0,
+        "MultiJointOnSingleAxis": false,
+        "SingleJointAxis": "X",
+        "MultiJointFullBreakStrength": false,
+        "position": {
+          "x": 0.0,
+          "y": 0.375,
+          "z": 0.0
+        },
+        "orientation": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "size": 0,
+        "sizeKey": "MD",
+        "visualSize": 1.0,
+        "isResourceCrossfeed": true,
+        "isRigid": false,
+        "angularStrengthMultiplier": 0.0,
+        "contactArea": 0.0,
+        "overrideDragArea": 0.0,
+        "isCompoundJoint": false
+      },
+      {
+        "nodeID": "bottom",
+        "NodeSymmetryGroupID": "",
+        "nodeType": "Stack",
+        "attachMethod": "FIXED_JOINT",
+        "IsMultiJoint": false,
+        "MultiJointMaxJoint": 0,
+        "MultiJointRadiusOffset": 0.0,
+        "MultiJointOnSingleAxis": false,
+        "SingleJointAxis": "X",
+        "MultiJointFullBreakStrength": false,
+        "position": {
+          "x": 0.0,
+          "y": -0.375,
+          "z": 0.0
+        },
+        "orientation": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        },
+        "size": 0,
+        "sizeKey": "MD",
+        "visualSize": 1.0,
+        "isResourceCrossfeed": true,
+        "isRigid": false,
+        "angularStrengthMultiplier": 0.0,
+        "contactArea": 0.0,
+        "overrideDragArea": 0.0,
+        "isCompoundJoint": false
+      },
+      {
+        "nodeID": "srfAttach",
+        "NodeSymmetryGroupID": "",
+        "nodeType": "Surface",
+        "attachMethod": "HINGE_JOINT",
+        "IsMultiJoint": false,
+        "MultiJointMaxJoint": 0,
+        "MultiJointRadiusOffset": 0.0,
+        "MultiJointOnSingleAxis": false,
+        "SingleJointAxis": "X",
+        "MultiJointFullBreakStrength": false,
+        "position": {
+          "x": 1.25,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "orientation": {
+          "x": 1.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": 0,
+        "sizeKey": "MD",
+        "visualSize": 1.0,
+        "isResourceCrossfeed": true,
+        "isRigid": false,
+        "angularStrengthMultiplier": 0.0,
+        "contactArea": 0.0,
+        "overrideDragArea": 0.0,
+        "isCompoundJoint": false
+      }
+    ],
+    "resourceContainers": [
+      {
+        "name": "Food",
+        "capacityUnits": 0.135,
+        "initialUnits": 0.135,
+        "NonStageable": true
+      },
+      {
+        "name": "Water",
+        "capacityUnits": 0.405,
+        "initialUnits": 0.405,
+        "NonStageable": true
+      },
+      {
+        "name": "Oxygen",
+        "capacityUnits": 0.135,
+        "initialUnits": 0.135,
+        "NonStageable": true
+      },
+      {
+        "name": "Waste",
+        "capacityUnits": 0.135,
+        "initialUnits": 0.0,
+        "NonStageable": false
+      },
+      {
+        "name": "WasteWater",
+        "capacityUnits": 0.405,
+        "initialUnits": 0.0,
+        "NonStageable": false
+      },
+      {
+        "name": "CarbonDioxide",
+        "capacityUnits": 0.135,
+        "initialUnits": 0.0,
+        "NonStageable": false
+      }
+    ],
+    "AllowKinematicPhysicsIfIntersectTerrain": false,
+    "serializedPartModules": [
+      {
+        "Name": "PartComponentModule_Drag",
+        "ComponentType": "KSP.Sim.impl.PartComponentModule_Drag, Ksp2Redux, Version=0.0.9790.7526, Culture=neutral, PublicKeyToken=null",
+        "BehaviourType": "KSP.Modules.Module_Drag, Ksp2Redux, Version=0.0.9790.7526, Culture=neutral, PublicKeyToken=null",
+        "ModuleData": [
+          {
+            "Name": "Data_Drag",
+            "ModuleType": "KSP.Modules.Module_Drag, Ksp2Redux, Version=0.0.9790.7526, Culture=neutral, PublicKeyToken=null",
+            "DataType": "KSP.Modules.Data_Drag, Ksp2Redux, Version=0.0.9790.7526, Culture=neutral, PublicKeyToken=null",
+            "Data": null,
+            "DataObject": {
+              "$type": "KSP.Modules.Data_Drag, Ksp2Redux",
+              "BodyLiftEnabled": true,
+              "DragEnabled": true,
+              "bodyLiftMultiplier": 1.0,
+              "cubes": [
+                {
+                  "Area": [
+                    1.85546863,
+                    1.85546863,
+                    3.622627,
+                    3.622627,
+                    1.85546863,
+                    1.85546863
+                  ],
+                  "Drag": [
+                    0.7852398,
+                    0.7852398,
+                    0.890728354,
+                    0.890730739,
+                    0.7852354,
+                    0.7852354
+                  ],
+                  "Depth": [
+                    1.30235291,
+                    1.30235291,
+                    0.476862878,
+                    0.476862878,
+                    1.30235291,
+                    1.30235291
+                  ],
+                  "DragMultiplier": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Center": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                  },
+                  "Size": {
+                    "x": 2.49999976,
+                    "y": 0.750000238,
+                    "z": 2.49999976
+                  },
+                  "Name": "Default",
+                  "Weight": 1.0,
+                  "area": [
+                    1.85546863,
+                    1.85546863,
+                    3.622627,
+                    3.622627,
+                    1.85546863,
+                    1.85546863
+                  ],
+                  "drag": [
+                    0.7852398,
+                    0.7852398,
+                    0.890728354,
+                    0.890730739,
+                    0.7852354,
+                    0.7852354
+                  ],
+                  "depth": [
+                    1.30235291,
+                    1.30235291,
+                    0.476862878,
+                    0.476862878,
+                    1.30235291,
+                    1.30235291
+                  ],
+                  "dragMultiplier": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "center": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                  },
+                  "size": {
+                    "x": 2.49999976,
+                    "y": 0.750000238,
+                    "z": 2.49999976
+                  },
+                  "name": "Default",
+                  "weight": 1.0
+                }
+              ],
+              "weightedArea": [
+                1.85546863,
+                1.85546863,
+                3.622627,
+                3.622627,
+                1.85546863,
+                1.85546863
+              ],
+              "weightedExposedArea": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "weightedDrag": [
+                0.7852398,
+                0.7852398,
+                0.890728354,
+                0.890730739,
+                0.7852354,
+                0.7852354
+              ],
+              "weightedDragMultiplier": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "weightedDepth": [
+                1.30235291,
+                1.30235291,
+                0.476862878,
+                0.476862878,
+                1.30235291,
+                1.30235291
+              ],
+              "weightedCenter": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "weightedSize": {
+                "x": 2.49999976,
+                "y": 0.750000238,
+                "z": 2.49999976
+              },
+              "isDragCubeRotated": false,
+              "dragCubeRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+              },
+              "UpdateExposedArea": true,
+              "ModuleType": "KSP.Modules.Module_Drag, Ksp2Redux, Version=0.0.9790.7526, Culture=neutral, PublicKeyToken=null",
+              "DataType": "KSP.Modules.Data_Drag, Ksp2Redux, Version=0.0.9790.7526, Culture=neutral, PublicKeyToken=null",
+              "IsActiveInStagingProp": {
+                "storedValue": false,
+                "ContextKey": null
+              }
+            }
+          }
+        ]
+      },
+      {
+        "Name": "PartComponentModule_Color",
+        "ComponentType": "KSP.Sim.impl.PartComponentModule_Color, Ksp2Redux, Version=0.0.9790.7526, Culture=neutral, PublicKeyToken=null",
+        "BehaviourType": "KSP.Modules.Module_Color, Ksp2Redux, Version=0.0.9790.7526, Culture=neutral, PublicKeyToken=null",
+        "ModuleData": [
+          {
+            "Name": "Data_Color",
+            "ModuleType": "KSP.Modules.Module_Color, Ksp2Redux, Version=0.0.9790.7526, Culture=neutral, PublicKeyToken=null",
+            "DataType": "KSP.Modules.Data_Color, Ksp2Redux, Version=0.0.9790.7526, Culture=neutral, PublicKeyToken=null",
+            "Data": null,
+            "DataObject": {
+              "$type": "KSP.Modules.Data_Color, Ksp2Redux",
+              "Base": {
+                "storedValue": {
+                  "r": 0.654902,
+                  "g": 0.6666667,
+                  "b": 0.6862745,
+                  "a": 1.0
+                },
+                "ContextKey": "Base"
+              },
+              "Accent": {
+                "storedValue": {
+                  "r": 0.4117647,
+                  "g": 0.443137258,
+                  "b": 0.5176471,
+                  "a": 1.0
+                },
+                "ContextKey": "Accent"
+              },
+              "ModuleType": "KSP.Modules.Module_Color, Ksp2Redux, Version=0.0.9790.7526, Culture=neutral, PublicKeyToken=null",
+              "DataType": "KSP.Modules.Data_Color, Ksp2Redux, Version=0.0.9790.7526, Culture=neutral, PublicKeyToken=null",
+              "IsActiveInStagingProp": {
+                "storedValue": false,
+                "ContextKey": null
+              }
+            }
+          }
+        ]
+      },
+      {
+        "Name": "PartComponentModule_ResourceCapacities",
+        "ComponentType": "KSP.Sim.impl.PartComponentModule_ResourceCapacities, Ksp2Redux, Version=0.0.9790.7526, Culture=neutral, PublicKeyToken=null",
+        "BehaviourType": "KSP.Modules.Module_ResourceCapacities, Ksp2Redux, Version=0.0.9790.7526, Culture=neutral, PublicKeyToken=null",
+        "ModuleData": [
+          {
+            "Name": "Data_ResourceCapacities",
+            "ModuleType": "KSP.Modules.Module_ResourceCapacities, Ksp2Redux, Version=0.0.9790.7526, Culture=neutral, PublicKeyToken=null",
+            "DataType": "KSP.Modules.Data_ResourceCapacities, Ksp2Redux, Version=0.0.9790.7526, Culture=neutral, PublicKeyToken=null",
+            "Data": null,
+            "DataObject": {
+              "$type": "KSP.Modules.Data_ResourceCapacities, Ksp2Redux",
+              "AllowTankControls": true,
+              "FrostEnabled": {
+                "storedValue": true,
+                "ContextKey": "FrostEnabled"
+              },
+              "LinkFrost": {
+                "storedValue": false,
+                "ContextKey": "LinkFrost"
+              },
+              "FrostExposure": {
+                "storedValue": 1.0,
+                "ContextKey": "FrostExposure"
+              },
+              "FrostCoverage": -1.0,
+              "FrostHeight": -1.0,
+              "FrostSurfaceLocked": false,
+              "FrostSurfaceState": [],
+              "IsAdvancedSettingsShown": {
+                "storedValue": false,
+                "ContextKey": "IsAdvancedSettingsShown"
+              },
+              "TankEnabled": {
+                "storedValue": true,
+                "ContextKey": "TankEnabled"
+              },
+              "PriorityOffset": {
+                "storedValue": 0.0,
+                "ContextKey": "PriorityOffset"
+              },
+              "ModuleType": "KSP.Modules.Module_ResourceCapacities, Ksp2Redux, Version=0.0.9790.7526, Culture=neutral, PublicKeyToken=null",
+              "DataType": "KSP.Modules.Data_ResourceCapacities, Ksp2Redux, Version=0.0.9790.7526, Culture=neutral, PublicKeyToken=null",
+              "IsActiveInStagingProp": {
+                "storedValue": false,
+                "ContextKey": null
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "resourceSummary": {
+      "Consumes": [],
+      "Generates": [],
+      "Contains": []
+    },
+    "PAMModuleSortOverride": [],
+    "PAMModuleVisualsOverride": [],
+    "hideFromFlightPartsManager": false,
+    "hideFromOABPartsManager": false,
+    "collisionVolumeBoundsScale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+    },
+    "emissiveConstant": 0.0,
+    "maximumDrag": 0.2,
+    "minimumDrag": 0.1,
+    "physicsMode": "Full",
+    "inverseStageCarryover": true,
+    "skinMassPerArea": 4.0,
+    "bodyLiftOnlyUnattachedLift": false,
+    "bodyLiftOnlyAttachName": "",
+    "maxLength": -1,
+    "radiatorHeadroom": 0.75,
+    "radiatorMax": 0.35,
+    "skinMaxTemp": 800.0,
+    "skinInternalConductionMult": 1.0,
+    "thermalMassModifier": 1.0,
+    "buoyancyUseCubeNamed": "",
+    "HasReportStorage": false,
+    "oabEditorCategory": "ALL",
+    "partType": "Rocket",
+    "partHideMode": "ShownByDefault",
+    "PreferredOrientation": "NONE",
+    "MirrorTechnique": "Auto",
+    "CanSuggestOrientation": false,
+    "PickUpPointOffset": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "PickupRotationPointOffset": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "Title": "klss_container_2v_supplies_1x1",
+    "Subtitle": null,
+    "Manufacturer": null,
+    "Description": null
+  },
+  "modules": null,
+  "legacyModules": ""
+}

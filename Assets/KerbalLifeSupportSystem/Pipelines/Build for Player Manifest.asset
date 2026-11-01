@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3014909579799922016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470dbf1cc5834ffc97c653aa1126938c, type: 3}
+  m_Name: CopyFolderDatum
+  m_EditorClassIdentifier: ksp2community.ksp2unitytools.editor::Ksp2UnityTools.Editor.Modding.Thunderkit.CopyFolderDatum
+  StagingPaths: []
+  sourcePath: Assets\KerbalLifeSupportSystem/Copied
+  destinationPath: C:\KSP\Instances\Redux - Snapshot/mods/__Testing/KerbalLifeSupportSystem
+--- !u!114 &-2777061918486628298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7e13dda513544419a89926bd12ad8a, type: 3}
+  m_Name: AssemblyDefinitions
+  m_EditorClassIdentifier: ThunderKit.Core::ThunderKit.Core.Manifests.Datums.AssemblyDefinitions
+  StagingPaths:
+  - C:\KSP\Instances\Redux - Snapshot/mods/__Testing/KerbalLifeSupportSystem
+  definitions:
+  - {fileID: 5897886265953266890, guid: a9b43b6945892e543a96b97269b0be3b, type: 3}
+--- !u!114 &-1466841376248107615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ea0a28af7349aa972a4bcb474b48d7, type: 3}
+  m_Name: AddressablesGroupDatum
+  m_EditorClassIdentifier: ksp2community.ksp2unitytools.editor::Ksp2UnityTools.Editor.Modding.Thunderkit.AddressablesGroupDatum
+  StagingPaths:
+  - C:\KSP\Instances\Redux - Snapshot/mods/__Testing/KerbalLifeSupportSystem/addressables
+  mod: {fileID: 11400000, guid: 55ecdcf2486d5e3418d5442dd4b15419, type: 2}
+  targetFolder: C:\KSP\Instances\Redux - Snapshot/mods/__Testing/KerbalLifeSupportSystem/addressables
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e563561e08b6a3642a487177f5cfbb37, type: 3}
+  m_Name: Build for Player Manifest
+  m_EditorClassIdentifier: ThunderKit.Core::ThunderKit.Core.Manifests.Manifest
+  Data:
+  - {fileID: -3014909579799922016}
+  - {fileID: 726008845630409045}
+  - {fileID: -1466841376248107615}
+  - {fileID: -2777061918486628298}
+  identity: {fileID: 6944976594542690418}
+  QuickAccess: 0
+--- !u!114 &726008845630409045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a089732392b94873b7dffb12543079c3, type: 3}
+  m_Name: TextAssets
+  m_EditorClassIdentifier: ksp2community.ksp2unitytools.editor::Ksp2UnityTools.Editor.Modding.Thunderkit.TextAssets
+  StagingPaths:
+  - C:\KSP\Instances\Redux - Snapshot/mods/__Testing/KerbalLifeSupportSystem
+  possibleFolders:
+  - Assets\KerbalLifeSupportSystem
+--- !u!114 &6944976594542690418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f22bb7fd1d3b56a48bc52f8e407901d6, type: 3}
+  m_Name: KerbalLifeSupportSystem - Editor
+  m_EditorClassIdentifier: ThunderKit.Core::ThunderKit.Core.Manifests.Datum.ManifestIdentity
+  StagingPaths: []
+  Author: nobody
+  Name: 
+  Description: Kerbals need their Snacks.
+  Version: 0.8.0
+  Dependencies: []

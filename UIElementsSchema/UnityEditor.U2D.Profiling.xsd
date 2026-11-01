@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="UnityEditor.U2D.Profiling" elementFormDefault="qualified" targetNamespace="UnityEditor.U2D.Profiling" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="UnityEngine.UIElements.xsd" namespace="UnityEngine.UIElements" />
+  <xs:complexType name="TilemapProfilerViewType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="UnityEngine.UIElements" base="q1:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TilemapProfilerView" xmlns:q2="UnityEngine.UIElements" substitutionGroup="q2:VisualElement" type="tns:TilemapProfilerViewType" />
+  <xs:complexType name="TilemapHierarchyViewType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="UnityEngine.UIElements" base="q3:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TilemapHierarchyView" xmlns:q4="UnityEngine.UIElements" substitutionGroup="q4:VisualElement" type="tns:TilemapHierarchyViewType" />
+  <xs:complexType name="TilemapStatisticViewType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="UnityEngine.UIElements" base="q5:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TilemapStatisticView" xmlns:q6="UnityEngine.UIElements" substitutionGroup="q6:VisualElement" type="tns:TilemapStatisticViewType" />
+  <xs:complexType name="CellLabelWithIconType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="UnityEngine.UIElements" base="q7:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CellLabelWithIcon" xmlns:q8="UnityEngine.UIElements" substitutionGroup="q8:VisualElement" type="tns:CellLabelWithIconType" />
+</xs:schema>

@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8917636901176616962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b20fac9c71fd64183cb7a8f359d73a, type: 3}
+  m_Name: StageAssemblies
+  m_EditorClassIdentifier: ThunderKit.Core::ThunderKit.Core.Pipelines.Jobs.StageAssemblies
+  Active: 1
+  stageDebugDatabases: 0
+  releaseBuild: 1
+  assemblyArtifactPath: <AssemblyStaging>
+  buildTarget: 5
+--- !u!114 &-7914888932362399632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad179729e04b422daea3ee07de05152c, type: 3}
+  m_Name: StageGeneratedTextAssets
+  m_EditorClassIdentifier: ksp2community.ksp2unitytools.editor::Ksp2UnityTools.Editor.Modding.Thunderkit.StageGeneratedTextAssets
+  Active: 1
+--- !u!114 &-3808944710196511485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84db0ba8d60029a40afedf5796c7b0f0, type: 3}
+  m_Name: BakeModAssets
+  m_EditorClassIdentifier: ksp2community.ksp2unitytools.editor::Ksp2UnityTools.Editor.Modding.Thunderkit.BakeModAssets
+  Active: 1
+--- !u!114 &-2115881542429315449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92739bd9e3ee48e7ba377e852d8f49da, type: 3}
+  m_Name: StageFolder
+  m_EditorClassIdentifier: ksp2community.ksp2unitytools.editor::Ksp2UnityTools.Editor.Modding.Thunderkit.StageFolder
+  Active: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3695521163bdd74fa2845bbd3438240, type: 3}
+  m_Name: Build for Player
+  m_EditorClassIdentifier: ThunderKit.Core::ThunderKit.Core.Pipelines.Pipeline
+  Data:
+  - {fileID: -3808944710196511485}
+  - {fileID: -2115881542429315449}
+  - {fileID: -7914888932362399632}
+  - {fileID: 5768321308480962445}
+  - {fileID: -8917636901176616962}
+  QuickAccess: 0
+  manifest: {fileID: 11400000, guid: 1921881420e28cf4280c10debfe047ef, type: 2}
+--- !u!114 &5768321308480962445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c82edc414f9e434d88dd0d7a70ed5cb5, type: 3}
+  m_Name: StageAddressablesGroups
+  m_EditorClassIdentifier: ksp2community.ksp2unitytools.editor::Ksp2UnityTools.Editor.Modding.Thunderkit.StageAddressablesGroups
+  Active: 1

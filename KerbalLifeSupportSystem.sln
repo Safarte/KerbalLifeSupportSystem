@@ -1,36 +1,27 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.7.34003.232
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KerbalLifeSupportSystem", "src\KerbalLifeSupportSystem\KerbalLifeSupportSystem.csproj", "{6440ACC6-EEF0-4621-93AE-28B316BD90C5}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KerbalLifeSupportSystem", "KerbalLifeSupportSystem.csproj", "{84ccaf81-d882-0548-06fc-31ab45c120fd}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KerbalLifeSupportSystem.Unity", "src\KerbalLifeSupportSystem.Unity\KerbalLifeSupportSystem.Unity.csproj", "{BADDEE50-86A5-4AD0-9EE2-75468AD8AAAC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redux.Template.Utilities", "Redux.Template.Utilities.csproj", "{55a89585-f6d3-c75f-a6ca-eb12f4e9fdce}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redux.Template.Editor", "Redux.Template.Editor.csproj", "{66c7fb0b-3a6b-a46b-0d19-266c47877a90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{acc6d6c8-de41-9ad2-6a6d-e53ec562f594}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Deploy|Any CPU = Deploy|Any CPU
-		DeployAndRun|Any CPU = DeployAndRun|Any CPU
-		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6440ACC6-EEF0-4621-93AE-28B316BD90C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6440ACC6-EEF0-4621-93AE-28B316BD90C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6440ACC6-EEF0-4621-93AE-28B316BD90C5}.Deploy|Any CPU.ActiveCfg = Deploy|Any CPU
-		{6440ACC6-EEF0-4621-93AE-28B316BD90C5}.Deploy|Any CPU.Build.0 = Deploy|Any CPU
-		{6440ACC6-EEF0-4621-93AE-28B316BD90C5}.DeployAndRun|Any CPU.ActiveCfg = DeployAndRun|Any CPU
-		{6440ACC6-EEF0-4621-93AE-28B316BD90C5}.DeployAndRun|Any CPU.Build.0 = DeployAndRun|Any CPU
-		{6440ACC6-EEF0-4621-93AE-28B316BD90C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6440ACC6-EEF0-4621-93AE-28B316BD90C5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BADDEE50-86A5-4AD0-9EE2-75468AD8AAAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BADDEE50-86A5-4AD0-9EE2-75468AD8AAAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BADDEE50-86A5-4AD0-9EE2-75468AD8AAAC}.Deploy|Any CPU.ActiveCfg = Deploy|Any CPU
-		{BADDEE50-86A5-4AD0-9EE2-75468AD8AAAC}.Deploy|Any CPU.Build.0 = Deploy|Any CPU
-		{BADDEE50-86A5-4AD0-9EE2-75468AD8AAAC}.DeployAndRun|Any CPU.ActiveCfg = DeployAndRun|Any CPU
-		{BADDEE50-86A5-4AD0-9EE2-75468AD8AAAC}.DeployAndRun|Any CPU.Build.0 = DeployAndRun|Any CPU
-		{BADDEE50-86A5-4AD0-9EE2-75468AD8AAAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BADDEE50-86A5-4AD0-9EE2-75468AD8AAAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84ccaf81-d882-0548-06fc-31ab45c120fd}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84ccaf81-d882-0548-06fc-31ab45c120fd}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55a89585-f6d3-c75f-a6ca-eb12f4e9fdce}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55a89585-f6d3-c75f-a6ca-eb12f4e9fdce}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66c7fb0b-3a6b-a46b-0d19-266c47877a90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66c7fb0b-3a6b-a46b-0d19-266c47877a90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{acc6d6c8-de41-9ad2-6a6d-e53ec562f594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{acc6d6c8-de41-9ad2-6a6d-e53ec562f594}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

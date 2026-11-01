@@ -1,0 +1,32 @@
+{
+    "CompilerVersion": 1,
+    "GeneratedFiles": [
+        "Assets/ReduxSDK/Generated/AuthoringAssets/DecalMaps/SmoothingPad.asset",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/I2Languages.asset",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Plumes/PlumeSetup.unity",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Plumes/Prefabs/Afterburning Jet Engine Plume.prefab",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Plumes/Prefabs/Jet Engine Plume.prefab",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Plumes/Prefabs/Methalox Engine Plume.prefab",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Plumes/Prefabs/Methalox Plume Side Exhaust.prefab",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Plumes/Prefabs/Methalox Plume Simple.prefab",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Plumes/Prefabs/Monoprop Engine Plume.prefab",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Plumes/Prefabs/Monoprop Plume.prefab",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Plumes/Prefabs/Monoprop RCS Plume.prefab",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Plumes/Prefabs/NTR Engine Plume.prefab",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Plumes/Prefabs/SRB Plume.prefab",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Plumes/Prefabs/SRB Separator Plume.prefab",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Plumes/Prefabs/Solid Plume.prefab",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Plumes/Prefabs/Turbofan Engine Plume.prefab",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Plumes/Prefabs/Xenon Engine Plume.prefab",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Resources/I2Languages.asset",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Resources/LogFilterSettings.asset",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Scriptable Objects/Interactions/Airlock_Climb.asset",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Scriptable Objects/Interactions/Airlock_Interact.asset",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Scriptable Objects/Interactions/FlagRemoval_Interact.asset",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Scriptable Objects/Interactions/LadderLetGo_Interact.asset",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Scriptable Objects/Interactions/LadderTopClamber_Interact.asset",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Scriptable Objects/Interactions/Ladder_Climb.asset",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Scriptable Objects/Interactions/Ladder_Interact.asset",
+        "Assets/ReduxSDK/Generated/AuthoringAssets/Scriptable Objects/Interactions/StepClamber_Interact.asset"
+    ]
+}

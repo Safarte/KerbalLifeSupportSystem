@@ -1,0 +1,670 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &758823859305099139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5290732179224785935}
+  - component: {fileID: 417618292432080402}
+  - component: {fileID: 9151097938110014283}
+  - component: {fileID: 5306528691946977922}
+  - component: {fileID: 4616564489186729237}
+  m_Layer: 0
+  m_Name: klss_container_2v_food_1x2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5290732179224785935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758823859305099139}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5266356009778354089}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &417618292432080402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758823859305099139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1852202426, guid: c6399416bda1595f93b461944aeb7aeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Ksp2Redux.dll::KSP.CorePartData
+  core:
+    version: 0.3
+    useExternal: 0
+    data:
+      partName: klss_container_2v_food_1x2
+      author: Safarte
+      category: 4
+      family: 0504-Supplies
+      childStageOffset: 0
+      cost: 100
+      crewCapacity: 0
+      stageOffset: 0
+      isCompound: 0
+      sizeKey: MD
+      sizeCategory: 0
+      stageType: 0
+      resourceCosts: []
+      tags: supplies,life support
+      stagingIconAssetAddress: 
+      PartSizeDiameter: 0
+      angularDrag: 1
+      breakingForce: 100
+      breakingTorque: 100
+      buoyancy: 1
+      buoyancyUseSine: 1
+      coLiftOffset: {x: 0, y: 0, z: 0}
+      coMassOffset: {x: 0, y: 0, z: 0}
+      coPressureOffset: {x: 0, y: 0, z: 0}
+      coBuoyancy: {x: 0, y: 0, z: 0}
+      coDisplacement: {x: 0, y: 0, z: 0}
+      crashTolerance: 30
+      explosionPotential: 0.5
+      fuelCrossFeed: 1
+      heatConductivity: 0.12
+      mass: 5
+      maxTemp: 750
+      attachRules:
+        stack: 1
+        srfAttach: 1
+        allowStack: 1
+        allowSrfAttach: 1
+        allowCollision: 0
+        allowDock: 0
+        allowRotate: 0
+        allowRoot: 0
+      attachNodes:
+      - nodeID: top
+        NodeSymmetryGroupID: 
+        nodeType: 0
+        attachMethod: 0
+        IsMultiJoint: 0
+        MultiJointMaxJoint: 0
+        MultiJointRadiusOffset: 0
+        MultiJointOnSingleAxis: 0
+        SingleJointAxis: 0
+        MultiJointFullBreakStrength: 0
+        position:
+          x: 0
+          y: 0.75
+          z: 0
+        orientation:
+          x: 0
+          y: 1
+          z: 0
+        size: 0
+        sizeKey: MD
+        visualSize: 1
+        isResourceCrossfeed: 1
+        isRigid: 0
+        angularStrengthMultiplier: 0
+        contactArea: 0
+        overrideDragArea: 0
+        isCompoundJoint: 0
+      - nodeID: bottom
+        NodeSymmetryGroupID: 
+        nodeType: 0
+        attachMethod: 0
+        IsMultiJoint: 0
+        MultiJointMaxJoint: 0
+        MultiJointRadiusOffset: 0
+        MultiJointOnSingleAxis: 0
+        SingleJointAxis: 0
+        MultiJointFullBreakStrength: 0
+        position:
+          x: 0
+          y: -0.75
+          z: 0
+        orientation:
+          x: 0
+          y: -1
+          z: 0
+        size: 0
+        sizeKey: MD
+        visualSize: 1
+        isResourceCrossfeed: 1
+        isRigid: 0
+        angularStrengthMultiplier: 0
+        contactArea: 0
+        overrideDragArea: 0
+        isCompoundJoint: 0
+      - nodeID: srfAttach
+        NodeSymmetryGroupID: 
+        nodeType: 1
+        attachMethod: 1
+        IsMultiJoint: 0
+        MultiJointMaxJoint: 0
+        MultiJointRadiusOffset: 0
+        MultiJointOnSingleAxis: 0
+        SingleJointAxis: 0
+        MultiJointFullBreakStrength: 0
+        position:
+          x: 1.25
+          y: 0
+          z: 0
+        orientation:
+          x: 1
+          y: 0
+          z: 0
+        size: 0
+        sizeKey: MD
+        visualSize: 1
+        isResourceCrossfeed: 1
+        isRigid: 0
+        angularStrengthMultiplier: 0
+        contactArea: 0
+        overrideDragArea: 0
+        isCompoundJoint: 0
+      resourceContainers:
+      - name: Food
+        capacityUnits: 1.278
+        initialUnits: 1.278
+        NonStageable: 1
+      - name: Waste
+        capacityUnits: 1.278
+        initialUnits: 0
+        NonStageable: 0
+      AllowKinematicPhysicsIfIntersectTerrain: 0
+      serializedPartModules:
+      - Name: PartComponentModule_Drag
+        ModuleData:
+        - Name: Data_Drag
+          Data: 
+      - Name: PartComponentModule_Color
+        ModuleData:
+        - Name: Data_Color
+          Data: 
+      resourceSummary:
+        Consumes: []
+        Generates: []
+        Contains: []
+      PAMModuleSortOverride: []
+      PAMModuleVisualsOverride: []
+      hideFromFlightPartsManager: 0
+      hideFromOABPartsManager: 0
+      collisionVolumeBoundsScale: {x: 1, y: 1, z: 1}
+      emissiveConstant: 0
+      maximumDrag: 0.2
+      minimumDrag: 0.1
+      physicsMode: 0
+      inverseStageCarryover: 1
+      skinMassPerArea: 4
+      bodyLiftOnlyUnattachedLift: 0
+      bodyLiftOnlyAttachName: 
+      maxLength: -1
+      radiatorHeadroom: 0.75
+      radiatorMax: 0.35
+      skinMaxTemp: 800
+      skinInternalConductionMult: 1
+      thermalMassModifier: 1
+      buoyancyUseCubeNamed: 
+      HasReportStorage: 0
+      oabEditorCategory: 2
+      partType: 0
+      partHideMode: 1
+      PreferredOrientation: 0
+      MirrorTechnique: 0
+      CanSuggestOrientation: 0
+      PickUpPointOffset: {x: 0, y: 0, z: 0}
+      PickupRotationPointOffset: {x: 0, y: 0, z: 0}
+    legacyModules: 
+--- !u!114 &9151097938110014283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758823859305099139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1953352323, guid: c6399416bda1595f93b461944aeb7aeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Ksp2Redux.dll::KSP.Modules.Module_Drag
+  dataDrag:
+    BodyLiftEnabled: 1
+    DragEnabled: 1
+    bodyLiftMultiplier: 1
+    cubes:
+    - area:
+      - 3.8159792
+      - 3.8159792
+      - 4.0152392
+      - 4.0152392
+      - 3.8159792
+      - 3.8159792
+      drag:
+      - 0.77572244
+      - 0.77572244
+      - 0.90658635
+      - 0.9065854
+      - 0.77519304
+      - 0.7751925
+      depth:
+      - 1.3751767
+      - 1.3751767
+      - 0.5000001
+      - 0.5000001
+      - 1.3751767
+      - 1.3751767
+      dragMultiplier:
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      center: {x: 0, y: 0, z: 0}
+      size: {x: 2.5396097, y: 1.5000002, z: 2.5396097}
+      name: Default
+      weight: 1
+    weightedArea:
+    - 3.8159792
+    - 3.8159792
+    - 4.0152392
+    - 4.0152392
+    - 3.8159792
+    - 3.8159792
+    weightedExposedArea:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    weightedDrag:
+    - 0.77572244
+    - 0.77572244
+    - 0.90658635
+    - 0.9065854
+    - 0.77519304
+    - 0.7751925
+    weightedDragMultiplier:
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    weightedDepth:
+    - 1.3751767
+    - 1.3751767
+    - 0.5000001
+    - 0.5000001
+    - 1.3751767
+    - 1.3751767
+    weightedCenter: {x: 0, y: 0, z: 0}
+    weightedSize: {x: 2.5396097, y: 1.5000002, z: 2.5396097}
+    isDragCubeRotated: 0
+    dragCubeRotation: {x: 0, y: 0, z: 0, w: 1}
+    UpdateExposedArea: 1
+  bodyLiftScalar: 0
+  dragScalar: 0
+--- !u!114 &5306528691946977922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758823859305099139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1674229125, guid: c6399416bda1595f93b461944aeb7aeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Ksp2Redux.dll::KSP.Modules.Module_Color
+  _dataColor:
+    Base:
+      storedValue: {r: 0.654902, g: 0.6666667, b: 0.6862745, a: 1}
+    Accent:
+      storedValue: {r: 0.4117647, g: 0.44313726, b: 0.5176471, a: 1}
+--- !u!114 &4616564489186729237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758823859305099139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1331067383, guid: c6399416bda1595f93b461944aeb7aeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Ksp2Redux.dll::KSP.Modules.Module_ResourceCapacities
+  dataResourceCapacities:
+    AllowTankControls: 1
+    FrostEnabled:
+      storedValue: 1
+    LinkFrost:
+      storedValue: 0
+    FrostExposure:
+      storedValue: 1
+    FrostCoverage: -1
+    FrostHeight: -1
+    FrostSurfaceLocked: 0
+    FrostSurfaceState: []
+    IsAdvancedSettingsShown:
+      storedValue: 0
+    TankEnabled:
+      storedValue: 1
+    PriorityOffset:
+      storedValue: 0
+    FuelPriority:
+      storedValue: 
+--- !u!1 &4190752028938103351
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4305830364334985153}
+  - component: {fileID: 6038502514844080148}
+  - component: {fileID: 5582859233773123483}
+  m_Layer: 0
+  m_Name: Hull
+  m_TagString: DragCubeMesh
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4305830364334985153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4190752028938103351}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6157365055555521027}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &6038502514844080148
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4190752028938103351}
+  m_Mesh: {fileID: -6989282167128152099, guid: 99506ce176f5ffb418c6dede9fdf30ad, type: 3}
+--- !u!23 &5582859233773123483
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4190752028938103351}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b6c9547ed3547ab479e163fac06e6c18, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5474918558309194018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 401811324681904641}
+  - component: {fileID: 7309843184142041791}
+  m_Layer: 0
+  m_Name: col
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &401811324681904641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5474918558309194018}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.5, y: 0.75, z: 2.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5266356009778354089}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &7309843184142041791
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5474918558309194018}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &6789328486587306169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6157365055555521027}
+  m_Layer: 0
+  m_Name: klss_container_2v_food_1x2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6157365055555521027
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6789328486587306169}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 4305830364334985153}
+  - {fileID: 6304757791286293141}
+  m_Father: {fileID: 5266356009778354089}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7983267142046950530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5266356009778354089}
+  m_Layer: 0
+  m_Name: model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5266356009778354089
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7983267142046950530}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 401811324681904641}
+  - {fileID: 6157365055555521027}
+  m_Father: {fileID: 5290732179224785935}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8478490756313343378
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6304757791286293141}
+  - component: {fileID: 65758417846896065}
+  - component: {fileID: 230589724207276086}
+  m_Layer: 0
+  m_Name: Snacks
+  m_TagString: DragCubeMesh
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6304757791286293141
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8478490756313343378}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6157365055555521027}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &65758417846896065
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8478490756313343378}
+  m_Mesh: {fileID: -2854881152963004063, guid: 99506ce176f5ffb418c6dede9fdf30ad, type: 3}
+--- !u!23 &230589724207276086
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8478490756313343378}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b6c9547ed3547ab479e163fac06e6c18, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}

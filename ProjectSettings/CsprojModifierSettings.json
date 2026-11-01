@@ -1,0 +1,1 @@
+{"AdditionalImports":[{"Path":"Packages/UitkForKsp2/Runtime/LangVersion.props","Position":0}],"AdditionalImportsAdditionalProjects":["UitkForKsp2.csproj","ReduxLib.csproj","SpaceWarp.csproj","SpaceWarp.UI.csproj","SpaceWarp.VersionChecking.csproj","SpaceWarp.Sound.csproj","SpaceWarp.Game.csproj"],"EnableAddAnalyzerReferences":false,"AddAnalyzerReferencesAdditionalProjects":[]}

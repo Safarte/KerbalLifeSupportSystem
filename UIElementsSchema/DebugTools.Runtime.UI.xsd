@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="DebugTools.Runtime.UI" elementFormDefault="qualified" targetNamespace="DebugTools.Runtime.UI" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="UnityEngine.UIElements.xsd" namespace="UnityEngine.UIElements" />
+  <xs:complexType name="TeleportBookmarkRowType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="UnityEngine.UIElements" base="q1:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TeleportBookmarkRow" xmlns:q2="UnityEngine.UIElements" substitutionGroup="q2:VisualElement" type="tns:TeleportBookmarkRowType" />
+  <xs:complexType name="KerbalRosterRowType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="UnityEngine.UIElements" base="q3:VisualElementType">
+        <xs:choice />
+        <xs:attribute default="true" name="is-header" type="xs:boolean" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="KerbalRosterRow" xmlns:q4="UnityEngine.UIElements" substitutionGroup="q4:VisualElement" type="tns:KerbalRosterRowType" />
+  <xs:complexType name="ThermalDataRowType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="UnityEngine.UIElements" base="q5:VisualElementType">
+        <xs:choice />
+        <xs:attribute default="true" name="IsHeader" type="xs:boolean" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ThermalDataRow" xmlns:q6="UnityEngine.UIElements" substitutionGroup="q6:VisualElement" type="tns:ThermalDataRowType" />
+  <xs:complexType name="MissionRowType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="UnityEngine.UIElements" base="q7:VisualElementType">
+        <xs:choice />
+        <xs:attribute default="true" name="is-header" type="xs:boolean" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MissionRow" xmlns:q8="UnityEngine.UIElements" substitutionGroup="q8:VisualElement" type="tns:MissionRowType" />
+</xs:schema>

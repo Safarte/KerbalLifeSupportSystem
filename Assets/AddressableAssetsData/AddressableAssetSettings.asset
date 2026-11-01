@@ -1,0 +1,152 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
+  m_Name: AddressableAssetSettings
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetSettings
+  m_DefaultGroup: 943d3d76f5bd9564f9d78ee625b0a36c
+  m_currentHash:
+    serializedVersion: 2
+    Hash: eae858f9f3e28e10daf247310909b6d8
+  m_ExtractTypeTreeData: 0
+  m_DisableWriteTypeTree: 0
+  m_OptimizeCatalogSize: 0
+  m_BuildRemoteCatalog: 0
+  m_BundleLocalCatalog: 0
+  m_CatalogRequestsTimeout: 0
+  m_DisableCatalogUpdateOnStart: 0
+  m_InternalIdNamingMode: 0
+  m_InternalBundleIdMode: 1
+  m_AssetLoadMode: 0
+  m_BundledAssetProviderType:
+    m_AssemblyName: Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_ClassName: UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider
+  m_AssetBundleProviderType:
+    m_AssemblyName: Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_ClassName: UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider
+  m_IgnoreUnsupportedFilesInBuild: 0
+  m_UniqueBundleIds: 0
+  m_EnableJsonCatalog: 0
+  m_NonRecursiveBuilding: 1
+  m_AllowNestedBundleFolders: 0
+  m_CCDEnabled: 0
+  m_maxConcurrentWebRequests: 3
+  m_UseUWRForLocalBundles: 0
+  m_BundleTimeout: 0
+  m_BundleRetryCount: 0
+  m_BundleRedirectLimit: -1
+  m_SharedBundleSettings: 0
+  m_SharedBundleSettingsCustomGroupIndex: 0
+  m_simulatedLoadDelay: 0.1
+  m_ContiguousBundles: 1
+  m_StripUnityVersionFromBundleBuild: 0
+  m_DisableVisibleSubAssetRepresentations: 0
+  m_BuiltInBundleNaming: 0
+  mBuiltInBundleCustomNaming: 
+  m_MonoScriptBundleNaming: 0
+  m_CheckForContentUpdateRestrictionsOption: 0
+  m_MonoScriptBundleCustomNaming: 
+  m_RemoteCatalogBuildPath:
+    m_Id: 
+  m_RemoteCatalogLoadPath:
+    m_Id: 
+  m_ContentStateBuildPathProfileVariableName: 
+  m_CustomContentStateBuildPath: 
+  m_ContentStateBuildPath: 
+  m_BuildAddressablesWithPlayerBuild: 0
+  m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
+  m_GroupAssets:
+  - {fileID: 11400000, guid: 95fb99ba39eed0942a1461b828df1ad6, type: 2}
+  - {fileID: 11400000, guid: 7cf40226e8d241e438eb53ffc190bc77, type: 2}
+  - {fileID: 11400000, guid: 06daf35da76ed1248bff07685409e769, type: 2}
+  - {fileID: 11400000, guid: db06bf4a9244dc645bc4bbf3ef179bc1, type: 2}
+  - {fileID: 11400000, guid: f6b6b73e5a3ab4d47a945e4be0b232e4, type: 2}
+  - {fileID: 11400000, guid: 8a58eb8cb5658b74dbbc915471aef9ce, type: 2}
+  - {fileID: 11400000, guid: 973f0fc66bb213746995d1cd3b9df351, type: 2}
+  - {fileID: 11400000, guid: 930d517dfbda144479b70c2e790fec18, type: 2}
+  m_BuildSettings:
+    m_LogResourceManagerExceptions: 1
+    m_BundleBuildPath: Temp/com.unity.addressables/AssetBundles
+  m_ProfileSettings:
+    m_Profiles:
+    - m_InheritedParent: 
+      m_Id: 781db1586f402da44814cfe824a4669f
+      m_ProfileName: Default
+      m_Values:
+      - m_Id: 04313dcc632281448ae0b74e0e5fdc31
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+      - m_Id: 216d883dc99649c42ab11c25c8144e7d
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: 2fa249e8caf1ccf4aa5fbf83a80ba962
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: dcc37ee2ab84392449da9012072ea495
+        m_Value: <undefined>
+      - m_Id: e9fc992211e05a04690ed95d206565ae
+        m_Value: 'ServerData/[BuildTarget]'
+    - m_InheritedParent: 
+      m_Id: 19b78de81f9be1c469633e00a2bc7d80
+      m_ProfileName: KerbalLifeSupportSystem
+      m_Values:
+      - m_Id: 04313dcc632281448ae0b74e0e5fdc31
+        m_Value: '{SpaceWarpPaths.KerbalLifeSupportSystem}/addressables/StandaloneWindows64'
+      - m_Id: 216d883dc99649c42ab11c25c8144e7d
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: 2fa249e8caf1ccf4aa5fbf83a80ba962
+        m_Value: Library/com.unity.addressables/aa/Windows/StandaloneWindows64
+      - m_Id: dcc37ee2ab84392449da9012072ea495
+        m_Value: <undefined>
+      - m_Id: e9fc992211e05a04690ed95d206565ae
+        m_Value: 'ServerData/[BuildTarget]'
+    m_ProfileEntryNames:
+    - m_Id: 04313dcc632281448ae0b74e0e5fdc31
+      m_Name: Local.LoadPath
+      m_InlineUsage: 0
+    - m_Id: 216d883dc99649c42ab11c25c8144e7d
+      m_Name: BuildTarget
+      m_InlineUsage: 0
+    - m_Id: 2fa249e8caf1ccf4aa5fbf83a80ba962
+      m_Name: Local.BuildPath
+      m_InlineUsage: 0
+    - m_Id: dcc37ee2ab84392449da9012072ea495
+      m_Name: Remote.LoadPath
+      m_InlineUsage: 0
+    - m_Id: e9fc992211e05a04690ed95d206565ae
+      m_Name: Remote.BuildPath
+      m_InlineUsage: 0
+    m_ProfileVersion: 1
+  m_LabelTable:
+    m_LabelNames:
+    - default
+    - parts_data
+    - celestial_bodies
+    - scienceExperiment
+    - missions
+    - techNodeData
+    - resources
+    - KerbalLifeSupportSystem_patches
+    - KerbalLifeSupportSystem_prefab_patches
+    - feature:KerbalLifeSupportSystem:Parts
+    - nofeature:KerbalLifeSupportSystem:Parts
+    - feature:KerbalLifeSupportSystem:Patches
+    - nofeature:KerbalLifeSupportSystem:Patches
+  m_SchemaTemplates: []
+  m_GroupTemplateObjects:
+  - {fileID: 11400000, guid: cbe72081f038a3445b057c528e137edf, type: 2}
+  m_InitializationObjects: []
+  m_CertificateHandlerType:
+    m_AssemblyName: 
+    m_ClassName: 
+  m_ActivePlayerDataBuilderIndex: 2
+  m_DataBuilders:
+  - {fileID: 11400000, guid: 86adbed82f6f16e438ade0227a8c4d7e, type: 2}
+  - {fileID: 11400000, guid: a53acf56f61e7434e8353998e49c8d75, type: 2}
+  - {fileID: 11400000, guid: eb361c8cd54ec414db92305bf7f9610f, type: 2}
+  m_ActiveProfileId: 19b78de81f9be1c469633e00a2bc7d80

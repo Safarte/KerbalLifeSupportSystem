@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="ThunderKit.Core.UIElements" elementFormDefault="qualified" targetNamespace="ThunderKit.Core.UIElements" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="UnityEngine.UIElements.xsd" namespace="UnityEngine.UIElements" />
+  <xs:complexType name="DragThumbType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="UnityEngine.UIElements" base="q1:VisualElementType">
+        <xs:choice />
+        <xs:attribute name="target-name" type="xs:string" />
+        <xs:attribute default="Left" name="target-relation" type="tns:RelativePositionType" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="RelativePositionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Left" />
+      <xs:enumeration value="Right" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DragThumb" xmlns:q2="UnityEngine.UIElements" substitutionGroup="q2:VisualElement" type="tns:DragThumbType" />
+  <xs:complexType name="StringPopupFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="UnityEngine.UIElements" base="q3:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="label" type="xs:string" />
+        <xs:attribute name="value" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="StringPopupField" xmlns:q4="UnityEngine.UIElements" substitutionGroup="q4:BindableElement" type="tns:StringPopupFieldType" />
+  <xs:complexType name="AssetLinkType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="UnityEngine.UIElements" base="q5:LabelType">
+        <xs:choice />
+        <xs:attribute default="true" name="select-asset" type="xs:boolean" />
+        <xs:attribute name="asset-path" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AssetLink" xmlns:q6="UnityEngine.UIElements" substitutionGroup="q6:Label" type="tns:AssetLinkType" />
+  <xs:complexType name="LoadingSpinnerType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="UnityEngine.UIElements" base="q7:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="LoadingSpinner" xmlns:q8="UnityEngine.UIElements" substitutionGroup="q8:VisualElement" type="tns:LoadingSpinnerType" />
+</xs:schema>

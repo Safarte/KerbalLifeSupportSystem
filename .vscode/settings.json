@@ -1,0 +1,13 @@
+{
+    "Lua.runtime.version": "Lua 5.2",
+    "Lua.workspace.checkThirdParty": false,
+    "Lua.runtime.nonstandardSymbol": [
+        "|lambda|"
+    ],
+    "Lua.workspace.library": [
+        ".pmlua/stubs"
+    ],
+    "Lua.diagnostics.disable": [
+        "lowercase-global"
+    ]
+}

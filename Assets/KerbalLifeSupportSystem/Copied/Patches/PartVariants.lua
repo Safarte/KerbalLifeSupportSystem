@@ -1,0 +1,179 @@
+-- PM.Parts:Patch("Storage0VRadialVariants"):Named("KLSS_storage_0v_radial"):Do(function(part)
+--     PM.VSwift:AddPartSwitch(part, function(data)
+--         data:AddVariantSet("TankType", function(set)
+--             set.VariantSetLocalizationKey = "KLSS/Variants/TankType"
+--             set:AddVariant("Food", function(variant)
+--                 variant.VariantLocalizationKey = "Resource/DisplayName/Food"
+--                 variant:AddTransformer("TransformActivator", function(transformer)
+--                     transformer.Transforms = {"food"}
+--                 end)
+--             end)
+--             set:AddVariant("Water", function(variant)
+--                 variant.VariantLocalizationKey = "Resource/DisplayName/Water"
+--                 variant:AddTransformer("TransformActivator", function(transformer)
+--                     transformer.Transforms = {"water"}
+--                 end)
+--                 variant:AddTransformer("ResourceContainerAdder", function(transformer)
+--                     transformer.Containers = {
+--                         {
+--                             Name = "Water",
+--                             CapacityUnits = 45.0,
+--                             InitialUnits = 45.0
+--                         },
+--                         {
+--                             Name = "WasteWater",
+--                             CapacityUnits = 45.0,
+--                             InitialUnits = 0.0
+--                         }
+--                     }
+--                 end)
+--                 variant:AddTransformer("ResourceContainerRemover", function(transformer)
+--                     transformer.Containers = {"Food", "Waste"}
+--                 end)
+--             end)
+--             set:AddVariant("Oxygen", function(variant)
+--                 variant.VariantLocalizationKey = "Resource/DisplayName/Oxygen"
+--                 variant:AddTransformer("TransformActivator", function(transformer)
+--                     transformer.Transforms = {"oxygen"}
+--                 end)
+--                 variant:AddTransformer("ResourceContainerAdder", function(transformer)
+--                     transformer.Containers = {
+--                         {
+--                             Name = "Oxygen",
+--                             CapacityUnits = 0.015,
+--                             InitialUnits = 0.015
+--                         },
+--                         {
+--                             Name = "CarbonDioxide",
+--                             CapacityUnits = 0.015,
+--                             InitialUnits = 0.0
+--                         }
+--                     }
+--                 end)
+--                 variant:AddTransformer("ResourceContainerRemover", function(transformer)
+--                     transformer.Containers = {"Food", "Waste"}
+--                 end)
+--             end)
+--         end)
+--     end)
+-- end)
+-- 
+-- PM.Parts:Patch("Storage2VRadialVariants"):Named("KLSS_storage_2v_radial"):Do(function(part)
+--     PM.VSwift:AddPartSwitch(part, function(data)
+--         data:AddVariantSet("TankType", function(set)
+--             set.VariantSetLocalizationKey = "KLSS/Variants/TankType"
+--             set:AddVariant("Food", function(variant)
+--                 variant.VariantLocalizationKey = "Resource/DisplayName/Food"
+--                 variant:AddTransformer("TransformActivator", function(transformer)
+--                     transformer.Transforms = {"food"}
+--                 end)
+--             end)
+--             set:AddVariant("Water", function(variant)
+--                 variant.VariantLocalizationKey = "Resource/DisplayName/Water"
+--                 variant:AddTransformer("TransformActivator", function(transformer)
+--                     transformer.Transforms = {"water"}
+--                 end)
+--                 variant:AddTransformer("ResourceContainerAdder", function(transformer)
+--                     transformer.Containers = {
+--                         {
+--                             Name = "Water",
+--                             CapacityUnits = 7668.0,
+--                             InitialUnits = 7668.0
+--                         },
+--                         {
+--                             Name = "WasteWater",
+--                             CapacityUnits = 7668.0,
+--                             InitialUnits = 0.0
+--                         }
+--                     }
+--                 end)
+--                 variant:AddTransformer("ResourceContainerRemover", function(transformer)
+--                     transformer.Containers = {"Food", "Waste"}
+--                 end)
+--             end)
+--             set:AddVariant("Oxygen", function(variant)
+--                 variant.VariantLocalizationKey = "Resource/DisplayName/Oxygen"
+--                 variant:AddTransformer("TransformActivator", function(transformer)
+--                     transformer.Transforms = {"oxygen"}
+--                 end)
+--                 variant:AddTransformer("ResourceContainerAdder", function(transformer)
+--                     transformer.Containers = {
+--                         {
+--                             Name = "Oxygen",
+--                             CapacityUnits = 2.556,
+--                             InitialUnits = 2.556
+--                         },
+--                         {
+--                             Name = "CarbonDioxide",
+--                             CapacityUnits = 2.556,
+--                             InitialUnits = 0.0
+--                         }
+--                     }
+--                 end)
+--                 variant:AddTransformer("ResourceContainerRemover", function(transformer)
+--                     transformer.Containers = {"Food", "Waste"}
+--                 end)
+--             end)
+--         end)
+--     end)
+-- end)
+-- 
+-- PM.Parts:Patch("Storage2V1x2Variants"):Named("KLSS_storage_2v_1x2"):Do(function(part)
+--     PM.VSwift:AddPartSwitch(part, function(data)
+--         data:AddVariantSet("TankType", function(set)
+--             set.VariantSetLocalizationKey = "KLSS/Variants/TankType"
+--             set:AddVariant("Food", function(variant)
+--                 variant.VariantLocalizationKey = "Resource/DisplayName/Food"
+--                 variant:AddTransformer("TransformActivator", function(transformer)
+--                     transformer.Transforms = {"food"}
+--                 end)
+--             end)
+--             set:AddVariant("Water", function(variant)
+--                 variant.VariantLocalizationKey = "Resource/DisplayName/Water"
+--                 variant:AddTransformer("TransformActivator", function(transformer)
+--                     transformer.Transforms = {"water"}
+--                 end)
+--                 variant:AddTransformer("ResourceContainerAdder", function(transformer)
+--                     transformer.Containers = {
+--                         {
+--                             Name = "Water",
+--                             CapacityUnits = 3834.0,
+--                             InitialUnits = 3834.0
+--                         },
+--                         {
+--                             Name = "WasteWater",
+--                             CapacityUnits = 3834.0,
+--                             InitialUnits = 0.0
+--                         }
+--                     }
+--                 end)
+--                 variant:AddTransformer("ResourceContainerRemover", function(transformer)
+--                     transformer.Containers = {"Food", "Waste"}
+--                 end)
+--             end)
+--             set:AddVariant("Oxygen", function(variant)
+--                 variant.VariantLocalizationKey = "Resource/DisplayName/Oxygen"
+--                 variant:AddTransformer("TransformActivator", function(transformer)
+--                     transformer.Transforms = {"oxygen"}
+--                 end)
+--                 variant:AddTransformer("ResourceContainerAdder", function(transformer)
+--                     transformer.Containers = {
+--                         {
+--                             Name = "Oxygen",
+--                             CapacityUnits = 1.278,
+--                             InitialUnits = 1.278
+--                         },
+--                         {
+--                             Name = "CarbonDioxide",
+--                             CapacityUnits = 1.278,
+--                             InitialUnits = 0.0
+--                         }
+--                     }
+--                 end)
+--                 variant:AddTransformer("ResourceContainerRemover", function(transformer)
+--                     transformer.Containers = {"Food", "Waste"}
+--                 end)
+--             end)
+--         end)
+--     end)
+-- end)

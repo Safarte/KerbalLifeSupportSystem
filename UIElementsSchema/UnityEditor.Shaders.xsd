@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="UnityEditor.Shaders" elementFormDefault="qualified" targetNamespace="UnityEditor.Shaders" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="UnityEngine.UIElements.xsd" namespace="UnityEngine.UIElements" />
+  <xs:complexType name="ShaderKeywordDeclarationOverrideFoldoutType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="UnityEngine.UIElements" base="q1:FoldoutType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ShaderKeywordDeclarationOverrideFoldout" xmlns:q2="UnityEngine.UIElements" substitutionGroup="q2:Foldout" type="tns:ShaderKeywordDeclarationOverrideFoldoutType" />
+</xs:schema>

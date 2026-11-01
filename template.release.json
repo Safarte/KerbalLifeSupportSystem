@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "version": "0.2.9-26w44a",
+  "gameVersion": "0.2.9",
+  "snapshot": "26w44a",
+  "sourceCommit": "58c5d31fba91f785e5d7751d4f34b114a86778c1",
+  "sdkPackageName": "ksp2redux.sdk",
+  "sdkCommit": "d728de09e59510527e6451412f61b68df6873229",
+  "registry": "https://upm.ksp2redux.org"
+}

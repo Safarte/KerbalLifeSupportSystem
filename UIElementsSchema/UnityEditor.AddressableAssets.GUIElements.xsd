@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="UnityEditor.AddressableAssets.GUIElements" elementFormDefault="qualified" targetNamespace="UnityEditor.AddressableAssets.GUIElements" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="UnityEngine.UIElements.xsd" namespace="UnityEngine.UIElements" />
+  <xs:complexType name="DocumentationButtonType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="UnityEngine.UIElements" base="q1:VisualElementType">
+        <xs:choice />
+        <xs:attribute name="m_-text" type="xs:string" />
+        <xs:attribute default="index.html" name="m_-page" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DocumentationButton" xmlns:q2="UnityEngine.UIElements" substitutionGroup="q2:VisualElement" type="tns:DocumentationButtonType" />
+  <xs:complexType name="RibbonButtonType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="UnityEngine.UIElements" base="q3:ButtonType">
+        <xs:choice />
+        <xs:attribute default="false" name="toggled" type="xs:boolean" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RibbonButton" xmlns:q4="UnityEngine.UIElements" substitutionGroup="q4:Button" type="tns:RibbonButtonType" />
+  <xs:complexType name="RibbonType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="UnityEngine.UIElements" base="q5:VisualElementType">
+        <xs:choice />
+        <xs:attribute default="Auto" name="alignment" type="q5:AlignType" />
+        <xs:attribute default="false" name="show-help-button" type="xs:boolean" />
+        <xs:attribute default="false" name="show-menu-button" type="xs:boolean" />
+        <xs:attribute default="0" name="initial-option" type="xs:int" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Ribbon" xmlns:q6="UnityEngine.UIElements" substitutionGroup="q6:VisualElement" type="tns:RibbonType" />
+</xs:schema>

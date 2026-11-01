@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="ThunderKit.Markdown" elementFormDefault="qualified" targetNamespace="ThunderKit.Markdown" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="UnityEngine.UIElements.xsd" namespace="UnityEngine.UIElements" />
+  <xs:complexType name="MarkdownElementType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="UnityEngine.UIElements" base="q1:VisualElementType">
+        <xs:choice />
+        <xs:attribute name="data" type="xs:string" />
+        <xs:attribute default="0" name="content-height" type="xs:float" />
+        <xs:attribute name="markdown" type="xs:string" />
+        <xs:attribute default="Implicit" name="markdown-data-type" type="tns:MarkdownDataTypeType" />
+        <xs:attribute default="false" name="space-after-quote-block" type="xs:boolean" />
+        <xs:attribute default="false" name="empty-line-after-code-block" type="xs:boolean" />
+        <xs:attribute default="false" name="empty-line-after-heading" type="xs:boolean" />
+        <xs:attribute default="false" name="empty-line-after-thematic-break" type="xs:boolean" />
+        <xs:attribute default="*" name="list-item-character" type="xs:string" />
+        <xs:attribute default="false" name="expand-auto-links" type="xs:boolean" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="MarkdownDataTypeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Implicit" />
+      <xs:enumeration value="Source" />
+      <xs:enumeration value="Text" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MarkdownElement" xmlns:q2="UnityEngine.UIElements" substitutionGroup="q2:VisualElement" type="tns:MarkdownElementType" />
+</xs:schema>

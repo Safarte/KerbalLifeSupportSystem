@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="UitkForKsp2.MVVM.Bindings" elementFormDefault="qualified" targetNamespace="UitkForKsp2.MVVM.Bindings" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="UnityEngine.UIElements.xsd" namespace="UnityEngine.UIElements" />
+  <xs:complexType name="CommandBindingType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element xmlns:q1="UnityEngine.UIElements" ref="q1:VisualElement" />
+      <xs:element minOccurs="0" form="unqualified" name="Style" xmlns:q2="UnityEngine.UIElements" type="q2:StyleType" />
+      <xs:element minOccurs="0" form="unqualified" name="Template" xmlns:q3="UnityEngine.UIElements" type="q3:TemplateType" />
+      <xs:element minOccurs="0" form="unqualified" name="AttributeOverrides" xmlns:q4="UnityEngine.UIElements" type="q4:AttributeOverridesType" />
+    </xs:choice>
+    <xs:attribute name="property" type="xs:string" />
+    <xs:attribute default="OnSourceChanged" name="update-trigger" xmlns:q5="UnityEngine.UIElements" type="q5:BindingUpdateTriggerType" />
+    <xs:attribute name="data-source-path" type="xs:string" />
+    <xs:attribute name="target-name" type="xs:string" />
+    <xs:anyAttribute processContents="lax" />
+  </xs:complexType>
+  <xs:element name="CommandBinding" type="tns:CommandBindingType" />
+  <xs:complexType name="EventBindingType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element xmlns:q6="UnityEngine.UIElements" ref="q6:VisualElement" />
+      <xs:element minOccurs="0" form="unqualified" name="Style" xmlns:q7="UnityEngine.UIElements" type="q7:StyleType" />
+      <xs:element minOccurs="0" form="unqualified" name="Template" xmlns:q8="UnityEngine.UIElements" type="q8:TemplateType" />
+      <xs:element minOccurs="0" form="unqualified" name="AttributeOverrides" xmlns:q9="UnityEngine.UIElements" type="q9:AttributeOverridesType" />
+    </xs:choice>
+    <xs:attribute name="property" type="xs:string" />
+    <xs:attribute default="OnSourceChanged" name="update-trigger" xmlns:q10="UnityEngine.UIElements" type="q10:BindingUpdateTriggerType" />
+    <xs:attribute name="data-source-path" type="xs:string" />
+    <xs:attribute default="ClickEvent" name="event-type" type="xs:string" />
+    <xs:anyAttribute processContents="lax" />
+  </xs:complexType>
+  <xs:element name="EventBinding" type="tns:EventBindingType" />
+</xs:schema>

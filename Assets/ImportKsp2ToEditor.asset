@@ -1,0 +1,182 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6857069729678816723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03063c7a6ec04cc4c82c75cf9bcc8db8, type: 3}
+  m_Name: Copy
+  m_EditorClassIdentifier: 
+  Active: 1
+  PerManifest: 0
+  ListType: 0
+  Manifests: []
+  ReplaceDirectory: 1
+  Recursive: 1
+  SourceRequired: 0
+  EstablishDestination: 1
+  Source: <GamePath>/Redux
+  Destination: Redux
+--- !u!114 &-6160294729922553416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03063c7a6ec04cc4c82c75cf9bcc8db8, type: 3}
+  m_Name: Copy
+  m_EditorClassIdentifier: 
+  Active: 1
+  PerManifest: 0
+  ListType: 0
+  Manifests: []
+  ReplaceDirectory: 1
+  Recursive: 1
+  SourceRequired: 1
+  EstablishDestination: 1
+  Source: <GamePath>/KSP2_x64_Data/StreamingAssets/Audio/GeneratedSoundBanks/Windows
+  Destination: Assets/StreamingAssets/Audio/GeneratedSoundBanks/Windows
+--- !u!114 &-5777894178515307430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03063c7a6ec04cc4c82c75cf9bcc8db8, type: 3}
+  m_Name: Copy
+  m_EditorClassIdentifier: ThunderKit.Core::ThunderKit.Core.Pipelines.Jobs.Copy
+  Active: 1
+  PerManifest: 0
+  ListType: 0
+  Manifests: []
+  ReplaceDirectory: 1
+  Recursive: 0
+  SourceRequired: 1
+  EstablishDestination: 0
+  Source: <GamePath>/Redux/ksp2.catalog
+  Destination: ksp2.catalog
+--- !u!114 &-4053335996544297743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03063c7a6ec04cc4c82c75cf9bcc8db8, type: 3}
+  m_Name: Copy
+  m_EditorClassIdentifier: 
+  Active: 1
+  PerManifest: 0
+  ListType: 0
+  Manifests: []
+  ReplaceDirectory: 1
+  Recursive: 0
+  SourceRequired: 1
+  EstablishDestination: 0
+  Source: <GamePath>/KSP2_x64_Data/resources.assets.resS
+  Destination: resources.assets.resS
+--- !u!114 &-3964519462820207570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8465a7e736379e1488e1276bf4c917a0, type: 3}
+  m_Name: CreateCatalogBundle
+  m_EditorClassIdentifier: 
+  Active: 0
+  outputAssetBundlePath: Assets/DoNotDistribute/ksp2.catalog
+  filters:
+  - nameRegex: []
+    assetClass: 48
+  - nameRegex: []
+    assetClass: 28
+  - nameRegex: []
+    assetClass: 89
+  - nameRegex: []
+    assetClass: 21
+  - nameRegex: []
+    assetClass: 43
+  - nameRegex: []
+    assetClass: 1
+  - nameRegex: []
+    assetClass: 72
+--- !u!114 &-1734159886244972023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d65cc226c348d45aa1c6dddf3600a6, type: 3}
+  m_Name: Delete
+  m_EditorClassIdentifier: 
+  Active: 1
+  PerManifest: 0
+  ListType: 0
+  Manifests: []
+  Recursive: 1
+  IsFatal: 0
+  Path: Assets/StreamingAssets/aa
+--- !u!114 &-61196321748870910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03063c7a6ec04cc4c82c75cf9bcc8db8, type: 3}
+  m_Name: Copy
+  m_EditorClassIdentifier: 
+  Active: 1
+  PerManifest: 0
+  ListType: 0
+  Manifests: []
+  ReplaceDirectory: 0
+  Recursive: 1
+  SourceRequired: 0
+  EstablishDestination: 1
+  Source: Assets/StreamingAssets/aa
+  Destination: Assets/DoNotDistribute/aa
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3695521163bdd74fa2845bbd3438240, type: 3}
+  m_Name: ImportKsp2ToEditor
+  m_EditorClassIdentifier: 
+  Data:
+  - {fileID: -3964519462820207570}
+  - {fileID: -6160294729922553416}
+  - {fileID: -61196321748870910}
+  - {fileID: -1734159886244972023}
+  - {fileID: -4053335996544297743}
+  - {fileID: -6857069729678816723}
+  - {fileID: -5777894178515307430}
+  QuickAccess: 0
+  manifest: {fileID: 0}

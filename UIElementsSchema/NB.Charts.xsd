@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="NB.Charts" elementFormDefault="qualified" targetNamespace="NB.Charts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="UnityEngine.UIElements.xsd" namespace="UnityEngine.UIElements" />
+  <xs:complexType name="LineChartType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="UnityEngine.UIElements" base="q1:VisualElementType">
+        <xs:choice />
+        <xs:attribute name="axis-label-bottom" type="xs:string" />
+        <xs:attribute name="axis-label-left" type="xs:string" />
+        <xs:attribute name="axis-label-right" type="xs:string" />
+        <xs:attribute name="axis-label-top" type="xs:string" />
+        <xs:attribute default="C_Tableau10" name="color-palette" type="tns:PalettesType" />
+        <xs:attribute default="true" name="show-legend" type="xs:boolean" />
+        <xs:attribute default="rgb(88, 110, 117)" name="major-grid-color" type="xs:string" />
+        <xs:attribute default="2" name="major-grid-line-width" type="xs:float" />
+        <xs:attribute default="true" name="show-major-grid" type="xs:boolean" />
+        <xs:attribute default="true" name="show-major-grid-labels-horizontal" type="xs:boolean" />
+        <xs:attribute default="true" name="show-major-grid-labels-vertical" type="xs:boolean" />
+        <xs:attribute default="10" name="major-grid-label-font-size" type="xs:float" />
+        <xs:attribute default="true" name="major-grid-auto-spacing-horizontal" type="xs:boolean" />
+        <xs:attribute default="true" name="major-grid-auto-spacing-vertical" type="xs:boolean" />
+        <xs:attribute default="N3" name="grid-label-format-string" type="xs:string" />
+        <xs:attribute default="5" name="default-data-width" type="xs:float" />
+        <xs:attribute default="false" name="show-markers" type="xs:boolean" />
+        <xs:attribute name="marker-class" type="xs:string" />
+        <xs:attribute default="false" name="smear-marker-updates" type="xs:boolean" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="PalettesType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="C_Geometry" />
+      <xs:enumeration value="C_Pastels" />
+      <xs:enumeration value="C_Solarized" />
+      <xs:enumeration value="C_Tableau10" />
+      <xs:enumeration value="S_Blue2Yellow" />
+      <xs:enumeration value="D_Blue2Red" />
+      <xs:enumeration value="D_Teal2Pink" />
+      <xs:enumeration value="Random" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LineChart" xmlns:q2="UnityEngine.UIElements" substitutionGroup="q2:VisualElement" type="tns:LineChartType" />
+  <xs:complexType name="PieChartType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="UnityEngine.UIElements" base="q3:VisualElementType">
+        <xs:choice />
+        <xs:attribute name="axis-label-bottom" type="xs:string" />
+        <xs:attribute name="axis-label-left" type="xs:string" />
+        <xs:attribute name="axis-label-right" type="xs:string" />
+        <xs:attribute name="axis-label-top" type="xs:string" />
+        <xs:attribute default="C_Tableau10" name="color-palette" type="tns:PalettesType" />
+        <xs:attribute default="true" name="show-legend" type="xs:boolean" />
+        <xs:attribute default="rgb(128, 128, 128)" name="border-color" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PieChart" xmlns:q4="UnityEngine.UIElements" substitutionGroup="q4:VisualElement" type="tns:PieChartType" />
+  <xs:complexType name="LegendType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="UnityEngine.UIElements" base="q5:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Legend" xmlns:q6="UnityEngine.UIElements" substitutionGroup="q6:VisualElement" type="tns:LegendType" />
+  <xs:complexType name="ScatterplotType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="UnityEngine.UIElements" base="q7:VisualElementType">
+        <xs:choice />
+        <xs:attribute name="axis-label-bottom" type="xs:string" />
+        <xs:attribute name="axis-label-left" type="xs:string" />
+        <xs:attribute name="axis-label-right" type="xs:string" />
+        <xs:attribute name="axis-label-top" type="xs:string" />
+        <xs:attribute default="C_Tableau10" name="color-palette" type="tns:PalettesType" />
+        <xs:attribute default="true" name="show-legend" type="xs:boolean" />
+        <xs:attribute default="rgb(88, 110, 117)" name="major-grid-color" type="xs:string" />
+        <xs:attribute default="2" name="major-grid-line-width" type="xs:float" />
+        <xs:attribute default="true" name="show-major-grid" type="xs:boolean" />
+        <xs:attribute default="true" name="show-major-grid-labels-horizontal" type="xs:boolean" />
+        <xs:attribute default="true" name="show-major-grid-labels-vertical" type="xs:boolean" />
+        <xs:attribute default="10" name="major-grid-label-font-size" type="xs:float" />
+        <xs:attribute default="true" name="major-grid-auto-spacing-horizontal" type="xs:boolean" />
+        <xs:attribute default="true" name="major-grid-auto-spacing-vertical" type="xs:boolean" />
+        <xs:attribute default="N3" name="grid-label-format-string" type="xs:string" />
+        <xs:attribute default="5" name="default-data-width" type="xs:float" />
+        <xs:attribute name="marker-class" type="xs:string" />
+        <xs:attribute default="false" name="smear-marker-updates" type="xs:boolean" />
+        <xs:attribute default="0" name="overlap-distance" type="xs:float" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Scatterplot" xmlns:q8="UnityEngine.UIElements" substitutionGroup="q8:VisualElement" type="tns:ScatterplotType" />
+</xs:schema>

@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9065a46703c44e8fabd263388eaeb6e7, type: 3}
+  m_Name: 'Kerbal Life-Support System [KerbalLifeSupportSystem]'
+  m_EditorClassIdentifier: ksp2community.ksp2unitytools.editor::Ksp2UnityTools.Editor.Modding.Mod
+  id: KerbalLifeSupportSystem
+  name: Kerbal Life-Support System
+  author: Safarte
+  description: Kerbals need their Snacks.
+  version: 0.8.0
+  versionCheck: https://raw.githubusercontent.com/Safarte/KerbalLifeSupportSystem/refs/heads/main/Assets/KerbalLifeSupportSystem/swinfo.json
+  minKsp2Version: 0.2.9
+  maxKsp2Version: '*'
+  source: https://github.com/Safarte/KerbalLifeSupportSystem
+  allGroup: {fileID: 11400000, guid: 973f0fc66bb213746995d1cd3b9df351, type: 2}
+  partsGroup: {fileID: 11400000, guid: 06daf35da76ed1248bff07685409e769, type: 2}
+  missionsGroup: {fileID: 11400000, guid: 7cf40226e8d241e438eb53ffc190bc77, type: 2}
+  celestialBodiesGroup: {fileID: 11400000, guid: db06bf4a9244dc645bc4bbf3ef179bc1, type: 2}
+  scienceExperimentGroup: {fileID: 11400000, guid: 95fb99ba39eed0942a1461b828df1ad6, type: 2}
+  techNodeDataGroup: {fileID: 11400000, guid: 930d517dfbda144479b70c2e790fec18, type: 2}
+  resourcesGroup: {fileID: 11400000, guid: 8a58eb8cb5658b74dbbc915471aef9ce, type: 2}
+  addressablesProfileId: 19b78de81f9be1c469633e00a2bc7d80
+  dependencies:
+  - id: SpaceWarp2
+    min: 2.0.0
+    max: '*'
+  - id: CommunityResources
+    min: 0.3.0
+    max: '*'
+  incompatibilities: []
+  ownFeature:
+    id: 
+    recommended: 0
+    requires: []
+    conflicts: []
+    provides: []
+  features:
+  - id: Parts
+    recommended: 1
+    requires: []
+    conflicts: []
+    provides: []
+  - id: Patches
+    recommended: 1
+    requires: []
+    conflicts: []
+    provides: []

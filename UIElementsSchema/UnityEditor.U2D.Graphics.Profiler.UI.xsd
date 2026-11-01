@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="UnityEditor.U2D.Graphics.Profiler.UI" elementFormDefault="qualified" targetNamespace="UnityEditor.U2D.Graphics.Profiler.UI" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="UnityEngine.UIElements.xsd" namespace="UnityEngine.UIElements" />
+  <xs:complexType name="U2DGraphicsStatisticViewType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="UnityEngine.UIElements" base="q1:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="U2DGraphicsStatisticView" xmlns:q2="UnityEngine.UIElements" substitutionGroup="q2:VisualElement" type="tns:U2DGraphicsStatisticViewType" />
+  <xs:complexType name="U2DGraphicsHierarchyViewType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="UnityEngine.UIElements" base="q3:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="U2DGraphicsHierarchyView" xmlns:q4="UnityEngine.UIElements" substitutionGroup="q4:VisualElement" type="tns:U2DGraphicsHierarchyViewType" />
+</xs:schema>

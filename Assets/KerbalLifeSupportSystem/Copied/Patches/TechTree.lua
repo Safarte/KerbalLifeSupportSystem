@@ -1,0 +1,24 @@
+-- PM.Science:PatchTechNodes("Add1v_1x1Tank_stock"):Named("tNode_1v_utility_01"):Do(function (node)
+--     node.UnlockedPartsIDs:Append("KLSS_life_support_tank_1v_1x1")
+-- end)
+-- 
+-- PM.Science:PatchTechNodes("Add2v_1x1Tank_stock"):Named("tNode_2v_payload"):Do(function (node)
+--     node.UnlockedPartsIDs:Append("KLSS_life_support_tank_2v_1x1")
+-- end)
+-- 
+-- PM.Science:PatchTechNodes("Add0v_RadialStorage_stock"):Named("tNode_1v_rover"):Do(function (node)
+--     node.UnlockedPartsIDs:Append("KLSS_storage_0v_radial")
+-- end)
+-- 
+-- PM.Science:PatchTechNodes("Add2v_1x2Storage_stock"):Named("tNode_2v_docking"):Do(function (node)
+--     node.UnlockedPartsIDs:Append("KLSS_storage_2v_1x2")
+-- end)
+-- 
+-- PM.Science:PatchTechNodes("Add2v_RadialStorage_stock"):Named("tNode_3v_payload_01"):Do(function (node)
+--     node.UnlockedPartsIDs:Append("KLSS_storage_2v_radial")
+-- end)
+-- 
+-- PM.Science:PatchTechNodes("Add2v_GreenhouseAndComposter_stock"):Named("tNode_2v_electronics_02"):Do(function (node)
+--     node.UnlockedPartsIDs:Append("KLSS_greenhouse_2v_long")
+--     node.UnlockedPartsIDs:Append("KLSS_composter_2v_short")
+-- end)

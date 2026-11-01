@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="UitkForKsp2.Controls" elementFormDefault="qualified" targetNamespace="UitkForKsp2.Controls" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="UnityEngine.UIElements.xsd" namespace="UnityEngine.UIElements" />
+  <xs:complexType name="OabButtonType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="UnityEngine.UIElements" base="q1:ButtonType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OabButton" xmlns:q2="UnityEngine.UIElements" substitutionGroup="q2:Button" type="tns:OabButtonType" />
+  <xs:complexType name="InvertedCornerBoxType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="UnityEngine.UIElements" base="q3:VisualElementType">
+        <xs:choice />
+        <xs:attribute default="1" name="border-thickness" type="xs:float" />
+        <xs:attribute default="5" name="notch-size" type="xs:float" />
+        <xs:attribute default="rgb(116, 118, 128)" name="border-color" type="xs:string" />
+        <xs:attribute default="rgb(27, 30, 36)" name="background-color" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="InvertedCornerBox" xmlns:q4="UnityEngine.UIElements" substitutionGroup="q4:VisualElement" type="tns:InvertedCornerBoxType" />
+  <xs:complexType name="WindowResizeHandleType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="UnityEngine.UIElements" base="q5:VisualElementType">
+        <xs:choice />
+        <xs:attribute default="true" name="check-screen-bounds" type="xs:boolean" />
+        <xs:attribute default="0" name="min-width" type="xs:float" />
+        <xs:attribute default="0" name="min-height" type="xs:float" />
+        <xs:attribute name="target-name" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WindowResizeHandle" xmlns:q6="UnityEngine.UIElements" substitutionGroup="q6:VisualElement" type="tns:WindowResizeHandleType" />
+  <xs:complexType name="SelectorType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="UnityEngine.UIElements" base="q7:VisualElementType">
+        <xs:choice />
+        <xs:attribute default="false" name="showLimiterButtons" type="xs:boolean" />
+        <xs:attribute default="Loop" name="wrapMode" type="tns:Selector_WrapModeType" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="Selector_WrapModeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Loop" />
+      <xs:enumeration value="Clamp" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Selector" xmlns:q8="UnityEngine.UIElements" substitutionGroup="q8:VisualElement" type="tns:SelectorType" />
+  <xs:complexType name="AppShellType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="UnityEngine.UIElements" base="q9:VisualElementType">
+        <xs:choice />
+        <xs:attribute name="title" type="xs:string" />
+        <xs:attribute default="true" name="uppercase-title" type="xs:boolean" />
+        <xs:attribute default="Normal" name="title-spacing" type="tns:AppShellTitleSpacingType" />
+        <xs:attribute name="icon-address" type="xs:string" />
+        <xs:attribute name="icon-texture" type="xs:string" />
+        <xs:attribute name="icon-sprite" type="xs:string" />
+        <xs:attribute default="----------------------------------------------------------------------------------------------------------------------------------------------------------------/" name="dashes" type="xs:string" />
+        <xs:attribute default="true" name="show-close-button" type="xs:boolean" />
+        <xs:attribute default="header-close-container" name="close-container-name" type="xs:string" />
+        <xs:attribute default="header-close-button" name="close-button-name" type="xs:string" />
+        <xs:attribute default="header-title" name="title-name" type="xs:string" />
+        <xs:attribute default="header-icon" name="icon-name" type="xs:string" />
+        <xs:attribute default="header-dashes" name="dashes-name" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="AppShellTitleSpacingType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Normal" />
+      <xs:enumeration value="Compact" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AppShell" xmlns:q10="UnityEngine.UIElements" substitutionGroup="q10:VisualElement" type="tns:AppShellType" />
+  <xs:complexType name="ColorPickerType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q11="UnityEngine.UIElements" base="q11:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="label" type="xs:string" />
+        <xs:attribute default="rgba(0, 0, 0, 0)" name="value" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ColorPicker" xmlns:q12="UnityEngine.UIElements" substitutionGroup="q12:BindableElement" type="tns:ColorPickerType" />
+  <xs:complexType name="TooltipType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="UnityEngine.UIElements" base="q13:VisualElementType">
+        <xs:choice />
+        <xs:attribute default="500" name="delay" type="xs:int" />
+        <xs:attribute default="15" name="fade-time" type="xs:int" />
+        <xs:attribute default="150" name="fade-in-duration" type="xs:int" />
+        <xs:attribute default="150" name="fade-out-duration" type="xs:int" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Tooltip" xmlns:q14="UnityEngine.UIElements" substitutionGroup="q14:VisualElement" type="tns:TooltipType" />
+  <xs:complexType name="PlaceholderTextFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q15="UnityEngine.UIElements" base="q15:TextFieldType">
+        <xs:choice />
+        <xs:attribute name="placeholder" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PlaceholderTextField" xmlns:q16="UnityEngine.UIElements" substitutionGroup="q16:TextField" type="tns:PlaceholderTextFieldType" />
+</xs:schema>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="Unity.MemoryProfiler.Editor.UI" elementFormDefault="qualified" targetNamespace="Unity.MemoryProfiler.Editor.UI" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="UnityEngine.UIElements.xsd" namespace="UnityEngine.UIElements" />
+  <xs:complexType name="ActivityIndicatorOverlayType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="UnityEngine.UIElements" base="q1:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ActivityIndicatorOverlay" xmlns:q2="UnityEngine.UIElements" substitutionGroup="q2:VisualElement" type="tns:ActivityIndicatorOverlayType" />
+  <xs:complexType name="DropDownButtonType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="UnityEngine.UIElements" base="q3:ButtonType">
+        <xs:choice />
+        <xs:attribute name="button-text" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DropDownButton" xmlns:q4="UnityEngine.UIElements" substitutionGroup="q4:Button" type="tns:DropDownButtonType" />
+  <xs:complexType name="AllTrackedMemoryDescriptionCellType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="UnityEngine.UIElements" base="q5:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AllTrackedMemoryDescriptionCell" xmlns:q6="UnityEngine.UIElements" substitutionGroup="q6:VisualElement" type="tns:AllTrackedMemoryDescriptionCellType" />
+  <xs:complexType name="ToolbarDropDownButtonType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DropDownButtonType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ToolbarDropDownButton" substitutionGroup="tns:DropDownButton" type="tns:ToolbarDropDownButtonType" />
+  <xs:complexType name="DetailedSizeBarType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="UnityEngine.UIElements" base="q7:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DetailedSizeBar" xmlns:q8="UnityEngine.UIElements" substitutionGroup="q8:VisualElement" type="tns:DetailedSizeBarType" />
+  <xs:complexType name="DeltaBarCellType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="UnityEngine.UIElements" base="q9:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DeltaBarCell" xmlns:q10="UnityEngine.UIElements" substitutionGroup="q10:VisualElement" type="tns:DeltaBarCellType" />
+  <xs:complexType name="RibbonButtonType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q11="UnityEngine.UIElements" base="q11:ButtonType">
+        <xs:choice />
+        <xs:attribute default="false" name="toggled" type="xs:boolean" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RibbonButton" xmlns:q12="UnityEngine.UIElements" substitutionGroup="q12:Button" type="tns:RibbonButtonType" />
+  <xs:complexType name="UnityObjectsDescriptionCellType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="UnityEngine.UIElements" base="q13:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UnityObjectsDescriptionCell" xmlns:q14="UnityEngine.UIElements" substitutionGroup="q14:VisualElement" type="tns:UnityObjectsDescriptionCellType" />
+  <xs:complexType name="ProgressBarType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q15="UnityEngine.UIElements" base="q15:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProgressBar" xmlns:q16="UnityEngine.UIElements" substitutionGroup="q16:VisualElement" type="tns:ProgressBarType" />
+  <xs:complexType name="MemoryBarElementType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q17="UnityEngine.UIElements" base="q17:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MemoryBarElement" xmlns:q18="UnityEngine.UIElements" substitutionGroup="q18:VisualElement" type="tns:MemoryBarElementType" />
+  <xs:complexType name="ActivityIndicatorType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q19="UnityEngine.UIElements" base="q19:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ActivityIndicator" xmlns:q20="UnityEngine.UIElements" substitutionGroup="q20:VisualElement" type="tns:ActivityIndicatorType" />
+  <xs:complexType name="ObjectOrTypeLabelType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q21="UnityEngine.UIElements" base="q21:VisualElementType">
+        <xs:choice />
+        <xs:attribute default="UnifiedUnityObject" name="type" type="tns:ObjectOrTypeLabel_DataTypeType" />
+        <xs:attribute name="managed-type-name" type="xs:string" />
+        <xs:attribute name="native-type-name" type="xs:string" />
+        <xs:attribute name="native-object-name" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ObjectOrTypeLabel_DataTypeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PureCSharpType" />
+      <xs:enumeration value="NativeUnityType" />
+      <xs:enumeration value="UnifiedUnityType" />
+      <xs:enumeration value="ManagedObject" />
+      <xs:enumeration value="NativeObject" />
+      <xs:enumeration value="UnifiedUnityObject" />
+      <xs:enumeration value="GCHandle" />
+      <xs:enumeration value="LeakedShell" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ObjectOrTypeLabel" xmlns:q22="UnityEngine.UIElements" substitutionGroup="q22:VisualElement" type="tns:ObjectOrTypeLabelType" />
+  <xs:complexType name="RibbonType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q23="UnityEngine.UIElements" base="q23:VisualElementType">
+        <xs:choice />
+        <xs:attribute default="Auto" name="alignment" type="q23:AlignType" />
+        <xs:attribute default="false" name="show-help-button" type="xs:boolean" />
+        <xs:attribute default="false" name="show-menu-button" type="xs:boolean" />
+        <xs:attribute default="0" name="initial-option" type="xs:int" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Ribbon" xmlns:q24="UnityEngine.UIElements" substitutionGroup="q24:VisualElement" type="tns:RibbonType" />
+  <xs:complexType name="BackgroundPatternType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q25="UnityEngine.UIElements" base="q25:VisualElementType">
+        <xs:choice />
+        <xs:attribute default="1" name="scale" type="xs:float" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BackgroundPattern" xmlns:q26="UnityEngine.UIElements" substitutionGroup="q26:VisualElement" type="tns:BackgroundPatternType" />
+  <xs:complexType name="InfoBoxType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q27="UnityEngine.UIElements" base="q27:VisualElementType">
+        <xs:choice />
+        <xs:attribute default="Info" name="issue-level" type="tns:InfoBox_IssueTypeType" />
+        <xs:attribute default="Info about something&#xA;That may or may not be interesting" name="message" type="xs:string" />
+        <xs:attribute name="documentation-link" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="InfoBox_IssueTypeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Info" />
+      <xs:enumeration value="Warning" />
+      <xs:enumeration value="Error" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="InfoBox" xmlns:q28="UnityEngine.UIElements" substitutionGroup="q28:VisualElement" type="tns:InfoBoxType" />
+  <xs:complexType name="CountDeltaCellType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q29="UnityEngine.UIElements" base="q29:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CountDeltaCell" xmlns:q30="UnityEngine.UIElements" substitutionGroup="q30:VisualElement" type="tns:CountDeltaCellType" />
+</xs:schema>

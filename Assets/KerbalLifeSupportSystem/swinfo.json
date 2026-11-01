@@ -1,0 +1,42 @@
+{
+  "spec": "2.0",
+  "mod_id": "KerbalLifeSupportSystem",
+  "name": "Kerbal Life-Support System",
+  "author": "Safarte",
+  "description": "Kerbals need their Snacks.",
+  "source": "https://github.com/Safarte/KerbalLifeSupportSystem",
+  "version": "0.8.0",
+  "version_check": "https://raw.githubusercontent.com/Safarte/KerbalLifeSupportSystem/refs/heads/main/Assets/KerbalLifeSupportSystem/swinfo.json",
+  "addressable_script_label": "KerbalLifeSupportSystem_patches",
+  "addressable_prefab_patch_label": "KerbalLifeSupportSystem_prefab_patches",
+  "ksp2_version": {
+    "min": "0.2.9",
+    "max": "*"
+  },
+  "dependencies": [
+    {
+      "id": "SpaceWarp2",
+      "version": {
+        "min": "2.0.0",
+        "max": "*"
+      }
+    },
+    {
+      "id": "CommunityResources",
+      "version": {
+        "min": "0.3.0",
+        "max": "*"
+      }
+    }
+  ],
+  "conflicts": [],
+  "main_assembly": "KerbalLifeSupportSystem.dll",
+  "features": {
+    "Parts": {
+      "recommended": true
+    },
+    "Patches": {
+      "recommended": true
+    }
+  }
+}

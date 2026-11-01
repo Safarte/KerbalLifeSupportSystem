@@ -1,0 +1,244 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: KerbalLifeSupportSystem_parts
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: KerbalLifeSupportSystem_parts
+  m_GUID: 82e8ddf4e704b8b4f9df68d454012fc7
+  m_SerializeEntries:
+  - m_GUID: 10b2fd2ddc14c144fa477d3161eca99b
+    m_Address: klss_container_1v_supplies_1x1_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1a7e1f1b47b2d7842b4c7fc4605152d1
+    m_Address: klss_composter_2v_short.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e2155fdb45b5b44ba1aaa4bbc5de8a1
+    m_Address: klss_container_2v_water_1x2.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - feature:KerbalLifeSupportSystem:Parts
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28f47f4d3afd476479e4f9f5e920b9cd
+    m_Address: klss_container_0v_radial_oxygen.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - feature:KerbalLifeSupportSystem:Parts
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 33e8ed0c1fad87242b0b59b700420cf3
+    m_Address: klss_container_0v_radial_food_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ebf5f222acb3cd42bf14a2ee8485dc9
+    m_Address: klss_composter_2v_short_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3fdbc5cccfc7c984c902ed755dcd9180
+    m_Address: klss_container_2v_radial_water.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 403491909865cd34ab82d232754827d0
+    m_Address: klss_container_2v_oxygen_1x2_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 46c3c9e731f61064f92869a9a0ac3def
+    m_Address: klss_container_0v_radial_oxygen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e73b18f38454d94aa5483e0ee6e9e25
+    m_Address: klss_container_2v_food_1x2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 525a9183823260f46a4ed814a82cc016
+    m_Address: klss_container_2v_radial_food.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - feature:KerbalLifeSupportSystem:Parts
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 565fc0fc6d42777459d639869cdfcb50
+    m_Address: klss_container_2v_supplies_1x1_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 593c7be2cd1db1b4188c65d686c6113a
+    m_Address: klss_container_0v_radial_food.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - feature:KerbalLifeSupportSystem:Parts
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5dc118f7834ace3479afd7db283579cd
+    m_Address: klss_container_2v_water_1x2_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 62f45f63ca7342343868123c9b39022e
+    m_Address: klss_container_2v_radial_oxygen_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7446e44e5d6c28449bed66e87a97c36e
+    m_Address: klss_greenhouse_2v_long_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7884381d7f3c77847b9921697287def7
+    m_Address: klss_greenhouse_2v_long.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 799bf530e84cfb342856ded0e0b2d6ff
+    m_Address: klss_composter_2v_short.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - feature:KerbalLifeSupportSystem:Parts
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7dc7ab5e4fb6f554587f155b4b6c24c4
+    m_Address: klss_container_2v_supplies_1x1.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - feature:KerbalLifeSupportSystem:Parts
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e98241bf4f9da046b46b561b9ec2263
+    m_Address: klss_container_0v_radial_water.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - feature:KerbalLifeSupportSystem:Parts
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8825a3154f296a443a71764dcabab650
+    m_Address: klss_container_2v_water_1x2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8881c87d189f4eb4ba87408ad6bed04a
+    m_Address: klss_container_2v_radial_water.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - feature:KerbalLifeSupportSystem:Parts
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 91996f46fc579274eab9dbb383774511
+    m_Address: klss_container_2v_food_1x2_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97199605ae5176c498c4f213a6b1d365
+    m_Address: klss_container_2v_radial_oxygen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98f94e675317828498cc5de0416053db
+    m_Address: klss_container_2v_oxygen_1x2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b5c884c308475746af5c1204f7efbda
+    m_Address: klss_container_0v_radial_oxygen_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b996bed5f1de454a9d4d70d4a0fd746
+    m_Address: klss_container_2v_oxygen_1x2.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - feature:KerbalLifeSupportSystem:Parts
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d7558bf7396fc446ba98f9291e2c2d3
+    m_Address: klss_container_2v_radial_food.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a80ba75b9f114c44bb86f33eb3a77933
+    m_Address: klss_greenhouse_2v_long.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - feature:KerbalLifeSupportSystem:Parts
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aaf7c45fb307b5840b647e264847488a
+    m_Address: klss_container_2v_radial_water_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c2336dba3b5aabc4fba2e9716621d57e
+    m_Address: klss_container_0v_radial_water.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c58356dc55ba1674da7820642bc6cb15
+    m_Address: klss_container_0v_radial_water_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cef7028018fbf6541af2fb0bda4d9641
+    m_Address: klss_container_1v_supplies_1x1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d3a6584b0dedb7c4ea85b59d93f74be2
+    m_Address: klss_container_2v_radial_oxygen.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - feature:KerbalLifeSupportSystem:Parts
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e036820844fcf1b4aa2556a2480fc787
+    m_Address: klss_container_2v_supplies_1x1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e0eae4a262d9513428dbffe32cf889f9
+    m_Address: klss_container_2v_food_1x2.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - feature:KerbalLifeSupportSystem:Parts
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ebe50352a9666bc4b9349939ee6e3f84
+    m_Address: klss_container_0v_radial_food.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f310147e8f770db49bf279c2af85573d
+    m_Address: klss_container_1v_supplies_1x1.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - feature:KerbalLifeSupportSystem:Parts
+    - parts_data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f79ff2222a128154d8527816d97a041d
+    m_Address: klss_container_2v_radial_food_icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: fe008a67565bd604f807e152a28b864b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c98e41c317685554ea6fa6c36beb3b7e, type: 2}
+    - {fileID: 11400000, guid: 587459a26279a5045a33cb6491a0fd32, type: 2}
